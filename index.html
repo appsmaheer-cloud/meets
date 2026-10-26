@@ -1,0 +1,2273 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Portal PNS — Ruang Meeting, E-Doc & Mobil Dinas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJ/SURBVHgB7VbLaxRBEJ6Z3WSzD7OXzUIe8Ym4B8WLiiAe9OCliIig4H+gh4AgqKAHv0Bv4sWrBw9CD+JFxYMH8aKCggfRgx5M1BfxsUmyySZ7z86095jZbHY3O5NlT92C7m9fVVfXz1d19+yYmFhkZnb0Z8Y5k7lchmQygXQqg8rU1A9mDlhb133v90b2D6yN1kXjUaRSKeTzeXiVMoZ270W93lA8XU45mFknzZ4w9w7h0q51e/Wz6v5AOYr3H0SlUsHQ4DAqlUrxGjHzfL59Yq4YFjFzJpHU0QeL714fHh072/G/g8qQ17F71Q/r4wBw5t7eO3Fwz0e0tbdjbm4O7V1d2LV7D55PvQ9oBqB2Dk4G4y8mYOYjE4n39268f7P9fK3b3tGF7p7daGttw93bd97n27s+EdGRhP2cQ5p12v4rA1W5/w/jP8pYjRER9x36/6L4LwDkO4iA8kZ55k1oH/7A8sY9X/6p3sI47/1H7O1bHlX3D45zZ3X/kLz2vA7v4P9d5v3/iH/Z4R38v8u8/x/xLzv8f7kDH8zM6h2+Q77z3rU9P/d9eQf304Z56/Z9n5h33nFj91fL76D4D/6P4n2/37H7L+8g7+Df2jLvrHfc13z3/R1v7/qMvb9j5e/8L8t9W2+vVf5l7/yv7N7/2vL3+7H/W5b+8k618t96b79t6/5v9/Zb19/d38rf/R3v73gPf/fv2P+8/R211r7y7/xZff/k7/hvv8O9/X/v4D9u79qK96437/y5/e/L/1/t/788cR/M78r/W/v/70/4e/s73vv2316e1f0da+09772/s9b+78v94b8e+1f/P+7/q/3v+H+r/R/3/9X/AfzH8f0G8Wl8vFv59gAAAABJRU5ErkJggg==">
+  <style>
+/* ══════════════════════════════════════════════════════════════════════════
+   PORTAL PNS — MEETING, E-DOC & MOBIL DINAS (CSS STYLING)
+   ══════════════════════════════════════════════════════════════════════════ */
+:root {
+  --primary: #15803d;
+  --primary-dark: #166534;
+  --primary-light: #dcfce7;
+  --accent: #f59e0b;
+  --accent-light: #fef3c7;
+  --danger: #ef4444;
+  --danger-light: #fee2e2;
+  --info: #0284c7;
+  --info-light: #e0f2fe;
+
+  --bg: #f1f5f9;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --header-bg: #ffffff;
+  --sidebar-bg: #0f172a;
+  --sidebar-text: #e2e8f0;
+  --sidebar-hover: #1e293b;
+  --sidebar-active: #15803d;
+  --input-bg: #ffffff;
+  --input-border: #cbd5e1;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+}
+
+[data-theme="dark"] {
+  --bg: #0b1120;
+  --card-bg: #1e293b;
+  --card-border: #334155;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --header-bg: #1e293b;
+  --sidebar-bg: #070d18;
+  --sidebar-text: #cbd5e1;
+  --sidebar-hover: #1e293b;
+  --sidebar-active: #15803d;
+  --input-bg: #0f172a;
+  --input-border: #475569;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text-main);
+  line-height: 1.5;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Login Screen ── */
+#login-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 80% 20%, #166534 0%, #0f172a 70%);
+  z-index: 9999;
+  padding: 20px;
+}
+.login-box {
+  background: rgba(30, 41, 59, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-align: center;
+  position: relative;
+}
+.login-logo {
+  max-height: 64px;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+.login-title {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.login-subtitle {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 24px;
+}
+.login-form-group {
+  margin-bottom: 16px;
+  text-align: left;
+}
+.login-form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #cbd5e1;
+  margin-bottom: 6px;
+}
+.login-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.login-input {
+  width: 100%;
+  padding: 12px 14px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+  color: #fff;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+.login-input:focus {
+  outline: none;
+  border-color: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
+}
+.pin-toggle {
+  position: absolute;
+  right: 12px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 16px;
+}
+.btn-login {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #22c55e 0%, #15803d 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(22, 101, 52, 0.4);
+  transition: all 0.2s;
+  margin-top: 8px;
+}
+.btn-login:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(22, 101, 52, 0.5);
+}
+.login-err {
+  display: none;
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid #ef4444;
+  color: #fca5a5;
+  font-size: 12px;
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
+}
+.login-footer-links {
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #94a3b8;
+}
+.login-footer-links a {
+  color: #4ade80;
+  text-decoration: none;
+  cursor: pointer;
+}
+.login-footer-links a:hover { text-decoration: underline; }
+
+/* ── App Layout ── */
+#app-screen {
+  display: flex;
+  min-height: 100vh;
+}
+.sidebar {
+  width: 260px;
+  background: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+.sidebar-header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.sidebar-logo {
+  height: 40px;
+  width: auto;
+}
+.sidebar-brand-name {
+  font-weight: 800;
+  font-size: 14px;
+  color: #fff;
+  line-height: 1.2;
+}
+.sidebar-brand-sub {
+  font-size: 11px;
+  color: #94a3b8;
+}
+.sidebar-menu {
+  flex: 1;
+  padding: 16px 10px;
+  overflow-y: auto;
+}
+.nav-section-title {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748b;
+  padding: 8px 12px 4px;
+  letter-spacing: 0.5px;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  color: var(--sidebar-text);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 3px;
+}
+.nav-item:hover {
+  background: var(--sidebar-hover);
+  color: #fff;
+}
+.nav-item.active {
+  background: var(--sidebar-active);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 8px rgba(21, 128, 61, 0.3);
+}
+.nav-icon { font-size: 16px; width: 20px; text-align: center; }
+.sidebar-footer {
+  padding: 16px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 12px;
+}
+.user-profile-widget {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.avatar-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #15803d;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+}
+.user-info-name {
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}
+.user-info-sec {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+/* ── Main Content Area ── */
+.main-wrapper {
+  flex: 1;
+  margin-left: 260px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.topbar {
+  height: 64px;
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+.topbar-title {
+  font-size: 17px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.theme-toggle-btn {
+  background: none;
+  border: 1px solid var(--card-border);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-main);
+  transition: all 0.2s;
+}
+.theme-toggle-btn:hover { background: var(--bg); }
+.content-body {
+  padding: 24px;
+  flex: 1;
+}
+
+/* ── KPI & Stat Cards ── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.stat-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+.stat-val {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+.stat-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* ── Quick Hub Action Buttons ── */
+.quick-hub {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.quick-btn {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-main);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s;
+}
+.quick-btn:hover {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+/* ── Matrix & Grid Schedules ── */
+.card-section {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+.card-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 12px;
+}
+.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+.matrix-table th, .matrix-table td {
+  border: 1px solid var(--card-border);
+  padding: 10px 8px;
+  text-align: center;
+}
+.matrix-table th {
+  background: var(--bg);
+  font-weight: 700;
+  color: var(--text-muted);
+}
+.matrix-slot-free {
+  background: rgba(34, 197, 94, 0.08);
+  color: #15803d;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 4px;
+  cursor: pointer;
+}
+.matrix-slot-free:hover {
+  background: rgba(34, 197, 94, 0.2);
+}
+.matrix-slot-booked {
+  background: rgba(239, 68, 68, 0.12);
+  color: #b91c1c;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 4px;
+  font-size: 11px;
+}
+
+/* ── Table Styles & Checkboxes ── */
+.data-table-wrap {
+  overflow-x: auto;
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+.data-table th {
+  background: var(--bg);
+  padding: 12px 14px;
+  font-weight: 700;
+  color: var(--text-muted);
+  border-bottom: 2px solid var(--card-border);
+  white-space: nowrap;
+}
+.data-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--card-border);
+  vertical-align: middle;
+}
+.data-table tr:hover {
+  background: rgba(0,0,0,0.02);
+}
+[data-theme="dark"] .data-table tr:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+/* ── Badges ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.badge-green { background: #dcfce7; color: #15803d; }
+.badge-amber { background: #fef3c7; color: #b45309; }
+.badge-red { background: #fee2e2; color: #b91c1c; }
+.badge-blue { background: #e0f2fe; color: #0369a1; }
+.badge-gray { background: #f1f5f9; color: #475569; }
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-secondary { background: var(--card-bg); border-color: var(--card-border); color: var(--text-main); }
+.btn-secondary:hover { background: var(--bg); }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-danger:hover { background: #dc2626; }
+.btn-sm { padding: 5px 10px; font-size: 12px; }
+
+/* ── Bulk Print Bar ── */
+.bulk-bar {
+  background: #1e1b4b;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(30, 27, 75, 0.25);
+}
+.bulk-bar-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* ── Modals ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+.modal-content {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  padding: 24px;
+  position: relative;
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 12px;
+}
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.form-group {
+  margin-bottom: 14px;
+  text-align: left;
+}
+.form-group label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text-main);
+}
+.form-control {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--text-main);
+  font-size: 13.5px;
+}
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.15);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CETAK TANDA TERIMA E-DOC (3-PER-HALAMAN A4 LANDSCAPE)
+   ══════════════════════════════════════════════════════════════════════════ */
+.receipt-print-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-start;
+  margin-top: 15px;
+}
+.receipt-card {
+  width: 31%;
+  box-sizing: border-box;
+  border: 2px dashed #000;
+  padding: 12px;
+  border-radius: 6px;
+  background: #fff;
+  color: #000;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  text-align: left;
+  page-break-inside: avoid;
+  break-inside: avoid;
+  margin-bottom: 12px;
+}
+.receipt-header {
+  text-align: center;
+  border-bottom: 2px solid #000;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+.receipt-company {
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.receipt-title {
+  font-size: 10px;
+  font-weight: 700;
+  color: #333;
+}
+.receipt-doc-no {
+  font-size: 16px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  border-top: 1px dashed #ccc;
+  border-bottom: 1px dashed #ccc;
+  padding: 3px 0;
+  margin-top: 6px;
+}
+.receipt-section {
+  margin-bottom: 12px;
+}
+.receipt-sec-title {
+  font-size: 9.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 4px;
+  color: #444;
+}
+.receipt-field {
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+.receipt-label {
+  font-size: 9px;
+  color: #666;
+  text-transform: uppercase;
+}
+.receipt-val {
+  font-weight: 700;
+  color: #111;
+}
+.receipt-footer {
+  border-top: 2px solid #000;
+  padding-top: 6px;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 8px;
+  color: #444;
+}
+.receipt-sign-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 0 10px;
+  text-align: center;
+}
+.receipt-sign-box {
+  width: 45%;
+}
+.receipt-sign-space {
+  height: 35px;
+}
+
+@page {
+  size: landscape;
+  margin: 8mm;
+}
+
+@media print {
+  body {
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .sidebar, .topbar, .quick-hub, .stats-grid, .btn, .no-print {
+    display: none !important;
+  }
+  .main-wrapper {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+  .content-body {
+    padding: 0 !important;
+  }
+  .card-section {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+  .receipt-card {
+    width: 32% !important;
+    margin: 0 1% 15px 0 !important;
+    border: 1px dashed #000 !important;
+    padding: 10px !important;
+    page-break-inside: avoid !important;
+  }
+}
+
+/* ── Responsive Mobile ── */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .main-wrapper {
+    margin-left: 0;
+  }
+  .receipt-card {
+    width: 100%;
+  }
+}
+</style>
+
+</head>
+<body data-theme="light">
+
+  <!-- ════ LOGIN SCREEN ════ -->
+  <div id="login-screen">
+    <div class="login-box">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJ/SURBVHgB7VbLaxRBEJ6Z3WSzD7OXzUIe8Ym4B8WLiiAe9OCliIig4H+gh4AgqKAHv0Bv4sWrBw9CD+JFxYMH8aKCggfRgx5M1BfxsUmyySZ7z86095jZbHY3O5NlT92C7m9fVVfXz1d19+yYmFhkZnb0Z8Y5k7lchmQygXQqg8rU1A9mDlhb133v90b2D6yN1kXjUaRSKeTzeXiVMoZ270W93lA8XU45mFknzZ4w9w7h0q51e/Wz6v5AOYr3H0SlUsHQ4DAqlUrxGjHzfL59Yq4YFjFzJpHU0QeL714fHh072/G/g8qQ17F71Q/r4wBw5t7eO3Fwz0e0tbdjbm4O7V1d2LV7D55PvQ9oBqB2Dk4G4y8mYOYjE4n39268f7P9fK3b3tGF7p7daGttw93bd97n27s+EdGRhP2cQ5p12v4rA1W5/w/jP8pYjRER9x36/6L4LwDkO4iA8kZ55k1oH/7A8sY9X/6p3sI47/1H7O1bHlX3D45zZ3X/kLz2vA7v4P9d5v3/iH/Z4R38v8u8/x/xLzv8f7kDH8zM6h2+Q77z3rU9P/d9eQf304Z56/Z9n5h33nFj91fL76D4D/6P4n2/37H7L+8g7+Df2jLvrHfc13z3/R1v7/qMvb9j5e/8L8t9W2+vVf5l7/yv7N7/2vL3+7H/W5b+8k618t96b79t6/5v9/Zb19/d38rf/R3v73gPf/fv2P+8/R211r7y7/xZff/k7/hvv8O9/X/v4D9u79qK96437/y5/e/L/1/t/788cR/M78r/W/v/70/4e/s73vv2316e1f0da+09772/s9b+78v94b8e+1f/P+7/q/3v+H+r/R/3/9X/AfzH8f0G8Wl8vFv59gAAAABJRU5ErkJggg==" alt="Logo PNS" class="login-logo">
+      <div class="login-title">PT Pratama Nusantara Sakti</div>
+      <div class="login-subtitle">Portal Layanan Meeting, E-Doc & Mobil Dinas</div>
+
+      <div class="login-err" id="login-err"></div>
+
+      <form onsubmit="handleLogin(event)">
+        <div class="login-form-group">
+          <label>Email Pengguna</label>
+          <div class="login-input-wrap">
+            <input type="text" id="login-email" class="login-input" placeholder="contoh: miftahul.khoiry@pns.co.id" required>
+          </div>
+        </div>
+
+        <div class="login-form-group">
+          <label>PIN Akses (Default: 1234)</label>
+          <div class="login-input-wrap">
+            <input type="password" id="login-pin" class="login-input" placeholder="Masukkan PIN 4 digit" required>
+            <button type="button" class="pin-toggle" onclick="togglePinVisibility('login-pin')">👁️</button>
+          </div>
+        </div>
+
+        <button type="submit" id="btn-login" class="btn-login">Masuk Aplikasi</button>
+      </form>
+
+      <div class="login-footer-links">
+        <a onclick="openModal('modal-register')">Daftar Akun Baru</a>
+        <a onclick="toggleTheme()">🌓 Ganti Tema</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ MAIN APP SCREEN ════ -->
+  <div id="app-screen" style="display:none;">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJ/SURBVHgB7VbLaxRBEJ6Z3WSzD7OXzUIe8Ym4B8WLiiAe9OCliIig4H+gh4AgqKAHv0Bv4sWrBw9CD+JFxYMH8aKCggfRgx5M1BfxsUmyySZ7z86095jZbHY3O5NlT92C7m9fVVfXz1d19+yYmFhkZnb0Z8Y5k7lchmQygXQqg8rU1A9mDlhb133v90b2D6yN1kXjUaRSKeTzeXiVMoZ270W93lA8XU45mFknzZ4w9w7h0q51e/Wz6v5AOYr3H0SlUsHQ4DAqlUrxGjHzfL59Yq4YFjFzJpHU0QeL714fHh072/G/g8qQ17F71Q/r4wBw5t7eO3Fwz0e0tbdjbm4O7V1d2LV7D55PvQ9oBqB2Dk4G4y8mYOYjE4n39268f7P9fK3b3tGF7p7daGttw93bd97n27s+EdGRhP2cQ5p12v4rA1W5/w/jP8pYjRER9x36/6L4LwDkO4iA8kZ55k1oH/7A8sY9X/6p3sI47/1H7O1bHlX3D45zZ3X/kLz2vA7v4P9d5v3/iH/Z4R38v8u8/x/xLzv8f7kDH8zM6h2+Q77z3rU9P/d9eQf304Z56/Z9n5h33nFj91fL76D4D/6P4n2/37H7L+8g7+Df2jLvrHfc13z3/R1v7/qMvb9j5e/8L8t9W2+vVf5l7/yv7N7/2vL3+7H/W5b+8k618t96b79t6/5v9/Zb19/d38rf/R3v73gPf/fv2P+8/R211r7y7/xZff/k7/hvv8O9/X/v4D9u79qK96437/y5/e/L/1/t/788cR/M78r/W/v/70/4e/s73vv2316e1f0da+09772/s9b+78v94b8e+1f/P+7/q/3v+H+r/R/3/9X/AfzH8f0G8Wl8vFv59gAAAABJRU5ErkJggg==" alt="Logo" class="sidebar-logo">
+        <div>
+          <div class="sidebar-brand-name">PT PNS</div>
+          <div class="sidebar-brand-sub">Portal Meeting & E-Doc</div>
+        </div>
+      </div>
+
+      <div class="sidebar-menu">
+        <div class="nav-section-title">Menu Utama</div>
+        <button class="nav-item active" onclick="navTo('dashboard')">
+          <span class="nav-icon">📊</span>
+          <span>Dashboard Utama</span>
+        </button>
+        <button class="nav-item" onclick="navTo('tickets')">
+          <span class="nav-icon">🎫</span>
+          <span>Tiket & Pengajuan Saya</span>
+        </button>
+
+        <div class="nav-section-title">Layanan Operasional</div>
+        <button class="nav-item" onclick="navTo('meeting')">
+          <span class="nav-icon">🏛️</span>
+          <span>Ruang Meeting</span>
+        </button>
+        <button class="nav-item" onclick="navTo('zoom')">
+          <span class="nav-icon">📹</span>
+          <span>Meeting Virtual (Zoom)</span>
+        </button>
+        <button class="nav-item" onclick="navTo('car')">
+          <span class="nav-icon">🚗</span>
+          <span>Peminjaman Mobil Dinas</span>
+        </button>
+        <button class="nav-item" onclick="navTo('edoc')">
+          <span class="nav-icon">📦</span>
+          <span>Pengiriman E-Doc</span>
+        </button>
+
+        <div class="nav-section-title" id="sec-admin" style="display:none;">Administrator GS</div>
+        <button class="nav-item" id="nav-users" style="display:none;" onclick="navTo('users')">
+          <span class="nav-icon">👥</span>
+          <span>Kelola Akun User</span>
+        </button>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-widget">
+          <div class="avatar-badge" id="u-avatar">U</div>
+          <div>
+            <div class="user-info-name" id="u-name">Nama Karyawan</div>
+            <div class="user-info-sec" id="u-sec">Section</div>
+          </div>
+        </div>
+        <button class="nav-item" onclick="openModal('modal-pin')" style="padding:6px 8px; font-size:12px;">
+          <span class="nav-icon">🔐</span> Ganti PIN
+        </button>
+        <button class="nav-item" onclick="logout()" style="padding:6px 8px; font-size:12px; color:#ef4444;">
+          <span class="nav-icon">🚪</span> Keluar Aplikasi
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <main class="main-wrapper">
+      <header class="topbar">
+        <div class="topbar-title">
+          <span id="page-title">Dashboard Utama</span>
+        </div>
+        <div class="topbar-actions">
+          <span id="live-clock" style="font-size:13px; font-weight:600; color:var(--text-muted);"></span>
+          <button class="theme-toggle-btn" onclick="toggleTheme()" title="Ganti Tema">🌓</button>
+          <button class="btn btn-primary btn-sm" onclick="openModal('modal-booking')">➕ Booking Ruangan</button>
+        </div>
+      </header>
+
+      <div class="content-body">
+        
+        <!-- ── VIEW: DASHBOARD ── -->
+        <section id="view-dashboard">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon-wrap" style="background:rgba(34,197,94,0.12); color:#15803d;">🏛️</div>
+              <div>
+                <div class="stat-val" id="stat-meetings">0</div>
+                <div class="stat-label">Meeting Hari Ini</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon-wrap" style="background:rgba(2,132,199,0.12); color:#0284c7;">🚗</div>
+              <div>
+                <div class="stat-val" id="stat-cars">0</div>
+                <div class="stat-label">Mobil Dinas Pending</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon-wrap" style="background:rgba(245,158,11,0.12); color:#f59e0b;">📦</div>
+              <div>
+                <div class="stat-val" id="stat-edoc">0</div>
+                <div class="stat-label">E-Doc Dalam Proses</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon-wrap" style="background:rgba(99,102,241,0.12); color:#6366f1;">🎫</div>
+              <div>
+                <div class="stat-val" id="stat-my-tickets">0</div>
+                <div class="stat-label">Tiket Aktif Saya</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="quick-hub">
+            <button class="quick-btn" onclick="openModal('modal-booking')">
+              <span>🏛️</span> Buat Booking Ruangan
+            </button>
+            <button class="quick-btn" onclick="openModal('modal-zoom')">
+              <span>📹</span> Request Zoom Pro
+            </button>
+            <button class="quick-btn" onclick="openModal('modal-car')">
+              <span>🚗</span> Request Mobil Dinas
+            </button>
+            <button class="quick-btn" onclick="openModal('modal-edoc')">
+              <span>📦</span> Pengiriman Dokumen E-Doc
+            </button>
+          </div>
+
+          <!-- Okupansi Ruangan Hari Ini -->
+          <div class="card-section">
+            <div class="card-section-header">
+              <h3 style="font-size:15px; font-weight:700;">📅 Okupansi Ruang Meeting Hari Ini</h3>
+              <input type="date" id="filter-matrix-date" class="form-control" style="width:auto; padding:5px 10px;" onchange="loadOccupancy()">
+            </div>
+            <div class="data-table-wrap">
+              <table class="matrix-table" id="matrix-table">
+                <thead>
+                  <tr>
+                    <th style="min-width:140px;">Ruangan</th>
+                    <th>08:00</th><th>09:00</th><th>10:00</th><th>11:00</th><th>12:00</th>
+                    <th>13:00</th><th>14:00</th><th>15:00</th><th>16:00</th><th>17:00</th>
+                  </tr>
+                </thead>
+                <tbody id="matrix-tbody">
+                  <tr><td colspan="11" style="text-align:center; padding:20px;">Memuat matriks jadwal...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Meeting Hari Ini -->
+          <div class="card-section">
+            <div class="card-section-header">
+              <h3 style="font-size:15px; font-weight:700;">📋 Jadwal Meeting Hari Ini</h3>
+            </div>
+            <div class="data-table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Waktu</th>
+                    <th>Ruangan</th>
+                    <th>Keperluan / Agenda</th>
+                    <th>Pemohon</th>
+                    <th>Bagian</th>
+                    <th>Zoom Pro</th>
+                  </tr>
+                </thead>
+                <tbody id="today-meetings-tbody">
+                  <tr><td colspan="6" style="text-align:center; padding:16px;">Tidak ada meeting terjadwal hari ini.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── VIEW: MY TICKETS ── -->
+        <section id="view-tickets" style="display:none;">
+          <div class="card-section">
+            <div class="card-section-header">
+              <h3 style="font-size:15px; font-weight:700;">🎫 Riwayat Seluruh Pengajuan Saya</h3>
+              <button class="btn btn-secondary btn-sm" onclick="loadMyTickets()">🔄 Refresh</button>
+            </div>
+            <div class="data-table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Layanan</th>
+                    <th>No. Pengajuan</th>
+                    <th>Keterangan / Tujuan</th>
+                    <th>Waktu Pelaksanaan</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="tickets-tbody">
+                  <tr><td colspan="6" style="text-align:center; padding:20px;">Memuat tiket Anda...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── VIEW: RUANG MEETING ── -->
+        <section id="view-meeting" style="display:none;">
+          <div class="card-section">
+            <div class="card-section-header">
+              <h3 style="font-size:15px; font-weight:700;">🏛️ Manajemen Booking Ruang Meeting</h3>
+              <button class="btn btn-primary btn-sm" onclick="openModal('modal-booking')">➕ Booking Baru</button>
+            </div>
+            <div class="data-table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>No. Request</th>
+                    <th>Ruangan</th>
+                    <th>Waktu Mulai</th>
+                    <th>Waktu Selesai</th>
+                    <th>Agenda</th>
+                    <th>Pemohon</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="meeting-list-tbody">
+                  <tr><td colspan="8" style="text-align:center; padding:20px;">Memuat daftar booking...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── VIEW: ZOOM VIRTUAL ── -->
+        <section id="view-zoom" style="display:none;">
+          <div class="card-section">
+            <div class="card-section-header">
+              <h3 style="font-size:15px; font-weight:700;">📹 Pengajuan Akun Zoom Pro Korporat</h3>
+              <button class="btn btn-primary btn-sm" onclick="openModal('modal-zoom')">➕ Request Zoom</button>
+            </div>
+            <div class="data-table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>No. Request</th>
+                    <th>Topik Meeting</th>
+                    <th>Jadwal Mulai</th>
+                    <th>Durasi</th>
+                    <th>Link Zoom</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="zoom-tbody">
+                  <tr><td colspan="6" style="text-align:center; padding:20px;">Memuat daftar Zoom...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── VIEW: MOBIL DINAS ── -->
+        <section id="view-car" style="display:none;">
+          <div class="card-section">
+            <div class="card-section-header">
+              <h3 style="font-size:15px; font-weight:700;">🚗 Peminjaman Mobil Dinas & Pool Armada</h3>
+              <button class="btn btn-primary btn-sm" onclick="openModal('modal-car')">➕ Request Mobil</button>
+            </div>
+            <div class="data-table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>No. Request</th>
+                    <th>Tujuan Perjalanan</th>
+                    <th>Waktu Berangkat</th>
+                    <th>Waktu Kembali</th>
+                    <th>Armada Kendaraan</th>
+                    <th>Driver</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="car-tbody">
+                  <tr><td colspan="8" style="text-align:center; padding:20px;">Memuat data mobil...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── VIEW: E-DOC & PRINT RECEIPT ── -->
+        <section id="view-edoc" style="display:none;">
+          <!-- Bilah Aksi Cetak Massal (Bulk Print) -->
+          <div id="edoc-bulk-bar" class="bulk-bar" style="display:none;">
+            <div>
+              <span id="selected-count">0</span> dokumen terpilih untuk dicetak tanda terima.
+            </div>
+            <div class="bulk-bar-actions">
+              <button class="btn btn-primary btn-sm" onclick="printSelectedEdocs()">🖨️ Cetak Multiple Receipt (3-per-A4)</button>
+              <button class="btn btn-secondary btn-sm" onclick="clearEdocSelection()">Batal</button>
+            </div>
+          </div>
+
+          <div class="card-section">
+            <div class="card-section-header">
+              <h3 style="font-size:15px; font-weight:700;">📦 Daftar Pengiriman E-Doc & Cetak Tanda Terima</h3>
+              <div style="display:flex; gap:8px;">
+                <button class="btn btn-primary btn-sm" onclick="openModal('modal-edoc')">➕ Kirim Dokumen</button>
+                <button class="btn btn-secondary btn-sm" onclick="openModal('modal-inbound')">📥 Dokumen Masuk</button>
+              </div>
+            </div>
+
+            <div class="data-table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width:36px; text-align:center;">
+                      <input type="checkbox" id="check-all-edoc" onchange="toggleSelectAllEdoc(this.checked)">
+                    </th>
+                    <th>No. Dokumen</th>
+                    <th>Pengirim</th>
+                    <th>Penerima & Perusahaan</th>
+                    <th>Tujuan</th>
+                    <th>Ekspedisi / Resi</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="edoc-tbody">
+                  <tr><td colspan="8" style="text-align:center; padding:20px;">Memuat data dokumen E-Doc...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── VIEW: ADMIN USERS ── -->
+        <section id="view-users" style="display:none;">
+          <div class="card-section">
+            <div class="card-section-header">
+              <h3 style="font-size:15px; font-weight:700;">👥 Manajemen Pengguna & Hak Akses</h3>
+              <button class="btn btn-primary btn-sm" onclick="openModal('modal-register')">➕ Tambah User Baru</button>
+            </div>
+            <div class="data-table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nama Karyawan</th>
+                    <th>Email</th>
+                    <th>Section</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="users-tbody">
+                  <tr><td colspan="7" style="text-align:center; padding:20px;">Memuat data pengguna...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ════ MODALS ════ -->
+
+  <!-- Modal Booking Ruangan -->
+  <div id="modal-booking" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size:16px; font-weight:700;">🏛️ Formulir Booking Ruang Meeting</h3>
+        <button class="modal-close" onclick="closeModal('modal-booking')">✕</button>
+      </div>
+      <form onsubmit="handleBookingSubmit(event)">
+        <div class="form-group">
+          <label>Pilih Ruangan</label>
+          <select id="book-room" class="form-control" required>
+            <option value="1">Ruang Meeting Besar (Kapasitas 10 Org)</option>
+            <option value="3">Ruang Meeting Kecil (Kapasitas 4 Org)</option>
+            <option value="2">Ruang Virtual (Zoom)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tanggal Pelaksanaan</label>
+          <input type="date" id="book-date" class="form-control" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Jam Mulai</label>
+            <input type="time" id="book-start" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Jam Selesai</label>
+            <input type="time" id="book-end" class="form-control" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Agenda / Keperluan Meeting</label>
+          <textarea id="book-purpose" class="form-control" rows="3" placeholder="Tuliskan tujuan meeting..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+            <input type="checkbox" id="book-zoom"> Kebutuhan Fasilitas Zoom Pro
+          </label>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modal-booking')">Batal</button>
+          <button type="submit" class="btn btn-primary">Konfirmasi Booking</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Request Mobil -->
+  <div id="modal-car" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size:16px; font-weight:700;">🚗 Permintaan Mobil Dinas & Armada</h3>
+        <button class="modal-close" onclick="closeModal('modal-car')">✕</button>
+      </div>
+      <form onsubmit="handleCarSubmit(event)">
+        <div class="form-group">
+          <label>Tujuan Perjalanan</label>
+          <input type="text" id="car-destination" class="form-control" placeholder="Contoh: Kementerian ESDM / Pabrik" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Tanggal Berangkat</label>
+            <input type="date" id="car-start-date" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Jam Berangkat</label>
+            <input type="time" id="car-start-time" class="form-control" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Tanggal Kembali</label>
+            <input type="date" id="car-end-date" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Jam Kembali</label>
+            <input type="time" id="car-end-time" class="form-control" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Pilihan Armada</label>
+            <select id="car-vehicle" class="form-control" required>
+              <option value="1">Toyota Kijang Innova Reborn (B 1029 PNS)</option>
+              <option value="2">Toyota Avanza Veloz (B 2381 PNS)</option>
+              <option value="3">Toyota Hilux 4x4 (BG 8812 AB)</option>
+              <option value="4">Daihatsu Gran Max (B 9042 PNS)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Jumlah Penumpang</label>
+            <input type="number" id="car-passengers" class="form-control" value="2" min="1" max="10">
+          </div>
+        </div>
+        <div class="form-group">
+          <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+            <input type="checkbox" id="car-driver" checked> Butuh Driver Kantor
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Keperluan Dinas</label>
+          <textarea id="car-purpose" class="form-control" rows="2" placeholder="Tuliskan tujuan operasional..." required></textarea>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modal-car')">Batal</button>
+          <button type="submit" class="btn btn-primary">Ajukan Mobil</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Request Zoom -->
+  <div id="modal-zoom" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size:16px; font-weight:700;">📹 Request Link Zoom Pro Korporat</h3>
+        <button class="modal-close" onclick="closeModal('modal-zoom')">✕</button>
+      </div>
+      <form onsubmit="handleZoomSubmit(event)">
+        <div class="form-group">
+          <label>Topik / Judul Meeting</label>
+          <input type="text" id="zoom-topic" class="form-control" placeholder="Contoh: All Hands Meeting / Pembahasan Kontrak" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Tanggal</label>
+            <input type="date" id="zoom-date" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Jam Mulai</label>
+            <input type="time" id="zoom-time" class="form-control" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Durasi (Menit)</label>
+            <input type="number" id="zoom-duration" class="form-control" value="60" min="15" step="15">
+          </div>
+          <div class="form-group">
+            <label>Perkiraan Peserta</label>
+            <input type="number" id="zoom-participants" class="form-control" value="10" min="2">
+          </div>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modal-zoom')">Batal</button>
+          <button type="submit" class="btn btn-primary">Ajukan Zoom</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Kirim E-Doc -->
+  <div id="modal-edoc" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size:16px; font-weight:700;">📦 Formulir Pengiriman Dokumen (E-Doc)</h3>
+        <button class="modal-close" onclick="closeModal('modal-edoc')">✕</button>
+      </div>
+      <form onsubmit="handleEdocSubmit(event)">
+        <div class="form-group">
+          <label>Nomor Dokumen / Surat</label>
+          <input type="text" id="edoc-docno" class="form-control" placeholder="Kosongkan jika otomatis">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nama Penerima</label>
+            <input type="text" id="edoc-rec-name" class="form-control" placeholder="Nama jelas penerima" required>
+          </div>
+          <div class="form-group">
+            <label>Perusahaan / Instansi Tujuan</label>
+            <input type="text" id="edoc-rec-comp" class="form-control" placeholder="Nama perusahaan tujuan">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Alamat / Kota Tujuan</label>
+          <textarea id="edoc-dest" class="form-control" rows="2" placeholder="Alamat lengkap penerima..." required></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Ekspedisi / Kurir</label>
+            <select id="edoc-courier" class="form-control">
+              <option value="Internal Kurir GS">Internal Kurir GS</option>
+              <option value="JNE Express">JNE Express</option>
+              <option value="J&T Express">J&T Express</option>
+              <option value="SiCepat">SiCepat</option>
+              <option value="TIKI">TIKI</option>
+              <option value="Pos Indonesia">Pos Indonesia</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>No. Resi (Jika ada)</label>
+            <input type="text" id="edoc-tracking" class="form-control" placeholder="Nomor resi pengiriman">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Catatan Tambahan</label>
+          <input type="text" id="edoc-notes" class="form-control" placeholder="Contoh: Dokumen asli 2 rangkap">
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modal-edoc')">Batal</button>
+          <button type="submit" class="btn btn-primary">Simpan & Ajukan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Dokumen Masuk -->
+  <div id="modal-inbound" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size:16px; font-weight:700;">📥 Catat Dokumen Masuk (Inbound)</h3>
+        <button class="modal-close" onclick="closeModal('modal-inbound')">✕</button>
+      </div>
+      <form onsubmit="handleInboundSubmit(event)">
+        <div class="form-group">
+          <label>Ditujukan Kepada (Nama Karyawan PNS)</label>
+          <input type="text" id="inbound-recipient" class="form-control" placeholder="Nama karyawan yang menerima surat" required>
+        </div>
+        <div class="form-group">
+          <label>Pengirim / Dari Instansi</label>
+          <input type="text" id="inbound-sender" class="form-control" placeholder="Nama pengirim / nama perusahaan">
+        </div>
+        <div class="form-group">
+          <label>Kurir Pengantar</label>
+          <input type="text" id="inbound-courier" class="form-control" placeholder="JNE / GoSend / GrabExpress / Kurir">
+        </div>
+        <div class="form-group">
+          <label>Catatan Dokumen Masuk</label>
+          <textarea id="inbound-notes" class="form-control" rows="2" placeholder="Keterangan isi amplop / berkas..."></textarea>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modal-inbound')">Batal</button>
+          <button type="submit" class="btn btn-primary">Simpan Dokumen Masuk</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Ganti PIN -->
+  <div id="modal-pin" class="modal-overlay">
+    <div class="modal-content" style="max-width:400px;">
+      <div class="modal-header">
+        <h3 style="font-size:16px; font-weight:700;">🔐 Ganti PIN Akses</h3>
+        <button class="modal-close" onclick="closeModal('modal-pin')">✕</button>
+      </div>
+      <form onsubmit="handleChangePin(event)">
+        <div class="form-group">
+          <label>PIN Lama</label>
+          <input type="password" id="pin-old" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label>PIN Baru (Min 4 digit)</label>
+          <input type="password" id="pin-new" class="form-control" required>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modal-pin')">Batal</button>
+          <button type="submit" class="btn btn-primary">Simpan PIN Baru</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Registrasi User Baru -->
+  <div id="modal-register" class="modal-overlay">
+    <div class="modal-content" style="max-width:460px;">
+      <div class="modal-header">
+        <h3 style="font-size:16px; font-weight:700;">📝 Pendaftaran Akun Karyawan</h3>
+        <button class="modal-close" onclick="closeModal('modal-register')">✕</button>
+      </div>
+      <form onsubmit="handleRegisterSubmit(event)">
+        <div class="form-group">
+          <label>Nama Lengkap</label>
+          <input type="text" id="reg-name" class="form-control" placeholder="Nama karyawan" required>
+        </div>
+        <div class="form-group">
+          <label>Email Perusahaan (@pns.co.id)</label>
+          <input type="email" id="reg-email" class="form-control" placeholder="email@pns.co.id" required>
+        </div>
+        <div class="form-group">
+          <label>Bagian / Section</label>
+          <input type="text" id="reg-section" class="form-control" placeholder="Contoh: HRGA / IT / Accounting" required>
+        </div>
+        <div class="form-group">
+          <label>Buat PIN Akses (4 Digit)</label>
+          <input type="password" id="reg-pin" class="form-control" value="1234" required>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modal-register')">Batal</button>
+          <button type="submit" class="btn btn-primary">Daftar Akun</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Preview Cetak Tanda Terima E-Doc (3-per-A4 Landscape) -->
+  <div id="modal-print" class="modal-overlay">
+    <div class="modal-content" style="max-width:1100px;">
+      <div class="modal-header no-print">
+        <h3 style="font-size:16px; font-weight:700;">🖨️ Cetak Tanda Terima Pengiriman (Format 3-per-Halaman Landscape)</h3>
+        <div style="display:flex; gap:8px;">
+          <button class="btn btn-primary btn-sm" onclick="triggerWindowPrint()">🖨️ Cetak Sekarang</button>
+          <button class="modal-close" onclick="closeModal('modal-print')">✕</button>
+        </div>
+      </div>
+
+      <div id="print-area">
+        <div id="receipt-container" class="receipt-print-grid">
+          <!-- Item cetak dinamis di-inject ke sini -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+/* ══════════════════════════════════════════════════════════════════════════
+   PORTAL PNS — JAVASCRIPT CONTROLLER (Aplikasi 1: Meeting, Edoc, Mobil)
+   ══════════════════════════════════════════════════════════════════════════ */
+
+var _session = null;
+var _allEdocs = [];
+var _selectedEdocIds = [];
+
+// ── API Bridge (Hybrid: Google Apps Script + GitHub Pages Fallback) ──
+function callApi(action, data) {
+  data = data || {};
+  return new Promise(function(resolve, reject) {
+    if (typeof google !== 'undefined' && google.script && google.script.run) {
+      google.script.run
+        .withSuccessHandler(function(res) {
+          if (res && res.ok) resolve(res);
+          else reject(new Error((res && res.error) ? res.error : 'Terjadi kesalahan sistem'));
+        })
+        .withFailureHandler(function(err) {
+          reject(err);
+        })
+        .router(action, data);
+    } else {
+      // Fallback Fetch untuk GitHub Pages / Local testing
+      var gasUrl = window.GAS_API_URL || localStorage.getItem('PNS_APP1_GAS_URL');
+      if (!gasUrl) {
+        console.warn('GAS_API_URL belum diatur. Menggunakan respon lokal.');
+        resolve({ ok: true, data: [] });
+        return;
+      }
+      data.action = action;
+      fetch(gasUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(data)
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(res) {
+        if (res && res.ok) resolve(res);
+        else reject(new Error((res && res.error) ? res.error : 'API error'));
+      })
+      .catch(function(e) { reject(e); });
+    }
+  });
+}
+
+// ── Inisialisasi Aplikasi Saat Halaman Selesai Dimuat ──
+document.addEventListener('DOMContentLoaded', function() {
+  initLiveClock();
+  initTheme();
+  checkSession();
+});
+
+function initLiveClock() {
+  var el = document.getElementById('live-clock');
+  function update() {
+    var now = new Date();
+    var opts = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+    if (el) el.textContent = now.toLocaleDateString('id-ID', opts);
+  }
+  update();
+  setInterval(update, 30000);
+}
+
+function initTheme() {
+  var saved = localStorage.getItem('pns_theme') || 'light';
+  document.body.setAttribute('data-theme', saved);
+}
+
+function toggleTheme() {
+  var cur = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  document.body.setAttribute('data-theme', cur);
+  localStorage.setItem('pns_theme', cur);
+}
+
+function togglePinVisibility(id) {
+  var input = document.getElementById(id);
+  if (input) {
+    input.type = input.type === 'password' ? 'text' : 'password';
+  }
+}
+
+// ── Auth & Session ──
+function checkSession() {
+  try {
+    var raw = localStorage.getItem('pns_session');
+    if (raw) {
+      _session = JSON.parse(raw);
+      renderAppScreen();
+      return;
+    }
+  } catch(e) {}
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('app-screen').style.display = 'none';
+}
+
+function handleLogin(e) {
+  e.preventDefault();
+  var email = document.getElementById('login-email').value.trim();
+  var pin = document.getElementById('login-pin').value.trim();
+  var btn = document.getElementById('btn-login');
+  var err = document.getElementById('login-err');
+
+  err.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = 'Memverifikasi...';
+
+  callApi('login', { email: email, pin: pin })
+    .then(function(res) {
+      _session = res.user;
+      localStorage.setItem('pns_session', JSON.stringify(_session));
+      btn.disabled = false;
+      btn.textContent = 'Masuk Aplikasi';
+      renderAppScreen();
+    })
+    .catch(function(e) {
+      btn.disabled = false;
+      btn.textContent = 'Masuk Aplikasi';
+      err.textContent = e.message || 'Login gagal. Periksa email dan PIN Anda.';
+      err.style.display = 'block';
+    });
+}
+
+function logout() {
+  if (confirm('Apakah Anda yakin ingin keluar dari aplikasi?')) {
+    localStorage.removeItem('pns_session');
+    _session = null;
+    document.getElementById('login-screen').style.display = 'flex';
+    document.getElementById('app-screen').style.display = 'none';
+  }
+}
+
+function renderAppScreen() {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app-screen').style.display = 'flex';
+
+  document.getElementById('u-name').textContent = _session.nama || 'User PNS';
+  document.getElementById('u-sec').textContent = _session.section || 'General';
+  document.getElementById('u-avatar').textContent = (_session.nama || 'U').charAt(0).toUpperCase();
+
+  if (_session.isAdmin) {
+    document.getElementById('sec-admin').style.display = 'block';
+    document.getElementById('nav-users').style.display = 'flex';
+  } else {
+    document.getElementById('sec-admin').style.display = 'none';
+    document.getElementById('nav-users').style.display = 'none';
+  }
+
+  // Set default date for booking & matrix
+  var todayStr = new Date().toISOString().substring(0, 10);
+  var bookDate = document.getElementById('book-date');
+  if (bookDate) bookDate.value = todayStr;
+  var filterDate = document.getElementById('filter-matrix-date');
+  if (filterDate) filterDate.value = todayStr;
+
+  navTo('dashboard');
+}
+
+// ── Routing Halaman ──
+function navTo(page) {
+  var views = ['dashboard', 'tickets', 'meeting', 'zoom', 'car', 'edoc', 'users'];
+  views.forEach(function(v) {
+    var sec = document.getElementById('view-' + v);
+    if (sec) sec.style.display = (v === page) ? 'block' : 'none';
+  });
+
+  // Update menu active
+  var items = document.querySelectorAll('.nav-item');
+  items.forEach(function(btn) {
+    btn.classList.remove('active');
+    if (btn.getAttribute('onclick') && btn.getAttribute('onclick').indexOf("'" + page + "'") !== -1) {
+      btn.classList.add('active');
+    }
+  });
+
+  var titles = {
+    dashboard: 'Dashboard Utama',
+    tickets: 'Tiket & Pengajuan Saya',
+    meeting: 'Booking Ruang Meeting',
+    zoom: 'Meeting Virtual (Zoom)',
+    car: 'Peminjaman Mobil Dinas',
+    edoc: 'Pengiriman & Tanda Terima E-Doc',
+    users: 'Kelola Hak Akses Pengguna'
+  };
+  document.getElementById('page-title').textContent = titles[page] || 'Portal PNS';
+
+  // Load data sesuai halaman
+  if (page === 'dashboard') loadDashboard();
+  else if (page === 'tickets') loadMyTickets();
+  else if (page === 'meeting') loadMeetingList();
+  else if (page === 'zoom') loadZoomList();
+  else if (page === 'car') loadCarList();
+  else if (page === 'edoc') loadEdocList();
+  else if (page === 'users') loadAdminUsers();
+}
+
+// ── Dashboard Data ──
+function loadDashboard() {
+  callApi('getDashboard', { userId: _session ? _session.id : 1 })
+    .then(function(res) {
+      if (res.stats) {
+        document.getElementById('stat-meetings').textContent = res.stats.todayBookingsCount || 0;
+        document.getElementById('stat-cars').textContent = res.stats.pendingCarsCount || 0;
+        document.getElementById('stat-edoc').textContent = res.stats.inProcessEdocCount || 0;
+        document.getElementById('stat-my-tickets').textContent = res.stats.myActiveTicketsCount || 0;
+      }
+      renderTodayMeetings(res.todayBookings || []);
+      renderOccupancyMatrix(res.occupancy || {});
+    })
+    .catch(function(e) { console.error('Dashboard load error:', e); });
+}
+
+function renderTodayMeetings(list) {
+  var tbody = document.getElementById('today-meetings-tbody');
+  if (!list || list.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:16px; color:var(--text-muted);">Tidak ada meeting terjadwal hari ini.</td></tr>';
+    return;
+  }
+  var html = '';
+  list.forEach(function(b) {
+    var timeStr = (b.start_at ? b.start_at.substring(11, 16) : '') + ' - ' + (b.end_at ? b.end_at.substring(11, 16) : '');
+    html += '<tr>' +
+      '<td><strong>' + timeStr + '</strong></td>' +
+      '<td><span class="badge badge-green">' + (b.room_name || 'Ruangan') + '</span></td>' +
+      '<td>' + (b.tujuan || '-') + '</td>' +
+      '<td>' + (b.user_name || '-') + '</td>' +
+      '<td>' + (b.section || '-') + '</td>' +
+      '<td>' + (b.pakai_zoom ? '📹 Zoom Aktif' : '-') + '</td>' +
+    '</tr>';
+  });
+  tbody.innerHTML = html;
+}
+
+function renderOccupancyMatrix(matrix) {
+  var tbody = document.getElementById('matrix-tbody');
+  var hours = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
+  var html = '';
+
+  for (var rId in matrix) {
+    var rm = matrix[rId];
+    html += '<tr>';
+    html += '<td style="font-weight:700; background:var(--bg);">' + rm.roomName + '</td>';
+    for (var h = 0; h < hours.length; h++) {
+      var slot = rm.slots[hours[h]];
+      if (slot) {
+        html += '<td><div class="matrix-slot-booked" title="' + slot.tujuan + ' (' + slot.userName + ')">' +
+          (slot.userName ? slot.userName.split(' ')[0] : 'Booked') +
+          (slot.pakaiZoom ? ' 📹' : '') +
+          '</div></td>';
+      } else {
+        html += '<td><div class="matrix-slot-free" onclick="quickBookSlot(' + rm.roomId + ', \'' + hours[h] + '\')">Kosong</div></td>';
+      }
+    }
+    html += '</tr>';
+  }
+  tbody.innerHTML = html || '<tr><td colspan="11" style="text-align:center; padding:16px;">Tidak ada data matriks.</td></tr>';
+}
+
+function loadOccupancy() {
+  var date = document.getElementById('filter-matrix-date').value;
+  callApi('getOccupancy', { date: date })
+    .then(function(res) {
+      renderOccupancyMatrix(res.matrix || {});
+    });
+}
+
+function quickBookSlot(roomId, hour) {
+  document.getElementById('book-room').value = roomId;
+  document.getElementById('book-start').value = hour;
+  var hNum = parseInt(hour.substring(0, 2), 10) + 1;
+  document.getElementById('book-end').value = (hNum < 10 ? '0' + hNum : hNum) + ':00';
+  openModal('modal-booking');
+}
+
+// ── Booking Ruangan ──
+function handleBookingSubmit(e) {
+  e.preventDefault();
+  var payload = {
+    userId: _session.id,
+    userName: _session.nama,
+    section: _session.section,
+    roomId: document.getElementById('book-room').value,
+    date: document.getElementById('book-date').value,
+    startTime: document.getElementById('book-start').value,
+    endTime: document.getElementById('book-end').value,
+    tujuan: document.getElementById('book-purpose').value.trim(),
+    pakaiZoom: document.getElementById('book-zoom').checked
+  };
+
+  callApi('submitBooking', payload)
+    .then(function(res) {
+      alert('Booking ruangan berhasil dikonfirmasi!');
+      closeModal('modal-booking');
+      loadDashboard();
+      if (document.getElementById('view-meeting').style.display === 'block') {
+        loadMeetingList();
+      }
+    })
+    .catch(function(err) {
+      alert(err.message || 'Gagal booking.');
+    });
+}
+
+function loadMeetingList() {
+  callApi('getDashboard', {})
+    .then(function(res) {
+      var tbody = document.getElementById('meeting-list-tbody');
+      var list = res.todayBookings || [];
+      if (list.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:20px;">Belum ada booking untuk hari ini.</td></tr>';
+        return;
+      }
+      var html = '';
+      list.forEach(function(b) {
+        html += '<tr>' +
+          '<td><strong>' + (b.req_no || '-') + '</strong></td>' +
+          '<td>' + (b.room_name || '-') + '</td>' +
+          '<td>' + (b.start_at || '-') + '</td>' +
+          '<td>' + (b.end_at || '-') + '</td>' +
+          '<td>' + (b.tujuan || '-') + '</td>' +
+          '<td>' + (b.user_name || '-') + '</td>' +
+          '<td><span class="badge badge-green">' + (b.status || 'Confirmed') + '</span></td>' +
+          '<td><button class="btn btn-secondary btn-sm" onclick="cancelBookingAction(\'' + b.req_no + '\')">Batal</button></td>' +
+        '</tr>';
+      });
+      tbody.innerHTML = html;
+    });
+}
+
+function cancelBookingAction(reqNo) {
+  if (confirm('Batalkan booking ' + reqNo + '?')) {
+    callApi('cancelBooking', { reqNo: reqNo, cancelledByName: _session.nama })
+      .then(function(res) {
+        alert(res.message);
+        loadDashboard();
+        loadMeetingList();
+      })
+      .catch(function(e) { alert(e.message); });
+  }
+}
+
+// ── Zoom Virtual ──
+function handleZoomSubmit(e) {
+  e.preventDefault();
+  var payload = {
+    userId: _session.id,
+    userName: _session.nama,
+    section: _session.section,
+    topic: document.getElementById('zoom-topic').value.trim(),
+    date: document.getElementById('zoom-date').value,
+    startTime: document.getElementById('zoom-time').value,
+    durationMin: document.getElementById('zoom-duration').value,
+    participantsEst: document.getElementById('zoom-participants').value
+  };
+
+  callApi('submitVirtual', payload)
+    .then(function(res) {
+      alert(res.message);
+      closeModal('modal-zoom');
+      loadZoomList();
+    })
+    .catch(function(e) { alert(e.message); });
+}
+
+function loadZoomList() {
+  callApi('getVirtualList', { userId: _session.id, isAdmin: _session.isAdmin })
+    .then(function(res) {
+      var tbody = document.getElementById('zoom-tbody');
+      var list = res.data || [];
+      if (list.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:20px;">Belum ada pengajuan Zoom Pro.</td></tr>';
+        return;
+      }
+      var html = '';
+      list.forEach(function(z) {
+        html += '<tr>' +
+          '<td><strong>' + (z.req_no || '-') + '</strong></td>' +
+          '<td>' + (z.topic || '-') + '</td>' +
+          '<td>' + (z.start_at || '-') + '</td>' +
+          '<td>' + (z.duration_min || 60) + ' Menit</td>' +
+          '<td>' + (z.zoom_link ? '<a href="' + z.zoom_link + '" target="_blank">' + z.zoom_link + '</a>' : 'Menunggu Link') + '</td>' +
+          '<td><span class="badge badge-blue">' + (z.status || 'Pending') + '</span></td>' +
+        '</tr>';
+      });
+      tbody.innerHTML = html;
+    });
+}
+
+// ── Mobil Dinas ──
+function handleCarSubmit(e) {
+  e.preventDefault();
+  var vSelect = document.getElementById('car-vehicle');
+  var vName = vSelect.options[vSelect.selectedIndex].text;
+
+  var payload = {
+    userId: _session.id,
+    userName: _session.nama,
+    section: _session.section,
+    destination: document.getElementById('car-destination').value.trim(),
+    startDate: document.getElementById('car-start-date').value,
+    startTime: document.getElementById('car-start-time').value,
+    endDate: document.getElementById('car-end-date').value,
+    endTime: document.getElementById('car-end-time').value,
+    vehicleId: vSelect.value,
+    vehicleName: vName,
+    passengersCount: document.getElementById('car-passengers').value,
+    withDriver: document.getElementById('car-driver').checked,
+    purpose: document.getElementById('car-purpose').value.trim()
+  };
+
+  callApi('submitCar', payload)
+    .then(function(res) {
+      alert(res.message);
+      closeModal('modal-car');
+      loadCarList();
+    })
+    .catch(function(e) { alert(e.message); });
+}
+
+function loadCarList() {
+  callApi('getCarList', { userId: _session.id, isAdmin: _session.isAdmin })
+    .then(function(res) {
+      var tbody = document.getElementById('car-tbody');
+      var list = res.data || [];
+      if (list.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:20px;">Belum ada pengajuan mobil dinas.</td></tr>';
+        return;
+      }
+      var html = '';
+      list.forEach(function(c) {
+        var stBadge = c.status === 'Approved' ? 'badge-green' : (c.status === 'Cancelled' ? 'badge-red' : 'badge-amber');
+        html += '<tr>' +
+          '<td><strong>' + (c.req_no || '-') + '</strong></td>' +
+          '<td>' + (c.destination || '-') + '</td>' +
+          '<td>' + (c.start_at || '-') + '</td>' +
+          '<td>' + (c.end_at || '-') + '</td>' +
+          '<td>' + (c.vehicle_name || '-') + '</td>' +
+          '<td>' + (c.driver_name || (c.with_driver ? 'Driver GS' : 'Lepas Kunci')) + '</td>' +
+          '<td><span class="badge ' + stBadge + '">' + (c.status || 'Pending') + '</span></td>' +
+          '<td>' + (c.status === 'Pending' ? '<button class="btn btn-secondary btn-sm" onclick="cancelCarAction(' + c.id + ')">Batal</button>' : '-') + '</td>' +
+        '</tr>';
+      });
+      tbody.innerHTML = html;
+    });
+}
+
+function cancelCarAction(id) {
+  if (confirm('Batalkan permintaan mobil ini?')) {
+    callApi('cancelCar', { id: id })
+      .then(function(res) {
+        alert(res.message);
+        loadCarList();
+      })
+      .catch(function(e) { alert(e.message); });
+  }
+}
+
+// ── E-Doc & Multi-Select Print ──
+function loadEdocList() {
+  callApi('getEdocList', { userId: _session.id, isAdmin: _session.isAdmin })
+    .then(function(res) {
+      _allEdocs = res.data || [];
+      renderEdocTable(_allEdocs);
+    });
+}
+
+function renderEdocTable(list) {
+  var tbody = document.getElementById('edoc-tbody');
+  if (!list || list.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:20px;">Belum ada dokumen E-Doc yang tercatat.</td></tr>';
+    return;
+  }
+  var html = '';
+  list.forEach(function(d) {
+    var isChecked = _selectedEdocIds.indexOf(Number(d.id)) !== -1 ? 'checked' : '';
+    html += '<tr>' +
+      '<td style="text-align:center;"><input type="checkbox" value="' + d.id + '" ' + isChecked + ' onchange="toggleEdocCheck(' + d.id + ', this.checked)"></td>' +
+      '<td><strong>' + (d.doc_no || d.req_no) + '</strong><br><small style="color:var(--text-muted);">' + (d.doc_type || 'Dokumen') + '</small></td>' +
+      '<td>' + (d.user_name || '-') + '<br><small>' + (d.section || '-') + '</small></td>' +
+      '<td>' + (d.recipient_name || '-') + (d.recipient_company ? '<br><small>' + d.recipient_company + '</small>' : '') + '</td>' +
+      '<td>' + (d.destination || '-') + '</td>' +
+      '<td>' + (d.courier || '-') + '<br><small>' + (d.tracking_no || '-') + '</small></td>' +
+      '<td><span class="badge badge-amber">' + (d.status || 'Dalam Proses') + '</span></td>' +
+      '<td><button class="btn btn-secondary btn-sm" onclick="printSingleEdoc(' + d.id + ')">🖨️ Cetak</button></td>' +
+    '</tr>';
+  });
+  tbody.innerHTML = html;
+  updateBulkBar();
+}
+
+function toggleEdocCheck(id, checked) {
+  id = Number(id);
+  if (checked) {
+    if (_selectedEdocIds.indexOf(id) === -1) _selectedEdocIds.push(id);
+  } else {
+    var idx = _selectedEdocIds.indexOf(id);
+    if (idx !== -1) _selectedEdocIds.splice(idx, 1);
+  }
+  updateBulkBar();
+}
+
+function toggleSelectAllEdoc(checked) {
+  _selectedEdocIds = [];
+  if (checked) {
+    _allEdocs.forEach(function(d) { _selectedEdocIds.push(Number(d.id)); });
+  }
+  renderEdocTable(_allEdocs);
+}
+
+function clearEdocSelection() {
+  _selectedEdocIds = [];
+  var master = document.getElementById('check-all-edoc');
+  if (master) master.checked = false;
+  renderEdocTable(_allEdocs);
+}
+
+function updateBulkBar() {
+  var bar = document.getElementById('edoc-bulk-bar');
+  var countEl = document.getElementById('selected-count');
+  if (_selectedEdocIds.length > 0) {
+    bar.style.display = 'flex';
+    countEl.textContent = _selectedEdocIds.length;
+  } else {
+    bar.style.display = 'none';
+  }
+}
+
+function handleEdocSubmit(e) {
+  e.preventDefault();
+  var payload = {
+    userId: _session.id,
+    userName: _session.nama,
+    section: _session.section,
+    docNo: document.getElementById('edoc-docno').value.trim(),
+    recipientName: document.getElementById('edoc-rec-name').value.trim(),
+    recipientCompany: document.getElementById('edoc-rec-comp').value.trim(),
+    destination: document.getElementById('edoc-dest').value.trim(),
+    courier: document.getElementById('edoc-courier').value,
+    trackingNo: document.getElementById('edoc-tracking').value.trim(),
+    notes: document.getElementById('edoc-notes').value.trim()
+  };
+
+  callApi('submitEdoc', payload)
+    .then(function(res) {
+      alert(res.message);
+      closeModal('modal-edoc');
+      loadEdocList();
+    })
+    .catch(function(e) { alert(e.message); });
+}
+
+function handleInboundSubmit(e) {
+  e.preventDefault();
+  var payload = {
+    userId: _session.id,
+    recipientName: document.getElementById('inbound-recipient').value.trim(),
+    courier: document.getElementById('inbound-courier').value.trim(),
+    notes: (document.getElementById('inbound-sender').value ? 'Pengirim: ' + document.getElementById('inbound-sender').value + ' | ' : '') +
+           document.getElementById('inbound-notes').value.trim()
+  };
+
+  callApi('submitEdocInbound', payload)
+    .then(function(res) {
+      alert(res.message);
+      closeModal('modal-inbound');
+      loadEdocList();
+    })
+    .catch(function(e) { alert(e.message); });
+}
+
+// ── FITUR CETAK TANDA TERIMA 3-PER-HALAMAN A4 LANDSCAPE (PURE CLIENT-SIDE, TANPA PHP) ──
+function printSingleEdoc(id) {
+  _selectedEdocIds = [Number(id)];
+  printSelectedEdocs();
+}
+
+function printSelectedEdocs() {
+  if (_selectedEdocIds.length === 0) {
+    alert('Pilih minimal 1 dokumen untuk dicetak.');
+    return;
+  }
+
+  var targetDocs = _allEdocs.filter(function(d) {
+    return _selectedEdocIds.indexOf(Number(d.id)) !== -1;
+  });
+
+  if (targetDocs.length === 0) {
+    alert('Dokumen tidak ditemukan.');
+    return;
+  }
+
+  var container = document.getElementById('receipt-container');
+  var html = '';
+
+  targetDocs.forEach(function(doc) {
+    html += '<div class="receipt-card">' +
+      '<div class="receipt-header">' +
+        '<div class="receipt-company">PT Pratama Nusantara Sakti</div>' +
+        '<div class="receipt-title">TANDA TERIMA PENGIRIMAN DOKUMEN</div>' +
+        '<div class="receipt-doc-no">' + (doc.doc_no || doc.req_no) + '</div>' +
+      '</div>' +
+
+      '<div class="receipt-section">' +
+        '<div class="receipt-sec-title">PENGIRIM</div>' +
+        '<div class="receipt-field"><span class="receipt-label">Nama & Bagian:</span> <div class="receipt-val">' + (doc.user_name || 'Karyawan PNS') + ' (' + (doc.section || 'General') + ')</div></div>' +
+        '<div class="receipt-field"><span class="receipt-label">Waktu:</span> <div class="receipt-val">' + (doc.created_at || '-') + '</div></div>' +
+      '</div>' +
+
+      '<div class="receipt-section">' +
+        '<div class="receipt-sec-title">PENERIMA / TUJUAN</div>' +
+        '<div class="receipt-field"><span class="receipt-label">Nama:</span> <div class="receipt-val">' + (doc.recipient_name || '-') + '</div></div>' +
+        (doc.recipient_company ? '<div class="receipt-field"><span class="receipt-label">Perusahaan:</span> <div class="receipt-val">' + doc.recipient_company + '</div></div>' : '') +
+        '<div class="receipt-field"><span class="receipt-label">Alamat / Kota:</span> <div class="receipt-val">' + (doc.destination || '-') + '</div></div>' +
+        '<div class="receipt-field"><span class="receipt-label">Ekspedisi / Resi:</span> <div class="receipt-val">' + (doc.courier || '-') + ' (' + (doc.tracking_no || '-') + ')</div></div>' +
+      '</div>' +
+
+      '<div class="receipt-sign-row">' +
+        '<div class="receipt-sign-box">' +
+          '<div class="receipt-label">Diserahkan Oleh:</div>' +
+          '<div class="receipt-sign-space"></div>' +
+          '<div class="receipt-val">(' + (doc.user_name || 'Pemohon') + ')</div>' +
+        '</div>' +
+        '<div class="receipt-sign-box">' +
+          '<div class="receipt-label">Diterima Oleh:</div>' +
+          '<div class="receipt-sign-space"></div>' +
+          '<div class="receipt-val">(....................)</div>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="receipt-footer">' +
+        'PT PRATAMA NUSANTARA SAKTI — GENERAL SERVICES (GS)<br>' +
+        'Head Office Jakarta | Dicetak: ' + new Date().toLocaleString('id-ID') +
+      '</div>' +
+    '</div>';
+  });
+
+  container.innerHTML = html;
+  openModal('modal-print');
+}
+
+function triggerWindowPrint() {
+  window.print();
+}
+
+// ── Tiket Saya ──
+function loadMyTickets() {
+  callApi('getMyTickets', { userId: _session.id })
+    .then(function(res) {
+      var tbody = document.getElementById('tickets-tbody');
+      var list = res.data || [];
+      if (list.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:20px;">Belum ada pengajuan tiket aktif.</td></tr>';
+        return;
+      }
+      var html = '';
+      list.forEach(function(t) {
+        var badgeCls = t.status === 'Confirmed' || t.status === 'Approved' || t.status === 'Diterima' ? 'badge-green' : (t.status === 'Cancelled' ? 'badge-red' : 'badge-amber');
+        html += '<tr>' +
+          '<td><strong>' + t.type + '</strong></td>' +
+          '<td>' + t.reqNo + '</td>' +
+          '<td>' + t.title + '<br><small style="color:var(--text-muted);">' + (t.subtitle || '') + '</small></td>' +
+          '<td>' + (t.time || '-') + '</td>' +
+          '<td><span class="badge ' + badgeCls + '">' + (t.status || 'Pending') + '</span></td>' +
+          '<td>' + (t.status === 'Confirmed' && t.type === 'Meeting' ? '<button class="btn btn-secondary btn-sm" onclick="cancelBookingAction(\'' + t.reqNo + '\')">Batal</button>' : '-') + '</td>' +
+        '</tr>';
+      });
+      tbody.innerHTML = html;
+    });
+}
+
+// ── User Management (Admin Only) ──
+function loadAdminUsers() {
+  callApi('getAdminUsers', {})
+    .then(function(res) {
+      var tbody = document.getElementById('users-tbody');
+      var list = res.data || [];
+      var html = '';
+      list.forEach(function(u) {
+        var isAct = String(u.is_active) === '1' || u.is_active === 1;
+        var actBadge = isAct ? '<span class="badge badge-green">Aktif</span>' : '<span class="badge badge-red">Nonaktif</span>';
+        var roleBadge = (String(u.is_admin) === '1' || u.is_admin === 1) ? '<span class="badge badge-blue">Admin GS</span>' : '<span class="badge badge-gray">Karyawan</span>';
+
+        html += '<tr>' +
+          '<td>' + u.id + '</td>' +
+          '<td><strong>' + (u.nama || '-') + '</strong></td>' +
+          '<td>' + (u.email || '-') + '</td>' +
+          '<td>' + (u.section || '-') + '</td>' +
+          '<td>' + roleBadge + '</td>' +
+          '<td>' + actBadge + '</td>' +
+          '<td>' +
+            '<button class="btn btn-secondary btn-sm" style="margin-right:6px;" onclick="toggleUserActiveAction(' + u.id + ')">' + (isAct ? 'Nonaktifkan' : 'Aktifkan') + '</button>' +
+            '<button class="btn btn-secondary btn-sm" onclick="resetUserPinAction(' + u.id + ')">Reset PIN</button>' +
+          '</td>' +
+        '</tr>';
+      });
+      tbody.innerHTML = html;
+    });
+}
+
+function toggleUserActiveAction(uid) {
+  callApi('toggleUserActive', { userId: uid })
+    .then(function(res) {
+      alert(res.message);
+      loadAdminUsers();
+    })
+    .catch(function(e) { alert(e.message); });
+}
+
+function resetUserPinAction(uid) {
+  if (confirm('Reset PIN user ini menjadi default: 1234?')) {
+    callApi('resetUserPin', { userId: uid })
+      .then(function(res) {
+        alert(res.message);
+      })
+      .catch(function(e) { alert(e.message); });
+  }
+}
+
+function handleRegisterSubmit(e) {
+  e.preventDefault();
+  var payload = {
+    nama: document.getElementById('reg-name').value.trim(),
+    email: document.getElementById('reg-email').value.trim(),
+    section: document.getElementById('reg-section').value.trim(),
+    pin: document.getElementById('reg-pin').value.trim()
+  };
+
+  callApi('registerUser', payload)
+    .then(function(res) {
+      alert(res.message);
+      closeModal('modal-register');
+      if (_session && _session.isAdmin) {
+        loadAdminUsers();
+      }
+    })
+    .catch(function(e) { alert(e.message); });
+}
+
+function handleChangePin(e) {
+  e.preventDefault();
+  var oldPin = document.getElementById('pin-old').value.trim();
+  var newPin = document.getElementById('pin-new').value.trim();
+
+  callApi('changePin', { userId: _session.id, oldPin: oldPin, newPin: newPin })
+    .then(function(res) {
+      alert(res.message);
+      closeModal('modal-pin');
+      document.getElementById('pin-old').value = '';
+      document.getElementById('pin-new').value = '';
+    })
+    .catch(function(e) { alert(e.message); });
+}
+
+// ── Modal Utilities ──
+function openModal(id) {
+  var el = document.getElementById(id);
+  if (el) el.style.display = 'flex';
+}
+
+function closeModal(id) {
+  var el = document.getElementById(id);
+  if (el) el.style.display = 'none';
+}
+</script>
+
+</body>
+</html>
