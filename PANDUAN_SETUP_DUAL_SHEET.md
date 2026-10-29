@@ -1,4 +1,4 @@
-# 📋 PANDUAN LENGKAP: 1 WEB APP DENGAN 2 GOOGLE SHEET TERPISAH
+﻿# 📋 PANDUAN LENGKAP: 1 WEB APP DENGAN 2 GOOGLE SHEET TERPISAH
 ### Portal Layanan GS & Sistem Inventaris ATK / Gudang Persediaan
 **PT Pratama Nusantara Sakti (PNS)**
 
@@ -79,11 +79,11 @@ Data referensi 34 karyawan dan daftar Cost Object pembebanan:
 
 ### Langkah 1: Tautan 2 Google Spreadsheet Resmi Anda
 1. **Spreadsheet 1 (Portal Layanan GS - Meeting, Mobil, E-Doc):**
-   - URL: `https://docs.google.com/spreadsheets/d/1OJsu_m4lHcpkesOdAB5Io3870kYfioFAm8RTH8MzWC4/edit`
-   - **ID Spreadsheet GS:** `1OJsu_m4lHcpkesOdAB5Io3870kYfioFAm8RTH8MzWC4`
-2. **Spreadsheet 2 (Inventaris ATK & Persediaan Gudang):**
    - URL: `https://docs.google.com/spreadsheets/d/1GqVZH2o2S0vf9xiVsbOIBf4K0-2GxnSdRZz6S1Jtj1M/edit`
-   - **ID Spreadsheet ATK:** `1GqVZH2o2S0vf9xiVsbOIBf4K0-2GxnSdRZz6S1Jtj1M`
+   - **ID Spreadsheet GS:** `1GqVZH2o2S0vf9xiVsbOIBf4K0-2GxnSdRZz6S1Jtj1M`
+2. **Spreadsheet 2 (Inventaris ATK & Persediaan Gudang):**
+   - URL: `https://docs.google.com/spreadsheets/d/1OJsu_m4lHcpkesOdAB5Io3870kYfioFAm8RTH8MzWC4/edit`
+   - **ID Spreadsheet ATK:** `1OJsu_m4lHcpkesOdAB5Io3870kYfioFAm8RTH8MzWC4`
 
 ---
 
