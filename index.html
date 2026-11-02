@@ -5943,10 +5943,37 @@ textarea:focus {
 }
 #login-screen .pin-eye:hover { background: rgba(16,185,129,.12); }
 
-</style>
 
 
-/* ════ LUXURY FLUID BACKGROUND & TRANSITIONS ════ */
+
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LUXURY FLUID ANIMATED BACKGROUND & GLASSMORPHIC TRANSPARENT LAYOUT
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Background Mesh Animation on Body and Screens */
+body, .login-screen-fluid, #app-screen {
+  background: linear-gradient(135deg, #020617 0%, #064e3b 35%, #0f172a 70%, #065f46 100%) !important;
+  background-size: 300% 300% !important;
+  animation: meshShift 20s ease infinite alternate !important;
+  transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+[data-theme='light'] body, 
+[data-theme='light'] .login-screen-fluid, 
+[data-theme='light'] #app-screen {
+  background: linear-gradient(135deg, #0f172a 0%, #064e3b 40%, #047857 75%, #0f766e 100%) !important;
+  background-size: 300% 300% !important;
+  animation: meshShift 20s ease infinite alternate !important;
+}
+
+@keyframes meshShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 .login-screen-fluid {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -5956,24 +5983,14 @@ textarea:focus {
   align-items: center;
   justify-content: flex-end;
   padding: 24px 8vw;
-  background: linear-gradient(135deg, #020617 0%, #064e3b 35%, #0f172a 70%, #065f46 100%);
-  background-size: 300% 300%;
-  animation: meshShift 18s ease infinite alternate;
   overflow: hidden;
-  transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes meshShift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 
 .ambient-mesh {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: radial-gradient(circle at 75% 45%, rgba(16, 185, 129, 0.22) 0%, transparent 60%),
-              radial-gradient(circle at 25% 75%, rgba(6, 95, 70, 0.35) 0%, transparent 65%);
+  background: radial-gradient(circle at 75% 45%, rgba(16, 185, 129, 0.3) 0%, transparent 60%),
+              radial-gradient(circle at 25% 75%, rgba(6, 95, 70, 0.4) 0%, transparent 65%);
   pointer-events: none !important;
   z-index: 1;
 }
@@ -5981,61 +5998,182 @@ textarea:focus {
 .ambient-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(75px);
   pointer-events: none !important;
   z-index: 1;
-  opacity: 0.6;
-  animation: floatOrb 14s ease-in-out infinite alternate;
+  opacity: 0.75;
+  animation: floatOrb 15s ease-in-out infinite alternate;
 }
 
 .orb-1 {
-  width: 420px; height: 420px;
-  background: rgba(16, 185, 129, 0.25);
-  top: -60px; right: 15%;
+  width: 440px; height: 440px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.45) 0%, rgba(5, 150, 105, 0.1) 70%);
+  top: -80px; right: 12%;
   animation-duration: 16s;
 }
 
 .orb-2 {
-  width: 500px; height: 500px;
-  background: rgba(14, 165, 233, 0.2);
-  bottom: -100px; left: 10%;
+  width: 520px; height: 520px;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.35) 0%, rgba(2, 132, 199, 0.08) 70%);
+  bottom: -120px; left: 8%;
   animation-duration: 22s;
   animation-delay: -4s;
 }
 
 .orb-3 {
-  width: 320px; height: 320px;
-  background: rgba(245, 158, 11, 0.15);
-  top: 40%; left: 35%;
-  animation-duration: 18s;
+  width: 360px; height: 360px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.28) 0%, rgba(217, 119, 6, 0.05) 70%);
+  top: 35%; left: 30%;
+  animation-duration: 19s;
   animation-delay: -8s;
 }
 
 @keyframes floatOrb {
   0%   { transform: translateY(0px) scale(1) rotate(0deg); }
-  50%  { transform: translateY(-40px) scale(1.08) rotate(45deg); }
-  100% { transform: translateY(30px) scale(0.95) rotate(-30deg); }
+  50%  { transform: translateY(-45px) scale(1.1) rotate(45deg); }
+  100% { transform: translateY(35px) scale(0.92) rotate(-30deg); }
 }
 
+/* ════ ULTRA-GLASSMORPHIC TRANSLUCENT LOGIN BOX ════ */
 .login-box {
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 24px;
-  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.2);
-  padding: 36px 32px;
+  background: rgba(255, 255, 255, 0.18) !important;
+  backdrop-filter: blur(28px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.6) !important;
+  padding: 38px 34px !important;
   width: 100%;
   max-width: 440px;
   position: relative;
   z-index: 10;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 [data-theme='dark'] .login-box {
-  background: rgba(15, 23, 42, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(16, 185, 129, 0.2);
+  background: rgba(15, 23, 42, 0.38) !important;
+  backdrop-filter: blur(28px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.65), inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
+}
+
+.login-title {
+  color: #ffffff !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+}
+.login-title span {
+  color: #34d399 !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+}
+.login-sub {
+  color: rgba(255, 255, 255, 0.85) !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Translucent Inputs & Select */
+#login-form select,
+#login-form input {
+  background: rgba(255, 255, 255, 0.22) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  border-radius: var(--r8) !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+}
+
+#login-form select:focus,
+#login-form input:focus {
+  background: rgba(255, 255, 255, 0.32) !important;
+  border-color: #34d399 !important;
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.35) !important;
+  outline: none !important;
+}
+
+#login-form select option {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+}
+
+#login-form label {
+  color: rgba(255, 255, 255, 0.92) !important;
+  font-weight: 600 !important;
+}
+
+/* Translucent Instruction Box */
+#login-form > div:first-child {
+  background: rgba(16, 185, 129, 0.16) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(52, 211, 153, 0.4) !important;
+}
+
+/* Glowing Submit Button */
+.btn-login-submit {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45) !important;
+  font-weight: 700 !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  transition: all 0.25s ease !important;
+}
+.btn-login-submit:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.6) !important;
+}
+
+/* ════ TRANSLUCENT MAIN APP LAYOUT (DASHBOARD & PAGES) ════ */
+.layout {
+  background: transparent !important;
+}
+
+.sidebar {
+  background: rgba(15, 23, 42, 0.75) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+[data-theme='light'] .sidebar {
+  background: rgba(255, 255, 255, 0.78) !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.topbar {
+  background: rgba(15, 23, 42, 0.65) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+[data-theme='light'] .topbar {
+  background: rgba(255, 255, 255, 0.72) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.main {
+  background: transparent !important;
+}
+
+.card, .dash-hero, .overview-card, .sec-card {
+  background: rgba(15, 23, 42, 0.6) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25) !important;
+}
+[data-theme='light'] .card,
+[data-theme='light'] .dash-hero,
+[data-theme='light'] .overview-card,
+[data-theme='light'] .sec-card {
+  background: rgba(255, 255, 255, 0.75) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Background video blending */
+.bg-video {
+  opacity: 0.25 !important;
+  mix-blend-mode: overlay !important;
 }
 
 /* ════ MOBILE RESPONSIVE TWEAKS ════ */
@@ -6052,7 +6190,7 @@ textarea:focus {
     width: 100% !important;
     padding: 28px 20px !important;
     border-radius: 20px !important;
-    box-shadow: 0 16px 40px rgba(0,0,0,0.3) !important;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.4) !important;
   }
   .login-title {
     font-size: 18px !important;
@@ -6070,6 +6208,7 @@ textarea:focus {
   }
 }
 
+</style>
 </head>
 <body>
 
