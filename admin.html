@@ -5943,240 +5943,283 @@ textarea:focus {
 }
 #login-screen .pin-eye:hover { background: rgba(16,185,129,.12); }
 
-
-
-
-
-
 /* ══════════════════════════════════════════════════════════════════════════
-   LUXURY FLUID ANIMATED BACKGROUND & GLASSMORPHIC TRANSPARENT LAYOUT
+   CLEAN & CRISP CINEMATIC LOGIN WITH NATURAL VIDEO & FROSTED GLASS
    ══════════════════════════════════════════════════════════════════════════ */
 
-/* Background Mesh Animation on Body and Screens */
-body, .login-screen-fluid, #app-screen {
-  background: linear-gradient(135deg, #020617 0%, #064e3b 35%, #0f172a 70%, #065f46 100%) !important;
-  background-size: 300% 300% !important;
-  animation: meshShift 20s ease infinite alternate !important;
-  transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-[data-theme='light'] body, 
-[data-theme='light'] .login-screen-fluid, 
-[data-theme='light'] #app-screen {
-  background: linear-gradient(135deg, #0f172a 0%, #064e3b 40%, #047857 75%, #0f766e 100%) !important;
-  background-size: 300% 300% !important;
-  animation: meshShift 20s ease infinite alternate !important;
-}
-
-@keyframes meshShift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
+/* Clean login fluid container */
 .login-screen-fluid {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  width: 100%; height: 100vh;
-  z-index: 99999;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 24px 8vw;
-  overflow: hidden;
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  padding: 24px 8vw !important;
+  background: #0b1120 !important;
+  overflow: hidden !important;
 }
 
-.ambient-mesh {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: radial-gradient(circle at 75% 45%, rgba(16, 185, 129, 0.3) 0%, transparent 60%),
-              radial-gradient(circle at 25% 75%, rgba(6, 95, 70, 0.4) 0%, transparent 65%);
+/* Background video: Authentic, clean, crisp natural colors (NO GREEN TINT) */
+.bg-video {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  z-index: 0 !important;
+  opacity: 0.92 !important;
+  mix-blend-mode: normal !important;
+  filter: brightness(0.92) contrast(1.05) saturate(1.05) !important;
   pointer-events: none !important;
-  z-index: 1;
 }
 
-.ambient-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(75px);
+/* Subtle neutral dark overlay for cinematic depth and readability */
+.bg-video-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(15, 23, 42, 0.42) !important;
+  z-index: 1 !important;
   pointer-events: none !important;
-  z-index: 1;
-  opacity: 0.75;
-  animation: floatOrb 15s ease-in-out infinite alternate;
 }
 
-.orb-1 {
-  width: 440px; height: 440px;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.45) 0%, rgba(5, 150, 105, 0.1) 70%);
-  top: -80px; right: 12%;
-  animation-duration: 16s;
-}
-
-.orb-2 {
-  width: 520px; height: 520px;
-  background: radial-gradient(circle, rgba(14, 165, 233, 0.35) 0%, rgba(2, 132, 199, 0.08) 70%);
-  bottom: -120px; left: 8%;
-  animation-duration: 22s;
-  animation-delay: -4s;
-}
-
-.orb-3 {
-  width: 360px; height: 360px;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.28) 0%, rgba(217, 119, 6, 0.05) 70%);
-  top: 35%; left: 30%;
-  animation-duration: 19s;
-  animation-delay: -8s;
-}
-
-@keyframes floatOrb {
-  0%   { transform: translateY(0px) scale(1) rotate(0deg); }
-  50%  { transform: translateY(-45px) scale(1.1) rotate(45deg); }
-  100% { transform: translateY(35px) scale(0.92) rotate(-30deg); }
-}
-
-/* ════ ULTRA-GLASSMORPHIC TRANSLUCENT LOGIN BOX ════ */
+/* ════ CLEAN FROSTED GLASS LOGIN CARD (MAIN OPACITY) ════ */
 .login-box {
-  background: rgba(255, 255, 255, 0.18) !important;
-  backdrop-filter: blur(28px) saturate(190%) !important;
-  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(24px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(120%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
   border-radius: 24px !important;
-  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.6) !important;
-  padding: 38px 34px !important;
-  width: 100%;
-  max-width: 440px;
-  position: relative;
-  z-index: 10;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.5) !important;
+  padding: 36px 32px !important;
+  width: 100% !important;
+  max-width: 440px !important;
+  position: relative !important;
+  z-index: 10 !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  pointer-events: auto !important;
 }
 
 [data-theme='dark'] .login-box {
-  background: rgba(15, 23, 42, 0.38) !important;
-  backdrop-filter: blur(28px) saturate(190%) !important;
-  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
-  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.65), inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
+  background: rgba(15, 23, 42, 0.88) !important;
+  backdrop-filter: blur(24px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(120%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Clean Typography */
+.logo-login {
+  display: block !important;
+  margin: 0 auto 14px !important;
+  width: 76px !important;
+  height: 76px !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1)) !important;
 }
 
 .login-title {
-  color: #ffffff !important;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
-}
-.login-title span {
-  color: #34d399 !important;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
-}
-.login-sub {
-  color: rgba(255, 255, 255, 0.85) !important;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3) !important;
+  text-align: center !important;
+  font-size: 21px !important;
+  font-weight: 800 !important;
+  margin-bottom: 4px !important;
+  color: #0f172a !important;
+  letter-spacing: -0.3px !important;
+  text-shadow: none !important;
 }
 
-/* Translucent Inputs & Select */
+.login-title span {
+  color: #059669 !important;
+  text-shadow: none !important;
+}
+
+.login-sub {
+  text-align: center !important;
+  font-size: 13px !important;
+  color: #64748b !important;
+  margin-bottom: 18px !important;
+  font-weight: 500 !important;
+  text-shadow: none !important;
+}
+
+[data-theme='dark'] .login-title {
+  color: #f8fafc !important;
+}
+
+[data-theme='dark'] .login-title span {
+  color: #34d399 !important;
+}
+
+[data-theme='dark'] .login-sub {
+  color: #94a3b8 !important;
+}
+
+/* Petunjuk Masuk Box */
+.login-guide-card {
+  background: rgba(240, 253, 244, 0.95) !important;
+  border: 1px solid rgba(134, 239, 172, 0.9) !important;
+  border-radius: 12px !important;
+  padding: 10px 14px !important;
+  margin-bottom: 16px !important;
+  font-size: 12px !important;
+  line-height: 1.55 !important;
+  text-align: left !important;
+  box-shadow: 0 1px 3px rgba(16, 185, 129, 0.08) !important;
+}
+
+.login-guide-head {
+  font-weight: 700 !important;
+  color: #166534 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  margin-bottom: 4px !important;
+  font-size: 12px !important;
+}
+
+.login-guide-item {
+  color: #334155 !important;
+  margin-bottom: 2px !important;
+  font-size: 11.5px !important;
+}
+
+.login-pin-badge {
+  color: #065f46 !important;
+  background: rgba(16, 185, 129, 0.2) !important;
+  padding: 1px 6px !important;
+  border-radius: 4px !important;
+  font-weight: 700 !important;
+}
+
+[data-theme='dark'] .login-guide-card {
+  background: rgba(6, 78, 59, 0.35) !important;
+  border: 1px solid rgba(52, 211, 153, 0.35) !important;
+  box-shadow: none !important;
+}
+
+[data-theme='dark'] .login-guide-head {
+  color: #34d399 !important;
+}
+
+[data-theme='dark'] .login-guide-item {
+  color: #cbd5e1 !important;
+}
+
+/* Form Row & Labels */
+.lrow {
+  margin-bottom: 15px !important;
+  text-align: left !important;
+}
+
+.lrow label {
+  display: block !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  margin-bottom: 6px !important;
+  color: #334155 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+[data-theme='dark'] .lrow label {
+  color: #cbd5e1 !important;
+}
+
+/* Crisp Clean Inputs & Selects */
 #login-form select,
 #login-form input {
-  background: rgba(255, 255, 255, 0.22) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.45) !important;
-  border-radius: var(--r8) !important;
-  color: #ffffff !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 10px !important;
+  color: #0f172a !important;
+  font-size: 13.5px !important;
   font-weight: 500 !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
+  transition: border-color 0.2s, box-shadow 0.2s !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 #login-form select:focus,
 #login-form input:focus {
-  background: rgba(255, 255, 255, 0.32) !important;
-  border-color: #34d399 !important;
-  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.35) !important;
+  border-color: #059669 !important;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.18) !important;
   outline: none !important;
 }
 
 #login-form select option {
-  background: #0f172a !important;
+  background: #ffffff !important;
+  color: #0f172a !important;
+  padding: 8px !important;
+}
+
+[data-theme='dark'] #login-form select,
+[data-theme='dark'] #login-form input {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+  color: #f8fafc !important;
+  box-shadow: none !important;
+}
+
+[data-theme='dark'] #login-form select option {
+  background: #1e293b !important;
   color: #f8fafc !important;
 }
 
-#login-form label {
-  color: rgba(255, 255, 255, 0.92) !important;
-  font-weight: 600 !important;
-}
-
-/* Translucent Instruction Box */
-#login-form > div:first-child {
-  background: rgba(16, 185, 129, 0.16) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(52, 211, 153, 0.4) !important;
-}
-
-/* Glowing Submit Button */
+/* Submit Button */
 .btn-login-submit {
+  width: 100% !important;
+  padding: 12px !important;
   background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
   color: #ffffff !important;
-  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  font-size: 14.5px !important;
   font-weight: 700 !important;
-  border: 1px solid rgba(255, 255, 255, 0.25) !important;
-  transition: all 0.25s ease !important;
+  cursor: pointer !important;
+  margin-top: 10px !important;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35) !important;
+  transition: all 0.2s ease !important;
 }
+
 .btn-login-submit:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.6) !important;
+  background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+  box-shadow: 0 6px 18px rgba(5, 150, 105, 0.45) !important;
+  transform: translateY(-1px) !important;
 }
 
-/* ════ TRANSLUCENT MAIN APP LAYOUT (DASHBOARD & PAGES) ════ */
-.layout {
-  background: transparent !important;
+/* Feature tags */
+.login-tagline {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  flex-wrap: wrap !important;
+  margin-top: 18px !important;
 }
 
-.sidebar {
-  background: rgba(15, 23, 42, 0.75) !important;
-  backdrop-filter: blur(24px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-  border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-[data-theme='light'] .sidebar {
-  background: rgba(255, 255, 255, 0.78) !important;
-  border-right: 1px solid rgba(0, 0, 0, 0.08) !important;
-}
-
-.topbar {
-  background: rgba(15, 23, 42, 0.65) !important;
-  backdrop-filter: blur(20px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-[data-theme='light'] .topbar {
-  background: rgba(255, 255, 255, 0.72) !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+.ltag {
+  font-size: 11px !important;
+  padding: 4px 10px !important;
+  border-radius: 20px !important;
+  background: rgba(241, 245, 249, 0.95) !important;
+  color: #475569 !important;
+  font-weight: 600 !important;
+  border: 1px solid rgba(203, 213, 225, 0.8) !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03) !important;
 }
 
-.main {
-  background: transparent !important;
+[data-theme='dark'] .ltag {
+  background: rgba(30, 41, 59, 0.75) !important;
+  color: #94a3b8 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: none !important;
 }
 
-.card, .dash-hero, .overview-card, .sec-card {
-  background: rgba(15, 23, 42, 0.6) !important;
-  backdrop-filter: blur(20px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25) !important;
-}
-[data-theme='light'] .card,
-[data-theme='light'] .dash-hero,
-[data-theme='light'] .overview-card,
-[data-theme='light'] .sec-card {
-  background: rgba(255, 255, 255, 0.75) !important;
-  border: 1px solid rgba(255, 255, 255, 0.6) !important;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08) !important;
-}
-
-/* Background video blending */
-.bg-video {
-  opacity: 0.25 !important;
-  mix-blend-mode: overlay !important;
-}
-
-/* ════ MOBILE RESPONSIVE TWEAKS ════ */
+/* Responsive for Mobile */
 @media (max-width: 768px) {
   .login-screen-fluid {
     justify-content: center !important;
@@ -6188,27 +6231,29 @@ body, .login-screen-fluid, #app-screen {
     margin: auto !important;
     max-width: 100% !important;
     width: 100% !important;
-    padding: 28px 20px !important;
+    padding: 24px 18px !important;
     border-radius: 20px !important;
-    box-shadow: 0 16px 40px rgba(0,0,0,0.4) !important;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.3) !important;
   }
   .login-title {
     font-size: 18px !important;
   }
   .login-sub {
-    font-size: 11.5px !important;
+    font-size: 12px !important;
+    margin-bottom: 14px !important;
   }
   .pin-wrap select, .pin-wrap input {
-    font-size: 14px !important;
-    min-height: 44px !important;
+    font-size: 13.5px !important;
+    min-height: 42px !important;
   }
   .btn-login-submit {
-    min-height: 46px !important;
-    font-size: 14.5px !important;
+    min-height: 44px !important;
+    font-size: 14px !important;
   }
 }
 
 </style>
+
 </head>
 <body>
 
@@ -6219,15 +6264,11 @@ body, .login-screen-fluid, #app-screen {
      1. LOGIN SCREEN (100% Identik index.php dengan Video Operasional)
      ══════════════════════════════════════════════════════════════════════════ -->
 <div id="login-screen" class="login-screen-fluid">
-  <div class="ambient-mesh"></div>
-  <div class="ambient-orb orb-1"></div>
-  <div class="ambient-orb orb-2"></div>
-  <div class="ambient-orb orb-3"></div>
   <video autoplay muted loop playsinline class="bg-video" id="bg-video">
     <source src="video.mp4" type="video/mp4">
     <source src="assets/img/gemini_generated_video_1cc5ccc9.mp4" type="video/mp4">
   </video>
-<div class="bg-animated-layer"></div>
+  <div class="bg-video-overlay"></div>
 
   <div class="login-box">
   <div class="theme-toggle-login">
@@ -6247,13 +6288,13 @@ body, .login-screen-fluid, #app-screen {
 
     <div id="login-form">
     <!-- PETUNJUK LOGIN -->
-    <div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.25);border-radius:var(--r8);padding:10px 14px;margin-bottom:14px;font-size:12px;line-height:1.5;color:var(--fg);text-align:left">
-      <div style="font-weight:700;color:var(--green);display:flex;align-items:center;gap:6px;margin-bottom:4px">
+    <div class="login-guide-card">
+      <div class="login-guide-head">
         <span>💡</span> Petunjuk Masuk Karyawan:
       </div>
-      <div style="color:var(--muted);margin-bottom:2px">1. Pilih <strong>Nama Karyawan</strong> pada dropdown di bawah (atau ketik NIK).</div>
-      <div style="color:var(--muted);margin-bottom:2px">2. Masukkan <strong>PIN</strong> Anda (PIN Bawaan / Default: <strong style="color:var(--green);background:rgba(16,185,129,0.15);padding:1px 6px;border-radius:4px">1234</strong>).</div>
-      <div style="color:var(--muted)">3. Klik tombol <strong>Masuk Portal</strong>.</div>
+      <div class="login-guide-item">1. Pilih <strong>Nama Karyawan</strong> pada dropdown di bawah (atau ketik NIK).</div>
+      <div class="login-guide-item">2. Masukkan <strong>PIN</strong> Anda (PIN Bawaan / Default: <strong class="login-pin-badge">1234</strong>).</div>
+      <div class="login-guide-item">3. Klik tombol <strong>Masuk Portal</strong>.</div>
     </div>
 
     <!-- PILIHAN KARYAWAN -->
@@ -9335,7 +9376,7 @@ var API={
 
 // ════ DUAL-ENGINE API ROUTER (GAS WebApp + GitHub Pages Hybrid) ════
 var DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwGWJu-yKAJAmcLBzOu825p-F-D83eMhdO_lVnBzau5b3vlvTVvw8pDUu7PrvQN6QYRMQ/exec";
-var PNS_APP_BUILD = "2026.11.02.v4";
+var PNS_APP_BUILD = "2026.11.02.v5";
 
 // Auto-purge stale or broken localStorage URLs from older deployments
 try {
