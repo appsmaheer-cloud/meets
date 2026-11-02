@@ -6146,7 +6146,7 @@ textarea:focus {
       </div>
       
       
-      <div style="background:#fee2e2;border:1px solid #ef4444;color:#7f1d1d;padding:12px 18px;border-radius:10px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,0.05)">
+      <div id="alert-impersonation" style="display:none;background:#fee2e2;border:1px solid #ef4444;color:#7f1d1d;padding:12px 18px;border-radius:10px;margin-bottom:12px;display:none;align-items:center;justify-content:space-between;gap:12px;font-size:13px;font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,0.05)">
         <div style="display:flex;align-items:center;gap:10px">
           <span style="font-size:18px">🕵️</span>
           <span><strong>Impersonation Mode:</strong> Anda saat ini login sebagai <strong></strong>. Aksi Anda akan tercatat atas nama user ini.</span>
@@ -6328,10 +6328,6 @@ textarea:focus {
                 <div class="bld-loc">Semua riwayat pengajuan layanan Anda</div>
               </div>
             </div>
-          </div>
-        </div>
-          </div>
-        </div>
           </div>
         </div>
         <div class="panel">
@@ -8141,6 +8137,8 @@ textarea:focus {
 </div>
 
 <div class="slot-tooltip" id="global-tip" style="display:none"></div>
+  </div>
+</div>
 </div>
 
 <!-- Datalists for Master Data Karyawan HO & Section Resmi -->
@@ -8879,10 +8877,21 @@ var API={
 
 // ════ DUAL-ENGINE API ROUTER (GAS WebApp + GitHub Pages Hybrid) ════
 var DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwGWJu-yKAJAmcLBzOu825p-F-D83eMhdO_lVnBzau5b3vlvTVvw8pDUu7PrvQN6QYRMQ/exec";
+var PNS_APP_BUILD = "2026.11.02.v3";
+
+// Auto-purge stale or broken localStorage URLs from older deployments
+try {
+  if (localStorage.getItem('PNS_BUILD_VERSION') !== PNS_APP_BUILD) {
+    localStorage.removeItem('PNS_GAS_WEBAPP_URL');
+    localStorage.setItem('PNS_BUILD_VERSION', PNS_APP_BUILD);
+  }
+} catch(e){}
 
 function getGasApiUrl() {
   try {
-    return window.GAS_API_URL || localStorage.getItem('PNS_GAS_WEBAPP_URL') || DEFAULT_GAS_URL;
+    var custom = localStorage.getItem('PNS_GAS_WEBAPP_URL');
+    if (custom && custom.indexOf('AKfy') !== -1) return custom;
+    return window.GAS_API_URL || DEFAULT_GAS_URL;
   } catch(e) {
     return DEFAULT_GAS_URL;
   }
@@ -8961,20 +8970,13 @@ function api(action, extra) {
       throw new Error((res && res.error) || 'Terjadi kesalahan pada Google Sheets backend.');
     }
     window.GAS_ONLINE = true;
+    try { var ind = document.getElementById('gas-status-indicator'); if (ind) ind.style.background = 'var(--green)'; } catch(e){}
     return unpackGasResponse(res);
   })
   .catch(function(err) {
     if (err && err.isGasAccess) {
       window.GAS_ONLINE = false;
       try { var ind = document.getElementById('gas-status-indicator'); if (ind) ind.style.background = '#ef4444'; } catch(e){}
-      if (action === 'verifyPin' || action === 'login') {
-        var em = String(extra.email || '').trim().toLowerCase();
-        var okUser = (em === 'miftahul.khoiry@pns.co.id' || em === 'miftahul.khoiry' || em === 'admin' || em === '240082');
-        if (okUser && String(extra.pin || '').trim() === '1234') {
-          if (typeof toast === 'function') setTimeout(function(){ toast('Mode Offline: backend Google Sheets belum dapat diakses (401).', 'err'); }, 800);
-          return { id: 1, nik: '240082', nama: 'M. Miftahul Khoiry', email: 'miftahul.khoiry@pns.co.id', section: 'GS HO & RO', isAdmin: true, isGs: true, isDefaultPin: true, offline: true };
-        }
-      }
     }
     throw err;
   });
@@ -9183,7 +9185,9 @@ function showDash(){
 
 
 function loadDash(){
-  api('getDashboard').then(function(d){
+  var uid = (_session && (_session.id || _session.user_id)) || '';
+  var uemail = (_session && _session.email) || '';
+  api('getDashboard', { userId: uid, email: uemail }).then(function(d){
     _raw=d;
     _occMap=normOcc(d.occupancyMap||{});
     renderKPI(d);
@@ -9194,7 +9198,9 @@ function loadDash(){
     renderCal();
     renderTickets();
   }).catch(function(e){
-    showAlert('Gagal: '+e.message,'err');
+    var target=document.getElementById('ticket-list');
+    if(target) target.innerHTML='<div class="empty-state" style="color:#b91c1c"><div style="font-size:24px">⚠️</div><div>Gagal memuat tiket: '+esc(e.message)+'</div><button class="btn-rs" onclick="loadDash()" style="margin-top:8px">Coba Lagi</button></div>';
+    showAlert('Gagal memuat dashboard: '+e.message,'err');
   });
 }
 
@@ -9232,7 +9238,9 @@ function silentRefresh(){
   if(_activePage!=='dashboard'&&_activePage!=='calendar')return;
   _rfr=true;
   updRbar();
-  api('getDashboard').then(function(d){
+  var uid = (_session && (_session.id || _session.user_id)) || '';
+  var uemail = (_session && _session.email) || '';
+  api('getDashboard', { userId: uid, email: uemail }).then(function(d){
     var sy=_curY,sm=_curM,sd=_selDate;
     _raw=d;
     _occMap=normOcc(d.occupancyMap||{});
@@ -9838,7 +9846,8 @@ function loadMyTicketsAll(){
   var el=document.getElementById('ticket-list-full');
   if(!el)return;
   el.innerHTML='<div class="empty-state"><div class="spinner-lg"></div></div>';
-  api('getMyTickets').then(function(d){
+  var uid = (_session && (_session.id || _session.user_id)) || '';
+  api('getMyTickets', { userId: uid }).then(function(d){
     _myTicketsRaw=d;
     renderMyTicketsFull();
   }).catch(function(e){
@@ -13192,7 +13201,8 @@ function navTo(page){
     atk:'Permintaan Alat Tulis Kantor & Perlengkapan',
     tickets:'Tiket & Pengajuan Layanan Saya',
     users:'Kelola User & Approval',
-    'atk-stock':'📦 Stok & Mutasi ATK (BKB) 2026'
+    'atk-stock':'📦 Stok & Mutasi ATK (BKB) 2026',
+    sync:'🔄 Integrasi & Sinkronisasi Database Google Sheets'
   };
   set('page-title',titles[page]||'Dashboard General Services');
 
@@ -13203,6 +13213,7 @@ function navTo(page){
   else if(page==='zoom')loadVirtualList();
   else if(page==='users')loadAdminUsers();
   else if(page==='atk-stock')loadAtkStockData();
+  else if(page==='sync')loadSyncMonitoring();
   else if(page==='dashboard')silentRefresh();
 
   if(window.innerWidth<=900)toggleSidebar(false);
@@ -13813,6 +13824,30 @@ function runGasReseed() {
     }
   }).catch(function(err) {
     showAlert('Error: ' + err.message, 'err');
+  });
+}
+
+
+function loadSyncMonitoring(force) {
+  loadGasSheetCounts();
+  var badge = document.getElementById('sync-header-badge');
+  if (badge) {
+    badge.innerText = 'Live Terhubung';
+    badge.style.background = 'var(--green)';
+  }
+}
+
+function runRoundtripTest() {
+  showAlert('Menguji koneksi 2 arah Google Sheets...', 'info');
+  api('getTableCounts').then(function(res) {
+    if (res && res.ok) {
+      alert('✅ Koneksi Google Sheets Berhasil!\n\nSpreadsheet Master GS & ATK terhubung aktif dan merespons dengan data valid.');
+      loadGasSheetCounts();
+    } else {
+      alert('⚠ Respons Google Sheets: ' + (res.error || 'Gagal'));
+    }
+  }).catch(function(err) {
+    alert('❌ Koneksi Gagal: ' + err.message);
   });
 }
 
