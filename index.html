@@ -5945,6 +5945,131 @@ textarea:focus {
 
 </style>
 
+
+/* ════ LUXURY FLUID BACKGROUND & TRANSITIONS ════ */
+.login-screen-fluid {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%; height: 100vh;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 24px 8vw;
+  background: linear-gradient(135deg, #020617 0%, #064e3b 35%, #0f172a 70%, #065f46 100%);
+  background-size: 300% 300%;
+  animation: meshShift 18s ease infinite alternate;
+  overflow: hidden;
+  transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes meshShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.ambient-mesh {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 75% 45%, rgba(16, 185, 129, 0.22) 0%, transparent 60%),
+              radial-gradient(circle at 25% 75%, rgba(6, 95, 70, 0.35) 0%, transparent 65%);
+  pointer-events: none !important;
+  z-index: 1;
+}
+
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none !important;
+  z-index: 1;
+  opacity: 0.6;
+  animation: floatOrb 14s ease-in-out infinite alternate;
+}
+
+.orb-1 {
+  width: 420px; height: 420px;
+  background: rgba(16, 185, 129, 0.25);
+  top: -60px; right: 15%;
+  animation-duration: 16s;
+}
+
+.orb-2 {
+  width: 500px; height: 500px;
+  background: rgba(14, 165, 233, 0.2);
+  bottom: -100px; left: 10%;
+  animation-duration: 22s;
+  animation-delay: -4s;
+}
+
+.orb-3 {
+  width: 320px; height: 320px;
+  background: rgba(245, 158, 11, 0.15);
+  top: 40%; left: 35%;
+  animation-duration: 18s;
+  animation-delay: -8s;
+}
+
+@keyframes floatOrb {
+  0%   { transform: translateY(0px) scale(1) rotate(0deg); }
+  50%  { transform: translateY(-40px) scale(1.08) rotate(45deg); }
+  100% { transform: translateY(30px) scale(0.95) rotate(-30deg); }
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 24px;
+  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.2);
+  padding: 36px 32px;
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+  z-index: 10;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme='dark'] .login-box {
+  background: rgba(15, 23, 42, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(16, 185, 129, 0.2);
+}
+
+/* ════ MOBILE RESPONSIVE TWEAKS ════ */
+@media (max-width: 768px) {
+  .login-screen-fluid {
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 16px !important;
+    overflow-y: auto !important;
+  }
+  .login-box {
+    margin: auto !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 28px 20px !important;
+    border-radius: 20px !important;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.3) !important;
+  }
+  .login-title {
+    font-size: 18px !important;
+  }
+  .login-sub {
+    font-size: 11.5px !important;
+  }
+  .pin-wrap select, .pin-wrap input {
+    font-size: 14px !important;
+    min-height: 44px !important;
+  }
+  .btn-login-submit {
+    min-height: 46px !important;
+    font-size: 14.5px !important;
+  }
+}
+
 </head>
 <body>
 
@@ -5954,7 +6079,11 @@ textarea:focus {
 <!-- ══════════════════════════════════════════════════════════════════════════
      1. LOGIN SCREEN (100% Identik index.php dengan Video Operasional)
      ══════════════════════════════════════════════════════════════════════════ -->
-<div id="login-screen" style="display:flex;align-items:center;justify-content:flex-end;min-height:100vh;padding:20px 8vw;position:fixed;top:0;left:0;right:0;bottom:0;z-index:99999;background:radial-gradient(circle at 20% 40%, #064e3b 0%, #0f172a 50%, #020617 100%);overflow:hidden">
+<div id="login-screen" class="login-screen-fluid">
+  <div class="ambient-mesh"></div>
+  <div class="ambient-orb orb-1"></div>
+  <div class="ambient-orb orb-2"></div>
+  <div class="ambient-orb orb-3"></div>
   <video autoplay muted loop playsinline class="bg-video" id="bg-video">
     <source src="video.mp4" type="video/mp4">
     <source src="assets/img/gemini_generated_video_1cc5ccc9.mp4" type="video/mp4">
@@ -6118,9 +6247,7 @@ textarea:focus {
 
     <button class="btn-login-submit" id="btn-login" onclick="doLogin()" style="pointer-events:auto!important;position:relative;z-index:20">Masuk Portal</button>
     
-    <div style="margin-top:12px;text-align:center;pointer-events:auto!important;position:relative;z-index:20">
-      <button type="button" onclick="loginDemoMode()" style="background:rgba(16,185,129,0.1);border:1px dashed var(--green);color:var(--green);padding:7px 14px;border-radius:var(--r8);font-size:12px;font-weight:600;cursor:pointer;width:100%;pointer-events:auto!important">⚡ Masuk Mode Uji Coba Cepat (Bypass Login)</button>
-    </div>
+
 
     <div style="margin-top:12px;text-align:center;font-size:12.5px;color:var(--muted);pointer-events:auto!important;position:relative;z-index:20">
       Belum terdaftar? <a href="javascript:void(0)" onclick="openRegisterModal()" style="color:var(--green);font-weight:600;text-decoration:none;pointer-events:auto!important">Daftar Akun Baru</a>
@@ -6140,43 +6267,49 @@ textarea:focus {
 
 <!-- MODAL REGISTRASI USER BARU -->
 <div class="modal-overlay" id="reg-modal-overlay" style="display:none" onclick="if(event.target===this)closeRegisterModal()">
-  <div class="modal" style="max-width:440px">
-    <div class="modal-head">
+  <div class="modal" style="max-width:460px;border-radius:var(--r16);overflow:hidden">
+    <div class="modal-head" style="background:linear-gradient(135deg, rgba(16,185,129,0.1), transparent)">
       <div>
-        <div class="modal-ttl">📝 Pendaftaran Akun Baru</div>
-        <div class="modal-sub">Isi data untuk mengajukan akses ke Admin</div>
+        <div class="modal-ttl" style="display:flex;align-items:center;gap:8px">📝 Pendaftaran Akun Karyawan PNS</div>
+        <div class="modal-sub">Gunakan email resmi perusahaan (@pns.co.id) untuk aktivasi</div>
       </div>
       <button class="modal-close" onclick="closeRegisterModal()">✕</button>
     </div>
-    <div style="padding:20px 22px;overflow-y:auto">
-      <div id="reg-msg" style="display:none;padding:10px 14px;border-radius:var(--r8);font-size:12px;margin-bottom:14px;line-height:1.5"></div>
+    <div style="padding:22px 24px;overflow-y:auto;max-height:80vh">
+      <div id="reg-msg" style="display:none;padding:11px 14px;border-radius:var(--r8);font-size:12.5px;margin-bottom:14px;line-height:1.5"></div>
       
       <div class="lrow" style="margin-bottom:12px">
         <label for="reg-nama">Nama Lengkap <span class="req">*</span></label>
-        <input type="text" id="reg-nama" placeholder="Contoh: Ahmad Subagyo" class="pin-wrap" style="width:100%;box-sizing:border-box;padding:9px 12px;border:1px solid var(--border);border-radius:var(--r8);background:var(--bg);color:var(--fg)">
-      </div>
-      
-      <div class="lrow" style="margin-bottom:12px">
-        <label for="reg-email">Email <span class="req">*</span></label>
-        <input type="email" id="reg-email" placeholder="nama@pns.co.id" class="pin-wrap" style="width:100%;box-sizing:border-box;padding:9px 12px;border:1px solid var(--border);border-radius:var(--r8);background:var(--bg);color:var(--fg)">
-      </div>
-      
-      <div class="lrow" style="margin-bottom:12px">
-        <label for="reg-sec">Section / Departemen</label>
-        <input type="text" id="reg-sec" placeholder="Contoh: GS, IT, HR, Finance" class="pin-wrap" style="width:100%;box-sizing:border-box;padding:9px 12px;border:1px solid var(--border);border-radius:var(--r8);background:var(--bg);color:var(--fg)">
-      </div>
-      
-      <div class="lrow" style="margin-bottom:12px">
-        <label for="reg-pin">Password <span class="req">*</span></label>
-        <input type="password" id="reg-pin" placeholder="••••" class="pin-wrap" style="width:100%;box-sizing:border-box;padding:9px 12px;border:1px solid var(--border);border-radius:var(--r8);background:var(--bg);color:var(--fg)">
+        <input type="text" id="reg-nama" placeholder="Contoh: Ahmad Subagyo" class="pin-wrap" style="width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid var(--border);border-radius:var(--r8);background:var(--bg);color:var(--fg);font-size:13.5px">
       </div>
 
-      <div class="lrow" style="margin-bottom:16px">
-        <label for="reg-pin2">Konfirmasi Password <span class="req">*</span></label>
-        <input type="password" id="reg-pin2" placeholder="••••" onkeydown="if(event.key==='Enter')doRegister()" class="pin-wrap" style="width:100%;box-sizing:border-box;padding:9px 12px;border:1px solid var(--border);border-radius:var(--r8);background:var(--bg);color:var(--fg)">
+      <div class="lrow" style="margin-bottom:12px">
+        <label for="reg-nik">NIK Karyawan <span class="req">*</span></label>
+        <input type="text" id="reg-nik" placeholder="Contoh: 250001" class="pin-wrap" style="width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid var(--border);border-radius:var(--r8);background:var(--bg);color:var(--fg);font-size:13.5px">
+      </div>
+      
+      <div class="lrow" style="margin-bottom:12px">
+        <label for="reg-email">Email Perusahaan PNS <span class="req">*</span></label>
+        <input type="email" id="reg-email" placeholder="nama.karyawan@pns.co.id" class="pin-wrap" style="width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid var(--border);border-radius:var(--r8);background:var(--bg);color:var(--fg);font-size:13.5px">
+        <div style="font-size:11px;color:var(--muted);margin-top:4px">Wajib menggunakan domain resmi <strong>@pns.co.id</strong></div>
+      </div>
+      
+      <div class="lrow" style="margin-bottom:12px">
+        <label for="reg-sec">Section / Departemen <span class="req">*</span></label>
+        <input type="text" id="reg-sec" placeholder="Contoh: IT, GS, HR, Finance, Tax, Procurement" class="pin-wrap" style="width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid var(--border);border-radius:var(--r8);background:var(--bg);color:var(--fg);font-size:13.5px">
+      </div>
+      
+      <div class="lrow" style="margin-bottom:12px">
+        <label for="reg-pin">PIN Akses (4-6 Digit Angka) <span class="req">*</span></label>
+        <input type="password" id="reg-pin" inputmode="numeric" pattern="[0-9]*" maxlength="6" placeholder="Contoh: 1234" class="pin-wrap" style="width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid var(--border);border-radius:var(--r8);background:var(--bg);color:var(--fg);font-size:13.5px;letter-spacing:2px">
       </div>
 
-      <button class="btn-login-submit" id="btn-reg-submit" onclick="doRegister()" style="margin-top:8px">Daftar Sekarang</button>
+      <div class="lrow" style="margin-bottom:18px">
+        <label for="reg-pin2">Konfirmasi PIN <span class="req">*</span></label>
+        <input type="password" id="reg-pin2" inputmode="numeric" pattern="[0-9]*" maxlength="6" placeholder="Ulangi PIN" onkeydown="if(event.key==='Enter')doRegister()" class="pin-wrap" style="width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid var(--border);border-radius:var(--r8);background:var(--bg);color:var(--fg);font-size:13.5px;letter-spacing:2px">
+      </div>
+
+      <button class="btn-login-submit" id="btn-reg-submit" onclick="doRegister()" style="margin-top:6px;padding:12px;font-size:14px;font-weight:700">Daftar Akun Karyawan</button>
     </div>
   </div>
 </div>
@@ -8638,31 +8771,67 @@ function closeRegisterModal(){
 }
 
 function doRegister(){
-  var nama = document.getElementById('reg-nama').value.trim(),
-      email = document.getElementById('reg-email').value.trim(),
-      sec = document.getElementById('reg-sec').value.trim(),
-      pin = document.getElementById('reg-pin').value,
-      pin2 = document.getElementById('reg-pin2').value,
-      btn = document.getElementById('btn-reg-submit');
+  var namaEl  = document.getElementById('reg-nama'),
+      nikEl   = document.getElementById('reg-nik'),
+      emailEl = document.getElementById('reg-email'),
+      secEl   = document.getElementById('reg-sec'),
+      pinEl   = document.getElementById('reg-pin'),
+      pin2El  = document.getElementById('reg-pin2'),
+      btn     = document.getElementById('btn-reg-submit');
   
-  if(!nama){ showRegMsg('Nama lengkap wajib diisi.', true); return; }
-  if(!email){ showRegMsg('Email wajib diisi.', true); return; }
-  if(!pin){ showRegMsg('Password wajib diisi.', true); return; }
-  if(pin !== pin2){ showRegMsg('Konfirmasi Password tidak cocok.', true); return; }
+  var nama  = namaEl ? namaEl.value.trim() : '',
+      nik   = nikEl ? nikEl.value.trim() : '',
+      email = emailEl ? emailEl.value.trim() : '',
+      sec   = secEl ? secEl.value.trim() : '',
+      pin   = pinEl ? pinEl.value.trim() : '',
+      pin2  = pin2El ? pin2El.value.trim() : '';
+  
+  if(!nama){ showRegMsg('Nama lengkap wajib diisi.', true); if(namaEl) namaEl.focus(); return; }
+  if(!nik){ showRegMsg('NIK karyawan wajib diisi.', true); if(nikEl) nikEl.focus(); return; }
+  if(!email){ showRegMsg('Email perusahaan wajib diisi.', true); if(emailEl) emailEl.focus(); return; }
+  
+  // Auto-complete or validate @pns.co.id
+  if (email.indexOf('@') === -1) {
+    email = email + '@pns.co.id';
+    if(emailEl) emailEl.value = email;
+  }
+  if (!email.toLowerCase().endsWith('@pns.co.id')) {
+    showRegMsg('Pendaftaran wajib menggunakan email resmi perusahaan (@pns.co.id)', true);
+    if(emailEl) emailEl.focus();
+    return;
+  }
+  
+  if(!sec){ showRegMsg('Section / Departemen wajib diisi.', true); if(secEl) secEl.focus(); return; }
+  if(!pin){ showRegMsg('PIN wajib diisi (minimal 4 digit).', true); if(pinEl) pinEl.focus(); return; }
+  if(pin.length < 4){ showRegMsg('PIN minimal 4 digit angka.', true); if(pinEl) pinEl.focus(); return; }
+  if(pin !== pin2){ showRegMsg('Konfirmasi PIN tidak cocok.', true); if(pin2El) pin2El.focus(); return; }
 
-  btn.disabled = true; btn.textContent = 'Mendaftar...';
-  api('register', { nama: nama, email: email, section: sec, pin: pin, pin_confirm: pin2 }).then(function(res){
-    btn.disabled = false; btn.textContent = 'Daftar Sekarang';
-    showRegMsg((res && res.message) || 'Pendaftaran berhasil! Akun Anda aktif dan siap digunakan.', false);
+  btn.disabled = true; btn.textContent = 'Mendaftarkan akun...';
+  api('register', { nama: nama, nik: nik, email: email, section: sec, pin: pin, pin_confirm: pin2 }).then(function(res){
+    btn.disabled = false; btn.textContent = 'Daftar Akun Karyawan';
+    showRegMsg('✅ Pendaftaran berhasil! Akun Anda aktif. Mengalihkan ke portal...', false);
+    
+    // Add to dropdown dynamically so user can login immediately
+    var uSel = document.getElementById('login-user-select');
+    if (uSel) {
+      var opt = document.createElement('option');
+      opt.value = nama;
+      opt.text = nama + ' [' + nik + '] - ' + sec;
+      opt.selected = true;
+      uSel.appendChild(opt);
+    }
+    var lEmail = document.getElementById('login-email');
+    if (lEmail) lEmail.value = email;
+    var lPin = document.getElementById('login-pin');
+    if (lPin) lPin.value = pin;
+
     setTimeout(function(){
       closeRegisterModal();
-      document.getElementById('login-email').value = email;
-      document.getElementById('login-pin').value = pin;
       doLogin();
-    }, 2000);
+    }, 1200);
   }).catch(function(e){
-    btn.disabled = false; btn.textContent = 'Daftar Sekarang';
-    showRegMsg(e.message || 'Gagal mendaftar.', true);
+    btn.disabled = false; btn.textContent = 'Daftar Akun Karyawan';
+    showRegMsg(e.message || 'Gagal mendaftar akun.', true);
   });
 }
 
@@ -14007,14 +14176,18 @@ function loadSyncMonitoring(force) {
 function runRoundtripTest() {
   showAlert('Menguji koneksi 2 arah Google Sheets...', 'info');
   api('getTableCounts').then(function(res) {
-    if (res && res.ok) {
-      alert('✅ Koneksi Google Sheets Berhasil!\n\nSpreadsheet Master GS & ATK terhubung aktif dan merespons dengan data valid.');
+    var counts = (res && res.data) ? res.data : res;
+    if (counts && (counts.bookings !== undefined || counts.users !== undefined || counts.ok || typeof counts === 'object')) {
+      var bCount = counts.bookings !== undefined ? counts.bookings : 0;
+      var uCount = counts.users !== undefined ? counts.users : 0;
+      var atkCount = counts['Master & Saldo Stok'] || counts.atk_stock || 0;
+      alert('✅ Koneksi Google Sheets Berhasil!\n\nSpreadsheet Master GS & ATK terhubung aktif dan merespons dengan data valid:\n• Tab bookings: ' + bCount + ' data\n• Tab users: ' + uCount + ' karyawan\n• Master ATK: ' + atkCount + ' item');
       loadGasSheetCounts();
     } else {
-      alert('⚠ Respons Google Sheets: ' + (res.error || 'Gagal'));
+      alert('⚠ Respons Google Sheets: ' + ((res && res.error) || 'Gagal merespons'));
     }
   }).catch(function(err) {
-    alert('❌ Koneksi Gagal: ' + err.message);
+    alert('❌ Koneksi Gagal: ' + (err.message || err));
   });
 }
 
