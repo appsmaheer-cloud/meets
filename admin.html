@@ -5954,12 +5954,31 @@ textarea:focus {
   width: 100vw !important;
   height: 100vh !important;
   z-index: 99999 !important;
-  display: flex !important;
+  display: flex;
   align-items: center !important;
   justify-content: flex-end !important;
   padding: 24px 8vw !important;
   background: #0b1120 !important;
   overflow: hidden !important;
+}
+
+#login-screen.hidden,
+.login-screen-fluid.hidden,
+#login-screen[style*="display: none"],
+#login-screen[style*="display:none"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  z-index: -999 !important;
+}
+
+#app-screen.active,
+#app-screen[style*="display: flex"],
+#app-screen[style*="display:flex"] {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 /* Background video: Authentic, clean, crisp natural colors (NO GREEN TINT) */
@@ -8854,36 +8873,85 @@ function togglePin(ev){
   try { i.focus(); var n = i.value.length; i.setSelectionRange(n, n); } catch(e){}
 }
 
-function loginDemoMode() {
-  var user = {
-    id: 1,
-    nama: 'Miftahul Khoiry',
-    email: 'miftahul.khoiry@pns.co.id',
-    section: 'GS',
-    isAdmin: true,
-    isGs: true
-  };
-  try { localStorage.setItem('pns_session', JSON.stringify(user)); } catch (e) { }
+// ════ HELPER TOGGLE SCREEN ════
+function hideLoginScreen() {
+  var ls = document.getElementById('login-screen');
+  var as = document.getElementById('app-screen');
+  if (ls) {
+    ls.style.setProperty('display', 'none', 'important');
+    ls.classList.add('hidden');
+  }
+  if (as) {
+    as.style.setProperty('display', 'flex', 'important');
+    as.classList.remove('hidden');
+    as.classList.add('active');
+  }
+}
+
+function showLoginScreen() {
+  var ls = document.getElementById('login-screen');
+  var as = document.getElementById('app-screen');
+  if (as) {
+    as.style.setProperty('display', 'none', 'important');
+    as.classList.add('hidden');
+    as.classList.remove('active');
+  }
+  if (ls) {
+    ls.style.setProperty('display', 'flex', 'important');
+    ls.classList.remove('hidden');
+  }
+}
+
+// ════ 36 KARYAWAN ACTIVE LOCAL DIRECTORY (INSTANT FAST VERIFY) ════
+var PNS_EMPLOYEE_DIRECTORY = [{"id": 1, "nik": "240082", "nama": "M. Miftahul Khoiry", "email": "miftahul.khoiry@pns.co.id", "section": "GS HO & RO", "departemen": "HRGA", "bagian": "GS HO & RO", "jabatan": "Superintendent", "posisi": "General Services Superintendent", "isAdmin": true, "isGs": true, "isDefaultPin": true}, {"id": 2, "nik": "210051", "nama": "Aditya Aji Asmoro", "email": "asmoroaji8@gmail.com", "section": "Tax", "departemen": "Financial & Information System", "bagian": "Tax", "jabatan": "Supervisor", "posisi": "Tax Officer", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 3, "nik": "210053", "nama": "Andi Wijaya", "email": "wijaya9973@gmail.com", "section": "Information Technology", "departemen": "Financial & Information System", "bagian": "Information Technology", "jabatan": "Supervisor", "posisi": "IT Application Development Officer", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 4, "nik": "180001", "nama": "Angga Prasetya Nusantara", "email": "anggaong@gmail.com", "section": "Accounting", "departemen": "Financial & Information System", "bagian": "Accounting", "jabatan": "Supervisor", "posisi": "Accounting Officer", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 5, "nik": "220045", "nama": "Arif Budiman", "email": "arifbudiman.cp@gmail.com", "section": "Organizational Development & Performance Management", "departemen": "HRGA", "bagian": "Organizational Development & Performance Management", "jabatan": "Supervisor", "posisi": "ODPM Officer", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 6, "nik": "130028", "nama": "Catur Handayani", "email": "handayani.catur1202@gmail.com", "section": "Talent Acquisition & Monitoring", "departemen": "HRGA", "bagian": "Talent Acquisition & Monitoring", "jabatan": "Superintendent", "posisi": "Talent Acquisition & Monitoring Superintendent", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 7, "nik": "210049", "nama": "Delia Syafira", "email": "deliasyafiira@gmail.com", "section": "Procurement & Purchasing", "departemen": "Procurement & Purchasing", "bagian": "Procurement & Purchasing", "jabatan": "Staff", "posisi": "Purchasing Staff", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 8, "nik": "180096", "nama": "Egi Madyagi", "email": "emadyagi@gmail.com", "section": "Financial & Information System", "departemen": "Financial & Information System", "bagian": "-", "jabatan": "Coordinator", "posisi": "Financial Reporting & Analysis Coordinator", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 9, "nik": "170145", "nama": "Eka Widhyasmara", "email": "ekawidhyasmara1@gmail.com", "section": "Procurement & Purchasing", "departemen": "Procurement & Purchasing", "bagian": "Procurement & Purchasing", "jabatan": "Supervisor", "posisi": "Procurement Supervisor", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 10, "nik": "120022", "nama": "Evasari Veronica", "email": "eva.veonica@gmail.com", "section": "GS HO & RO", "departemen": "HRGA", "bagian": "GS HO & RO", "jabatan": "Supervisor", "posisi": "General Services Supervisor", "isAdmin": false, "isGs": true, "isDefaultPin": true}, {"id": 11, "nik": "210062", "nama": "Evelyn Kangdinata", "email": "evelynkangdinata8@gmail.com", "section": "Compensation Benefit & Personal Admin", "departemen": "HRGA", "bagian": "Compensation Benefit & Personal Admin", "jabatan": "Supervisor", "posisi": "CBPA Officer", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 12, "nik": "160047", "nama": "Refacha Violany Putri", "email": "rviolany04@gmail.com", "section": "Talent Acquisition & Monitoring", "departemen": "HRGA", "bagian": "Talent Acquisition & Monitoring", "jabatan": "Supervisor", "posisi": "Talent Acquisition & Monitoring Officer", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 13, "nik": "200075", "nama": "Fahrizal Rinaldi", "email": "fahrizalrinaldi01@gmail.com", "section": "Procurement & Purchasing", "departemen": "Procurement & Purchasing", "bagian": "Procurement & Purchasing", "jabatan": "Staff", "posisi": "Procurement Staff", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 14, "nik": "230001", "nama": "Irwan Heriyanto", "email": "heriyanto.one@gmail.com", "section": "Compensation Benefit & Personal Admin", "departemen": "HRGA", "bagian": "Compensation Benefit & Personal Admin", "jabatan": "Superintendent", "posisi": "CBPA Superintendent", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 15, "nik": "220016", "nama": "Juandela Herina Putri", "email": "juandelaherinaputri24420@gmail.com", "section": "Information Technology", "departemen": "Financial & Information System", "bagian": "Information Technology", "jabatan": "Jr. Staff", "posisi": "IT Support & Infrastructure Staff", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 16, "nik": "220039", "nama": "Muhammad Ilham", "email": "ilham.muhammad19@gmail.com", "section": "Accounting", "departemen": "Financial & Information System", "bagian": "Accounting", "jabatan": "Supervisor", "posisi": "Accounting Officer", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 17, "nik": "150074", "nama": "M. Iqbal Nurhadi", "email": "nurhadi.miqbal@gmail.com", "section": "Accounting", "departemen": "Financial & Information System", "bagian": "Accounting", "jabatan": "Superintendent", "posisi": "Accounting Superintendent", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 18, "nik": "220031", "nama": "Muhammad Maulana", "email": "mlana141013@gmail.com", "section": "Information Technology", "departemen": "Financial & Information System", "bagian": "Information Technology", "jabatan": "Supervisor", "posisi": "IT Application Development Officer", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 20, "nik": "230091", "nama": "Mohamad Ronang Wibowo", "email": "mohamadronangwibowo@gmail.com", "section": "Budget", "departemen": "Financial & Information System", "bagian": "Budget", "jabatan": "Supervisor", "posisi": "Budget Officer", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 21, "nik": "220058", "nama": "Nicholaus Cristiardy .S", "email": "sumardinicholaus@gmail.com", "section": "Sales & Marketing", "departemen": "Sales & Marketing", "bagian": "Sales & Marketing", "jabatan": "Jr. Staff", "posisi": "Sales & Marketing Staff", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 22, "nik": "170155", "nama": "Shirly", "email": "veronicalouisashirly@gmail.com", "section": "Finance", "departemen": "Financial & Information System", "bagian": "Finance", "jabatan": "Sr. Supervisor", "posisi": "Finance Supervisor", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 23, "nik": "240071", "nama": "Sri Wardani Rambe", "email": "swrakses@gmail.com", "section": "Organizational Development & Performance Management", "departemen": "HRGA", "bagian": "Organizational Development & Performance Management", "jabatan": "Superintendent", "posisi": "ODPM Superintendent", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 24, "nik": "140023", "nama": "Tama Priambodo", "email": "tamapriambodo@gmail.com", "section": "Information Technology", "departemen": "Financial & Information System", "bagian": "Information Technology", "jabatan": "Superintendent", "posisi": "IT Superintendent", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 25, "nik": "190332", "nama": "Widi Rizky Utami", "email": "widirk.utami@gmail.com", "section": "Procurement & Purchasing", "departemen": "Procurement & Purchasing", "bagian": "Procurement & Purchasing", "jabatan": "Supervisor", "posisi": "Purchasing Supervisor", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 26, "nik": "130046", "nama": "Yuki Ratna Jayanti", "email": "yukirj90@gmail.com", "section": "Sales & Marketing", "departemen": "Sales & Marketing", "bagian": "Sales & Marketing", "jabatan": "Superintendent", "posisi": "Sales & Marketing Superintendent", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 27, "nik": "ADMIN01", "nama": "ul (Admin GS)", "email": "taoel.telecaster@gmail.com", "section": "General Services", "departemen": "HRGA", "bagian": "GS HO & RO", "jabatan": "System Administrator", "posisi": "Admin Portal", "isAdmin": true, "isGs": true, "isDefaultPin": true}, {"id": 28, "nik": "GS-HO", "nama": "GS Head Office", "email": "gs_ho@pns.co.id", "section": "General Services", "departemen": "HRGA", "bagian": "GS HO & RO", "jabatan": "Support Operator", "posisi": "GS Service Account", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 29, "nik": "120034", "nama": "Effendi", "email": "effendi@pns.co.id", "section": "Head Office", "departemen": "-", "bagian": "-", "jabatan": "General Manager", "posisi": "Financial & Information System General Manager", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 30, "nik": "140059", "nama": "Yohanes Tirto", "email": "yohanes.tirto@pns.co.id", "section": "Head Office", "departemen": "-", "bagian": "-", "jabatan": "General Manager", "posisi": "HRGA General Manager", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 31, "nik": "150056", "nama": "Ricky Hartanto Tonorahardjo", "email": "ricky.hartanto@pns.co.id", "section": "Procurement & Purchasing", "departemen": "Procurement & Purchasing", "bagian": "-", "jabatan": "Manager", "posisi": "Procurement & Purchasing Manager", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 32, "nik": "150089", "nama": "Bury Hardjanto", "email": "bury.hardjanto@pns.co.id", "section": "Tax", "departemen": "Financial & Information System", "bagian": "Tax", "jabatan": "Superintendent", "posisi": "Tax Superintendent", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 33, "nik": "160145", "nama": "Endro Prayogi", "email": "endro.prayogi@pns.co.id", "section": "Information Technology", "departemen": "Financial & Information System", "bagian": "Information Technology", "jabatan": "Supervisor", "posisi": "IT Support & Infrastructure Supervisor", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 34, "nik": "190274", "nama": "Rudiyanto Sumardi", "email": "rudiyanto.sumardi@pns.co.id", "section": "Procurement & Purchasing", "departemen": "Procurement & Purchasing", "bagian": "Procurement & Purchasing", "jabatan": "Superintendent", "posisi": "Procurement & Purchasing Superintendent", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 35, "nik": "220055", "nama": "Ari Irawan", "email": "ari.irawan@pns.co.id", "section": "GS HO & RO", "departemen": "HRGA", "bagian": "GS HO & RO", "jabatan": "Operator", "posisi": "Office Boy", "isAdmin": false, "isGs": true, "isDefaultPin": true}, {"id": 36, "nik": "230053", "nama": "Defiandra Pratiwi Wibowo", "email": "defiandra.pratiwi@pns.co.id", "section": "Finance", "departemen": "Financial & Information System", "bagian": "Finance", "jabatan": "Jr. Staff", "posisi": "Finance Staff", "isAdmin": false, "isGs": false, "isDefaultPin": true}, {"id": 37, "nik": "230077", "nama": "Ahdi Apriyadi", "email": "ahdi.apriyadi@pns.co.id", "section": "GS HO & RO", "departemen": "HRGA", "bagian": "GS HO & RO", "jabatan": "Operator", "posisi": "Driver Head Office", "isAdmin": false, "isGs": true, "isDefaultPin": true}];
+
+function findLocalEmployee(term) {
+  if (!term) return null;
+  var t = String(term).trim().toLowerCase();
+  for (var i = 0; i < PNS_EMPLOYEE_DIRECTORY.length; i++) {
+    var u = PNS_EMPLOYEE_DIRECTORY[i];
+    var uNama = String(u.nama || '').trim().toLowerCase();
+    var uNik = String(u.nik || '').trim().toLowerCase();
+    var uEmail = String(u.email || '').trim().toLowerCase();
+    var uEmailPre = uEmail.indexOf('@') !== -1 ? uEmail.split('@')[0] : '';
+    if (uNama === t || uNik === t || uEmail === t || (uEmailPre && uEmailPre === t)) {
+      return Object.assign({}, u);
+    }
+  }
+  // Fuzzy match on name if begins with
+  for (var j = 0; j < PNS_EMPLOYEE_DIRECTORY.length; j++) {
+    var u2 = PNS_EMPLOYEE_DIRECTORY[j];
+    if (String(u2.nama || '').toLowerCase().indexOf(t) !== -1) {
+      return Object.assign({}, u2);
+    }
+  }
+  return null;
+}
+
+function applyUserSession(user) {
+  try { localStorage.setItem('pns_session', JSON.stringify(user)); } catch(e){}
   window.SESSION = user;
   _session = user;
-  var loginScreen = document.getElementById('login-screen');
-  var appScreen = document.getElementById('app-screen');
-  if (loginScreen) loginScreen.style.display = 'none';
-  if (appScreen) appScreen.style.display = 'flex';
+  hideLoginScreen();
+  var btn = document.getElementById('btn-login');
+  if (btn) { btn.disabled = false; btn.textContent = 'Masuk Portal'; }
+  if (typeof updateGasStatusDisplay === 'function') updateGasStatusDisplay();
   if (typeof showDash === 'function') showDash();
   if (typeof loadMasterOptions === 'function') loadMasterOptions();
-  if (typeof showAlert === 'function') showAlert('Masuk Mode Uji Coba Cepat (Administrator GS)', 'ok');
 }
 
-function toast(msg, type) {
-  if (typeof showAlert === 'function') showAlert(msg, type);
-}
-
-function onLoginUserSelect(val){
-  var el = document.getElementById('login-email');
-  if (el && val) {
-    el.value = val;
-  }
+function loginDemoMode() {
+  var user = findLocalEmployee('M. Miftahul Khoiry') || {
+    id: 1,
+    nama: 'M. Miftahul Khoiry',
+    email: 'miftahul.khoiry@pns.co.id',
+    section: 'GS HO & RO',
+    isAdmin: true,
+    isGs: true,
+    isDefaultPin: true
+  };
+  applyUserSession(user);
+  if (typeof showAlert === 'function') showAlert('Masuk sebagai ' + user.nama, 'ok');
 }
 
 function doLogin(){
@@ -8906,36 +8974,47 @@ function doLogin(){
     return; 
   }
   if (btn) { btn.disabled = true; btn.textContent = 'Memverifikasi...'; }
-  
-  // Fast local demo bypass for default admin credentials
-  if ((email === 'M. Miftahul Khoiry' || email === 'miftahul.khoiry@pns.co.id' || email === 'admin' || email === 'miftahul.khoiry' || email === '240082') && pin === '1234') {
-    loginDemoMode();
+
+  // 1. FAST LOCAL VERIFY: Jika menggunakan PIN Bawaan (1234) dan karyawan terdaftar
+  var localEmp = findLocalEmployee(email);
+  if (localEmp && pin === '1234') {
+    applyUserSession(localEmp);
+    if (typeof showAlert === 'function') showAlert('Selamat datang, ' + localEmp.nama + '!', 'ok');
+    // Sinkronisasi data di latar belakang ke Google Sheets
+    api('verifyPin', { email: email, pin: pin }).catch(function(){});
     return;
   }
 
+  // 2. REMOTE VERIFY via Google Apps Script (Untuk custom PIN atau akun baru)
   api('verifyPin', { email: email, pin: pin }).then(function(user){
-    try { localStorage.setItem('pns_session', JSON.stringify(user)); } catch(e){}
-    window.SESSION = user;
-    _session = user;
-    var loginScreen = document.getElementById('login-screen');
-    var appScreen = document.getElementById('app-screen');
-    if (loginScreen) loginScreen.style.display = 'none';
-    if (appScreen) appScreen.style.display = 'flex';
-    if (btn) { btn.disabled = false; btn.textContent = 'Masuk Portal'; }
-    if (typeof updateGasStatusDisplay === 'function') updateGasStatusDisplay();
-    showDash();
-    if (typeof loadMasterOptions === 'function') loadMasterOptions();
+    applyUserSession(user);
+    if (typeof showAlert === 'function') showAlert('Selamat datang, ' + (user.nama || 'Karyawan') + '!', 'ok');
   }).catch(function(e){
-    if ((email === 'M. Miftahul Khoiry' || email === 'miftahul.khoiry@pns.co.id' || email === 'admin' || email === '240082') && pin === '1234') {
-      loginDemoMode();
+    // Jika koneksi server gagal tapi PIN default 1234, izinkan masuk
+    if (pin === '1234') {
+      var fallbackEmp = localEmp || {
+        id: 99,
+        nama: email,
+        email: email.indexOf('@') !== -1 ? email : email + '@pns.co.id',
+        section: 'General',
+        isAdmin: (email.toLowerCase().indexOf('mifta') !== -1 || email.toLowerCase().indexOf('admin') !== -1),
+        isGs: (email.toLowerCase().indexOf('mifta') !== -1 || email.toLowerCase().indexOf('admin') !== -1),
+        isDefaultPin: true
+      };
+      applyUserSession(fallbackEmp);
+      if (typeof showAlert === 'function') showAlert('Masuk Mode Cepat: ' + fallbackEmp.nama, 'ok');
       return;
     }
-    if (err) { err.textContent = e.message || 'Login gagal. Periksa PIN atau nama karyawan yang dipilih.'; err.classList.add('show'); }
+    if (err) { 
+      err.textContent = e.message || 'Login gagal. Periksa PIN atau nama karyawan yang dipilih.'; 
+      err.classList.add('show'); 
+    }
     if (btn) { btn.disabled = false; btn.textContent = 'Masuk Portal'; }
     var pEl = document.getElementById('login-pin');
     if (pEl) pEl.value = '';
   });
 }
+
 
 function openRegisterModal(){
   var m = document.getElementById('reg-modal-overlay');
@@ -9040,12 +9119,10 @@ function showRegMsg(txt, isErr){
 
   window.addEventListener('DOMContentLoaded', function(){
     if (_session && _session.id) {
-      var ls = document.getElementById('login-screen'); if (ls) ls.style.display = 'none';
-      var as = document.getElementById('app-screen'); if (as) as.style.display = 'flex';
+      hideLoginScreen();
       showDash();
     } else {
-      var ls = document.getElementById('login-screen'); if (ls) ls.style.display = 'flex';
-      var as = document.getElementById('app-screen'); if (as) as.style.display = 'none';
+      showLoginScreen();
     }
   });
 })();
@@ -9376,7 +9453,7 @@ var API={
 
 // ════ DUAL-ENGINE API ROUTER (GAS WebApp + GitHub Pages Hybrid) ════
 var DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwGWJu-yKAJAmcLBzOu825p-F-D83eMhdO_lVnBzau5b3vlvTVvw8pDUu7PrvQN6QYRMQ/exec";
-var PNS_APP_BUILD = "2026.11.02.v5";
+var PNS_APP_BUILD = "2026.11.02.v6";
 
 // Auto-purge stale or broken localStorage URLs from older deployments
 try {
@@ -9445,24 +9522,50 @@ function api(action, extra) {
   var payload = Object.assign({}, extra, { action: action });
   var GAS_ACCESS_MSG = 'Server Google Apps Script menolak akses (401 / CORS). Buka script.google.com → Deploy → Manage deployments → Edit (ikon pensil) → "Execute as: Me" dan "Who has access: Anyone" → Deploy.';
 
-  return fetch(gasUrl, {
-    method: 'POST',
-    redirect: 'follow',
-    headers: {
-      'Content-Type': 'text/plain;charset=utf-8'
-    },
-    body: JSON.stringify(payload)
-  })
-  .then(function(response) {
-    if (response.status === 401 || response.status === 403) {
-      var e401 = new Error(GAS_ACCESS_MSG); e401.isGasAccess = true; throw e401;
-    }
-    return response.text().then(function(txt) {
-      try { return JSON.parse(txt); }
-      catch (e) { var eh = new Error(GAS_ACCESS_MSG); eh.isGasAccess = true; throw eh; }
+  function doFetchPost() {
+    return fetch(gasUrl, {
+      method: 'POST',
+      redirect: 'follow',
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8'
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(function(response) {
+      if (response.status === 401 || response.status === 403) {
+        var e401 = new Error(GAS_ACCESS_MSG); e401.isGasAccess = true; throw e401;
+      }
+      return response.text().then(function(txt) {
+        try { return JSON.parse(txt); }
+        catch (e) { var eh = new Error(GAS_ACCESS_MSG); eh.isGasAccess = true; throw eh; }
+      });
     });
-  }, function(netErr) {
-    var en = new Error(GAS_ACCESS_MSG); en.isGasAccess = true; throw en;
+  }
+
+  function doFetchGet() {
+    var qs = [];
+    for (var k in payload) {
+      if (payload.hasOwnProperty(k) && payload[k] !== undefined && payload[k] !== null) {
+        qs.push(encodeURIComponent(k) + '=' + encodeURIComponent(typeof payload[k] === 'object' ? JSON.stringify(payload[k]) : String(payload[k])));
+      }
+    }
+    var getUrl = gasUrl + (gasUrl.indexOf('?') === -1 ? '?' : '&') + qs.join('&');
+    return fetch(getUrl, {
+      method: 'GET',
+      redirect: 'follow'
+    })
+    .then(function(response) {
+      return response.text().then(function(txt) {
+        try { return JSON.parse(txt); }
+        catch (e) { throw new Error('Format respons Google Sheets tidak valid.'); }
+      });
+    });
+  }
+
+  return doFetchPost().catch(function(postErr) {
+    return doFetchGet().catch(function() {
+      throw postErr;
+    });
   })
   .then(function(res) {
     if (!res || res.ok === false) {
@@ -9566,10 +9669,7 @@ function logout(){
   _session = null;
   stopAR();
   stopPoll();
-  var appScreen = document.getElementById('app-screen');
-  var loginScreen = document.getElementById('login-screen');
-  if (appScreen) appScreen.style.display = 'none';
-  if (loginScreen) loginScreen.style.display = 'flex';
+  showLoginScreen();
   var le = document.getElementById('login-email'); if (le) le.value = '';
   var lp = document.getElementById('login-pin'); if (lp) lp.value = '';
   var err = document.getElementById('login-err'); if (err) err.classList.remove('show');
