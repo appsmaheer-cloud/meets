@@ -5977,20 +5977,146 @@ textarea:focus {
 
   <div id="login-err" class="err-msg"></div>
 
-  <div id="login-form">
-    <div class="lrow">
-      <label for="login-email">Email <span class="req">*</span></label>
-      <input type="email" id="login-email" placeholder="nama@pns.co.id" class="pin-wrap" onkeydown="if(event.key==='Enter')doLogin()" style="width:100%;box-sizing:border-box;padding:9px 12px;border:1px solid var(--border);border-radius:var(--r8);background:var(--bg);color:var(--fg);pointer-events:auto!important;position:relative;z-index:20">
+    <div id="login-form">
+    <!-- PETUNJUK LOGIN -->
+    <div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.25);border-radius:var(--r8);padding:10px 14px;margin-bottom:14px;font-size:12px;line-height:1.5;color:var(--fg);text-align:left">
+      <div style="font-weight:700;color:var(--green);display:flex;align-items:center;gap:6px;margin-bottom:4px">
+        <span>💡</span> Petunjuk Masuk Karyawan:
+      </div>
+      <div style="color:var(--muted);margin-bottom:2px">1. Pilih <strong>Nama Karyawan</strong> pada dropdown di bawah (atau ketik NIK).</div>
+      <div style="color:var(--muted);margin-bottom:2px">2. Masukkan <strong>PIN</strong> Anda (PIN Bawaan / Default: <strong style="color:var(--green);background:rgba(16,185,129,0.15);padding:1px 6px;border-radius:4px">1234</strong>).</div>
+      <div style="color:var(--muted)">3. Klik tombol <strong>Masuk Portal</strong>.</div>
     </div>
+
+    <!-- PILIHAN KARYAWAN -->
     <div class="lrow">
-      <label for="login-pin">Password <span class="req">*</span></label>
+      <label for="login-user-select">Nama Karyawan / NIK <span class="req">*</span></label>
+      <select id="login-user-select" class="pin-wrap" onchange="onLoginUserSelect(this.value)" style="width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid var(--border);border-radius:var(--r8);background:var(--bg);color:var(--fg);pointer-events:auto!important;position:relative;z-index:20;font-size:13.5px">
+        <option value="">-- Pilih Nama Karyawan / NIK --</option>
+        <option value="Aditya Aji Asmoro">Aditya Aji Asmoro [210051]  - Tax</option>
+        <option value="Ahdi Apriyadi">Ahdi Apriyadi [230077]  - GS HO & RO</option>
+        <option value="Andi Wijaya">Andi Wijaya [210053]  - Information Technology</option>
+        <option value="Angga Prasetya Nusantara">Angga Prasetya Nusantara [180001]  - Accounting</option>
+        <option value="Ari Irawan">Ari Irawan [220055]  - GS HO & RO</option>
+        <option value="Arif Budiman">Arif Budiman [220045]  - Organizational Development & Performance Management</option>
+        <option value="Bury Hardjanto">Bury Hardjanto [150089]  - Tax</option>
+        <option value="Catur Handayani">Catur Handayani [130028]  - Talent Acquisition & Monitoring</option>
+        <option value="Defiandra Pratiwi Wibowo">Defiandra Pratiwi Wibowo [230053]  - Finance</option>
+        <option value="Delia Syafira">Delia Syafira [210049]  - Procurement & Purchasing</option>
+        <option value="Effendi">Effendi [120034]  - Head Office</option>
+        <option value="Egi Madyagi">Egi Madyagi [180096]  - Financial & Information System</option>
+        <option value="Eka Widhyasmara">Eka Widhyasmara [170145]  - Procurement & Purchasing</option>
+        <option value="Endro Prayogi">Endro Prayogi [160145]  - Information Technology</option>
+        <option value="Evasari Veronica">Evasari Veronica [120022]  - GS HO & RO</option>
+        <option value="Evelyn Kangdinata">Evelyn Kangdinata [210062]  - Compensation Benefit & Personal Admin</option>
+        <option value="Fahrizal Rinaldi">Fahrizal Rinaldi [200075]  - Procurement & Purchasing</option>
+        <option value="GS Head Office">GS Head Office [GS-HO]  - General Services</option>
+        <option value="Irwan Heriyanto">Irwan Heriyanto [230001]  - Compensation Benefit & Personal Admin</option>
+        <option value="Juandela Herina Putri">Juandela Herina Putri [220016]  - Information Technology</option>
+        <option value="M. Iqbal Nurhadi">M. Iqbal Nurhadi [150074]  - Accounting</option>
+        <option value="M. Miftahul Khoiry">M. Miftahul Khoiry [240082]  - GS HO & RO</option>
+        <option value="Mohamad Ronang Wibowo">Mohamad Ronang Wibowo [230091]  - Budget</option>
+        <option value="Muhammad Ilham">Muhammad Ilham [220039]  - Accounting</option>
+        <option value="Muhammad Maulana">Muhammad Maulana [220031]  - Information Technology</option>
+        <option value="Nicholaus Cristiardy .S">Nicholaus Cristiardy .S [220058]  - Sales & Marketing</option>
+        <option value="Refacha Violany Putri">Refacha Violany Putri [160047]  - Talent Acquisition & Monitoring</option>
+        <option value="Ricky Hartanto Tonorahardjo">Ricky Hartanto Tonorahardjo [150056]  - Procurement & Purchasing</option>
+        <option value="Rudiyanto Sumardi">Rudiyanto Sumardi [190274]  - Procurement & Purchasing</option>
+        <option value="Shirly">Shirly [170155]  - Finance</option>
+        <option value="Sri Wardani Rambe">Sri Wardani Rambe [240071]  - Organizational Development & Performance Management</option>
+        <option value="Tama Priambodo">Tama Priambodo [140023]  - Information Technology</option>
+        <option value="ul (Admin GS)">ul (Admin GS) [ADMIN01]  - General Services</option>
+        <option value="Widi Rizky Utami">Widi Rizky Utami [190332]  - Procurement & Purchasing</option>
+        <option value="Yohanes Tirto">Yohanes Tirto [140059]  - Head Office</option>
+        <option value="Yuki Ratna Jayanti">Yuki Ratna Jayanti [130046]  - Sales & Marketing</option>
+      </select>
+      <input type="text" id="login-email" list="users-datalist" placeholder="Atau ketik manual NIK / Nama karyawan di sini..." class="pin-wrap" onkeydown="if(event.key==='Enter')doLogin()" style="width:100%;box-sizing:border-box;padding:8px 12px;margin-top:6px;border:1px solid var(--border);border-radius:var(--r8);background:var(--bg);color:var(--fg);pointer-events:auto!important;position:relative;z-index:20;font-size:12px">
+      <datalist id="users-datalist">
+        <option value="Aditya Aji Asmoro">Aditya Aji Asmoro [210051]  - Tax</option>
+        <option value="210051">Aditya Aji Asmoro (210051)</option>
+        <option value="Ahdi Apriyadi">Ahdi Apriyadi [230077]  - GS HO & RO</option>
+        <option value="230077">Ahdi Apriyadi (230077)</option>
+        <option value="Andi Wijaya">Andi Wijaya [210053]  - Information Technology</option>
+        <option value="210053">Andi Wijaya (210053)</option>
+        <option value="Angga Prasetya Nusantara">Angga Prasetya Nusantara [180001]  - Accounting</option>
+        <option value="180001">Angga Prasetya Nusantara (180001)</option>
+        <option value="Ari Irawan">Ari Irawan [220055]  - GS HO & RO</option>
+        <option value="220055">Ari Irawan (220055)</option>
+        <option value="Arif Budiman">Arif Budiman [220045]  - Organizational Development & Performance Management</option>
+        <option value="220045">Arif Budiman (220045)</option>
+        <option value="Bury Hardjanto">Bury Hardjanto [150089]  - Tax</option>
+        <option value="150089">Bury Hardjanto (150089)</option>
+        <option value="Catur Handayani">Catur Handayani [130028]  - Talent Acquisition & Monitoring</option>
+        <option value="130028">Catur Handayani (130028)</option>
+        <option value="Defiandra Pratiwi Wibowo">Defiandra Pratiwi Wibowo [230053]  - Finance</option>
+        <option value="230053">Defiandra Pratiwi Wibowo (230053)</option>
+        <option value="Delia Syafira">Delia Syafira [210049]  - Procurement & Purchasing</option>
+        <option value="210049">Delia Syafira (210049)</option>
+        <option value="Effendi">Effendi [120034]  - Head Office</option>
+        <option value="120034">Effendi (120034)</option>
+        <option value="Egi Madyagi">Egi Madyagi [180096]  - Financial & Information System</option>
+        <option value="180096">Egi Madyagi (180096)</option>
+        <option value="Eka Widhyasmara">Eka Widhyasmara [170145]  - Procurement & Purchasing</option>
+        <option value="170145">Eka Widhyasmara (170145)</option>
+        <option value="Endro Prayogi">Endro Prayogi [160145]  - Information Technology</option>
+        <option value="160145">Endro Prayogi (160145)</option>
+        <option value="Evasari Veronica">Evasari Veronica [120022]  - GS HO & RO</option>
+        <option value="120022">Evasari Veronica (120022)</option>
+        <option value="Evelyn Kangdinata">Evelyn Kangdinata [210062]  - Compensation Benefit & Personal Admin</option>
+        <option value="210062">Evelyn Kangdinata (210062)</option>
+        <option value="Fahrizal Rinaldi">Fahrizal Rinaldi [200075]  - Procurement & Purchasing</option>
+        <option value="200075">Fahrizal Rinaldi (200075)</option>
+        <option value="GS Head Office">GS Head Office [GS-HO]  - General Services</option>
+        <option value="GS-HO">GS Head Office (GS-HO)</option>
+        <option value="Irwan Heriyanto">Irwan Heriyanto [230001]  - Compensation Benefit & Personal Admin</option>
+        <option value="230001">Irwan Heriyanto (230001)</option>
+        <option value="Juandela Herina Putri">Juandela Herina Putri [220016]  - Information Technology</option>
+        <option value="220016">Juandela Herina Putri (220016)</option>
+        <option value="M. Iqbal Nurhadi">M. Iqbal Nurhadi [150074]  - Accounting</option>
+        <option value="150074">M. Iqbal Nurhadi (150074)</option>
+        <option value="M. Miftahul Khoiry">M. Miftahul Khoiry [240082]  - GS HO & RO</option>
+        <option value="240082">M. Miftahul Khoiry (240082)</option>
+        <option value="Mohamad Ronang Wibowo">Mohamad Ronang Wibowo [230091]  - Budget</option>
+        <option value="230091">Mohamad Ronang Wibowo (230091)</option>
+        <option value="Muhammad Ilham">Muhammad Ilham [220039]  - Accounting</option>
+        <option value="220039">Muhammad Ilham (220039)</option>
+        <option value="Muhammad Maulana">Muhammad Maulana [220031]  - Information Technology</option>
+        <option value="220031">Muhammad Maulana (220031)</option>
+        <option value="Nicholaus Cristiardy .S">Nicholaus Cristiardy .S [220058]  - Sales & Marketing</option>
+        <option value="220058">Nicholaus Cristiardy .S (220058)</option>
+        <option value="Refacha Violany Putri">Refacha Violany Putri [160047]  - Talent Acquisition & Monitoring</option>
+        <option value="160047">Refacha Violany Putri (160047)</option>
+        <option value="Ricky Hartanto Tonorahardjo">Ricky Hartanto Tonorahardjo [150056]  - Procurement & Purchasing</option>
+        <option value="150056">Ricky Hartanto Tonorahardjo (150056)</option>
+        <option value="Rudiyanto Sumardi">Rudiyanto Sumardi [190274]  - Procurement & Purchasing</option>
+        <option value="190274">Rudiyanto Sumardi (190274)</option>
+        <option value="Shirly">Shirly [170155]  - Finance</option>
+        <option value="170155">Shirly (170155)</option>
+        <option value="Sri Wardani Rambe">Sri Wardani Rambe [240071]  - Organizational Development & Performance Management</option>
+        <option value="240071">Sri Wardani Rambe (240071)</option>
+        <option value="Tama Priambodo">Tama Priambodo [140023]  - Information Technology</option>
+        <option value="140023">Tama Priambodo (140023)</option>
+        <option value="ul (Admin GS)">ul (Admin GS) [ADMIN01]  - General Services</option>
+        <option value="ADMIN01">ul (Admin GS) (ADMIN01)</option>
+        <option value="Widi Rizky Utami">Widi Rizky Utami [190332]  - Procurement & Purchasing</option>
+        <option value="190332">Widi Rizky Utami (190332)</option>
+        <option value="Yohanes Tirto">Yohanes Tirto [140059]  - Head Office</option>
+        <option value="140059">Yohanes Tirto (140059)</option>
+        <option value="Yuki Ratna Jayanti">Yuki Ratna Jayanti [130046]  - Sales & Marketing</option>
+        <option value="130046">Yuki Ratna Jayanti (130046)</option>
+      </datalist>
+    </div>
+
+    <!-- INPUT PIN -->
+    <div class="lrow">
+      <label for="login-pin">PIN Akses (4 Digit) <span class="req">*</span></label>
       <div class="pin-wrap" style="pointer-events:auto!important;position:relative;z-index:20">
-        <input type="password" id="login-pin" placeholder="Masukkan password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()" style="pointer-events:auto!important">
-        <button type="button" class="pin-eye" onclick="togglePin(event)" id="pin-eye-btn" aria-label="Tampilkan Password" title="Tampilkan / sembunyikan password" style="pointer-events:auto!important">👁️</button>
+        <input type="password" id="login-pin" inputmode="numeric" pattern="[0-9]*" maxlength="6" placeholder="Masukkan PIN (Default: 1234)" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()" style="pointer-events:auto!important;letter-spacing:2px;font-weight:600">
+        <button type="button" class="pin-eye" onclick="togglePin(event)" id="pin-eye-btn" aria-label="Tampilkan PIN" title="Tampilkan / sembunyikan PIN" style="pointer-events:auto!important">👁️</button>
       </div>
     </div>
 
-    <button class="btn-login-submit" id="btn-login" onclick="doLogin()" style="pointer-events:auto!important;position:relative;z-index:20">Masuk</button>
+    <button class="btn-login-submit" id="btn-login" onclick="doLogin()" style="pointer-events:auto!important;position:relative;z-index:20">Masuk Portal</button>
     
     <div style="margin-top:12px;text-align:center;pointer-events:auto!important;position:relative;z-index:20">
       <button type="button" onclick="loginDemoMode()" style="background:rgba(16,185,129,0.1);border:1px dashed var(--green);color:var(--green);padding:7px 14px;border-radius:var(--r8);font-size:12px;font-weight:600;cursor:pointer;width:100%;pointer-events:auto!important">⚡ Masuk Mode Uji Coba Cepat (Bypass Login)</button>
@@ -8438,24 +8564,36 @@ function toast(msg, type) {
   if (typeof showAlert === 'function') showAlert(msg, type);
 }
 
+function onLoginUserSelect(val){
+  var el = document.getElementById('login-email');
+  if (el && val) {
+    el.value = val;
+  }
+}
+
 function doLogin(){
-  var email = (document.getElementById('login-email') ? document.getElementById('login-email').value : '').trim(),
-      pin   = document.getElementById('login-pin') ? document.getElementById('login-pin').value : '',
+  var userSel = document.getElementById('login-user-select');
+  var userInp = document.getElementById('login-email');
+  var email = (userSel && userSel.value ? userSel.value : (userInp ? userInp.value : '')).trim(),
+      pin   = document.getElementById('login-pin') ? document.getElementById('login-pin').value.trim() : '',
       err   = document.getElementById('login-err'),
       btn   = document.getElementById('btn-login');
   if (err) err.classList.remove('show');
   if(!email){ 
-    if (err) { err.textContent='Masukkan email Anda.'; err.classList.add('show'); }
+    if (err) { err.textContent='Silakan pilih nama karyawan atau ketik NIK Anda.'; err.classList.add('show'); }
+    if (userSel) userSel.focus();
     return; 
   }
   if(!pin){ 
-    if (err) { err.textContent='Password wajib diisi.'; err.classList.add('show'); }
+    if (err) { err.textContent='Masukkan PIN Anda (Default: 1234).'; err.classList.add('show'); }
+    var p = document.getElementById('login-pin');
+    if (p) p.focus();
     return; 
   }
   if (btn) { btn.disabled = true; btn.textContent = 'Memverifikasi...'; }
   
   // Fast local demo bypass for default admin credentials
-  if ((email === 'miftahul.khoiry@pns.co.id' || email === 'admin' || email === 'miftahul.khoiry') && pin === '1234') {
+  if ((email === 'M. Miftahul Khoiry' || email === 'miftahul.khoiry@pns.co.id' || email === 'admin' || email === 'miftahul.khoiry' || email === '240082') && pin === '1234') {
     loginDemoMode();
     return;
   }
@@ -8468,17 +8606,17 @@ function doLogin(){
     var appScreen = document.getElementById('app-screen');
     if (loginScreen) loginScreen.style.display = 'none';
     if (appScreen) appScreen.style.display = 'flex';
-    if (btn) { btn.disabled = false; btn.textContent = 'Masuk'; }
+    if (btn) { btn.disabled = false; btn.textContent = 'Masuk Portal'; }
     if (typeof updateGasStatusDisplay === 'function') updateGasStatusDisplay();
     showDash();
     if (typeof loadMasterOptions === 'function') loadMasterOptions();
   }).catch(function(e){
-    if ((email === 'miftahul.khoiry@pns.co.id' || email === 'admin') && pin === '1234') {
+    if ((email === 'M. Miftahul Khoiry' || email === 'miftahul.khoiry@pns.co.id' || email === 'admin' || email === '240082') && pin === '1234') {
       loginDemoMode();
       return;
     }
-    if (err) { err.textContent = e.message || 'Login gagal.'; err.classList.add('show'); }
-    if (btn) { btn.disabled = false; btn.textContent = 'Masuk'; }
+    if (err) { err.textContent = e.message || 'Login gagal. Periksa PIN atau nama karyawan yang dipilih.'; err.classList.add('show'); }
+    if (btn) { btn.disabled = false; btn.textContent = 'Masuk Portal'; }
     var pEl = document.getElementById('login-pin');
     if (pEl) pEl.value = '';
   });

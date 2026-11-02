@@ -21,3 +21,4 @@ self.addEventListener('fetch', function(e) {
   // Always fetch fresh from network, no stale cache
   e.respondWith(fetch(e.request));
 });
+
