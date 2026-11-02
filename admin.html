@@ -6388,7 +6388,17 @@ textarea:focus {
     </div>
 
     <!-- PAGE E-DOC (PENGIRIMAN DOKUMEN TERCATAT) -->
-    <div class="page" id="page-edoc">
+        <div class="page" id="page-edoc">
+      <!-- KETENTUAN RESI & SERAH TERIMA MOBILE -->
+      <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-left:4px solid #16a34a;border-radius:var(--r8);padding:10px 14px;margin-bottom:14px;font-size:12px;color:#166534;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:18px">📌</span>
+          <span><strong>Ketentuan Layanan E-Doc:</strong> Tanggung jawab General Services (GS) untuk pengiriman dokumen via vendor ekspedisi berlaku sampai <strong>nomor resi di-update di sistem</strong>. Pengguna dapat melacak kiriman secara mandiri via tombol <strong>🔍 Cek Resi</strong>.</span>
+        </div>
+        <button type="button" class="btn-rs gs-only-feature" onclick="openEdocInboundModal()" style="display:none;padding:6px 12px;font-size:11.5px;background:#16a34a;color:#fff;border-color:#16a34a;font-weight:600;border-radius:6px;cursor:pointer;align-items:center;gap:6px">
+          📱 Serah Terima Paket Masuk (Foto &amp; TTD)
+        </button>
+      </div>
       <div class="gs-filter-bar">
         <div style="display:flex;flex-direction:column;gap:8px;width:100%">
           <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
@@ -7128,7 +7138,7 @@ textarea:focus {
 <!-- E-DOC INBOUND MODAL (Pencatatan & Serah Terima Langsung) -->
 <div class="modal-overlay" id="edoc-inbound-overlay" onclick="if(event.target===this)closeEdocInboundModal()">
   <div class="modal" style="max-width:560px">
-    <div class="modal-head"><div><div class="modal-ttl">🤝 Terima &amp; Serahkan Dokumen</div><div class="modal-sub">Pencatatan dokumen masuk &amp; serah terima langsung (One-Step)</div></div><button class="modal-close" onclick="closeEdocInboundModal()">✕ Tutup</button></div>
+    <div class="modal-head"><div><div class="modal-ttl">🤝 Serah Terima Dokumen / Paket Masuk (Eksternal ke User)</div><div class="modal-sub">Pencatatan paket dari kurir luar &amp; serah terima langsung via mobile dengan bukti foto paket dan tanda tangan digital</div></div><button class="modal-close" onclick="closeEdocInboundModal()">✕ Tutup</button></div>
     <div style="padding:20px 22px;overflow-y:auto;max-height:80vh">
       
       <div class="frow2">
@@ -10319,6 +10329,21 @@ function printSelectedEdocs(){
   }
 }
 
+
+function getCourierTrackingUrl(courier, resi) {
+  if (!resi) return '';
+  courier = String(courier || '').toLowerCase();
+  resi = encodeURIComponent(String(resi).trim());
+  if (courier.indexOf('jne') !== -1) return 'https://www.jne.co.id/id/tracking/trace';
+  if (courier.indexOf('j&t') !== -1 || courier.indexOf('jnt') !== -1) return 'https://www.jet.co.id/track';
+  if (courier.indexOf('sicepat') !== -1) return 'https://www.sicepat.com/checkAwb';
+  if (courier.indexOf('pos') !== -1) return 'https://www.posindonesia.co.id/id/tracking';
+  if (courier.indexOf('tiki') !== -1) return 'https://www.tiki.id/id/tracking';
+  if (courier.indexOf('wahana') !== -1) return 'https://www.wahana.com';
+  if (courier.indexOf('anteraja') !== -1) return 'https://anteraja.id/tracking';
+  return 'https://cekresi.com/?noresi=' + resi;
+}
+
 function renderEdocList(rows){
   var el=document.getElementById('edoc-list-container');
   if(!el)return;
@@ -10428,10 +10453,14 @@ function renderEdocList(rows){
       }
     }else{
       if(r.tracking_no){
-        html+='<div style="display:flex;align-items:center;gap:5px">';
+        html+='<div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap">';
         html+='<span style="font-size:11.5px;color:var(--navy);cursor:pointer" onclick="copyText(\''+esc(r.tracking_no)+'\',\'No. Resi\')" title="Klik untuk salin">AWB: <strong>'+esc(r.tracking_no)+'</strong></span>';
         if(r.attachment){
-          html+='<a href="'+esc(r.attachment)+'" target="_blank" title="Lihat Foto Bukti Resi" style="text-decoration:none;font-size:12px">📷</a>';
+          html+='<a href="'+esc(r.attachment)+'" target="_blank" title="Lihat Foto Bukti Resi" style="text-decoration:none;font-size:11px;color:var(--blue)">📷 Struk</a>';
+        }
+        var trackUrl=getCourierTrackingUrl(r.courier_type, r.tracking_no);
+        if(trackUrl){
+          html+='<a href="'+trackUrl+'" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:3px;font-size:10px;padding:2px 6px;border-radius:4px;background:#e0f2fe;color:#0369a1;border:1px solid #bae6fd;text-decoration:none;font-weight:600" title="GS bertanggung jawab hingga resi terbit. Lacak progres ekspedisi di sini">🔍 Cek Resi</a>';
         }
         html+='</div>';
       }else{
