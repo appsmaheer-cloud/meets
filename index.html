@@ -6590,6 +6590,407 @@ body:not(.is-gs):not(.is-admin) [data-page='atk-stock'] {
   background: rgba(15, 23, 42, 0.75) !important;
 }
 
+
+/* ==========================================================================
+   📱 ULTRA-CLEAN MOBILE FIRST RESPONSIVE ARCHITECTURE (UI UX PRO MAX)
+   Mengatasi tumpukan elemen, perataan grid, kalender, hub cards, & dialog modal
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  /* 1. App Container & Layout */
+  #app-screen {
+    height: 100vh !important;
+    overflow: hidden !important;
+  }
+  
+  .layout {
+    flex-direction: column !important;
+    height: 100vh !important;
+  }
+
+  .main {
+    height: calc(100vh - 56px) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  /* 2. Topbar Navigation Header */
+  .topbar {
+    height: 56px !important;
+    padding: 0 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-shrink: 0 !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 100 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  .tb-left {
+    gap: 8px !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+  }
+
+  .tb-logo-sm {
+    display: none !important;
+  }
+
+  .tb-page {
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .tb-page .tp-crumb {
+    font-size: 8.5px !important;
+    letter-spacing: 0.04em !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .tb-page .tp-title {
+    font-size: 14px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    line-height: 1.2 !important;
+  }
+
+  .tb-right {
+    gap: 6px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .clk, .divider-v {
+    display: none !important;
+  }
+
+  .user-chip {
+    padding: 3px 8px 3px 3px !important;
+    gap: 6px !important;
+    max-width: 130px !important;
+  }
+
+  .user-chip .user-av {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 12px !important;
+  }
+
+  .user-chip .user-meta {
+    display: flex !important;
+    flex-direction: column !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .user-chip .user-meta-name {
+    font-size: 11px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .user-chip .user-meta-sec {
+    display: none !important;
+  }
+
+  .btn-book-top {
+    padding: 6px 10px !important;
+    font-size: 11.5px !important;
+    border-radius: 8px !important;
+  }
+
+  .btn-book-top span {
+    display: none !important; /* Icon + saja di mobile untuk menghemat ruang */
+  }
+
+  /* 3. Page Container & Spacing */
+  .page-wrap {
+    padding: 12px 10px 80px 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 4. Quick App Hub Cards (Hub Layanan & Modul Aplikasi) */
+  .bld-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    margin-top: 10px !important;
+  }
+
+  .bld-card {
+    padding: 12px 10px !important;
+    min-height: 88px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    border-radius: 14px !important;
+  }
+
+  .bld-icon {
+    margin-bottom: 6px !important;
+  }
+
+  .bld-icon svg {
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  .bld-name {
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    margin-bottom: 2px !important;
+  }
+
+  .bld-loc {
+    font-size: 9.5px !important;
+    line-height: 1.25 !important;
+    white-space: normal !important;
+  }
+
+  /* 5. KPI Strip (Ringkasan Aktivitas) */
+  .kpi-strip {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .kpi-strip .kpi:nth-child(5) {
+    grid-column: 1 / -1 !important; /* Item kelima lebar penuh di baris baru */
+  }
+
+  .kpi {
+    padding: 12px 12px 10px 12px !important;
+    border-radius: 14px !important;
+  }
+
+  .kpi-lbl {
+    font-size: 10px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .kpi-val {
+    font-size: 22px !important;
+    font-weight: 800 !important;
+  }
+
+  .kpi-sub {
+    font-size: 9px !important;
+  }
+
+  .kpi-spark-line {
+    width: 48px !important;
+    height: 22px !important;
+  }
+
+  /* 6. Dashboard Grid (Panels Bertumpuk Rapih) */
+  .dash-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+  }
+
+  .panel {
+    border-radius: 16px !important;
+    margin-bottom: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .panel-head {
+    padding: 12px 14px !important;
+  }
+
+  .panel-ttl {
+    font-size: 13px !important;
+  }
+
+  .panel-sub {
+    font-size: 9.5px !important;
+  }
+
+  .panel-body {
+    padding: 12px 12px !important;
+  }
+
+  /* 7. Tiket & Pengajuan Saya List */
+  .ticket-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+
+  .ticket-card {
+    padding: 10px 12px !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+  }
+
+  .ticket-card .tk-top {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+
+  .ticket-card .tk-acts {
+    align-self: flex-end !important;
+    margin-top: 4px !important;
+  }
+
+  /* 8. Full Calendar Page di Mobile (Anti-Tumpuk) */
+  .content-row,
+  .content-row.with-detail {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  .cal-card {
+    height: auto !important;
+    min-height: 400px !important;
+    border-radius: 16px !important;
+  }
+
+  #page-calendar .cal-card {
+    height: auto !important;
+  }
+
+  .cal-top {
+    padding: 10px 12px !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+  .cal-month-lbl {
+    font-size: 13px !important;
+  }
+
+  .cal-dow {
+    grid-template-columns: repeat(7, 1fr) !important;
+  }
+
+  .cal-dow div {
+    font-size: 9px !important;
+    padding: 4px 1px !important;
+  }
+
+  .cal-grid {
+    grid-template-columns: repeat(7, 1fr) !important;
+  }
+
+  .cal-cell {
+    min-height: 48px !important;
+    max-height: 70px !important;
+    padding: 3px 2px !important;
+    overflow: hidden !important;
+  }
+
+  .cal-num {
+    font-size: 9.5px !important;
+    margin-bottom: 2px !important;
+  }
+
+  .cal-chip {
+    font-size: 7.5px !important;
+    padding: 1px 3px !important;
+    gap: 2px !important;
+    margin-bottom: 2px !important;
+  }
+
+  .cal-chip .chip-txt {
+    font-size: 7px !important;
+  }
+
+  .cal-more {
+    font-size: 7.5px !important;
+    padding: 0 2px !important;
+  }
+
+  /* 9. Detail Slot Panel (Floating Bottom Sheet di Mobile) */
+  .det-panel {
+    height: auto !important;
+    max-height: 60vh !important;
+    border-radius: 16px !important;
+  }
+
+  #page-calendar .det-panel {
+    height: auto !important;
+  }
+
+  .det-split {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  .det-col-body {
+    max-height: 140px !important;
+    overflow-y: auto !important;
+  }
+
+  /* 10. Enterprise Table (Scroll Horizontal Halus & Card Flow) */
+  .ent-table-wrap,
+  .table-wrap,
+  .atk-table-wrap {
+    width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    border-radius: 12px !important;
+    padding: 8px !important;
+    margin-top: 8px !important;
+  }
+
+  .ent-table {
+    min-width: 640px !important;
+  }
+
+  /* 11. Modal Dialog & Forms (Full Screen Bottom Sheet on Mobile) */
+  .modal-overlay {
+    padding: 0 !important;
+    align-items: flex-end !important;
+  }
+
+  .modal {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 88vh !important;
+    border-radius: 20px 20px 0 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .modal-head {
+    padding: 14px 16px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .modal-body {
+    grid-template-columns: 1fr !important;
+    overflow-y: auto !important;
+    flex: 1 1 auto !important;
+  }
+
+  .modal-side {
+    display: none !important; /* Sembunyikan sidebar modal di layar HP */
+  }
+
+  .modal-form {
+    padding: 14px 16px 24px 16px !important;
+  }
+
+  .frow2, .frow3 {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+}
+
 </style>
 
 </head>
@@ -9696,7 +10097,7 @@ var API={
 
 // ════ DUAL-ENGINE API ROUTER (GAS WebApp + GitHub Pages Hybrid) ════
 var DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwGWJu-yKAJAmcLBzOu825p-F-D83eMhdO_lVnBzau5b3vlvTVvw8pDUu7PrvQN6QYRMQ/exec";
-var PNS_APP_BUILD = "2026.11.03.v1";
+var PNS_APP_BUILD = "2026.11.03.v2";
 
 // Auto-purge stale or broken localStorage URLs from older deployments
 try {
@@ -9871,9 +10272,54 @@ function todayStr(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()
 function dkey(y,m,d){return y+'-'+pad(m+1)+'-'+pad(d);}
 function esc(v){return String(v||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function set(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}
-function fmtShort(ds){if(!ds)return'–';var d=new Date(ds+'T00:00:00');return d.toLocaleDateString('id-ID',{weekday:'short',day:'2-digit',month:'short'});}
-function fmtDate(ds){if(!ds)return'–';var d=new Date(ds);if(isNaN(d))return ds;return d.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'});}
-function fmtDT(ds){if(!ds)return'–';var d=new Date(ds.replace(' ','T'));if(isNaN(d))return ds;return d.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});}
+// ════ ROBUST MULTI-FORMAT DATE PARSERS (ISO, DD/MM/YYYY, MM/DD/YYYY) ════
+function parseAnyDate(val) {
+  if (!val) return null;
+  if (val instanceof Date) return isNaN(val.getTime()) ? null : val;
+  var str = String(val).trim().replace(/^'/, '');
+  if (!str) return null;
+
+  // 1. Standar ISO: YYYY-MM-DD HH:mm:ss atau YYYY-MM-DDTHH:mm:ss
+  var iso = str.match(/^(\d{4})[-/](\d{1,2})[-/](\d{1,2})(?:[T\s](\d{1,2}):(\d{1,2})(?::(\d{1,2}))?)?/);
+  if (iso) {
+    return new Date(parseInt(iso[1],10), parseInt(iso[2],10)-1, parseInt(iso[3],10), parseInt(iso[4]||8,10), parseInt(iso[5]||0,10), parseInt(iso[6]||0,10));
+  }
+
+  // 2. Format Indonesia / Excel / Google Form: DD/MM/YYYY HH:mm:ss atau D/M/YYYY
+  var dmy = str.match(/^(\d{1,2})[-/](\d{1,2})[-/](\d{4})(?:[T\s](\d{1,2}):(\d{1,2})(?::(\d{1,2}))?)?/);
+  if (dmy) {
+    var dVal = parseInt(dmy[1], 10);
+    var mVal = parseInt(dmy[2], 10);
+    var yVal = parseInt(dmy[3], 10);
+    var day = dVal, mon = mVal;
+    if (dVal <= 12 && mVal > 12) { day = mVal; mon = dVal; } // Auto-correct MM/DD/YYYY
+    return new Date(yVal, mon - 1, day, parseInt(dmy[4]||8,10), parseInt(dmy[5]||0,10), parseInt(dmy[6]||0,10));
+  }
+
+  var d = new Date(str.indexOf(' ') !== -1 && str.indexOf('T') === -1 ? str.replace(' ', 'T') : str);
+  return isNaN(d.getTime()) ? null : d;
+}
+
+function fmtShort(ds){
+  if(!ds) return '—';
+  var d = parseAnyDate(ds);
+  if(!d) return String(ds).substring(0, 10);
+  return d.toLocaleDateString('id-ID',{weekday:'short',day:'2-digit',month:'short'});
+}
+
+function fmtDate(ds){
+  if(!ds) return '—';
+  var d = parseAnyDate(ds);
+  if(!d) return String(ds).substring(0, 10);
+  return d.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'});
+}
+
+function fmtDT(ds){
+  if(!ds) return '—';
+  var d = parseAnyDate(ds);
+  if(!d) return ds;
+  return d.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+}
 function fmtRupiah(n){var num=parseInt(n,10);if(isNaN(num)||num===0)return'–';return'Rp '+num.toLocaleString('id-ID');}
 
 function countUp(id,tgt){var el=document.getElementById(id);if(!el)return;var tgtNum=parseInt(tgt,10)||0;var s=performance.now(),dur=400;(function f(t){var p=Math.min((t-s)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(tgtNum*e).toLocaleString('id-ID');if(p<1)requestAnimationFrame(f);})(s);}
