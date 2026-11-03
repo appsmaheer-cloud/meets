@@ -6991,10 +6991,268 @@ body:not(.is-gs):not(.is-admin) [data-page='atk-stock'] {
   }
 }
 
-</style>
 
+/* ══════════════════════════════════════════════════════════════════════════
+   💎 ULTRA-LUXURY FROSTED GLASS & AMBIENT TRANSPARENCY (UI UX PRO MAX)
+   Mengintegrasikan video background konsisten, opasitas jernih & glassmorphism
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* 1. Global Ambient Video & Mesh Layer (Breathe Everywhere) */
+.global-ambient-layer {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+}
+
+.global-ambient-layer .bg-video {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  z-index: 0 !important;
+  opacity: 0.85 !important;
+  filter: contrast(105%) brightness(95%) !important;
+}
+
+.global-ambient-layer .bg-video-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  background: rgba(15, 23, 42, 0.38) !important;
+  backdrop-filter: blur(2px) !important;
+  -webkit-backdrop-filter: blur(2px) !important;
+  transition: background 0.6s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.6s ease !important;
+}
+
+/* Saat sudah masuk portal (in-app): naikkan sedikit blur & opasitas bersih agar teks 100% terbaca tajam */
+body.in-app .global-ambient-layer .bg-video-overlay {
+  background: rgba(248, 250, 252, 0.82) !important;
+  backdrop-filter: blur(14px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(140%) !important;
+}
+
+[data-theme='dark'] body.in-app .global-ambient-layer .bg-video-overlay {
+  background: rgba(11, 15, 25, 0.84) !important;
+  backdrop-filter: blur(16px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(140%) !important;
+}
+
+/* 2. Login Screen Clean Transparency */
+.login-screen-fluid {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  padding: 24px 8vw !important;
+  background: transparent !important; /* Video terlihat jelas! */
+  overflow: hidden !important;
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.86) !important;
+  backdrop-filter: blur(26px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(26px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  border-radius: 26px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.3) !important;
+  padding: 36px 32px !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+[data-theme='dark'] .login-box {
+  background: rgba(15, 23, 42, 0.84) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(16, 185, 129, 0.2) !important;
+}
+
+/* 3. Interior App Screen Transparency ("Di dalam juga transparan kan") */
+html, body {
+  background: transparent !important;
+}
+
+#app-screen {
+  position: relative !important;
+  z-index: 10 !important;
+  background: transparent !important;
+}
+
+.layout {
+  background: transparent !important;
+}
+
+.main {
+  background: transparent !important;
+}
+
+/* Sidebar: Frosted Glass */
+.sidebar {
+  background: rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(24px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+  border-right: 1px solid rgba(226, 232, 240, 0.65) !important;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.03) !important;
+}
+
+[data-theme='dark'] .sidebar {
+  background: rgba(15, 23, 42, 0.72) !important;
+  backdrop-filter: blur(24px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Topbar: Frosted Glass Header */
+.topbar {
+  background: rgba(255, 255, 255, 0.76) !important;
+  backdrop-filter: blur(24px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.65) !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme='dark'] .topbar {
+  background: rgba(15, 23, 42, 0.76) !important;
+  backdrop-filter: blur(24px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Dashboard Cards, KPI Cards, & Service Hub */
+.card,
+.hub-card,
+.kpi-card,
+.bld-card,
+.content-card,
+.tbl-card,
+.stat-card {
+  background: rgba(255, 255, 255, 0.82) !important;
+  backdrop-filter: blur(20px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(226, 232, 240, 0.4) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.card:hover,
+.hub-card:hover,
+.bld-card:hover {
+  transform: translateY(-3px) scale(1.008) !important;
+  box-shadow: 0 18px 35px -8px rgba(16, 185, 129, 0.16), 0 0 0 1px rgba(16, 185, 129, 0.3) !important;
+}
+
+[data-theme='dark'] .card,
+[data-theme='dark'] .hub-card,
+[data-theme='dark'] .kpi-card,
+[data-theme='dark'] .bld-card,
+[data-theme='dark'] .content-card,
+[data-theme='dark'] .tbl-card,
+[data-theme='dark'] .stat-card {
+  background: rgba(30, 41, 59, 0.74) !important;
+  backdrop-filter: blur(20px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Kalender Ruang Meeting Glass */
+.cal-grid {
+  background: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(226, 232, 240, 0.65) !important;
+  border-radius: 20px !important;
+}
+
+[data-theme='dark'] .cal-grid {
+  background: rgba(15, 23, 42, 0.65) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.cal-cell {
+  background: rgba(255, 255, 255, 0.48) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+[data-theme='dark'] .cal-cell {
+  background: rgba(30, 41, 59, 0.48) !important;
+}
+
+.cal-cell:hover {
+  background: rgba(16, 185, 129, 0.14) !important;
+}
+
+/* Side Detail Panel */
+#det-panel,
+.det-panel {
+  background: rgba(255, 255, 255, 0.90) !important;
+  backdrop-filter: blur(24px) saturate(170%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(170%) !important;
+  border-left: 1px solid rgba(226, 232, 240, 0.7) !important;
+}
+
+[data-theme='dark'] #det-panel,
+[data-theme='dark'] .det-panel {
+  background: rgba(15, 23, 42, 0.90) !important;
+  backdrop-filter: blur(24px) saturate(170%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(170%) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Dialog & Form Modals */
+.modal {
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  border-radius: 26px !important;
+  box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.35) !important;
+}
+
+[data-theme='dark'] .modal {
+  background: rgba(15, 23, 42, 0.90) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Tabel Header & Scroll Area */
+.ent-tbl th,
+.table-wrap th {
+  background: rgba(248, 250, 252, 0.78) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+[data-theme='dark'] .ent-tbl th,
+[data-theme='dark'] .table-wrap th {
+  background: rgba(15, 23, 42, 0.78) !important;
+}
+
+</style>
 </head>
 <body>
+<!-- ══════════════════════════════════════════════════════════════════════════
+     GLOBAL LUXURY AMBIENT VIDEO LAYER (UI UX PRO MAX — PERSISTENT BACKGROUND)
+     ══════════════════════════════════════════════════════════════════════════ -->
+<div class="global-ambient-layer" id="global-ambient-layer" aria-hidden="true">
+  <video autoplay muted loop playsinline class="bg-video" id="bg-video">
+    <source src="video.mp4" type="video/mp4">
+    <source src="assets/img/gemini_generated_video_1cc5ccc9.mp4" type="video/mp4">
+  </video>
+  <div class="bg-video-overlay" id="bg-video-overlay"></div>
+</div>
 
 <!-- Toast Notification Box -->
 <div id="toast-box" class="toast-box"></div>
@@ -7003,11 +7261,6 @@ body:not(.is-gs):not(.is-admin) [data-page='atk-stock'] {
      1. LOGIN SCREEN (100% Identik index.php dengan Video Operasional)
      ══════════════════════════════════════════════════════════════════════════ -->
 <div id="login-screen" class="login-screen-fluid">
-  <video autoplay muted loop playsinline class="bg-video" id="bg-video">
-    <source src="video.mp4" type="video/mp4">
-    <source src="assets/img/gemini_generated_video_1cc5ccc9.mp4" type="video/mp4">
-  </video>
-  <div class="bg-video-overlay"></div>
 
   <div class="login-box">
   <div class="theme-toggle-login">
@@ -9519,6 +9772,7 @@ function togglePin(ev){
 
 // ════ HELPER TOGGLE SCREEN ════
 function hideLoginScreen() {
+  document.body.classList.add('in-app');
   var ls = document.getElementById('login-screen');
   var as = document.getElementById('app-screen');
   if (ls) {
@@ -9533,6 +9787,7 @@ function hideLoginScreen() {
 }
 
 function showLoginScreen() {
+  document.body.classList.remove('in-app');
   var ls = document.getElementById('login-screen');
   var as = document.getElementById('app-screen');
   if (as) {
