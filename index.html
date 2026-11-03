@@ -6295,6 +6295,301 @@ body:not(.is-gs):not(.is-admin) [data-page='atk-stock'] {
   pointer-events: none !important;
 }
 
+
+/* ==========================================================================
+   ✨ UI UX PRO MAX MASTER SYSTEM: ULTRA-CLEAN FROSTED TRANSLUCENT GLASSMORPHISM
+   Full frosted glass styling for both Login Box and Inner Dashboard App
+   ========================================================================== */
+
+/* 1. LOGIN SCREEN & TRANSLUCENT LOGIN BOX */
+.login-screen-fluid {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  padding: 24px 7vw !important;
+  overflow: hidden !important;
+  background: transparent !important;
+}
+
+.bg-video {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  filter: saturate(105%) contrast(102%) brightness(98%) !important;
+}
+
+.bg-video-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.38) 0%, rgba(6, 78, 59, 0.22) 100%) !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.62) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.72) !important;
+  border-radius: 26px !important;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.45) !important;
+  padding: 34px 30px !important;
+  width: 100% !important;
+  max-width: 440px !important;
+  position: relative !important;
+  z-index: 10 !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  pointer-events: auto !important;
+}
+
+[data-theme='dark'] .login-box {
+  background: rgba(15, 23, 42, 0.60) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
+}
+
+.login-guide-card {
+  background: rgba(240, 253, 244, 0.68) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(52, 211, 153, 0.4) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.06) !important;
+}
+
+[data-theme='dark'] .login-guide-card {
+  background: rgba(6, 78, 59, 0.40) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(52, 211, 153, 0.25) !important;
+}
+
+.login-box select,
+.login-box input[type="text"],
+.login-box input[type="password"] {
+  background: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(16, 185, 129, 0.30) !important;
+  border-radius: 12px !important;
+  color: #0f172a !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+}
+
+[data-theme='dark'] .login-box select,
+[data-theme='dark'] .login-box input[type="text"],
+[data-theme='dark'] .login-box input[type="password"] {
+  background: rgba(30, 41, 59, 0.65) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(52, 211, 153, 0.30) !important;
+  color: #f8fafc !important;
+}
+
+.login-box select:focus,
+.login-box input:focus {
+  background: rgba(255, 255, 255, 0.88) !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.20) !important;
+}
+
+[data-theme='dark'] .login-box select:focus,
+[data-theme='dark'] .login-box input:focus {
+  background: rgba(30, 41, 59, 0.90) !important;
+  border-color: #34d399 !important;
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.20) !important;
+}
+
+/* 2. INNER DASHBOARD APP: FROSTED GLASS & AMBIENT DEPTH */
+#app-screen {
+  background-color: #f6f8fc !important;
+  background-image: 
+    radial-gradient(circle at 12% 15%, rgba(16, 185, 129, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 88% 20%, rgba(59, 130, 246, 0.07) 0%, transparent 45%),
+    radial-gradient(circle at 50% 85%, rgba(139, 92, 246, 0.05) 0%, transparent 55%) !important;
+  background-attachment: fixed !important;
+}
+
+[data-theme='dark'] #app-screen {
+  background-color: #090d16 !important;
+  background-image: 
+    radial-gradient(circle at 12% 15%, rgba(16, 185, 129, 0.10) 0%, transparent 45%),
+    radial-gradient(circle at 88% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 50% 85%, rgba(139, 92, 246, 0.07) 0%, transparent 55%) !important;
+}
+
+/* SIDEBAR: Frosted Glass Translucent */
+.sidebar {
+  background: rgba(255, 255, 255, 0.70) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border-right: 1px solid rgba(226, 232, 240, 0.70) !important;
+}
+
+[data-theme='dark'] .sidebar {
+  background: rgba(15, 23, 42, 0.70) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* TOPBAR: Frosted Glass Translucent */
+.topbar {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.70) !important;
+}
+
+[data-theme='dark'] .topbar {
+  background: rgba(15, 23, 42, 0.75) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* PANELS & CARDS: Frosted Glass Surfaces */
+.panel,
+.card,
+.sec-card {
+  background: rgba(255, 255, 255, 0.68) !important;
+  backdrop-filter: blur(20px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.75) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(255, 255, 255, 0.4) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+[data-theme='dark'] .panel,
+[data-theme='dark'] .card,
+[data-theme='dark'] .sec-card {
+  background: rgba(30, 41, 59, 0.55) !important;
+  backdrop-filter: blur(20px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* KPI STRIP CARDS */
+.kpi {
+  background: rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(18px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.78) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.03) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.kpi:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 14px 30px -4px rgba(0, 0, 0, 0.07) !important;
+}
+
+[data-theme='dark'] .kpi {
+  background: rgba(30, 41, 59, 0.60) !important;
+  backdrop-filter: blur(18px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.10) !important;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* QUICK APP HUB CARDS (bld-card) - Translucent Vibrant Frosted Pastels */
+.bld-card {
+  border-radius: 20px !important;
+  backdrop-filter: blur(18px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(160%) !important;
+  box-shadow: 0 8px 25px -4px rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.bld-card:hover {
+  transform: translateY(-3px) scale(1.01) !important;
+  box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Translucent gradients for specific hub modules */
+.bld-card[onclick*="calendar"] {
+  background: linear-gradient(135deg, rgba(254, 243, 199, 0.70) 0%, rgba(253, 230, 138, 0.60) 100%) !important;
+  border: 1px solid rgba(251, 191, 36, 0.45) !important;
+}
+.bld-card[onclick*="zoom"] {
+  background: linear-gradient(135deg, rgba(237, 233, 254, 0.70) 0%, rgba(221, 214, 254, 0.60) 100%) !important;
+  border: 1px solid rgba(167, 139, 250, 0.45) !important;
+}
+.bld-card[onclick*="mobilisasi"] {
+  background: linear-gradient(135deg, rgba(224, 242, 254, 0.70) 0%, rgba(186, 230, 253, 0.60) 100%) !important;
+  border: 1px solid rgba(56, 189, 248, 0.45) !important;
+}
+.bld-card[onclick*="atk"] {
+  background: linear-gradient(135deg, rgba(209, 250, 229, 0.70) 0%, rgba(167, 243, 208, 0.60) 100%) !important;
+  border: 1px solid rgba(52, 211, 153, 0.45) !important;
+}
+.bld-card[onclick*="edoc"] {
+  background: linear-gradient(135deg, rgba(219, 234, 254, 0.70) 0%, rgba(191, 219, 254, 0.60) 100%) !important;
+  border: 1px solid rgba(96, 165, 250, 0.45) !important;
+}
+
+[data-theme='dark'] .bld-card[onclick*="calendar"] {
+  background: linear-gradient(135deg, rgba(120, 53, 15, 0.35) 0%, rgba(180, 83, 9, 0.25) 100%) !important;
+  border-color: rgba(245, 158, 11, 0.3) !important;
+}
+[data-theme='dark'] .bld-card[onclick*="zoom"] {
+  background: linear-gradient(135deg, rgba(91, 33, 182, 0.35) 0%, rgba(109, 40, 217, 0.25) 100%) !important;
+  border-color: rgba(139, 92, 246, 0.3) !important;
+}
+[data-theme='dark'] .bld-card[onclick*="mobilisasi"] {
+  background: linear-gradient(135deg, rgba(7, 89, 133, 0.35) 0%, rgba(3, 105, 161, 0.25) 100%) !important;
+  border-color: rgba(14, 165, 233, 0.3) !important;
+}
+[data-theme='dark'] .bld-card[onclick*="atk"] {
+  background: linear-gradient(135deg, rgba(6, 78, 59, 0.35) 0%, rgba(4, 120, 87, 0.25) 100%) !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+[data-theme='dark'] .bld-card[onclick*="edoc"] {
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.35) 0%, rgba(29, 78, 216, 0.25) 100%) !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+/* POPUP MODALS: Frosted Glass */
+.modal {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  border-radius: 26px !important;
+  box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.4) !important;
+}
+
+[data-theme='dark'] .modal {
+  background: rgba(15, 23, 42, 0.85) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* TABLES & DATA CONTAINERS */
+.ent-tbl th {
+  background: rgba(248, 250, 252, 0.75) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+[data-theme='dark'] .ent-tbl th {
+  background: rgba(15, 23, 42, 0.75) !important;
+}
+
 </style>
 
 </head>
@@ -6382,81 +6677,7 @@ body:not(.is-gs):not(.is-admin) [data-page='atk-stock'] {
         <option value="Yohanes Tirto">Yohanes Tirto [140059]  - Head Office</option>
         <option value="Yuki Ratna Jayanti">Yuki Ratna Jayanti [130046]  - Sales & Marketing</option>
       </select>
-      <input type="text" id="login-email" list="users-datalist" placeholder="Atau ketik manual NIK / Nama karyawan di sini..." class="pin-wrap" onkeydown="if(event.key==='Enter')doLogin()" style="width:100%;box-sizing:border-box;padding:8px 12px;margin-top:6px;border:1px solid var(--border);border-radius:var(--r8);background:var(--bg);color:var(--fg);pointer-events:auto!important;position:relative;z-index:20;font-size:12px">
-      <datalist id="users-datalist">
-        <option value="Aditya Aji Asmoro">Aditya Aji Asmoro [210051]  - Tax</option>
-        <option value="210051">Aditya Aji Asmoro (210051)</option>
-        <option value="Ahdi Apriyadi">Ahdi Apriyadi [230077]  - GS HO & RO</option>
-        <option value="230077">Ahdi Apriyadi (230077)</option>
-        <option value="Andi Wijaya">Andi Wijaya [210053]  - Information Technology</option>
-        <option value="210053">Andi Wijaya (210053)</option>
-        <option value="Angga Prasetya Nusantara">Angga Prasetya Nusantara [180001]  - Accounting</option>
-        <option value="180001">Angga Prasetya Nusantara (180001)</option>
-        <option value="Ari Irawan">Ari Irawan [220055]  - GS HO & RO</option>
-        <option value="220055">Ari Irawan (220055)</option>
-        <option value="Arif Budiman">Arif Budiman [220045]  - Organizational Development & Performance Management</option>
-        <option value="220045">Arif Budiman (220045)</option>
-        <option value="Bury Hardjanto">Bury Hardjanto [150089]  - Tax</option>
-        <option value="150089">Bury Hardjanto (150089)</option>
-        <option value="Catur Handayani">Catur Handayani [130028]  - Talent Acquisition & Monitoring</option>
-        <option value="130028">Catur Handayani (130028)</option>
-        <option value="Defiandra Pratiwi Wibowo">Defiandra Pratiwi Wibowo [230053]  - Finance</option>
-        <option value="230053">Defiandra Pratiwi Wibowo (230053)</option>
-        <option value="Delia Syafira">Delia Syafira [210049]  - Procurement & Purchasing</option>
-        <option value="210049">Delia Syafira (210049)</option>
-        <option value="Effendi">Effendi [120034]  - Head Office</option>
-        <option value="120034">Effendi (120034)</option>
-        <option value="Egi Madyagi">Egi Madyagi [180096]  - Financial & Information System</option>
-        <option value="180096">Egi Madyagi (180096)</option>
-        <option value="Eka Widhyasmara">Eka Widhyasmara [170145]  - Procurement & Purchasing</option>
-        <option value="170145">Eka Widhyasmara (170145)</option>
-        <option value="Endro Prayogi">Endro Prayogi [160145]  - Information Technology</option>
-        <option value="160145">Endro Prayogi (160145)</option>
-        <option value="Evasari Veronica">Evasari Veronica [120022]  - GS HO & RO</option>
-        <option value="120022">Evasari Veronica (120022)</option>
-        <option value="Evelyn Kangdinata">Evelyn Kangdinata [210062]  - Compensation Benefit & Personal Admin</option>
-        <option value="210062">Evelyn Kangdinata (210062)</option>
-        <option value="Fahrizal Rinaldi">Fahrizal Rinaldi [200075]  - Procurement & Purchasing</option>
-        <option value="200075">Fahrizal Rinaldi (200075)</option>
-        <option value="GS Head Office">GS Head Office [GS-HO]  - General Services</option>
-        <option value="GS-HO">GS Head Office (GS-HO)</option>
-        <option value="Irwan Heriyanto">Irwan Heriyanto [230001]  - Compensation Benefit & Personal Admin</option>
-        <option value="230001">Irwan Heriyanto (230001)</option>
-        <option value="Juandela Herina Putri">Juandela Herina Putri [220016]  - Information Technology</option>
-        <option value="220016">Juandela Herina Putri (220016)</option>
-        <option value="M. Iqbal Nurhadi">M. Iqbal Nurhadi [150074]  - Accounting</option>
-        <option value="150074">M. Iqbal Nurhadi (150074)</option>
-        <option value="M. Miftahul Khoiry">M. Miftahul Khoiry [240082]  - GS HO & RO</option>
-        <option value="240082">M. Miftahul Khoiry (240082)</option>
-        <option value="Mohamad Ronang Wibowo">Mohamad Ronang Wibowo [230091]  - Budget</option>
-        <option value="230091">Mohamad Ronang Wibowo (230091)</option>
-        <option value="Muhammad Ilham">Muhammad Ilham [220039]  - Accounting</option>
-        <option value="220039">Muhammad Ilham (220039)</option>
-        <option value="Muhammad Maulana">Muhammad Maulana [220031]  - Information Technology</option>
-        <option value="220031">Muhammad Maulana (220031)</option>
-        <option value="Nicholaus Cristiardy .S">Nicholaus Cristiardy .S [220058]  - Sales & Marketing</option>
-        <option value="220058">Nicholaus Cristiardy .S (220058)</option>
-        <option value="Refacha Violany Putri">Refacha Violany Putri [160047]  - Talent Acquisition & Monitoring</option>
-        <option value="160047">Refacha Violany Putri (160047)</option>
-        <option value="Ricky Hartanto Tonorahardjo">Ricky Hartanto Tonorahardjo [150056]  - Procurement & Purchasing</option>
-        <option value="150056">Ricky Hartanto Tonorahardjo (150056)</option>
-        <option value="Rudiyanto Sumardi">Rudiyanto Sumardi [190274]  - Procurement & Purchasing</option>
-        <option value="190274">Rudiyanto Sumardi (190274)</option>
-        <option value="Shirly">Shirly [170155]  - Finance</option>
-        <option value="170155">Shirly (170155)</option>
-        <option value="Sri Wardani Rambe">Sri Wardani Rambe [240071]  - Organizational Development & Performance Management</option>
-        <option value="240071">Sri Wardani Rambe (240071)</option>
-        <option value="Tama Priambodo">Tama Priambodo [140023]  - Information Technology</option>
-        <option value="140023">Tama Priambodo (140023)</option>
-        <option value="ul (Admin GS)">ul (Admin GS) [ADMIN01]  - General Services</option>
-        <option value="ADMIN01">ul (Admin GS) (ADMIN01)</option>
-        <option value="Widi Rizky Utami">Widi Rizky Utami [190332]  - Procurement & Purchasing</option>
-        <option value="190332">Widi Rizky Utami (190332)</option>
-        <option value="Yohanes Tirto">Yohanes Tirto [140059]  - Head Office</option>
-        <option value="140059">Yohanes Tirto (140059)</option>
-        <option value="Yuki Ratna Jayanti">Yuki Ratna Jayanti [130046]  - Sales & Marketing</option>
-        <option value="130046">Yuki Ratna Jayanti (130046)</option>
-      </datalist>
+      <input type="text" id="login-email" autocomplete="off" placeholder="Atau ketik manual NIK / Nama karyawan di sini..." class="pin-wrap" onkeydown="if(event.key==='Enter')doLogin()" style="width:100%;box-sizing:border-box;padding:9px 12px;margin-top:6px;border:1px solid rgba(16, 185, 129, 0.35);border-radius:10px;background:rgba(255,255,255,0.7);backdrop-filter:blur(8px);color:var(--navy);pointer-events:auto!important;position:relative;z-index:20;font-size:12.5px;font-weight:500;">
     </div>
 
     <!-- INPUT PIN -->
@@ -9475,7 +9696,7 @@ var API={
 
 // ════ DUAL-ENGINE API ROUTER (GAS WebApp + GitHub Pages Hybrid) ════
 var DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwGWJu-yKAJAmcLBzOu825p-F-D83eMhdO_lVnBzau5b3vlvTVvw8pDUu7PrvQN6QYRMQ/exec";
-var PNS_APP_BUILD = "2026.11.02.v7";
+var PNS_APP_BUILD = "2026.11.03.v1";
 
 // Auto-purge stale or broken localStorage URLs from older deployments
 try {
