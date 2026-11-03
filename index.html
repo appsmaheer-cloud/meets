@@ -7498,6 +7498,196 @@ html, body {
   color: #94a3b8 !important;
 }
 
+
+/* ══════════════════════════════════════════════════════════════════════════
+   💎 ATK VSPB & VBKB STYLING + REKOMENDASI STOK & HARGA (UI UX PRO MAX)
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Rekomendasi 1-Klik Tambah Cepat */
+.atk-rec-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 5px 11px !important;
+  background: var(--surface2) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 999px !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  color: var(--navy) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  user-select: none !important;
+}
+
+.atk-rec-pill:hover {
+  background: #ecfdf5 !important;
+  border-color: #10b981 !important;
+  color: #065f46 !important;
+  transform: translateY(-1.5px) !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.18) !important;
+}
+
+[data-theme='dark'] .atk-rec-pill {
+  background: rgba(30, 41, 59, 0.7) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #f1f5f9 !important;
+}
+
+[data-theme='dark'] .atk-rec-pill:hover {
+  background: rgba(16, 185, 129, 0.25) !important;
+  border-color: #34d399 !important;
+  color: #a7f3d0 !important;
+}
+
+.atk-rec-pill .chip-plus {
+  font-size: 9px !important;
+  opacity: 0.75 !important;
+}
+
+.atk-rec-pill .chip-title {
+  font-weight: 600 !important;
+}
+
+.atk-rec-pill .chip-stok {
+  font-size: 10px !important;
+  padding: 1px 6px !important;
+  border-radius: 999px !important;
+  font-weight: 600 !important;
+}
+
+.chip-stok.stk-green {
+  background: #d1fae5 !important;
+  color: #047857 !important;
+}
+
+.chip-stok.stk-amber {
+  background: #fef3c7 !important;
+  color: #b45309 !important;
+}
+
+.chip-stok.stk-red {
+  background: #fee2e2 !important;
+  color: #b91c1c !important;
+}
+
+.atk-rec-pill .chip-hrg {
+  font-weight: 700 !important;
+  color: #0d9488 !important;
+}
+
+/* Inline Stock Badge in Input Table */
+.atk-row-stock-hint {
+  margin-top: 4px !important;
+}
+
+.badge-stock-inline {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  font-size: 10.5px !important;
+  padding: 2px 7px !important;
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+}
+
+.badge-stock-inline.in-stock {
+  background: #ecfdf5 !important;
+  color: #065f46 !important;
+  border: 1px solid #a7f3d0 !important;
+}
+
+.badge-stock-inline.low-stock {
+  background: #fffbeb !important;
+  color: #92400e !important;
+  border: 1px solid #fde68a !important;
+}
+
+.badge-stock-inline.no-stock {
+  background: #fef2f2 !important;
+  color: #991b1b !important;
+  border: 1px solid #fecaca !important;
+}
+
+.badge-stock-inline.custom-item {
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+/* Summary Box in ATK & VBKB Modals */
+.atk-modal-summary-box {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+  padding: 12px 16px !important;
+  background: var(--surface2) !important;
+  border: 1.5px dashed var(--border) !important;
+  border-radius: 12px !important;
+}
+
+.ams-item {
+  font-size: 12px !important;
+  color: var(--navy) !important;
+}
+
+.ams-item .ams-lbl {
+  color: var(--muted) !important;
+  margin-right: 4px !important;
+}
+
+.ams-item.ams-total {
+  font-size: 13px !important;
+  color: #065f46 !important;
+  background: #ecfdf5 !important;
+  padding: 4px 10px !important;
+  border-radius: 8px !important;
+  border: 1px solid #a7f3d0 !important;
+}
+
+[data-theme='dark'] .ams-item.ams-total {
+  background: rgba(16, 185, 129, 0.2) !important;
+  color: #34d399 !important;
+  border-color: rgba(52, 211, 153, 0.3) !important;
+}
+
+/* VBKB Modal Reference Card */
+.vbkb-vspb-card {
+  background: #f0fdf4 !important;
+  border: 1px solid #86efac !important;
+  border-left: 4px solid #10b981 !important;
+  border-radius: 12px !important;
+  padding: 12px 16px !important;
+}
+
+[data-theme='dark'] .vbkb-vspb-card {
+  background: rgba(16, 185, 129, 0.15) !important;
+  border-color: rgba(52, 211, 153, 0.3) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   📦 E-DOC CLEAN & REFINED POLISHING (UI UX PRO MAX)
+   ══════════════════════════════════════════════════════════════════════════ */
+.edoc-docno-badge {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+  font-weight: 700 !important;
+  font-size: 11.5px !important;
+  padding: 2.5px 7px !important;
+  background: var(--surface2) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  color: var(--navy) !important;
+  transition: all 0.15s ease !important;
+}
+
+.edoc-docno-badge:hover {
+  border-color: var(--green) !important;
+  background: var(--green-ll) !important;
+  color: var(--green-d) !important;
+}
+
 </style>
 </head>
 <body>
@@ -9203,35 +9393,55 @@ html, body {
 
 <!-- ATK REQUEST MODAL (Multi-Item Dynamic Table - Streamlined) -->
 <div class="modal-overlay" id="atk-overlay" onclick="if(event.target===this)closeAtkModal()">
-  <div class="modal" style="max-width:650px">
-    <div class="modal-head"><div><div class="modal-ttl">✏️ Permintaan ATK &amp; Perlengkapan</div><div class="modal-sub">Ajukan kebutuhan ATK kerja ke General Services</div></div><button class="modal-close" onclick="closeAtkModal()">✕ Tutup</button></div>
+  <div class="modal" style="max-width:700px">
+    <div class="modal-head">
+      <div>
+        <div class="modal-ttl">✏️ Permintaan ATK &amp; Perlengkapan (Virtual SPB - VSPB)</div>
+        <div class="modal-sub">Ajukan kebutuhan ATK kerja resmi ke General Services · Rekomendasi stok &amp; harga real-time</div>
+      </div>
+      <button class="modal-close" onclick="closeAtkModal()">✕ Tutup</button>
+    </div>
     <div style="padding:20px 22px;overflow-y:auto;max-height:80vh">
       
       <!-- Tanggal Kebutuhan -->
       <div class="frow2">
-        <div><label>Tanggal Dibutuhkan <span class="req">*</span></label><input type="date" id="atk-date"></div>
-        <div><label>Catatan / Keperluan (Opsional)</label><input type="text" id="atk-notes" placeholder="mis. Operasional bulanan / persiapan meeting"></div>
+        <div>
+          <label>Tanggal Dibutuhkan <span class="req">*</span></label>
+          <input type="date" id="atk-date">
+        </div>
+        <div>
+          <label>Catatan / Keperluan (Opsional)</label>
+          <input type="text" id="atk-notes" placeholder="mis. Operasional bulanan / persiapan rapat kerja">
+        </div>
       </div>
       <input type="hidden" id="atk-phone" value="">
 
-      <div style="margin:12px 0">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-          <label style="font-weight:700;color:var(--navy);font-size:12px">Daftar Barang yang Diminta <span class="req">*</span></label>
-          <button type="button" class="btn-rs" style="padding:4px 10px;font-size:11px" onclick="addAtkRow()">➕ Tambah Baris Manual</button>
+      <!-- Master Datalist Autocomplete untuk Rekomendasi Semua 218 Barang -->
+      <datalist id="atk-master-datalist"></datalist>
+
+      <div style="margin:14px 0">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <label style="font-weight:700;color:var(--navy);font-size:12px">Daftar Barang yang Diminta (VSPB) <span class="req">*</span></label>
+          <button type="button" class="btn-rs" style="padding:5px 12px;font-size:11px;font-weight:600;display:inline-flex;align-items:center;gap:4px" onclick="addAtkRow()">
+            ➕ Tambah Baris Barang
+          </button>
         </div>
         
-        <!-- Chips Katalog Cepat 1-Klik Tambah -->
-        <div style="font-size:11px;color:var(--muted);margin-bottom:6px">⚡ <strong>1-Klik Tambah Cepat:</strong> Klik item untuk langsung masuk ke daftar:</div>
-        <div class="atk-quick-chips" id="atk-quick-chips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"></div>
+        <!-- Chips Katalog Cepat 1-Klik Tambah dengan Rekomendasi Stok & Harga -->
+        <div style="font-size:11.5px;color:var(--muted);margin-bottom:8px">
+          ⚡ <strong>1-Klik Rekomendasi Populer:</strong> Klik item untuk langsung masuk dengan rekomendasi stok &amp; estimasi harga:
+        </div>
+        <div class="atk-quick-chips" id="atk-quick-chips" style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px"></div>
 
         <div class="atk-table-wrap">
           <table class="atk-input-table">
             <thead>
               <tr>
-                <th style="width:52%">Nama Barang</th>
-                <th style="width:20%">Jumlah</th>
-                <th style="width:18%">Satuan</th>
-                <th style="width:10%;text-align:center">Hapus</th>
+                <th style="width:46%">Nama Barang (Ketik/Pilih Master)</th>
+                <th style="width:14%">Jumlah</th>
+                <th style="width:14%">Satuan</th>
+                <th style="width:18%;text-align:right">Est. Biaya</th>
+                <th style="width:8%;text-align:center">Hapus</th>
               </tr>
             </thead>
             <tbody id="atk-table-tbody">
@@ -9239,13 +9449,109 @@ html, body {
             </tbody>
           </table>
         </div>
+
+        <!-- Realtime Summary Box VSPB -->
+        <div class="atk-modal-summary-box" id="atk-modal-summary-box" style="margin-top:12px">
+          <div class="ams-item"><span class="ams-lbl">Total Item:</span> <strong id="ams-count">0 item</strong></div>
+          <div class="ams-item"><span class="ams-lbl">Total Qty Fisik:</span> <strong id="ams-qty">0 unit</strong></div>
+          <div class="ams-item ams-total"><span class="ams-lbl">Estimasi Nilai VSPB:</span> <strong id="ams-total-val">Rp 0</strong></div>
+        </div>
+        <div style="font-size:10.5px;color:var(--muted);margin-top:5px;font-style:italic">
+          *Setelah diajukan, nomor dokumen resmi <strong>Virtual SPB (VSPB)</strong> diterbitkan dan akan diproses menjadi <strong>Virtual BKB (VBKB)</strong> oleh General Services.
+        </div>
       </div>
 
       <div id="atk-err" style="background:var(--red-l);color:var(--red);border-radius:var(--r8);padding:9px 13px;font-size:11.5px;margin-bottom:10px;display:none"></div>
-      <div style="display:flex;gap:8px;justify-content:flex-end;padding-top:10px;border-top:1px solid var(--border2)"><button class="btn-prev" onclick="closeAtkModal()">✕ Batal</button><button class="btn-next" id="btn-atk-submit" onclick="submitAtkRequest()">✏️ Kirim Permintaan ATK</button></div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;padding-top:10px;border-top:1px solid var(--border2)">
+        <button class="btn-prev" onclick="closeAtkModal()">✕ Batal</button>
+        <button class="btn-next" id="btn-atk-submit" onclick="submitAtkRequest()">
+          ✏️ Ajukan Virtual SPB (VSPB)
+        </button>
+      </div>
     </div>
   </div>
 </div>
+
+<!-- ATK PROSES VBKB MODAL (ADMIN GS MEMPROSES VSPB MENJADI VBKB) -->
+<div class="modal-overlay" id="atk-vbkb-overlay" onclick="if(event.target===this)closeProcessVbkbModal()">
+  <div class="modal" style="max-width:720px">
+    <div class="modal-head">
+      <div>
+        <div class="modal-ttl">📦 Proses Virtual Bukti Keluar Barang (VBKB)</div>
+        <div class="modal-sub">Terbitkan dokumen pengeluaran fisik resmi &amp; potong stok otomatis dari Virtual SPB</div>
+      </div>
+      <button class="modal-close" onclick="closeProcessVbkbModal()">✕ Tutup</button>
+    </div>
+    <div style="padding:20px 22px;overflow-y:auto;max-height:82vh">
+      <input type="hidden" id="vbkb-req-id">
+      
+      <!-- Kartu Info VSPB -->
+      <div class="vbkb-vspb-card" id="vbkb-vspb-info"></div>
+
+      <div class="frow2" style="margin-top:12px">
+        <div>
+          <label>Nomor Dokumen VBKB <span class="req">*</span></label>
+          <input type="text" id="vbkb-no" placeholder="mis. VBKB/20261103/001" readonly style="background:var(--surface2);font-weight:700">
+        </div>
+        <div>
+          <label>Tanggal Pengeluaran Barang <span class="req">*</span></label>
+          <input type="date" id="vbkb-date">
+        </div>
+      </div>
+
+      <div class="frow2">
+        <div>
+          <label>Nama Cost Object / Pemohon <span class="req">*</span></label>
+          <input type="text" id="vbkb-cost-object" placeholder="Nama karyawan pemohon">
+        </div>
+        <div>
+          <label>Pembebanan (Departemen) <span class="req">*</span></label>
+          <input type="text" id="vbkb-pembebanan" placeholder="mis. Finance / IT / GS">
+        </div>
+      </div>
+
+      <div style="margin:14px 0">
+        <label style="font-weight:700;color:var(--navy);font-size:12.5px;display:block;margin-bottom:6px">Daftar Barang &amp; Alokasi Pengeluaran Fisik (VBKB):</label>
+        <div class="atk-table-wrap">
+          <table class="atk-input-table">
+            <thead>
+              <tr>
+                <th style="width:38%">Nama Barang</th>
+                <th style="width:14%">Stok Gudang</th>
+                <th style="width:14%">Minta (VSPB)</th>
+                <th style="width:16%">Keluarkan (VBKB)</th>
+                <th style="width:18%;text-align:right">Total Nilai</th>
+              </tr>
+            </thead>
+            <tbody id="vbkb-items-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Summary Box VBKB -->
+      <div class="atk-modal-summary-box" style="margin-bottom:14px">
+        <div class="ams-item"><span class="ams-lbl">Total Item:</span> <strong id="vbkb-summary-items">0 item</strong></div>
+        <div class="ams-item"><span class="ams-lbl">Total Qty Keluar:</span> <strong id="vbkb-summary-qty">0 unit</strong></div>
+        <div class="ams-item ams-total"><span class="ams-lbl">Total Beban VBKB:</span> <strong id="vbkb-summary-total">Rp 0</strong></div>
+      </div>
+
+      <div class="frow">
+        <label>Keterangan Pemakaian / Catatan Pengeluaran</label>
+        <input type="text" id="vbkb-notes" placeholder="mis. Diserahkan untuk operasional bulanan sesuai Virtual SPB">
+      </div>
+
+      <div id="vbkb-err" style="background:var(--red-l);color:var(--red);border-radius:var(--r8);padding:9px 13px;font-size:11.5px;margin-bottom:10px;display:none"></div>
+
+      <div style="display:flex;gap:8px;justify-content:flex-end;padding-top:10px;border-top:1px solid var(--border2)">
+        <button class="btn-prev" onclick="closeProcessVbkbModal()">✕ Batal</button>
+        <button class="btn-next" id="btn-submit-vbkb" onclick="submitProcessVbkb()" style="background:#0f766e;border-color:#0f766e">
+          ✓ Terbitkan &amp; Selesaikan VBKB
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- ATK ADMIN STATUS MODAL -->
 <div class="modal-overlay" id="atk-status-overlay" onclick="if(event.target===this)closeAtkStatusModal()">
@@ -10575,7 +10881,7 @@ var API={
 
 // ════ DUAL-ENGINE API ROUTER (GAS WebApp + GitHub Pages Hybrid) ════
 var DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwGWJu-yKAJAmcLBzOu825p-F-D83eMhdO_lVnBzau5b3vlvTVvw8pDUu7PrvQN6QYRMQ/exec";
-var PNS_APP_BUILD = "2026.11.03.v4";
+var PNS_APP_BUILD = "2026.11.03.v5";
 
 // Auto-purge stale or broken localStorage URLs from older deployments
 try {
@@ -13417,435 +13723,828 @@ function cancelCarRequest(id){
 }
 
 // ════════════════════════════════════════════════════════════════════
-// ══ 3. ATK & PERLENGKAPAN KANTOR (MULTI-ITEM) ══
 // ════════════════════════════════════════════════════════════════════
-var _atkRows=[],_atkItemsCatalog=[],_atkFilter='all',_atkScope='all';
+// ══ 3. ATK & PERLENGKAPAN KANTOR (VSPB & VBKB DUAL ENGINE) ══
+// ════════════════════════════════════════════════════════════════════
+var _atkRows = [], _atkFilter = 'all', _atkScope = 'all';
 
-function loadAtkItems(){
-  return api('getAtkItems').then(function(d){
-    _atkItemsCatalog=d.rows||[];
-    var container=document.getElementById('atk-quick-chips');
-    if(container){
-      container.innerHTML='';
-      var list = (_atkItemsCatalog && _atkItemsCatalog.length) ? _atkItemsCatalog : [
-        {item_name:'Kertas A4 (75gr)', category:'Kertas', default_unit:'Rim'},
-        {item_name:'Pulpen Gel Hitam (0.5)', category:'Alat Tulis', default_unit:'Box'},
-        {item_name:'Spidol Whiteboard', category:'Alat Tulis', default_unit:'Pcs'},
-        {item_name:'Post-it Note Kuning', category:'Perlengkapan', default_unit:'Pad'},
-        {item_name:'Binder Clip Sedang', category:'Filing & Folder', default_unit:'Box'},
-        {item_name:'Map Snelhechter Folio', category:'Filing & Folder', default_unit:'Pcs'},
-        {item_name:'Gunting / Cutter', category:'Perlengkapan', default_unit:'Pcs'},
-        {item_name:'Buku Catatan Eksekutif', category:'Kertas', default_unit:'Buku'}
-      ];
-      list.slice(0,10).forEach(function(it){
-        var chip=document.createElement('div');
-        chip.className='atk-chip';
-        chip.style.cursor='pointer';
-        chip.textContent='+ '+it.item_name;
-        chip.onclick=function(){addAtkRow(it.item_name,it.category,1,it.default_unit);};
-        container.appendChild(chip);
-      });
-    }
-    return _atkItemsCatalog;
-  }).catch(function(){
-    var container=document.getElementById('atk-quick-chips');
-    if(container){
-      container.innerHTML='';
-      var list = [
-        {item_name:'Kertas A4 (75gr)', category:'Kertas', default_unit:'Rim'},
-        {item_name:'Pulpen Gel Hitam (0.5)', category:'Alat Tulis', default_unit:'Box'},
-        {item_name:'Spidol Whiteboard', category:'Alat Tulis', default_unit:'Pcs'},
-        {item_name:'Post-it Note Kuning', category:'Perlengkapan', default_unit:'Pad'},
-        {item_name:'Binder Clip Sedang', category:'Filing & Folder', default_unit:'Box'},
-        {item_name:'Map Snelhechter Folio', category:'Filing & Folder', default_unit:'Pcs'}
-      ];
-      list.forEach(function(it){
-        var chip=document.createElement('div');
-        chip.className='atk-chip';
-        chip.style.cursor='pointer';
-        chip.textContent='+ '+it.item_name;
-        chip.onclick=function(){addAtkRow(it.item_name,it.category,1,it.default_unit);};
-        container.appendChild(chip);
-      });
-    }
-    return[];
-  });
-}
+function loadAtkList() {
+  var el = document.getElementById('atk-list-container');
+  if (!el) return;
+  el.innerHTML = '<div class="empty-state"><div class="spinner-lg"></div><div style="margin-top:10px">Memuat data permintaan ATK (Virtual SPB)…</div></div>';
 
-function loadAtkList(){
-  var el=document.getElementById('atk-list-container');
-  if(!el)return;
-  el.innerHTML='<div class="empty-state"><div class="spinner-lg"></div><div style="margin-top:10px">Memuat data permintaan ATK…</div></div>';
+  var scopeSel = document.getElementById('atk-scope-sel');
+  if (scopeSel) _atkScope = scopeSel.value;
+  else if (!_session || !_session.isAdmin) _atkScope = 'my';
 
-  var scopeSel=document.getElementById('atk-scope-sel');
-  if(scopeSel)_atkScope=scopeSel.value;
-  else if(!_session||!_session.isAdmin)_atkScope='my';
-
-  api('getAtkList',{scope:_atkScope,status:_atkFilter}).then(function(d){
+  api('getAtkList', { scope: _atkScope, status: _atkFilter }).then(function(d) {
     _atkRows = d.rows || d.data || [];
     var k = d.kpis || {};
     if (!d.kpis) {
       k = { total: _atkRows.length, diajukan: 0, disiapkan: 0, siap_diambil: 0 };
-      _atkRows.forEach(function(r){
-        var st = String(r.status||'').toLowerCase();
+      _atkRows.forEach(function(r) {
+        var st = String(r.status || '').toLowerCase();
         if (st === 'diajukan') k.diajukan++;
         else if (st === 'disiapkan') k.disiapkan++;
         else if (st === 'siap diambil' || st === 'ready') k.siap_diambil++;
       });
     }
-    countUp('atk-kpi-total',k.total||0);
-    countUp('atk-kpi-diajukan',k.diajukan||0);
-    countUp('atk-kpi-disiapkan',k.disiapkan||0);
-    countUp('atk-kpi-ready',k.siap_diambil||0);
-    set('atk-count-badge',_atkRows.length+' permintaan');
+    countUp('atk-kpi-total', k.total || 0);
+    countUp('atk-kpi-diajukan', k.diajukan || 0);
+    countUp('atk-kpi-disiapkan', k.disiapkan || 0);
+    countUp('atk-kpi-ready', k.siap_diambil || 0);
+    set('atk-count-badge', _atkRows.length + ' dokumen');
     renderAtkList(_atkRows);
-  }).catch(function(e){
-    el.innerHTML='<div class="empty-state">⚠ '+esc(e.message)+'</div>';
+  }).catch(function(e) {
+    el.innerHTML = '<div class="empty-state">⚠️ ' + esc(e.message) + '</div>';
   });
 }
 
-function atkFilter(f){
-  _atkFilter=f;
-  document.querySelectorAll('#page-atk .gs-tab-btn').forEach(function(b){
-    b.classList.toggle('active',b.getAttribute('data-f')===f);
+function atkFilter(f) {
+  _atkFilter = f;
+  document.querySelectorAll('#page-atk .gs-tab-btn').forEach(function(b) {
+    b.classList.toggle('active', b.getAttribute('data-f') === f);
   });
   loadAtkList();
 }
 
-function onAtkScopeChange(v){
-  _atkScope=v;
+function onAtkScopeChange(v) {
+  _atkScope = v;
   loadAtkList();
 }
 
-function renderAtkList(rows){
-  var el=document.getElementById('atk-list-container');
-  if(!el)return;
-  if(!rows.length){
-    el.innerHTML='<div class="empty-state" style="padding:36px"><div style="font-size:36px;opacity:.4">✏️</div><div style="font-weight:600;margin-top:6px">Tidak ada permintaan ATK</div><div style="font-size:12px;color:var(--muted)">Belum ada data kebutuhan perlengkapan kantor pada filter ini.</div></div>';
+function renderAtkList(rows) {
+  var el = document.getElementById('atk-list-container');
+  if (!el) return;
+  if (!rows || !rows.length) {
+    el.innerHTML = '<div class="empty-state" style="padding:36px"><div style="font-size:36px;opacity:.4">✏️</div><div style="font-weight:600;margin-top:6px">Tidak ada permintaan ATK (Virtual SPB)</div><div style="font-size:12px;color:var(--muted)">Belum ada data kebutuhan kerja yang diajukan pada filter ini.</div></div>';
     return;
   }
 
-  var html='<div class="ent-table-wrap">';
-  html+='<table class="ent-table">';
-  html+='<thead><tr>';
-  html+='<th style="width:145px">No. Permintaan &amp; Tgl</th>';
-  html+='<th>Pemohon &amp; Bagian</th>';
-  html+='<th>Daftar Barang yang Diajukan</th>';
-  html+='<th>Target Dibutuhkan</th>';
-  html+='<th>Catatan / Petugas GS</th>';
-  html+='<th style="width:120px">Status</th>';
-  html+='<th style="text-align:right;white-space:nowrap;width:1%">Aksi</th>';
-  html+='</tr></thead><tbody>';
+  var isGsStaff = _session && (_session.isAdmin || _session.isGs || /gs|general services|operator/i.test(_session.section || ''));
 
-  rows.forEach(function(r){
-    var st=r.status||'Diajukan';
-    var stCls='badge-status-diajukan';
-    if(st==='Disiapkan')stCls='badge-status-transit';
-    else if(st==='Siap Diambil')stCls='badge-status-ready';
-    else if(st==='Selesai')stCls='badge-status-terkirim';
-    else if(st==='Ditolak'||st==='Dibatalkan')stCls='badge-status-batal';
+  var html = '<div class="ent-table-wrap">';
+  html += '<table class="ent-table">';
+  html += '<thead><tr>';
+  html += '<th style="width:160px">No. Dokumen &amp; Tgl</th>';
+  html += '<th>Pemohon &amp; Bagian</th>';
+  html += '<th>Rincian Barang yang Diminta (VSPB)</th>';
+  html += '<th>Target Dibutuhkan</th>';
+  html += '<th>Catatan / Keterangan</th>';
+  html += '<th style="width:130px">Status Dokumen</th>';
+  html += '<th style="text-align:right;white-space:nowrap;width:1%">Aksi &amp; Proses</th>';
+  html += '</tr></thead><tbody>';
 
-    var neededDate = new Date(r.needed_date);
-    var now = new Date();
-    now.setHours(0,0,0,0);
-    var isUrgent = (neededDate <= now);
+  rows.forEach(function(r) {
+    var st = r.status || 'Diajukan';
+    var stCls = 'badge-status-diajukan';
+    if (st.indexOf('VBKB Terbit') !== -1 || st === 'Disetujui') stCls = 'badge-status-terkirim';
+    else if (st === 'Disiapkan') stCls = 'badge-status-transit';
+    else if (st === 'Siap Diambil') stCls = 'badge-status-ready';
+    else if (st === 'Selesai') stCls = 'badge-status-terkirim';
+    else if (st === 'Ditolak' || st === 'Dibatalkan') stCls = 'badge-status-batal';
 
-    html+='<tr>';
+    var docNo = r.request_no || ('VSPB-' + r.id);
 
-    // 1. No Permintaan & Tgl
-    html+='<td>';
-    html+='<span class="edoc-docno-badge" onclick="copyText(\''+esc(r.request_no)+'\',\'No. Permintaan\')" title="Klik untuk salin">'+esc(r.request_no)+'</span>';
-    html+='<span class="ent-sub-text">'+fmtDate(r.created_at)+'</span>';
-    html+='</td>';
+    html += '<tr>';
+
+    // 1. No Dokumen VSPB & Tgl
+    html += '<td>';
+    html += '<div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-bottom:3px">';
+    html += '<span class="edoc-docno-badge" onclick="copyText(\'' + esc(docNo) + '\',\'No. VSPB\')" title="Klik untuk salin">' + esc(docNo) + '</span>';
+    html += '<span class="ent-pill-dir ent-pill-inbound" style="background:#e0f2fe;color:#0284c7">VSPB</span>';
+    html += '</div>';
+    html += '<span class="ent-sub-text">' + fmtDate(r.created_at) + '</span>';
+    html += '</td>';
 
     // 2. Pemohon
-    html+='<td>';
-    html+='<div style="font-weight:600;color:var(--navy)">'+esc(r.requester_name)+'</div>';
-    html+='<span class="ent-sub-text">Bagian: '+esc(r.section||'-')+'</span>';
-    html+='</td>';
+    html += '<td>';
+    html += '<div style="font-weight:600;color:var(--navy)">' + esc(r.requester_name || 'Karyawan') + '</div>';
+    html += '<span class="ent-sub-text">Bagian: ' + esc(r.section || '-') + '</span>';
+    html += '</td>';
 
-    // 3. Daftar Barang
-    html+='<td>';
-    var _ic = r.item_count;
-    if (_ic === undefined || _ic === null || _ic === '' || isNaN(_ic)) {
-      if (r.items && Array.isArray(r.items)) _ic = r.items.length;
-      else if (r.items_summary) _ic = r.items_summary.split(' â€¢ ').length;
-      else _ic = 1;
-    }
+    // 3. Rincian Barang
+    html += '<td>';
+    var _ic = r.item_count || (r.items ? r.items.length : 1);
     var _tq = Number(r.total_qty) || 0;
-    html+='<div style="font-weight:600;color:var(--navy);font-size:12.5px">&#128230; '+_ic+' Macam Barang'+(_tq>0?' <span style="font-size:11px;color:var(--muted);font-weight:normal">(Total '+_tq+' Qty)</span>':'')+'</div>';
-    html+='<div class="ent-items-pill-box">';
-    if(r.items&&r.items.length){
-      r.items.forEach(function(it){
-        var stDot='';
-        if(it.status_item==='Tersedia')stDot='<span style="color:var(--green)">●</span> ';
-        else if(it.status_item==='Kosong/PO')stDot='<span style="color:var(--red)">●</span> ';
-        html+='<span class="atk-item-chip">'+stDot+esc(it.item_name)+' · <strong>'+it.quantity+' '+esc(it.unit)+'</strong></span>';
+    html += '<div style="font-weight:600;color:var(--navy);font-size:12.5px">📦 ' + _ic + ' Item' + (_tq > 0 ? (' <span style="font-size:11px;color:var(--muted);font-weight:normal">(Total ' + _tq + ' Qty)</span>') : '') + '</div>';
+    html += '<div class="ent-items-pill-box" style="margin-top:3px">';
+    if (r.items && r.items.length) {
+      r.items.forEach(function(it) {
+        var nm = it.nama_barang || it.item_name;
+        var q = it.jumlah_minta || it.quantity || 1;
+        var u = it.satuan || it.unit || 'Pcs';
+        html += '<span class="atk-item-chip">' + esc(nm) + ' · <strong>' + q + ' ' + esc(u) + '</strong></span>';
       });
-    }else if(r.items_summary){
-      r.items_summary.split(' • ').forEach(function(part){
-        html+='<span class="atk-item-chip">'+esc(part)+'</span>';
+    } else if (r.items_summary) {
+      r.items_summary.split(' • ').forEach(function(part) {
+        html += '<span class="atk-item-chip">' + esc(part) + '</span>';
       });
     }
-    html+='</div>';
-    html+='</td>';
+    html += '</div>';
+    html += '</td>';
 
     // 4. Target Dibutuhkan
-    html+='<td>';
-    html+='<div style="font-size:12px;color:var(--navy)">📅 '+fmtDate(r.needed_date)+'</div>';
-    if(isUrgent&&r.status!=='Selesai'){
-      html+='<div style="margin-top:3px"><span style="color:var(--red);background:var(--red-l);border:1px solid rgba(239,68,68,0.25);border-radius:4px;padding:2px 6px;font-weight:700;font-size:10px">⚡ Prioritas Segera</span></div>';
+    html += '<td>';
+    html += '<div style="font-size:12px;color:var(--navy)">📅 ' + fmtDate(r.needed_date) + '</div>';
+    html += '</td>';
+
+    // 5. Catatan / VBKB Ref
+    html += '<td>';
+    if (r.vbkb_no) {
+      html += '<div style="font-size:11px;color:#0f766e;font-weight:700;display:flex;align-items:center;gap:4px;cursor:pointer" onclick="copyText(\'' + esc(r.vbkb_no) + '\',\'No. VBKB\')" title="Salin No VBKB">📄 ' + esc(r.vbkb_no) + '</div>';
     }
-    html+='</td>';
-
-    // 5. Catatan / Petugas GS
-    html+='<td>';
-    if(r.notes){
-      html+='<div style="font-size:11.5px;color:var(--slate);font-style:italic;max-width:200px">"'+esc(r.notes)+'"</div>';
+    if (r.notes) {
+      html += '<div style="font-size:11px;color:var(--slate);font-style:italic;max-width:180px">"' + esc(r.notes) + '"</div>';
+    } else if (!r.vbkb_no) {
+      html += '<span class="ent-sub-text">–</span>';
     }
-    if(r.handler_name){
-      html+='<div style="font-size:11px;color:var(--navy);margin-top:3px">Petugas GS: <strong>'+esc(r.handler_name)+'</strong></div>';
-    }else if(!r.notes){
-      html+='<span class="ent-sub-text">–</span>';
-    }
-    html+='</td>';
+    html += '</td>';
 
-    // 6. Status
-    html+='<td>';
-    html+='<span class="edoc-status-badge '+stCls+'">'+esc(st)+'</span>';
-    html+='</td>';
+    // 6. Status Dokumen
+    html += '<td>';
+    html += '<span class="edoc-status-badge ' + stCls + '">' + esc(st) + '</span>';
+    html += '</td>';
 
-    // 7. Aksi
-    html+='<td style="text-align:right">';
-    html+='<div class="ent-actions">';
-    html+='<button class="ent-btn ent-btn-detail" onclick="openAtkDetailModal('+r.id+')" title="Lihat Rincian Barang">'+_entIcons.eye+' Rincian</button>';
-    if(_session&&_session.isAdmin){
-      html+='<button class="ent-btn ent-btn-blue" onclick="openAtkStatusModal('+r.id+')" title="Proses Pemenuhan GS">'+_entIcons.gear+' Proses</button>';
-      if(r.status!=='Selesai'&&r.status!=='Dibatalkan'&&r.status!=='Ditolak'){
-        html+='<button class="ent-btn" style="background:#10b981;color:#fff;border:none;padding:4px 9px;font-size:11px;border-radius:4px;cursor:pointer;font-weight:600" onclick="openAtkHandoverModal('+r.id+', null, \''+esc(r.requester_name)+'\', \''+esc(r.request_no)+'\', \''+esc(r.items_summary||'Barang ATK')+'\')" title="Serah Terima Fisik (Foto & TTD)">🤝 Serahkan</button>';
-      }
-    }
-    if(r.status==='Diajukan'&&_session&&(_session.isAdmin||_session.id==r.user_id)){
-      html+='<button class="ent-btn ent-btn-cancel" onclick="cancelAtkRequest('+r.id+')" title="Batalkan Permintaan">'+_entIcons.x+' Batal</button>';
-    }
-    html+='</div>';
-    html+='</td>';
-
-    html+='</tr>';
-  });
-
-  html+='</tbody></table></div>';
-  el.innerHTML=html;
-}
-
-// ── ATK: DETAIL MODAL ──
-function openAtkDetailModal(id){
-  document.getElementById('atk-detail-overlay').classList.add('open');
-  document.body.style.overflow='hidden';
-  var body=document.getElementById('atkd-body');
-  body.innerHTML='<div class="spinner-lg" style="margin:40px auto"></div>';
-
-  api('getAtkDetail',{id:id}).then(function(d){
-    var req=d.request || d, items=d.items||[];
-    set('atkd-ttl','✏️ '+req.request_no+' · Rincian Permintaan ATK');
-
-    var st=req.status||'Diajukan';
-    var stCls='badge-status-diajukan';
-    if(st==='Disiapkan')stCls='badge-status-transit';
-    else if(st==='Siap Diambil')stCls='badge-status-ready';
-    else if(st==='Selesai')stCls='badge-status-terkirim';
-    else if(st==='Ditolak'||st==='Dibatalkan')stCls='badge-status-batal';
-
-    var html='<div style="display:flex;flex-direction:column;gap:14px">';
+    // 7. Aksi & Proses
+    html += '<td style="text-align:right">';
+    html += '<div class="ent-actions">';
+    html += '<button class="ent-btn ent-btn-detail" onclick="openAtkDetailModal(' + r.id + ')" title="Lihat Rincian Permintaan">' + _entIcons.eye + ' Rincian</button>';
     
-    // Header summary card
-    html+='<div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--r10);padding:14px">';
-    html+='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">';
-    html+='<span class="edoc-docno-badge" onclick="copyText(\''+esc(req.request_no)+'\',\'No. Permintaan\')">'+esc(req.request_no)+' 📋</span>';
-    html+='<span class="edoc-status-badge '+stCls+'">'+esc(st)+'</span>';
-    html+='</div>';
-    html+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12px">';
-    html+='<div><span style="color:var(--muted)">Pemohon:</span> <strong style="color:var(--navy)">'+esc(req.requester_name)+'</strong> ('+esc(req.section)+')</div>';
-    html+='<div><span style="color:var(--muted)">Dibutuhkan:</span> <strong style="color:var(--navy)">'+fmtDate(req.needed_date)+'</strong></div>';
-    html+='<div><span style="color:var(--muted)">Tanggal Diajukan:</span> '+fmtDT(req.created_at)+'</div>';
-    if(req.handler_name)html+='<div><span style="color:var(--muted)">Petugas GS:</span> <strong>'+esc(req.handler_name)+'</strong></div>';
-    html+='</div>';
-    if(req.notes)html+='<div style="margin-top:8px;font-size:12px;color:var(--slate);font-style:italic;background:#fff;padding:6px 10px;border-radius:var(--r6);border:1px solid var(--border2)">"'+esc(req.notes)+'"</div>';
-    html+='</div>';
-
-    // Items table
-    html+='<div>';
-    html+='<div style="font-weight:700;font-size:13px;color:var(--navy);margin-bottom:8px">Daftar Barang yang Diajukan ('+items.length+' Macam):</div>';
-    html+='<table class="atk-input-table" style="width:100%;border-collapse:collapse">';
-    html+='<thead><tr style="background:var(--surface2);border-bottom:2px solid var(--border)">';
-    html+='<th style="padding:8px 10px;text-align:left;font-size:11.5px">No</th>';
-    html+='<th style="padding:8px 10px;text-align:left;font-size:11.5px">Nama Barang</th>';
-    html+='<th style="padding:8px 10px;text-align:center;font-size:11.5px">Jumlah</th>';
-    html+='<th style="padding:8px 10px;text-align:center;font-size:11.5px">Satuan</th>';
-    html+='<th style="padding:8px 10px;text-align:left;font-size:11.5px">Status GS</th>';
-    html+='</tr></thead><tbody>';
-
-    items.forEach(function(it, idx){
-      var itSt=it.status_item||'Pending';
-      var itStColor=itSt==='Tersedia'?'#16a34a':(itSt==='Kosong/PO'?'#dc2626':'#d97706');
-      html+='<tr style="border-bottom:1px solid var(--border2);font-size:12px">';
-      html+='<td style="padding:8px 10px;color:var(--muted)">'+(idx+1)+'</td>';
-      html+='<td style="padding:8px 10px;font-weight:600;color:var(--navy)">'+esc(it.item_name)+(it.category?' <span style="font-size:10.5px;color:var(--muted);font-weight:normal">('+esc(it.category)+')</span>':'')+'</td>';
-      html+='<td style="padding:8px 10px;text-align:center;font-weight:700;color:var(--blue)">'+it.quantity+'</td>';
-      html+='<td style="padding:8px 10px;text-align:center;color:var(--slate)">'+esc(it.unit)+'</td>';
-      html+='<td style="padding:8px 10px;font-weight:600;color:'+itStColor+'">● '+esc(itSt)+'</td>';
-      html+='</tr>';
-    });
-
-    html+='</tbody></table>';
-    html+='</div>';
-
-    // Bukti Serah Terima Fisik (jika ada atau sudah selesai)
-    if (req.delivered_at || req.handover_to_name || req.signature_proof || req.handover_proof) {
-      html += '<div style="background:#f8fafc;border:1.5px solid #cbd5e1;border-left:4px solid #10b981;border-radius:var(--r10);padding:14px">';
-      html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">';
-      html += '<div style="font-weight:700;color:#047857;font-size:12.5px;display:flex;align-items:center;gap:6px"><span>🤝 Bukti Serah Terima Fisik ATK</span></div>';
-      html += '<span style="background:#d1fae5;color:#065f46;border:1px solid #a7f3d0;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:700">✓ Selesai Diserahkan</span>';
-      html += '</div>';
-      html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12px daylight;margin-bottom:12px">';
-      html += '<div><span style="color:var(--muted)">Penerima Fisik:</span> <strong style="color:var(--navy)">' + esc(req.handover_to_name || req.requester_name) + '</strong></div>';
-      html += '<div><span style="color:var(--muted)">Waktu Serah Terima:</span> <strong>' + fmtDT(req.delivered_at || req.completed_at) + '</strong></div>';
-      html += '</div>';
-
-      html += '<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start">';
-      if (req.handover_proof) {
-        html += '<div style="flex:1;min-width:180px;background:#fff;border:1px solid var(--border);border-radius:var(--r8);padding:8px;text-align:center">';
-        html += '<div style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:6px">📷 Foto Bukti Barang / Penerima</div>';
-        html += '<img src="' + esc(req.handover_proof) + '" style="max-height:140px;max-width:100%;border-radius:var(--r6);border:1px solid var(--border2);cursor:pointer" onclick="window.open(\'' + esc(req.handover_proof) + '\',\'_blank\')" title="Klik untuk perbesar">';
-        html += '</div>';
-      }
-      if (req.signature_proof) {
-        html += '<div style="flex:1;min-width:180px;background:#fff;border:1px solid var(--border);border-radius:var(--r8);padding:8px;text-align:center">';
-        html += '<div style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:6px">✍️ Tanda Tangan Penerima</div>';
-        html += '<img src="' + esc(req.signature_proof) + '" style="max-height:140px;max-width:100%;border-radius:var(--r6);border:1px solid var(--border2);background:#fff">';
-        html += '</div>';
-      }
-      html += '</div>';
-      html += '</div>';
+    // Tombol PROSES VBKB untuk Admin / GS jika belum terbit VBKB
+    if (isGsStaff && st !== 'Selesai' && st !== 'Dibatalkan' && st !== 'Ditolak' && !r.vbkb_no) {
+      html += '<button class="ent-btn" style="background:#0f766e;color:#fff;border:none;padding:5px 10px;font-size:11.5px;font-weight:700;border-radius:6px;cursor:pointer;display:inline-flex;align-items:center;gap:4px" onclick="openProcessVbkbModal(' + r.id + ')" title="Proses Virtual BKB Resmi">📦 Proses VBKB</button>';
     }
 
-    // Actions
-    html+='<div style="display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(--border2)">';
-    html+='<button class="btn-prev" onclick="closeAtkDetailModal()">✕ Tutup</button>';
-    html+='<div style="display:flex;gap:8px;align-items:center">';
-    if(_session&&_session.isAdmin){
-      if(req.status!=='Selesai'&&req.status!=='Dibatalkan'&&req.status!=='Ditolak'){
-        var summaryTxt = items.map(function(it){ return it.item_name + ' (' + it.quantity + ' ' + it.unit + ')'; }).join(', ');
-        html+='<button class="btn-next" style="background:#10b981;border-color:#10b981;font-size:12px" onclick="closeAtkDetailModal();openAtkHandoverModal('+req.id+', null, \''+esc(req.requester_name)+'\', \''+esc(req.request_no)+'\', \''+esc(summaryTxt)+'\')">🤝 Serahkan ATK (Foto & TTD)</button>';
-      }
-      html+='<button class="btn-next" style="background:var(--blue);font-size:12px" onclick="closeAtkDetailModal();openAtkStatusModal('+req.id+')">⚙️ Status GS</button>';
+    if (isGsStaff && st !== 'Selesai' && st !== 'Dibatalkan' && st !== 'Ditolak') {
+      html += '<button class="ent-btn" style="background:#10b981;color:#fff;border:none;padding:4px 8px;font-size:11px;border-radius:4px;cursor:pointer;font-weight:600" onclick="openAtkHandoverModal(' + r.id + ', null, \'' + esc(r.requester_name) + '\', \'' + esc(docNo) + '\', \'' + esc(r.items_summary || 'Barang ATK') + '\')" title="Serah Terima Fisik (Foto & TTD)">🤝 Serahkan</button>';
     }
-    html+='</div>';
-    html+='</div>';
 
-    html+='</div>';
-    body.innerHTML=html;
-  }).catch(function(e){
-    body.innerHTML='<div class="empty-state">⚠ '+esc(e.message)+'</div>';
+    if (st === 'Diajukan' && (_session && (_session.isAdmin || _session.id == r.user_id))) {
+      html += '<button class="ent-btn ent-btn-cancel" onclick="cancelAtkRequest(' + r.id + ')" title="Batalkan">' + _entIcons.x + ' Batal</button>';
+    }
+    html += '</div>';
+    html += '</td>';
+
+    html += '</tr>';
+  });
+
+  html += '</tbody></table></div>';
+  el.innerHTML = html;
+}
+
+
+// 💎 KATALOG MASTER 218 ITEM STOK & HARGA REAL-TIME (ZONA REKOMENDASI)
+var PNS_ATK_CATALOG = [{"kode": "ALTKBN00262", "nama": "PLASTIK HITAM JUMBO UK 73X48CM", "satuan": "Pack", "stok": 2, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "ALTKBN00360", "nama": "8in1 Soil Parameter Tester (Kelembapan, Suhu, Konduktivitas, PH, N, P, K, Kesuburan) - Connect to USB Type C Android", "satuan": "Unit", "stok": 0, "harga": 1137500.0, "status": "Stok Habis"}, {"kode": "ALTKOM00121", "nama": "TINTA PRINTER EPSON L3110 - T003 BLACK", "satuan": "Pcs", "stok": 1, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "ALTKOM00122", "nama": "TINTA PRINTER EPSON L3110 - T003 YELLOW", "satuan": "Pcs", "stok": 1, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "ALTKOM00123", "nama": "TINTA PRINTER EPSON L3110 - T003 CYAN", "satuan": "Pcs", "stok": 1, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "ALTKOM00124", "nama": "TINTA PRINTER EPSON L3110 - T003 MAGENTA", "satuan": "Pcs", "stok": 1, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "ALTKOM00248", "nama": "OEM TAPE EZ LABEL CASIO 12MM BLACK INK WHITE FOR USE ON CASIO PRINTER KL-120", "satuan": "Pcs", "stok": 1, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "ALTMED00484", "nama": "KOTAK OBAT S3625 P 29 X L 16 X T 14.5 CM", "satuan": "pcs", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "ALTMED00546", "nama": "HANSAPLAS KAIN ELASTIS", "satuan": "Pack", "stok": 3, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "ALTWSH00005", "nama": "AIR ACCU TAWAR 1 LTR - BIRU", "satuan": "Btl", "stok": 40, "harga": 0.0, "status": "Aman"}, {"kode": "ALTWSH00153", "nama": "KAIN MAJUN", "satuan": "Kg", "stok": 100, "harga": 12000, "status": "Aman"}, {"kode": "ALTWSH00822", "nama": "APAR DRY CHEMICAL POWDER @ 3KG GUNNEBO", "satuan": "Unit", "stok": 6, "harga": 0.0, "status": "Aman"}, {"kode": "ALTWSH01387", "nama": "SEGEL OMEGA 5/8\" KAPS 3.2T", "satuan": "Pcs", "stok": 1, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "ALTWSH02448", "nama": "BRACKET FOR PVC STRIP @1M + BOLT NUT", "satuan": "Set", "stok": 18, "harga": 0.0, "status": "Aman"}, {"kode": "ALTWSH03108", "nama": "TERPAL PLASTIK 4 X 5 M A3", "satuan": "Lbr", "stok": 50, "harga": 0.0, "status": "Aman"}, {"kode": "ALTWSH03122", "nama": "PVC STRIP CLEAR 2MM 20CM X 50M", "satuan": "Roll", "stok": 11, "harga": 0.0, "status": "Aman"}, {"kode": "ALTWSH04832", "nama": "OBENG PLUS MINUS TEKIRO", "satuan": "PCS", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "ALTWSH04834", "nama": "TANG KOMBINASI 8\" TEKIRO", "satuan": "PCS", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "BHNBGN00020", "nama": "CAT PILOC HITAM PYLOX", "satuan": "Klg", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "BHNMKN00002", "nama": "SUSU KENTAL MANIS FRISIAN FLAG 385GR", "satuan": "Klg", "stok": 1, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "BHNMKN00010", "nama": "AIR MINUM BOTOL @ 600 ML MEREK VIT", "satuan": "BOX", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "BHNMKN00013", "nama": "GULA PUTIH", "satuan": "Kg", "stok": 0, "harga": 23310.0, "status": "Stok Habis"}, {"kode": "BHNMKN00015", "nama": "TEH CELUP @25 KANTONG MERK SARI WANGI", "satuan": "BOX", "stok": 3, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "BHNMKN00016", "nama": "AIR MINUM GALON AQUA 19L", "satuan": "Pcs", "stok": 15, "harga": 22268.82, "status": "Aman"}, {"kode": "BHNMKN00017", "nama": "AIR MINUM BOTOL @330 ML", "satuan": "PCS", "stok": 0, "harga": 3330.0, "status": "Stok Habis"}, {"kode": "BHNMKN00018", "nama": "COFFE MATE CREAMER 450GR", "satuan": "Pcs", "stok": 1, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "BHNMKN00019", "nama": "GOOD DAY CAPPUCINO 25Gr", "satuan": "Pcs", "stok": 0, "harga": 2550.0, "status": "Stok Habis"}, {"kode": "BHNMKN00020", "nama": "KOPI KAPAL API SPECIAL MIX SACHET @23 GR", "satuan": "PCS", "stok": 0, "harga": 3325.0, "status": "Stok Habis"}, {"kode": "BHNMKN00021", "nama": "KECAP REFILL 735ML", "satuan": "PCS", "stok": 0, "harga": 30525.0, "status": "Stok Habis"}, {"kode": "BHNMKN00022", "nama": "KOPI SILVER BLEND, WHOLEBEAN, OTTEN 600GR", "satuan": "PCS", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "BHNMKN00024", "nama": "LUWAK KOPI HITAM MURI 165GR", "satuan": "PCS", "stok": 1, "harga": 22500.0, "status": "Perlu Reorder"}, {"kode": "BHNMKN00025", "nama": "PERMEN", "satuan": "PCS", "stok": 2, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "BHNMKN00026", "nama": "SAOS SAMBAL REFILL 1 LTR", "satuan": "PCS", "stok": 0, "harga": 43845.0, "status": "Stok Habis"}, {"kode": "BHNMKN00027", "nama": "SUSU CAIR 1 LT", "satuan": "PCS", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "BHNMKN00029", "nama": "KOPI KAPAL API SACHET SPECIAL @6 GR", "satuan": "PCS", "stok": 80, "harga": 0.0, "status": "Aman"}, {"kode": "BHNMKN00030", "nama": "EASTPRESSO WHOLE BEAN, 600GR", "satuan": "PCS", "stok": 0, "harga": 212775.0, "status": "Stok Habis"}, {"kode": "BHNMKN00033", "nama": "TONG TJI CELUP JASMINE 2GR X 25PCS", "satuan": "box", "stok": 6, "harga": 15000.0, "status": "Aman"}, {"kode": "BHNMKN00035", "nama": "GULA SACHET", "satuan": "Pcs", "stok": 150, "harga": 0.0, "status": "Aman"}, {"kode": "BHNMKN00036", "nama": "LADA BUBUK", "satuan": "BTL", "stok": 1, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "BHNMKN00045", "nama": "GALON AQUA BARU + ISI", "satuan": "Pcs", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "BHNMKN00049", "nama": "AIR MINUM BOTOL AQUVIVA 250 ML @24 PCS/BOX", "satuan": "Pcs", "stok": 0, "harga": 1271.87, "status": "Stok Habis"}, {"kode": "BRGCAP00269", "nama": "DISPENSER SANKEN HWD-C106 HITAM", "satuan": "Unit", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "BRGCAP00558", "nama": "GETRA CYLINDER WATER BOILER WB-10", "satuan": "Unit", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "BRGCAP01200", "nama": "MOTOR-YAMAHA MIO M3", "satuan": "Unit", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "BRGCAP01290", "nama": "DISPENSER AIR MINUM MIYAKO WD-389 HC", "satuan": "Unit", "stok": 1, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "BRGCAP01515", "nama": "FORKLIFT ELEKTRIK NICHIYU FB30-77 600M SOLID TYRE", "satuan": "Unit", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "BRGCAP01516", "nama": "BATTERY FORKLIFT NICHIYU FB30-77 72V/475AH", "satuan": "Unit", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INSLIS00132", "nama": "STARTER S10", "satuan": "Pcs", "stok": 9, "harga": 0.0, "status": "Aman"}, {"kode": "INSLIS00755", "nama": "BOHLAM LAMPU TL-D 36 W PHILLIPS", "satuan": "Pcs", "stok": 5, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INSLIS01556", "nama": "KABEL EXTENTION 4 LUBANG, UTICON", "satuan": "pcs", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INSLIS01709", "nama": "LED DOWNLIGHT PHILIPS, INPUT POWER 7.5W, MODEL : 59262", "satuan": "Pcs", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INSLIS01752", "nama": "BOHLAM LAMPU PHILLIPS 10 WATT", "satuan": "Pcs", "stok": 0, "harga": 47650.0, "status": "Stok Habis"}, {"kode": "INSLIS01753", "nama": "LED DOWNLIGHT PHILILPS ERDANI DL190B, DIAMETER 14 CM, PUTIH, 10 WATT", "satuan": "Pcs", "stok": 0, "harga": 98550.0, "status": "Stok Habis"}, {"kode": "INVKTR00003", "nama": "AMPLOP COKLAT FOLIO BIASA", "satuan": "Pack", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INVKTR00004", "nama": "AMPLOP COKLAT 1/2 FOLIO - TANPA TALI", "satuan": "Pack", "stok": 1, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00005", "nama": "AMPLOP PUTIH PANJANG EV-90", "satuan": "Pack", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INVKTR00006", "nama": "AMPLOP PUTIH EV-104", "satuan": "Pack", "stok": 130, "harga": 21000, "status": "Aman"}, {"kode": "INVKTR00009", "nama": "BATERAI AA (ALKALINE) MERK ABC", "satuan": "Pcs", "stok": 14, "harga": 16000.0, "status": "Aman"}, {"kode": "INVKTR00012", "nama": "BINDER CLIPS 107 KENKO", "satuan": "Box", "stok": 17, "harga": 11500, "status": "Aman"}, {"kode": "INVKTR00013", "nama": "BINDER CLIPS 111 KENKO", "satuan": "Pack", "stok": 15, "harga": 8500, "status": "Aman"}, {"kode": "INVKTR00015", "nama": "BOX FILE BINTEX", "satuan": "Pcs", "stok": 1, "harga": 24000, "status": "Perlu Reorder"}, {"kode": "INVKTR00023", "nama": "CUTTER BESAR KENKO", "satuan": "Pcs", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INVKTR00030", "nama": "GUNTING KECIL KENKO SC 838N", "satuan": "Pcs", "stok": 0, "harga": 7548.0, "status": "Stok Habis"}, {"kode": "INVKTR00031", "nama": "HAND BOARD ( PAPAN UJIAN )", "satuan": "Pcs", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INVKTR00033", "nama": "ISI CUTTER BESAR KENKO @12 pcs", "satuan": "Pack", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INVKTR00034", "nama": "ISI STAPLES BESAR NO. 3 MAX", "satuan": "Box", "stok": 12, "harga": 4200, "status": "Aman"}, {"kode": "INVKTR00037", "nama": "ISI CUTTER KECIL KENKO", "satuan": "Tube", "stok": 2, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00047", "nama": "KERTAS F4 PAPER ONE", "satuan": "Rim", "stok": 2, "harga": 54000, "status": "Perlu Reorder"}, {"kode": "INVKTR00048", "nama": "KERTAS A3 PAPERONE 70GR", "satuan": "Rim", "stok": 10, "harga": 105000, "status": "Aman"}, {"kode": "INVKTR00052", "nama": "LAKBAN BENING 1'", "satuan": "Pcs", "stok": 2, "harga": 4000.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00057", "nama": "MAP PLASTIK BUSSINES FILE", "satuan": "Pcs", "stok": 19, "harga": 6500, "status": "Aman"}, {"kode": "INVKTR00061", "nama": "ODNER BESAR BANTEX", "satuan": "Pcs", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INVKTR00062", "nama": "ODNER KECIL BANTEX", "satuan": "Pcs", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INVKTR00065", "nama": "PEMBOLONG KERTAS KENKO NO.85 N", "satuan": "Pcs", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INVKTR00066", "nama": "PENSIL FABER CASTELL", "satuan": "Pcs", "stok": 33, "harga": 4500, "status": "Aman"}, {"kode": "INVKTR00072", "nama": "PENGGARIS BESI 30 CM KENKO", "satuan": "Pcs", "stok": 3, "harga": 8500, "status": "Perlu Reorder"}, {"kode": "INVKTR00083", "nama": "SPIDOL PERMANEN HITAM SNOWMAN", "satuan": "Pcs", "stok": 8, "harga": 8900, "status": "Aman"}, {"kode": "INVKTR00093", "nama": "STABILLO", "satuan": "Pcs", "stok": 2, "harga": 9500, "status": "Perlu Reorder"}, {"kode": "INVKTR00095", "nama": "TIPE-EX PENTEL", "satuan": "Pcs", "stok": 8, "harga": 16500, "status": "Aman"}, {"kode": "INVKTR00104", "nama": "PENGHAPUS WHITEBOARD", "satuan": "Pcs", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INVKTR00117", "nama": "PANASONIC TELPON KX-TS505", "satuan": "Unit", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INVKTR00125", "nama": "RIBBON COLOR PRINTER ID CARD EVOLIS ZENIUS R5F002SAA YMCKO", "satuan": "Set", "stok": 1, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00181", "nama": "LAKBAN BENING 48 MM", "satuan": "Pcs", "stok": 3, "harga": 13200.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00182", "nama": "LAKBAN COKLAT 48 MM", "satuan": "Pcs", "stok": 3, "harga": 10800.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00183", "nama": "LAKBAN HITAM 48 MM", "satuan": "Pcs", "stok": 1, "harga": 17760.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00184", "nama": "POST IT 656", "satuan": "Pcs", "stok": 2, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00186", "nama": "BATERAI ALKALINE AAA MERK ABC", "satuan": "Pcs", "stok": 14, "harga": 5451.58, "status": "Aman"}, {"kode": "INVKTR00189", "nama": "CONTINUOUS FORM 5 FLY WARNA 9,5 X 11 CM PRS 1/2 A4", "satuan": "Rim", "stok": 3, "harga": 264180.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00192", "nama": "MAP GANTUNG/HANG MAP FUJITA", "satuan": "Pcs", "stok": 11, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00219", "nama": "SPIDOL SNOWMAN BOARDMARKER BIRU", "satuan": "Pcs", "stok": 11, "harga": 9500, "status": "Aman"}, {"kode": "INVKTR00220", "nama": "SPIDOL SNOWMAN BOARDMARKER HITAM", "satuan": "Pcs", "stok": 15, "harga": 9500, "status": "Aman"}, {"kode": "INVKTR00221", "nama": "SPIDOL SNOWMAN BOARDMARKER MERAH", "satuan": "Pcs", "stok": 7, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00223", "nama": "SPIDOL SNOWMAN PERMANEN BIRU", "satuan": "Pcs", "stok": 14, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00224", "nama": "SPIDOL SNOWMAN PERMANEN MERAH", "satuan": "Pcs", "stok": 13, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00226", "nama": "REFILL SPIDOL SNOWMAN BOARDMARKER BIRU", "satuan": "Pcs", "stok": 5, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00231", "nama": "REFILL SPIDOL SNOWMAN PERMANEN HITAM", "satuan": "Pcs", "stok": 7, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00232", "nama": "REFILL SPIDOL SNOWMAN PERMANEN MERAH", "satuan": "Pcs", "stok": 21, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00235", "nama": "LAKBAN HITAM 1\"", "satuan": "Roll", "stok": 1, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00276", "nama": "POST IT 653 WARNA WARNI UK 34.9X47.6 MM @12 - 3M", "satuan": "Pack", "stok": 23, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00277", "nama": "POST IT UK 76X76 MM @5 WARNA WARNI - 3M", "satuan": "Pack", "stok": 9, "harga": 18500, "status": "Aman"}, {"kode": "INVKTR00278", "nama": "CLEAR POCKET BAMBI UK. F4", "satuan": "Pack", "stok": 4, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00279", "nama": "CATRIDGE HP 400 BLACK CE 410 BLACK (PRODUCT OF CHINA)", "satuan": "Unit", "stok": 2, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00280", "nama": "CATRIDGE HP 400 BLUE - CE 411 CYAN (PRODUCT OF CHINA)", "satuan": "Unit", "stok": 2, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00282", "nama": "RIBBON PRINTER EPSON LQ 2190", "satuan": "Unit", "stok": 1, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00287", "nama": "BINDER CLIP KENKO NO. 260", "satuan": "Box", "stok": 7, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00288", "nama": "BUBBLE WRAP 50X120M", "satuan": "Roll", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INVKTR00291", "nama": "LEM STICK KERTAS KENKO 25GR", "satuan": "Pcs", "stok": 2, "harga": 6660.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00301", "nama": "RIBBON CATRIGDE LX-310 EPSON", "satuan": "Pcs", "stok": 1, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00315", "nama": "ISOLASI KECIL PANFIX 1/2\" X 10 YDS", "satuan": "Pcs", "stok": 5, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00324", "nama": "STEPLES REMOVER BANTEX 9355", "satuan": "Pcs", "stok": 1, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00327", "nama": "STAPLES KECIL MAX NO. 10", "satuan": "Pcs", "stok": 19, "harga": 18500, "status": "Aman"}, {"kode": "INVKTR00334", "nama": "AMPLOP KOP SURAT PANJANG - DESIGN BARU 2016", "satuan": "Box", "stok": 200, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00335", "nama": "FORM KOP SURAT PNS A4 100GR - DESIGN BARU", "satuan": "Rim", "stok": 2, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00336", "nama": "STAMPEL GENERAL (LOGO+PT) UK 4X1.6 CM", "satuan": "Pcs", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INVKTR00359", "nama": "AMPLOP COKLAT BIASA UK A3", "satuan": "Pack", "stok": 80, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00360", "nama": "DISPLAY BOOK BANTEX 3187 UK F4", "satuan": "Pcs", "stok": 2, "harga": 79920.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00361", "nama": "CLEAR POCKET BAMBI UK. A4", "satuan": "Pack", "stok": 125, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00380", "nama": "FORM TANDA TERIMA 2 PLY UK 1/2 A4 - LOGO BARU", "satuan": "Buku", "stok": 10, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00388", "nama": "CATRIDGE HP 400 YELLOW CE 412 (PRODUCT OF CHINA)", "satuan": "Unit", "stok": 2, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00389", "nama": "CATRIDGE HP 400 MAGENTA CE 413 (PRODUCT OF CHINA)", "satuan": "Unit", "stok": 2, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00394", "nama": "CLEAR SLEEVE UK F4", "satuan": "Pack", "stok": 4, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00395", "nama": "CLEAR SLEEVE UK A4", "satuan": "Pack", "stok": 208, "harga": 24000.0, "status": "Aman"}, {"kode": "INVKTR00409", "nama": "TINTA STAMPEL ORANGE 5ML", "satuan": "Btl", "stok": 5, "harga": 12210.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00424", "nama": "AMPLOP COKLAT BIASA UK 110 X 220 MM", "satuan": "Box", "stok": 50, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00439", "nama": "CD RW MERK VERBATIM", "satuan": "Pcs", "stok": 11, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00441", "nama": "BINDER CLIPS 105 KENKO", "satuan": "Box", "stok": 4, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00442", "nama": "BUKU KWITANSI KT 40M SINAR DUNIA", "satuan": "Pcs", "stok": 6, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00448", "nama": "PEMOTONG KERTAS SIZE B7-A3 UK 18\" X 15\"", "satuan": "Pcs", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INVKTR00450", "nama": "TINTA STAMPEL HITAM 5ML", "satuan": "Btl", "stok": 3, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00451", "nama": "TINTA STAMPEL HIJAU 5ML", "satuan": "Btl", "stok": 3, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00452", "nama": "TRIGONAL CLIP NO. 5 KENKO", "satuan": "Box", "stok": 12, "harga": 3800, "status": "Aman"}, {"kode": "INVKTR00453", "nama": "TRIGONAL CLIP NO. 3 KENKO", "satuan": "Box", "stok": 8, "harga": 2900, "status": "Aman"}, {"kode": "INVKTR00454", "nama": "BINDER CLIPS 200 KENKO", "satuan": "Box", "stok": 5, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00455", "nama": "POST IT SIGN HERE PRONTO @120FLAGS", "satuan": "Pcs", "stok": 3, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00466", "nama": "BALLPOINT SNOWMAN V5 HITAM", "satuan": "Pcs", "stok": 0, "harga": 3942.5, "status": "Stok Habis"}, {"kode": "INVKTR00468", "nama": "PENGHAPUS PENSIL FABER CASTELL 187120", "satuan": "Pcs", "stok": 2, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00469", "nama": "TINTA PRINTER EPSON L1455 (7741) BLACK XL 140ML", "satuan": "Pcs", "stok": 1, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00470", "nama": "TINTA PRINTER EPSON L1455 (T6642) CYAN 70ML", "satuan": "Pcs", "stok": 1, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00471", "nama": "TINTA PRINTER EPSON L1455 (T6643) MAGENTA 70ML", "satuan": "Pcs", "stok": 1, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00472", "nama": "TINTA PRINTER EPSON L1455 (T6644) YELLOW 70ML", "satuan": "Pcs", "stok": 1, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00475", "nama": "PENCIL MEKANIK PENTEL 0.5 TECHNICLICK", "satuan": "Pcs", "stok": 2, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00476", "nama": "ISI PENSIL MEKANIK PENTEL 2B, 0.5", "satuan": "Pcs", "stok": 11, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00477", "nama": "MAP PLASTIK MIKA BENING KANCING UK FOLIO", "satuan": "Pcs", "stok": 132, "harga": 3500, "status": "Aman"}, {"kode": "INVKTR00480", "nama": "IST SMU WINGS 48MMX500M UNIVERSAL", "satuan": "Roll", "stok": 3, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00481", "nama": "BALLPOINT MERAH STANDARD AE7", "satuan": "Pcs", "stok": 7, "harga": 3500, "status": "Aman"}, {"kode": "INVKTR00489", "nama": "CONTINUOUS FORM 2PLY UK 9 1/2 x 11 CM SINAR DUNIA", "satuan": "Box", "stok": 18, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00507", "nama": "BUKU EKSPEDISI MIRAGE HC005 MJ UK 30X10.5CM", "satuan": "Pcs", "stok": 26, "harga": 14500, "status": "Aman"}, {"kode": "INVKTR00510", "nama": "ISI STAPLES MAX NO 10 @20 Box Kecil / Pack", "satuan": "BoxKecil", "stok": 31, "harga": 4500, "status": "Aman"}, {"kode": "INVKTR00522", "nama": "KERTAS A4 EXCELLENT - COPY PAPER 70GR", "satuan": "Rim", "stok": 10, "harga": 50000.0, "status": "Aman"}, {"kode": "INVKTR00541", "nama": "AMPLOP COKLAT TANPA TALI UK A4", "satuan": "Pcs", "stok": 100, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00542", "nama": "AMPLOP COKLAT UK MAP 29X40 CM (TANPA TALI)", "satuan": "Pcs", "stok": 100, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00552", "nama": "BUKU TULIS SIDU 50LBR", "satuan": "Buku", "stok": 10, "harga": 6500, "status": "Aman"}, {"kode": "INVKTR00560", "nama": "PLASTIK WRAPPING UK 50 CM X 100 M X 17MIC", "satuan": "Roll", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INVKTR00574", "nama": "OFFICE CHAIR BELLEZA SERIES (BEAUTY LB) MORELLI", "satuan": "Unit", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INVKTR00581", "nama": "KERTAS THERMAL ROLL 58 X 48 FYFAX", "satuan": "Roll", "stok": 8, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00582", "nama": "LABEL STICKER (TOM & JERRY) NO : 129 (17X58 MM) @10LBR/PAK", "satuan": "Pack", "stok": 5, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00583", "nama": "DOUBLE TAPE 1/2\" KENKO", "satuan": "Pcs", "stok": 1, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00600", "nama": "POST IT STICKY MARK N NOTES 6 COLOUR/PCS 20 X 50 MM PRONTO", "satuan": "Pcs", "stok": 12, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00608", "nama": "SPIDOL PERMANEN PUTIH", "satuan": "Pcs", "stok": 8, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00619", "nama": "KALKULATOR CANON AS-1200", "satuan": "PCS", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INVKTR00620", "nama": "NOTA KECIL NCR 2 PLY UK. 10 X 16 CM", "satuan": "PCS", "stok": 5, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00645", "nama": "STEMPEL LOGO+PT+GUDANG GULA JAKARTA UK 4X1.6 CM", "satuan": "Pcs", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INVKTR00807", "nama": "COFFEE MACHINE KUIS - FULLY AUTOMATIC ONE TOUCH CAPPUCCINO 717", "satuan": "Unit", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INVKTR00824", "nama": "MATERAI 10000", "satuan": "PCS", "stok": 29, "harga": 12210.0, "status": "Aman"}, {"kode": "INVKTR00859", "nama": "BALLPOINT FASTER C6 (BIRU)", "satuan": "PCS", "stok": 15, "harga": 3500, "status": "Aman"}, {"kode": "INVKTR00860", "nama": "BALLPOINT FASTER C6 (HITAM)", "satuan": "PCS", "stok": 7, "harga": 3500, "status": "Aman"}, {"kode": "INVKTR00900", "nama": "TISSUE NICE @200 SHEET", "satuan": "Pcs", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INVKTR00911", "nama": "NOTA KONTAN 1 PLY NCR, 10.8X 15.5 CM, 50 LEMBAR", "satuan": "buku", "stok": 3, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00913", "nama": "TISSUE PASSEO @250 SHEET", "satuan": "Pcs", "stok": 8, "harga": 18949.59, "status": "Aman"}, {"kode": "INVKTR00914", "nama": "PLASTIK CD", "satuan": "pcs", "stok": 11, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00915", "nama": "POST IT 670-5ANL, 20 MM X 50 MM", "satuan": "pcs", "stok": 5, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00916", "nama": "REFILL JETSTREAM SXR-5, 0.5MM BALL", "satuan": "pcs", "stok": 8, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00917", "nama": "TANDA TERIMA PNS 2PLY UK. 1/2 A4 (LOGO LAMA)", "satuan": "buku", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INVKTR00919", "nama": "ODNER BESAR BANTEX, GRAPE 1465-61", "satuan": "PCS", "stok": 4, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00920", "nama": "ODNER BESAR BANTEX, LILAC 1465-21", "satuan": "PCS", "stok": 5, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00921", "nama": "ODNER BESAR BANTEX, TOSCA 1465-22", "satuan": "PCS", "stok": 3, "harga": 35520.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00925", "nama": "ISI CUTTER BESAR KENKO @TUBE", "satuan": "Tube", "stok": 5, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00933", "nama": "ODNER BESAR BANTEX, LIGHT ORANGE 1465-64", "satuan": "PCS", "stok": 4, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00934", "nama": "INK ROLLER IR-40T B/R", "satuan": "Pcs", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INVKTR00939", "nama": "AMPLOP COKLAT FOLIO UKURAN 24X35CM", "satuan": "Pcs", "stok": 120, "harga": 1800, "status": "Aman"}, {"kode": "INVKTR00948", "nama": "AMPLOP PUTIH PANJANG EV-90", "satuan": "PCS", "stok": 120, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00949", "nama": "KERTAS BUFFALO UK F4", "satuan": "PCS", "stok": 35, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00951", "nama": "MULTI HOLES ZIP POCKET UKURAN A4", "satuan": "Pcs", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INVKTR00960", "nama": "AMPLOP BISNIS JENDELA KIRI, J-PLUS", "satuan": "Pcs", "stok": 1000, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00961", "nama": "TISSUE @1000 SHEETS, 2 APPLY", "satuan": "Pcs", "stok": 1, "harga": 34750.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00968", "nama": "KERTAS A5 70 GRAM", "satuan": "Rim", "stok": 5, "harga": 27195.0, "status": "Perlu Reorder"}, {"kode": "INVKTR00974", "nama": "ODNER BANTEX KWITANSI, GRAPE 1452-61", "satuan": "Pcs", "stok": 11, "harga": 0.0, "status": "Aman"}, {"kode": "INVKTR00990", "nama": "STAND ACRILYC UK. A4", "satuan": "Pcs", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "INVKTR01035", "nama": "HELM MOTOR HITAM KACA BENING UKURAN L", "satuan": "Pcs", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "OBATAN00347", "nama": "DIATAB, 4 TABLET / STRIP", "satuan": "pcs", "stok": 2, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "OBATAN00348", "nama": "PANADOL BIRU, 10 TABLET / STRIP", "satuan": "pcs", "stok": 10, "harga": 14500, "status": "Aman"}, {"kode": "OBATAN00349", "nama": "PANADOL HIJAU, 10 TABLET / STRIP", "satuan": "pcs", "stok": 10, "harga": 0.0, "status": "Aman"}, {"kode": "OBATAN00350", "nama": "PANADOL MERAH, 10 TABLET / STRIP", "satuan": "pcs", "stok": 10, "harga": 0.0, "status": "Aman"}, {"kode": "OBATAN00353", "nama": "HANSAPLAST AQUA PROTECT", "satuan": "pack", "stok": 2, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "PRBRMH00019", "nama": "GARPU KECIL STAINLESS SUPERDOLL", "satuan": "Pcs", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "PRBRMH00104", "nama": "STELLA PENGHARUM RUANGAN 400 ML", "satuan": "Pcs", "stok": 0, "harga": 45173.83, "status": "Stok Habis"}, {"kode": "PRBRMH00192", "nama": "GARPU MAKAN MERK SUPER DOL", "satuan": "Pcs", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "PRBRMH00201", "nama": "GELAS MINUM MELAMIN BIRU 300ML", "satuan": "Pcs", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "PRBRMH00236", "nama": "MAMA LIME REFILL 900ML", "satuan": "Pcs", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "PRBRMH00295", "nama": "SPONS CUCI PIRING (HIJAU KUNING)", "satuan": "Pcs", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "PRBRMH00462", "nama": "PLASTIK SAMPAH 90 X 120CM", "satuan": "PCS", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "PRBRMH00465", "nama": "GLADE AUTOMATIC REFILL, OCEAN ESCAPE, 175GR", "satuan": "KLG", "stok": 0, "harga": 45950.0, "status": "Stok Habis"}, {"kode": "PRBRMH00475", "nama": "MOP SET", "satuan": "PCS", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "PRBRMH00477", "nama": "AION LAP KANEBO", "satuan": "pcs", "stok": 1, "harga": 66227.5, "status": "Perlu Reorder"}, {"kode": "PRBRMH00481", "nama": "EKONOMI SABUN CUCI PIRING 780ML", "satuan": "PCS", "stok": 0, "harga": 12438.89, "status": "Stok Habis"}, {"kode": "PRBRMH00482", "nama": "EKONOMI SABUN KRIM VIOLET 380GR", "satuan": "pcs", "stok": 0, "harga": 7492.5, "status": "Stok Habis"}, {"kode": "PRBRMH00489", "nama": "REFILL SOKLIN LANTAI AROMATHERAPY UNGU 800ML", "satuan": "PCS", "stok": 3, "harga": 15000.0, "status": "Perlu Reorder"}, {"kode": "PRBRMH00495", "nama": "LAP MICROFIBER 25 X 25 CM", "satuan": "PCS", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "PRBRMH00496", "nama": "TUSUK GIGI BERBUNGKUS", "satuan": "PCS", "stok": 79, "harga": 95.0, "status": "Aman"}, {"kode": "PRBRMH00508", "nama": "KIT CAR SHAMPOO WASH & GLOW PCH 800ML", "satuan": "Pcs", "stok": 0, "harga": 29500.0, "status": "Stok Habis"}, {"kode": "PRBRMH00509", "nama": "KAIN LAP BAHAN KATUN KOTAK UK 51 X 54 CM", "satuan": "Pcs", "stok": 1, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "PRBRMH00514", "nama": "LOBBY DUSTER SET 60 CM", "satuan": "PCS", "stok": 0, "harga": 130000.0, "status": "Stok Habis"}, {"kode": "PRBRMH00522", "nama": "PLASTIK SAMPAH 90 X 120 CM", "satuan": "PACK", "stok": 2, "harga": 19750.0, "status": "Perlu Reorder"}, {"kode": "PRBRMH00530", "nama": "LAP MICROFIBER 30 X 30 CM", "satuan": "Pcs", "stok": 2, "harga": 0.0, "status": "Perlu Reorder"}, {"kode": "PRBRMH00539", "nama": "SCOTCH BRITE PINK SABUT JARING", "satuan": "Bks", "stok": 0, "harga": 6660.0, "status": "Stok Habis"}, {"kode": "PRBRMH00554", "nama": "SAPU LANTAI RAMBUT + PENGKI", "satuan": "Set", "stok": 0, "harga": 0.0, "status": "Stok Habis"}, {"kode": "PRBRMH00555", "nama": "Sabun Ekonomi Cair 650ml", "satuan": "Pcs", "stok": 1, "harga": 12765.0, "status": "Perlu Reorder"}, {"kode": "SRGAPD00002", "nama": "JAS HUJAN BAJU+CELANA", "satuan": "Psg", "stok": 0, "harga": 0.0, "status": "Stok Habis"}];
+var _atkStockCatalog = PNS_ATK_CATALOG.slice();
+
+function loadAtkItems() {
+  // 1. Inisialisasi rekomendasi autocomplete datalist segera (Zero Latency)
+  renderAtkMasterDatalist(_atkStockCatalog);
+  renderAtkQuickChips(_atkStockCatalog);
+
+  // 2. Refresh live dari backend Google Apps Script / Spreadsheet jika tersedia
+  return api('getAtkStock').then(function(res) {
+    var liveRows = (res && (res.data || res.rows)) ? (res.data || res.rows) : [];
+    if (liveRows && liveRows.length > 0) {
+      var mapLive = {};
+      liveRows.forEach(function(r) {
+        var nm = String(r.nama_barang || '').trim().toUpperCase();
+        if (nm) mapLive[nm] = r;
+      });
+
+      _atkStockCatalog = _atkStockCatalog.map(function(item) {
+        var up = String(item.nama || '').trim().toUpperCase();
+        if (mapLive[up]) {
+          var l = mapLive[up];
+          return {
+            kode: l.kode_barang || item.kode,
+            nama: l.nama_barang || item.nama,
+            satuan: l.satuan || item.satuan,
+            stok: Number(l.saldo_akhir !== undefined ? l.saldo_akhir : item.stok),
+            harga: Number(l.harga_satuan || item.harga) || 0,
+            status: l.status || item.status
+          };
+        }
+        return item;
+      });
+      renderAtkMasterDatalist(_atkStockCatalog);
+      renderAtkQuickChips(_atkStockCatalog);
+    }
+    return _atkStockCatalog;
+  }).catch(function(e) {
+    console.warn('Gagal memuat live stock, menggunakan katalog terverifikasi lokal:', e);
+    return _atkStockCatalog;
   });
 }
 
-function closeAtkDetailModal(){
-  document.getElementById('atk-detail-overlay').classList.remove('open');
-  document.body.style.overflow='';
+function renderAtkMasterDatalist(items) {
+  var dl = document.getElementById('atk-master-datalist');
+  if (!dl) return;
+  var optHtml = '';
+  items.forEach(function(it) {
+    var hrgStr = it.harga > 0 ? (' · Rp ' + formatRupiahSimple(it.harga)) : '';
+    optHtml += '<option value="' + esc(it.nama) + '">Stok: ' + it.stok + ' ' + esc(it.satuan) + hrgStr + '</option>';
+  });
+  dl.innerHTML = optHtml;
 }
 
-// ── ATK: DYNAMIC ROW TABLE ──
-function addAtkRow(itemName,category,qty,unit){
-  var tbody=document.getElementById('atk-table-tbody');
-  if(!tbody)return;
-  var tr=document.createElement('tr');
+function renderAtkQuickChips(items) {
+  var container = document.getElementById('atk-quick-chips');
+  if (!container) return;
 
-  var units=['Pcs','Box','Rim','Pack','Set','Lusin','Rol','Buku'];
-  var untOpts=units.map(function(u){return'<option value="'+u+'" '+(u===unit?'selected':'')+'>'+u+'</option>';}).join('');
+  // Filter rekomendasi populer yang stoknya tersedia & paling sering dibutuhkan
+  var popularNames = [
+    'KERTAS A4 EXCELLENT - COPY PAPER 70GR', 'MATERAI 10000', 'AIR MINUM GALON AQUA 19L',
+    'BALLPOINT SNOWMAN V5 HITAM', 'BALLPOINT FASTER C6 (HITAM)', 'SPIDOL SNOWMAN BOARDMARKER HITAM',
+    'TISSUE PASSEO @250 SHEET', 'BATERAI AA (ALKALINE) MERK ABC', 'BINDER CLIPS 107 KENKO',
+    'MAP PLASTIK MIKA BENING KANCING UK FOLIO', 'POST IT UK 76X76 MM @5 WARNA WARNI - 3M',
+    'AMPLOP PUTIH EV-104', 'ISI STAPLES MAX NO 10 @20 Box Kecil / Pack'
+  ];
 
-  tr.innerHTML='<td><input type="text" class="atk-in-name" value="'+esc(itemName||'')+'" placeholder="Nama item ATK..." required><input type="hidden" class="atk-in-cat" value="'+esc(category||'Umum')+'"></td>'
-             + '<td><input type="number" class="atk-in-qty" value="'+(qty||1)+'" min="1" style="width:100%" required></td>'
-             + '<td><select class="atk-in-unit" style="width:100%">'+untOpts+'</select></td>'
-             + '<td style="text-align:center"><button type="button" class="btn-cancel" style="padding:4px 8px;font-size:11px" onclick="removeAtkRow(this)" title="Hapus baris">✕</button></td>';
+  var recList = [];
+  popularNames.forEach(function(pName) {
+    var found = items.find(function(x) { return x.nama.toUpperCase().indexOf(pName) !== -1 || pName.indexOf(x.nama.toUpperCase()) !== -1; });
+    if (found) recList.push(found);
+  });
+
+  // Tambahkan item dengan stok terbanyak jika masih kurang dari 8
+  if (recList.length < 8) {
+    var sorted = items.slice().sort(function(a, b) { return b.stok - a.stok; });
+    for (var s = 0; s < sorted.length && recList.length < 10; s++) {
+      if (recList.indexOf(sorted[s]) === -1 && sorted[s].stok > 0) recList.push(sorted[s]);
+    }
+  }
+
+  container.innerHTML = '';
+  recList.forEach(function(it) {
+    var chip = document.createElement('div');
+    chip.className = 'atk-chip atk-rec-pill';
+    chip.style.cursor = 'pointer';
+
+    var stokCls = it.stok > 5 ? 'stk-green' : (it.stok > 0 ? 'stk-amber' : 'stk-red');
+    var hrgFmt = it.harga > 0 ? (' · <span class="chip-hrg">Rp ' + formatRupiahSimple(it.harga) + '</span>') : '';
+    
+    chip.innerHTML = '<span class="chip-plus">➕</span> <span class="chip-title">' + esc(it.nama) + '</span> <span class="chip-stok ' + stokCls + '">Stok: ' + it.stok + ' ' + esc(it.satuan) + '</span>' + hrgFmt;
+    chip.onclick = function() {
+      addAtkRow(it.nama, 'ATK', 1, it.satuan, it.harga, it.stok, it.kode);
+    };
+    container.appendChild(chip);
+  });
+}
+
+function formatRupiahSimple(num) {
+  var n = Math.round(Number(num) || 0);
+  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
+function lookupAtkMaster(itemName) {
+  if (!itemName) return null;
+  var term = itemName.trim().toUpperCase();
+  var match = _atkStockCatalog.find(function(it) {
+    return it.nama.toUpperCase() === term;
+  });
+  if (!match) {
+    // Coba substring match jika exact belum ketemu
+    match = _atkStockCatalog.find(function(it) {
+      return it.nama.toUpperCase().indexOf(term) !== -1 || term.indexOf(it.nama.toUpperCase()) !== -1;
+    });
+  }
+  return match || null;
+}
+
+function addAtkRow(itemName, category, qty, unit, price, stock, code) {
+  var tbody = document.getElementById('atk-table-tbody');
+  if (!tbody) return;
+
+  var item = lookupAtkMaster(itemName);
+  if (item) {
+    if (!unit || unit === 'Pcs') unit = item.satuan;
+    if (price === undefined || price === null || price === 0) price = item.harga;
+    if (stock === undefined || stock === null) stock = item.stok;
+    if (!code) code = item.kode;
+  }
+
+  qty = Number(qty) || 1;
+  unit = unit || 'Pcs';
+  price = Number(price) || 0;
+  stock = Number(stock !== undefined ? stock : 0);
+  code = code || '';
+
+  var tr = document.createElement('tr');
+  tr.className = 'atk-input-row';
+
+  var units = ['Rim', 'Box', 'Pack', 'Pcs', 'Unit', 'Buku', 'Roll', 'Btl', 'Lbr', 'Kg', 'Tube', 'Set', 'Klg'];
+  if (unit && units.indexOf(unit) === -1) units.unshift(unit);
+
+  var untOpts = units.map(function(u) {
+    return '<option value="' + u + '" ' + (u === unit ? 'selected' : '') + '>' + u + '</option>';
+  }).join('');
+
+  var subtotal = qty * price;
+  var stokBadgeHtml = renderInlineStockBadge(stock, unit, price);
+
+  tr.innerHTML = 
+    '<td>' +
+      '<input type="text" class="atk-in-name" list="atk-master-datalist" value="' + esc(itemName || '') + '" placeholder="Ketik atau pilih nama barang..." oninput="onAtkItemChange(this)" required autocomplete="off">' +
+      '<input type="hidden" class="atk-in-cat" value="' + esc(category || 'Umum') + '">' +
+      '<input type="hidden" class="atk-in-code" value="' + esc(code) + '">' +
+      '<input type="hidden" class="atk-in-price" value="' + price + '">' +
+      '<input type="hidden" class="atk-in-stock" value="' + stock + '">' +
+      '<div class="atk-row-stock-hint">' + stokBadgeHtml + '</div>' +
+    '</td>' +
+    '<td>' +
+      '<input type="number" class="atk-in-qty" value="' + qty + '" min="1" oninput="onAtkRowQtyChange(this)" style="width:100%" required>' +
+    '</td>' +
+    '<td>' +
+      '<select class="atk-in-unit" style="width:100%">' + untOpts + '</select>' +
+    '</td>' +
+    '<td style="text-align:right;font-weight:600;font-size:12px;color:var(--navy)" class="atk-row-subtotal">' +
+      (subtotal > 0 ? ('Rp ' + formatRupiahSimple(subtotal)) : 'Rp 0') +
+    '</td>' +
+    '<td style="text-align:center">' +
+      '<button type="button" class="btn-cancel" style="padding:4px 8px;font-size:11px" onclick="removeAtkRow(this)" title="Hapus baris">✕</button>' +
+    '</td>';
 
   tbody.appendChild(tr);
+  updateAtkModalSummary();
 }
-function removeAtkRow(btn){
-  var tr=btn.closest('tr');
-  var tbody=document.getElementById('atk-table-tbody');
-  if(tbody&&tbody.children.length>1){
-    tr.remove();
-  }else{
-    showAlert('Minimal harus ada 1 baris barang.','err');
+
+function renderInlineStockBadge(stock, unit, price) {
+  var hrgText = price > 0 ? (' · Est. Rp ' + formatRupiahSimple(price) + '/' + unit) : '';
+  if (stock > 5) {
+    return '<span class="badge-stock-inline in-stock">📦 Stok Tersedia: <strong>' + stock + ' ' + esc(unit) + '</strong>' + hrgText + '</span>';
+  } else if (stock > 0) {
+    return '<span class="badge-stock-inline low-stock">⚠️ Stok Menipis: <strong>' + stock + ' ' + esc(unit) + '</strong>' + hrgText + '</span>';
+  } else {
+    return '<span class="badge-stock-inline no-stock">❌ Stok Gudang Habis (0 ' + esc(unit) + ')' + hrgText + ' · Rekomendasi Restock</span>';
   }
 }
 
-// ── ATK: MODAL CREATE ──
-function openAtkModal(){
-  document.getElementById('atk-overlay').classList.add('open');
-  document.body.style.overflow='hidden';
-  var tomorrow=new Date();tomorrow.setDate(tomorrow.getDate()+1);
-  document.getElementById('atk-date').value=tomorrow.getFullYear()+'-'+pad(tomorrow.getMonth()+1)+'-'+pad(tomorrow.getDate());
-  var pPhone=document.getElementById('atk-phone');if(pPhone)pPhone.value='';
-  document.getElementById('atk-notes').value='';
-  var tbody=document.getElementById('atk-table-tbody');
-  if(tbody){
-    tbody.innerHTML='';
-    addAtkRow('Kertas HVS A4 (75gr)','Kertas',1,'Rim');
-    addAtkRow('Pulpen Gel Hitam (0.5)','Alat Tulis',1,'Box');
+function onAtkItemChange(input) {
+  var tr = input.closest('tr');
+  if (!tr) return;
+  var val = input.value.trim();
+  var item = lookupAtkMaster(val);
+
+  var codeEl = tr.querySelector('.atk-in-code');
+  var priceEl = tr.querySelector('.atk-in-price');
+  var stockEl = tr.querySelector('.atk-in-stock');
+  var unitEl = tr.querySelector('.atk-in-unit');
+  var hintEl = tr.querySelector('.atk-row-stock-hint');
+  var qtyEl = tr.querySelector('.atk-in-qty');
+  var subtotalEl = tr.querySelector('.atk-row-subtotal');
+
+  if (item) {
+    if (codeEl) codeEl.value = item.kode;
+    if (priceEl) priceEl.value = item.harga;
+    if (stockEl) stockEl.value = item.stok;
+    if (unitEl && item.satuan) unitEl.value = item.satuan;
+    if (hintEl) hintEl.innerHTML = renderInlineStockBadge(item.stok, item.satuan, item.harga);
+
+    var qty = Number(qtyEl ? qtyEl.value : 1) || 1;
+    var sub = qty * item.harga;
+    if (subtotalEl) subtotalEl.textContent = sub > 0 ? ('Rp ' + formatRupiahSimple(sub)) : 'Rp 0';
+  } else {
+    if (hintEl) hintEl.innerHTML = '<span class="badge-stock-inline custom-item">ℹ️ Item manual (Belum terdaftar di Master Stok)</span>';
   }
-  loadAtkItems();
-  var err=document.getElementById('atk-err');if(err)err.style.display='none';
-  var btn=document.getElementById('btn-atk-submit');if(btn){btn.disabled=false;btn.textContent='✏️ Kirim Permintaan ATK';}
+  updateAtkModalSummary();
 }
-function closeAtkModal(){
-  document.getElementById('atk-overlay').classList.remove('open');
-  document.body.style.overflow='';
-}
-function submitAtkRequest(){
-  var date=document.getElementById('atk-date').value;
-  var phone=document.getElementById('atk-phone')?document.getElementById('atk-phone').value.trim():'';
-  var notes=document.getElementById('atk-notes').value.trim();
-  var err=document.getElementById('atk-err'),btn=document.getElementById('btn-atk-submit');
-  if(!date){
-    if(err){err.textContent='Tanggal kebutuhan barang wajib ditentukan.';err.style.display='block';}
-    return;
+
+function onAtkRowQtyChange(qtyInput) {
+  var tr = qtyInput.closest('tr');
+  if (!tr) return;
+  var qty = Number(qtyInput.value) || 1;
+  var priceEl = tr.querySelector('.atk-in-price');
+  var price = Number(priceEl ? priceEl.value : 0) || 0;
+  var subtotalEl = tr.querySelector('.atk-row-subtotal');
+  var sub = qty * price;
+  if (subtotalEl) subtotalEl.textContent = sub > 0 ? ('Rp ' + formatRupiahSimple(sub)) : 'Rp 0';
+
+  // Cek apakah kuantitas melebihi stok
+  var stockEl = tr.querySelector('.atk-in-stock');
+  var stock = Number(stockEl ? stockEl.value : 0);
+  var hintEl = tr.querySelector('.atk-row-stock-hint');
+  if (stock > 0 && qty > stock && hintEl) {
+    var warnExist = hintEl.querySelector('.stock-exceed-warn');
+    if (!warnExist) {
+      var warn = document.createElement('div');
+      warn.className = 'stock-exceed-warn';
+      warn.style.color = 'var(--amber-d)';
+      warn.style.fontSize = '10.5px';
+      warn.style.marginTop = '2px';
+      warn.innerHTML = '⚠️ Permintaan (' + qty + ') melebihi stok fisik (' + stock + '). Akan diproses sebagian / restock.';
+      hintEl.appendChild(warn);
+    }
+  } else if (hintEl) {
+    var warnExist = hintEl.querySelector('.stock-exceed-warn');
+    if (warnExist) warnExist.remove();
   }
 
-  var items=[];
-  var rows=document.querySelectorAll('#atk-table-tbody tr');
-  rows.forEach(function(tr){
-    var nmEl=tr.querySelector('.atk-in-name');
-    var catEl=tr.querySelector('.atk-in-cat');
-    var qtyEl=tr.querySelector('.atk-in-qty');
-    var untEl=tr.querySelector('.atk-in-unit');
-    var nm=nmEl?nmEl.value.trim():'';
-    var cat=catEl?catEl.value:'Umum';
-    var qty=qtyEl?(parseInt(qtyEl.value,10)||1):1;
-    var unt=untEl?untEl.value:'Pcs';
-    if(nm){
-      items.push({item_name:nm,category:cat,quantity:qty,unit:unt});
+  updateAtkModalSummary();
+}
+
+function updateAtkModalSummary() {
+  var rows = document.querySelectorAll('#atk-table-tbody tr');
+  var totalItems = 0;
+  var totalQty = 0;
+  var grandTotal = 0;
+
+  rows.forEach(function(tr) {
+    var nmEl = tr.querySelector('.atk-in-name');
+    var qtyEl = tr.querySelector('.atk-in-qty');
+    var priceEl = tr.querySelector('.atk-in-price');
+    if (nmEl && nmEl.value.trim()) {
+      totalItems++;
+      var q = Number(qtyEl ? qtyEl.value : 1) || 1;
+      var p = Number(priceEl ? priceEl.value : 0) || 0;
+      totalQty += q;
+      grandTotal += (q * p);
     }
   });
 
-  if(!items.length){
-    if(err){err.textContent='Minimal tambahkan 1 nama barang yang diminta.';err.style.display='block';}
+  var cntEl = document.getElementById('ams-count');
+  var qtySumEl = document.getElementById('ams-qty');
+  var valEl = document.getElementById('ams-total-val');
+
+  if (cntEl) cntEl.textContent = totalItems + ' macam item';
+  if (qtySumEl) qtySumEl.textContent = totalQty + ' unit fisik';
+  if (valEl) valEl.textContent = grandTotal > 0 ? ('Rp ' + formatRupiahSimple(grandTotal)) : 'Rp 0 (Estimasi)';
+}
+
+function removeAtkRow(btn) {
+  var tr = btn.closest('tr');
+  var tbody = document.getElementById('atk-table-tbody');
+  if (tbody && tbody.children.length > 1) {
+    tr.remove();
+    updateAtkModalSummary();
+  } else {
+    showAlert('Minimal harus ada 1 baris barang yang diajukan.', 'err');
+  }
+}
+
+// ── ATK: MODAL CREATE VSPB ──
+function openAtkModal() {
+  document.getElementById('atk-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  var tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  document.getElementById('atk-date').value = tomorrow.getFullYear() + '-' + pad(tomorrow.getMonth() + 1) + '-' + pad(tomorrow.getDate());
+  var pPhone = document.getElementById('atk-phone');
+  if (pPhone) pPhone.value = '';
+  document.getElementById('atk-notes').value = '';
+  
+  var tbody = document.getElementById('atk-table-tbody');
+  if (tbody) {
+    tbody.innerHTML = '';
+    // Rekomendasi item awal langsung dengan stok dan harga
+    addAtkRow('KERTAS A4 EXCELLENT - COPY PAPER 70GR', 'Kertas', 1, 'Rim', 50000, 10, 'INVKTR00522');
+    addAtkRow('BALLPOINT SNOWMAN V5 HITAM', 'Alat Tulis', 2, 'Pcs', 3942.5, 12, 'INVKTR00466');
+  }
+  loadAtkItems();
+  var err = document.getElementById('atk-err');
+  if (err) err.style.display = 'none';
+  var btn = document.getElementById('btn-atk-submit');
+  if (btn) {
+    btn.disabled = false;
+    btn.textContent = '✏️ Ajukan Virtual SPB (VSPB)';
+  }
+}
+
+function closeAtkModal() {
+  document.getElementById('atk-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function submitAtkRequest() {
+  var date = document.getElementById('atk-date').value;
+  var phone = document.getElementById('atk-phone') ? document.getElementById('atk-phone').value.trim() : '';
+  var notes = document.getElementById('atk-notes').value.trim();
+  var err = document.getElementById('atk-err'), btn = document.getElementById('btn-atk-submit');
+  
+  if (!date) {
+    if (err) { err.textContent = 'Tanggal kebutuhan barang wajib ditentukan.'; err.style.display = 'block'; }
     return;
   }
 
-  btn.disabled=true;btn.textContent='Mengirim…';
-  api('submitAtk',{needed_date:date,phone:phone,notes:notes,items:items}).then(function(res){
-    btn.disabled=false;btn.textContent='✓ Terkirim';
-    showAlert('Permintaan ATK '+res.request_no+' berhasil dikirim ke GS.','ok');
-    setTimeout(function(){
+  var items = [];
+  var rows = document.querySelectorAll('#atk-table-tbody tr');
+  rows.forEach(function(tr) {
+    var nmEl = tr.querySelector('.atk-in-name');
+    var catEl = tr.querySelector('.atk-in-cat');
+    var codeEl = tr.querySelector('.atk-in-code');
+    var priceEl = tr.querySelector('.atk-in-price');
+    var qtyEl = tr.querySelector('.atk-in-qty');
+    var untEl = tr.querySelector('.atk-in-unit');
+
+    var nm = nmEl ? nmEl.value.trim() : '';
+    var cat = catEl ? catEl.value : 'Umum';
+    var cd = codeEl ? codeEl.value : '';
+    var pr = Number(priceEl ? priceEl.value : 0) || 0;
+    var qty = qtyEl ? (parseInt(qtyEl.value, 10) || 1) : 1;
+    var unt = untEl ? untEl.value : 'Pcs';
+
+    if (nm) {
+      items.push({
+        item_name: nm,
+        nama_barang: nm,
+        kode_barang: cd,
+        category: cat,
+        quantity: qty,
+        jumlah_minta: qty,
+        unit: unt,
+        satuan: unt,
+        harga_satuan: pr,
+        total_harga: (qty * pr)
+      });
+    }
+  });
+
+  if (!items.length) {
+    if (err) { err.textContent = 'Minimal tambahkan 1 nama barang yang diminta.'; err.style.display = 'block'; }
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Mengirim Virtual SPB…';
+
+  var now = new Date();
+  var dateStr = now.getFullYear() + pad(now.getMonth() + 1) + pad(now.getDate());
+  var generatedVspb = 'VSPB-' + dateStr + '-' + Math.floor(1000 + Math.random() * 9000);
+
+  var payload = {
+    request_no: generatedVspb,
+    needed_date: date,
+    phone: phone,
+    notes: notes,
+    items: items,
+    status: 'Diajukan'
+  };
+
+  api('submitAtk', payload).then(function(res) {
+    btn.disabled = false;
+    btn.textContent = '✓ VSPB Terkirim';
+    var docNo = (res && res.request_no) ? res.request_no : generatedVspb;
+    showAlert('✓ Virtual SPB ' + docNo + ' berhasil diajukan ke General Services!', 'ok');
+
+    // Optimistic UI: Tambahkan langsung ke memori lokal tanpa full reload
+    payload.id = (res && res.id) ? res.id : new Date().getTime();
+    payload.created_at = new Date().toISOString();
+    payload.requester_name = _session ? _session.name : 'Karyawan';
+    payload.section = _session ? _session.section : 'General';
+    payload.items_summary = items.map(function(it) { return it.nama_barang + ' (' + it.jumlah_minta + ' ' + it.satuan + ')'; }).join(' • ');
+    payload.total_qty = items.reduce(function(acc, x) { return acc + x.jumlah_minta; }, 0);
+
+    _atkRows.unshift(payload);
+    renderAtkList(_atkRows);
+
+    setTimeout(function() {
       closeAtkModal();
-      loadAtkList();
-      silentRefresh();
-    },1200);
-  }).catch(function(e){
-    btn.disabled=false;btn.textContent='✏️ Kirim Permintaan ATK';
-    if(err){err.textContent='Gagal: '+e.message;err.style.display='block';}
+    }, 800);
+  }).catch(function(e) {
+    btn.disabled = false;
+    btn.textContent = '✏️ Ajukan Virtual SPB (VSPB)';
+    if (err) { err.textContent = 'Gagal: ' + e.message; err.style.display = 'block'; }
+  });
+}
+
+// ── VBKB: MODAL PROSES OLEH ADMIN GS DARI VSPB USER ──
+var _activeVbkbRequest = null;
+
+function openProcessVbkbModal(reqId) {
+  var req = _atkRows.find(function(r) { return String(r.id) === String(reqId) || r.request_no === reqId; });
+  if (!req) {
+    showAlert('Data permintaan VSPB tidak ditemukan.', 'err');
+    return;
+  }
+  _activeVbkbRequest = req;
+
+  var overlay = document.getElementById('atk-vbkb-overlay');
+  if (!overlay) return;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  document.getElementById('vbkb-req-id').value = req.id;
+
+  // Auto Generate VBKB No & Tanggal
+  var now = new Date();
+  var datePrefix = now.getFullYear() + pad(now.getMonth() + 1) + pad(now.getDate());
+  var nextVbkbNo = 'VBKB/' + datePrefix + '/' + Math.floor(1000 + Math.random() * 9000);
+  document.getElementById('vbkb-no').value = req.vbkb_no || nextVbkbNo;
+  document.getElementById('vbkb-date').value = now.getFullYear() + '-' + pad(now.getMonth() + 1) + '-' + pad(now.getDate());
+  document.getElementById('vbkb-cost-object').value = req.requester_name || '';
+  document.getElementById('vbkb-pembebanan').value = req.section || 'General Services';
+  document.getElementById('vbkb-notes').value = 'Diproses dari ' + req.request_no + (req.notes ? (' (' + req.notes + ')') : '');
+
+  // Render Kartu Info VSPB
+  var infoCard = document.getElementById('vbkb-vspb-info');
+  if (infoCard) {
+    infoCard.innerHTML = 
+      '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">' +
+        '<div>' +
+          '<div style="font-size:11px;font-weight:700;color:var(--green-d);text-transform:uppercase;letter-spacing:.05em">Rujukan Virtual SPB:</div>' +
+          '<div style="font-size:15px;font-weight:800;color:var(--navy);margin-top:2px">' + esc(req.request_no) + '</div>' +
+        '</div>' +
+        '<div style="text-align:right">' +
+          '<div style="font-size:12px;color:var(--navy);font-weight:600">Pemohon: ' + esc(req.requester_name) + ' (' + esc(req.section || '-') + ')</div>' +
+          '<div style="font-size:11px;color:var(--muted)">Target Dibutuhkan: ' + fmtDate(req.needed_date) + '</div>' +
+        '</div>' +
+      '</div>';
+  }
+
+  // Render Items ke Tabel VBKB
+  var tbody = document.getElementById('vbkb-items-tbody');
+  tbody.innerHTML = '';
+
+  var reqItems = req.items || [];
+  if (!reqItems.length && req.items_summary) {
+    req.items_summary.split(' • ').forEach(function(part) {
+      var m = part.match(/^(.*?)\s*\((\d+)\s*([^)]+)\)$/);
+      if (m) {
+        reqItems.push({ item_name: m[1].trim(), quantity: parseInt(m[2], 10) || 1, unit: m[3].trim() });
+      } else {
+        reqItems.push({ item_name: part.trim(), quantity: 1, unit: 'Pcs' });
+      }
+    });
+  }
+
+  if (!reqItems.length) {
+    reqItems = [{ item_name: 'Item ATK', quantity: 1, unit: 'Pcs' }];
+  }
+
+  reqItems.forEach(function(it, idx) {
+    var master = lookupAtkMaster(it.item_name || it.nama_barang);
+    var stock = master ? master.stok : 0;
+    var price = master ? master.harga : (Number(it.harga_satuan) || 0);
+    var code = master ? master.kode : (it.kode_barang || ('SKU-' + (idx + 1)));
+    var unit = it.unit || it.satuan || (master ? master.satuan : 'Pcs');
+    var qtyReq = Number(it.quantity || it.jumlah_minta) || 1;
+    var qtyOut = stock > 0 ? Math.min(qtyReq, stock) : qtyReq; // Default disetujui penuh atau seadanya stok
+    var subtotal = qtyOut * price;
+
+    var tr = document.createElement('tr');
+    tr.className = 'vbkb-item-row';
+    tr.innerHTML = 
+      '<td>' +
+        '<div style="font-weight:700;color:var(--navy);font-size:12.5px">' + esc(it.item_name || it.nama_barang) + '</div>' +
+        '<div style="font-size:10.5px;color:var(--muted);font-family:monospace">' + esc(code) + ' · Rp ' + formatRupiahSimple(price) + '/' + esc(unit) + '</div>' +
+        '<input type="hidden" class="vbkb-item-code" value="' + esc(code) + '">' +
+        '<input type="hidden" class="vbkb-item-name" value="' + esc(it.item_name || it.nama_barang) + '">' +
+        '<input type="hidden" class="vbkb-item-unit" value="' + esc(unit) + '">' +
+        '<input type="hidden" class="vbkb-item-price" value="' + price + '">' +
+      '</td>' +
+      '<td>' +
+        '<span class="badge-stock-inline ' + (stock > 5 ? 'in-stock' : (stock > 0 ? 'low-stock' : 'no-stock')) + '">' + stock + ' ' + esc(unit) + '</span>' +
+      '</td>' +
+      '<td>' +
+        '<span style="font-weight:600;color:var(--navy)">' + qtyReq + ' ' + esc(unit) + '</span>' +
+      '</td>' +
+      '<td>' +
+        '<input type="number" class="vbkb-item-qty" value="' + qtyOut + '" min="0" oninput="onVbkbQtyChange(this)" style="width:100%;font-weight:700;padding:6px 8px;border:1.5px solid var(--green);border-radius:8px">' +
+      '</td>' +
+      '<td style="text-align:right;font-weight:700;color:#0f766e" class="vbkb-item-subtotal">' +
+        'Rp ' + formatRupiahSimple(subtotal) +
+      '</td>';
+    tbody.appendChild(tr);
+  });
+
+  updateVbkbSummary();
+  var err = document.getElementById('vbkb-err');
+  if (err) err.style.display = 'none';
+  var btn = document.getElementById('btn-submit-vbkb');
+  if (btn) {
+    btn.disabled = false;
+    btn.textContent = '✓ Terbitkan & Selesaikan VBKB';
+  }
+}
+
+function onVbkbQtyChange(input) {
+  var tr = input.closest('tr');
+  if (!tr) return;
+  var qty = Number(input.value) || 0;
+  var priceEl = tr.querySelector('.vbkb-item-price');
+  var price = Number(priceEl ? priceEl.value : 0) || 0;
+  var subtotalEl = tr.querySelector('.vbkb-item-subtotal');
+  var sub = qty * price;
+  if (subtotalEl) subtotalEl.textContent = 'Rp ' + formatRupiahSimple(sub);
+  updateVbkbSummary();
+}
+
+function updateVbkbSummary() {
+  var rows = document.querySelectorAll('#vbkb-items-tbody tr');
+  var totalItems = 0;
+  var totalQty = 0;
+  var grandTotal = 0;
+
+  rows.forEach(function(tr) {
+    totalItems++;
+    var qtyEl = tr.querySelector('.vbkb-item-qty');
+    var priceEl = tr.querySelector('.vbkb-item-price');
+    var q = Number(qtyEl ? qtyEl.value : 0) || 0;
+    var p = Number(priceEl ? priceEl.value : 0) || 0;
+    totalQty += q;
+    grandTotal += (q * p);
+  });
+
+  var itmEl = document.getElementById('vbkb-summary-items');
+  var qtyEl = document.getElementById('vbkb-summary-qty');
+  var totEl = document.getElementById('vbkb-summary-total');
+
+  if (itmEl) itmEl.textContent = totalItems + ' macam barang';
+  if (qtyEl) qtyEl.textContent = totalQty + ' unit fisik dikeluarkan';
+  if (totEl) totEl.textContent = 'Rp ' + formatRupiahSimple(grandTotal);
+}
+
+function closeProcessVbkbModal() {
+  var overlay = document.getElementById('atk-vbkb-overlay');
+  if (overlay) overlay.classList.remove('open');
+  document.body.style.overflow = '';
+  _activeVbkbRequest = null;
+}
+
+function submitProcessVbkb() {
+  if (!_activeVbkbRequest) return;
+  var vbkbNo = document.getElementById('vbkb-no').value.trim();
+  var vbkbDate = document.getElementById('vbkb-date').value;
+  var costObj = document.getElementById('vbkb-cost-object').value.trim();
+  var pembebanan = document.getElementById('vbkb-pembebanan').value.trim();
+  var notes = document.getElementById('vbkb-notes').value.trim();
+
+  var err = document.getElementById('vbkb-err');
+  var btn = document.getElementById('btn-submit-vbkb');
+
+  if (!vbkbNo || !vbkbDate || !costObj) {
+    if (err) { err.textContent = 'Nomor VBKB, Tanggal, dan Pemohon wajib diisi.'; err.style.display = 'block'; }
+    return;
+  }
+
+  var items = [];
+  document.querySelectorAll('#vbkb-items-tbody tr').forEach(function(tr) {
+    var codeEl = tr.querySelector('.vbkb-item-code');
+    var nameEl = tr.querySelector('.vbkb-item-name');
+    var unitEl = tr.querySelector('.vbkb-item-unit');
+    var priceEl = tr.querySelector('.vbkb-item-price');
+    var qtyEl = tr.querySelector('.vbkb-item-qty');
+
+    var q = Number(qtyEl ? qtyEl.value : 0) || 0;
+    if (q > 0) {
+      items.push({
+        kode_barang: codeEl ? codeEl.value : '',
+        nama_barang: nameEl ? nameEl.value : '',
+        satuan: unitEl ? unitEl.value : 'Pcs',
+        harga_satuan: Number(priceEl ? priceEl.value : 0) || 0,
+        jumlah_minta: q,
+        qty: q
+      });
+    }
+  });
+
+  if (!items.length) {
+    if (err) { err.textContent = 'Minimal harus ada 1 barang dengan jumlah keluar > 0.'; err.style.display = 'block'; }
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Menerbitkan VBKB & Memotong Stok…';
+
+  var payload = {
+    request_id: _activeVbkbRequest.id,
+    no_spb: _activeVbkbRequest.request_no,
+    vspb_no: _activeVbkbRequest.request_no,
+    no_bkb: vbkbNo,
+    tanggal: vbkbDate,
+    tipe_cost_object: 'Karyawan',
+    nama_cost_object: costObj,
+    nama_spb: costObj,
+    dept: pembebanan,
+    pembebanan: pembebanan,
+    keterangan_pemakaian: notes,
+    items: items
+  };
+
+  api('submitAtkBkb', payload).then(function(res) {
+    btn.disabled = false;
+    btn.textContent = '✓ Berhasil';
+    showAlert('✓ Dokumen VBKB ' + vbkbNo + ' berhasil diterbitkan & stok telah terpotong otomatis!', 'ok');
+
+    // Optimistic UI: Update status VSPB lokal secara instan (Zero Refresh)
+    _activeVbkbRequest.status = 'Disetujui (VBKB Terbit)';
+    _activeVbkbRequest.vbkb_no = vbkbNo;
+
+    // Potong stok lokal agar pencarian berikutnya sinkron
+    items.forEach(function(itm) {
+      var catItem = lookupAtkMaster(itm.nama_barang);
+      if (catItem) {
+        catItem.stok = Math.max(0, catItem.stok - itm.jumlah_minta);
+      }
+    });
+
+    renderAtkList(_atkRows);
+    closeProcessVbkbModal();
+  }).catch(function(e) {
+    btn.disabled = false;
+    btn.textContent = '✓ Terbitkan & Selesaikan VBKB';
+    if (err) { err.textContent = 'Gagal memproses VBKB: ' + e.message; err.style.display = 'block'; }
   });
 }
 
