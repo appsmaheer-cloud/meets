@@ -7240,6 +7240,264 @@ html, body {
   background: rgba(15, 23, 42, 0.78) !important;
 }
 
+
+/* ══════════════════════════════════════════════════════════════════════════
+   💎 LOGIN CARD 40% OPACITY & SMART SINGLE-COLUMN COMBOBOX (UI UX PRO MAX)
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* 1. Login Card: Murni 40% Opacity Frosted Glass */
+.login-box {
+  background: rgba(255, 255, 255, 0.40) !important;
+  backdrop-filter: blur(24px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.50) !important;
+  border-radius: 26px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.25) !important;
+  padding: 34px 30px !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+[data-theme='dark'] .login-box {
+  background: rgba(15, 23, 42, 0.40) !important;
+  backdrop-filter: blur(24px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(16, 185, 129, 0.2) !important;
+}
+
+/* 2. Single-Column Smart Combobox */
+.custom-combobox-wrap {
+  position: relative !important;
+  width: 100% !important;
+}
+
+.custom-combobox-input {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 11px 38px 11px 14px !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.55) !important;
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.35) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  color: var(--navy) !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+}
+
+.custom-combobox-input:focus {
+  border-color: var(--green) !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25) !important;
+  outline: none !important;
+  background: rgba(255, 255, 255, 0.50) !important;
+}
+
+[data-theme='dark'] .custom-combobox-input {
+  background: rgba(15, 23, 42, 0.35) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  color: #f8fafc !important;
+}
+
+[data-theme='dark'] .custom-combobox-input:focus {
+  background: rgba(15, 23, 42, 0.55) !important;
+}
+
+.combobox-toggle-btn {
+  position: absolute !important;
+  right: 10px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: transparent !important;
+  border: none !important;
+  font-size: 15px !important;
+  color: var(--muted) !important;
+  cursor: pointer !important;
+  padding: 4px 6px !important;
+  border-radius: 6px !important;
+  transition: transform 0.2s ease, color 0.2s ease !important;
+  z-index: 2 !important;
+}
+
+.combobox-toggle-btn:hover {
+  color: var(--green) !important;
+}
+
+/* 3. Popup Dropdown Nama: Opasitas 40% Frosted Glass ("ketika popup nama keluar juga opasity 40 %") */
+.custom-combobox-menu {
+  position: absolute !important;
+  top: calc(100% + 6px) !important;
+  left: 0 !important;
+  right: 0 !important;
+  max-height: 220px !important;
+  overflow-y: auto !important;
+  z-index: 999999 !important;
+  background: rgba(255, 255, 255, 0.40) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.60) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.3) !important;
+  padding: 6px !important;
+}
+
+[data-theme='dark'] .custom-combobox-menu {
+  background: rgba(15, 23, 42, 0.40) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.65) !important;
+}
+
+.custom-combobox-item {
+  padding: 8px 12px !important;
+  cursor: pointer !important;
+  font-size: 12.5px !important;
+  color: var(--navy) !important;
+  border-radius: 10px !important;
+  transition: all 0.15s ease !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 2px !important;
+}
+
+.custom-combobox-item:hover,
+.custom-combobox-item.active {
+  background: rgba(16, 185, 129, 0.28) !important;
+  color: #065f46 !important;
+  font-weight: 600 !important;
+}
+
+[data-theme='dark'] .custom-combobox-item:hover,
+[data-theme='dark'] .custom-combobox-item.active {
+  background: rgba(16, 185, 129, 0.35) !important;
+  color: #34d399 !important;
+}
+
+.combobox-item-name {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.combobox-item-nik {
+  font-size: 11px !important;
+  color: var(--muted) !important;
+  font-weight: 500 !important;
+}
+
+.combobox-item-sec {
+  font-size: 10.5px !important;
+  color: var(--muted) !important;
+  opacity: 0.85 !important;
+}
+
+/* 4. PIN input & guide card dengan opasitas selaras */
+.pin-wrap input {
+  background: rgba(255, 255, 255, 0.35) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.55) !important;
+  color: var(--navy) !important;
+  border-radius: 12px !important;
+}
+
+[data-theme='dark'] .pin-wrap input {
+  background: rgba(15, 23, 42, 0.35) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  color: #f8fafc !important;
+}
+
+.login-guide-card {
+  background: rgba(16, 185, 129, 0.12) !important;
+  border: 1px solid rgba(16, 185, 129, 0.25) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border-radius: 14px !important;
+  padding: 10px 14px !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   🎯 BUTTON PINTASAN KOMPAK & TIDAK KEBESARAN ("button pintasan jangan terlalu besar")
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Hub Layanan & Modul Aplikasi di Dashboard */
+.bld-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
+  gap: 10px !important;
+}
+
+.bld-card {
+  padding: 10px 14px !important;
+  min-height: 72px !important;
+  max-height: 84px !important;
+  border-radius: 14px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.bld-card:hover {
+  transform: translateY(-2px) scale(1.01) !important;
+  box-shadow: 0 8px 20px -3px rgba(16, 185, 129, 0.15) !important;
+}
+
+.bld-icon {
+  margin-bottom: 4px !important;
+}
+
+.bld-icon svg {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.bld-name {
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  margin-bottom: 2px !important;
+}
+
+.bld-loc {
+  font-size: 10px !important;
+  line-height: 1.2 !important;
+  opacity: 0.82 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Pintasan Tagline di Bawah Login Card */
+.login-tagline {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  justify-content: center !important;
+  margin-top: 14px !important;
+}
+
+.ltag {
+  font-size: 9.5px !important;
+  padding: 3px 8px !important;
+  background: rgba(255, 255, 255, 0.28) !important;
+  border: 1px solid rgba(255, 255, 255, 0.38) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  color: var(--navy) !important;
+  border-radius: 999px !important;
+  font-weight: 500 !important;
+}
+
+[data-theme='dark'] .ltag {
+  background: rgba(15, 23, 42, 0.32) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  color: #94a3b8 !important;
+}
+
 </style>
 </head>
 <body>
@@ -7290,48 +7548,13 @@ html, body {
     </div>
 
     <!-- PILIHAN KARYAWAN -->
-    <div class="lrow">
-      <label for="login-user-select">Nama Karyawan / NIK <span class="req">*</span></label>
-      <select id="login-user-select" class="pin-wrap" onchange="onLoginUserSelect(this.value)" style="width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid var(--border);border-radius:var(--r8);background:var(--bg);color:var(--fg);pointer-events:auto!important;position:relative;z-index:20;font-size:13.5px">
-        <option value="">-- Pilih Nama Karyawan / NIK --</option>
-        <option value="Aditya Aji Asmoro">Aditya Aji Asmoro [210051]  - Tax</option>
-        <option value="Ahdi Apriyadi">Ahdi Apriyadi [230077]  - GS HO & RO</option>
-        <option value="Andi Wijaya">Andi Wijaya [210053]  - Information Technology</option>
-        <option value="Angga Prasetya Nusantara">Angga Prasetya Nusantara [180001]  - Accounting</option>
-        <option value="Ari Irawan">Ari Irawan [220055]  - GS HO & RO</option>
-        <option value="Arif Budiman">Arif Budiman [220045]  - Organizational Development & Performance Management</option>
-        <option value="Bury Hardjanto">Bury Hardjanto [150089]  - Tax</option>
-        <option value="Catur Handayani">Catur Handayani [130028]  - Talent Acquisition & Monitoring</option>
-        <option value="Defiandra Pratiwi Wibowo">Defiandra Pratiwi Wibowo [230053]  - Finance</option>
-        <option value="Delia Syafira">Delia Syafira [210049]  - Procurement & Purchasing</option>
-        <option value="Effendi">Effendi [120034]  - Head Office</option>
-        <option value="Egi Madyagi">Egi Madyagi [180096]  - Financial & Information System</option>
-        <option value="Eka Widhyasmara">Eka Widhyasmara [170145]  - Procurement & Purchasing</option>
-        <option value="Endro Prayogi">Endro Prayogi [160145]  - Information Technology</option>
-        <option value="Evasari Veronica">Evasari Veronica [120022]  - GS HO & RO</option>
-        <option value="Evelyn Kangdinata">Evelyn Kangdinata [210062]  - Compensation Benefit & Personal Admin</option>
-        <option value="Fahrizal Rinaldi">Fahrizal Rinaldi [200075]  - Procurement & Purchasing</option>
-        <option value="GS Head Office">GS Head Office [GS-HO]  - General Services</option>
-        <option value="Irwan Heriyanto">Irwan Heriyanto [230001]  - Compensation Benefit & Personal Admin</option>
-        <option value="Juandela Herina Putri">Juandela Herina Putri [220016]  - Information Technology</option>
-        <option value="M. Iqbal Nurhadi">M. Iqbal Nurhadi [150074]  - Accounting</option>
-        <option value="M. Miftahul Khoiry">M. Miftahul Khoiry [240082]  - GS HO & RO</option>
-        <option value="Mohamad Ronang Wibowo">Mohamad Ronang Wibowo [230091]  - Budget</option>
-        <option value="Muhammad Ilham">Muhammad Ilham [220039]  - Accounting</option>
-        <option value="Muhammad Maulana">Muhammad Maulana [220031]  - Information Technology</option>
-        <option value="Nicholaus Cristiardy .S">Nicholaus Cristiardy .S [220058]  - Sales & Marketing</option>
-        <option value="Refacha Violany Putri">Refacha Violany Putri [160047]  - Talent Acquisition & Monitoring</option>
-        <option value="Ricky Hartanto Tonorahardjo">Ricky Hartanto Tonorahardjo [150056]  - Procurement & Purchasing</option>
-        <option value="Rudiyanto Sumardi">Rudiyanto Sumardi [190274]  - Procurement & Purchasing</option>
-        <option value="Shirly">Shirly [170155]  - Finance</option>
-        <option value="Sri Wardani Rambe">Sri Wardani Rambe [240071]  - Organizational Development & Performance Management</option>
-        <option value="Tama Priambodo">Tama Priambodo [140023]  - Information Technology</option>
-        <option value="ul (Admin GS)">ul (Admin GS) [ADMIN01]  - General Services</option>
-        <option value="Widi Rizky Utami">Widi Rizky Utami [190332]  - Procurement & Purchasing</option>
-        <option value="Yohanes Tirto">Yohanes Tirto [140059]  - Head Office</option>
-        <option value="Yuki Ratna Jayanti">Yuki Ratna Jayanti [130046]  - Sales & Marketing</option>
-      </select>
-      <input type="text" id="login-email" autocomplete="off" placeholder="Atau ketik manual NIK / Nama karyawan di sini..." class="pin-wrap" onkeydown="if(event.key==='Enter')doLogin()" style="width:100%;box-sizing:border-box;padding:9px 12px;margin-top:6px;border:1px solid rgba(16, 185, 129, 0.35);border-radius:10px;background:rgba(255,255,255,0.7);backdrop-filter:blur(8px);color:var(--navy);pointer-events:auto!important;position:relative;z-index:20;font-size:12.5px;font-weight:500;">
+    <div class="lrow" style="position:relative;z-index:30">
+      <label for="login-email">Nama Karyawan / NIK <span class="req">*</span></label>
+      <div class="custom-combobox-wrap" id="custom-combobox-wrap">
+        <input type="text" id="login-email" autocomplete="off" placeholder="Pilih atau ketik Nama / NIK Karyawan..." class="custom-combobox-input" onfocus="openComboboxMenu()" oninput="filterComboboxMenu(this.value)" onkeydown="onComboboxKeydown(event)">
+        <button type="button" class="combobox-toggle-btn" onclick="toggleComboboxMenu(event)" aria-label="Buka daftar nama" title="Pilih karyawan">▾</button>
+        <div class="custom-combobox-menu" id="custom-combobox-menu" style="display:none"></div>
+      </div>
     </div>
 
     <!-- INPUT PIN -->
@@ -9838,6 +10061,7 @@ function applyUserSession(user) {
   if (btn) { btn.disabled = false; btn.textContent = 'Masuk Portal'; }
   if (typeof updateGasStatusDisplay === 'function') updateGasStatusDisplay();
   if (typeof showDash === 'function') showDash();
+  if (typeof initCombobox === 'function') initCombobox();
   if (typeof loadMasterOptions === 'function') loadMasterOptions();
 }
 
@@ -9856,16 +10080,15 @@ function loginDemoMode() {
 }
 
 function doLogin(){
-  var userSel = document.getElementById('login-user-select');
   var userInp = document.getElementById('login-email');
-  var email = (userSel && userSel.value ? userSel.value : (userInp ? userInp.value : '')).trim(),
+  var email = (userInp ? userInp.value : '').trim(),
       pin   = document.getElementById('login-pin') ? document.getElementById('login-pin').value.trim() : '',
       err   = document.getElementById('login-err'),
       btn   = document.getElementById('btn-login');
   if (err) err.classList.remove('show');
   if(!email){ 
     if (err) { err.textContent='Silakan pilih nama karyawan atau ketik NIK Anda.'; err.classList.add('show'); }
-    if (userSel) userSel.focus();
+    if (userInp) userInp.focus();
     return; 
   }
   if(!pin){ 
@@ -10354,7 +10577,7 @@ var API={
 
 // ════ DUAL-ENGINE API ROUTER (GAS WebApp + GitHub Pages Hybrid) ════
 var DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwGWJu-yKAJAmcLBzOu825p-F-D83eMhdO_lVnBzau5b3vlvTVvw8pDUu7PrvQN6QYRMQ/exec";
-var PNS_APP_BUILD = "2026.11.03.v2";
+var PNS_APP_BUILD = "2026.11.03.v4";
 
 // Auto-purge stale or broken localStorage URLs from older deployments
 try {
@@ -15523,12 +15746,133 @@ function loadGasSheetCounts() {
   });
 }
 
+
+// ════ SMART SINGLE-COLUMN COMBOBOX (UI UX PRO MAX - OPACITY 40%) ════
+function initCombobox() {
+  renderComboboxItems(PNS_EMPLOYEE_DIRECTORY || []);
+  document.addEventListener('click', function(e) {
+    var wrap = document.getElementById('custom-combobox-wrap');
+    var menu = document.getElementById('custom-combobox-menu');
+    if (wrap && menu && !wrap.contains(e.target)) {
+      menu.style.display = 'none';
+      var btn = wrap.querySelector('.combobox-toggle-btn');
+      if (btn) btn.style.transform = 'translateY(-50%) rotate(0deg)';
+    }
+  });
+}
+
+function openComboboxMenu() {
+  var menu = document.getElementById('custom-combobox-menu');
+  var inp = document.getElementById('login-email');
+  if (!menu) return;
+  filterComboboxMenu(inp ? inp.value : '');
+  menu.style.display = 'block';
+  var btn = document.querySelector('.combobox-toggle-btn');
+  if (btn) btn.style.transform = 'translateY(-50%) rotate(180deg)';
+}
+
+function toggleComboboxMenu(e) {
+  if (e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+  var menu = document.getElementById('custom-combobox-menu');
+  if (!menu) return;
+  if (menu.style.display === 'block') {
+    menu.style.display = 'none';
+    var btn = document.querySelector('.combobox-toggle-btn');
+    if (btn) btn.style.transform = 'translateY(-50%) rotate(0deg)';
+  } else {
+    openComboboxMenu();
+    var inp = document.getElementById('login-email');
+    if (inp) inp.focus();
+  }
+}
+
+function filterComboboxMenu(query) {
+  var menu = document.getElementById('custom-combobox-menu');
+  if (!menu) return;
+  var q = (query || '').toLowerCase().trim();
+  var dir = (typeof PNS_EMPLOYEE_DIRECTORY !== 'undefined') ? PNS_EMPLOYEE_DIRECTORY : [];
+  var filtered = dir.filter(function(emp) {
+    if (!q) return true;
+    return (emp.nama && emp.nama.toLowerCase().indexOf(q) !== -1) ||
+           (emp.nik && String(emp.nik).indexOf(q) !== -1) ||
+           (emp.section && emp.section.toLowerCase().indexOf(q) !== -1);
+  });
+  renderComboboxItems(filtered);
+}
+
+function renderComboboxItems(items) {
+  var menu = document.getElementById('custom-combobox-menu');
+  if (!menu) return;
+  if (!items || items.length === 0) {
+    menu.innerHTML = '<div style="padding:10px 14px;font-size:12px;color:var(--muted);text-align:center;">Tidak ada karyawan yang cocok</div>';
+    return;
+  }
+  var html = '';
+  items.forEach(function(emp) {
+    var nikTag = emp.nik ? ' [' + emp.nik + ']' : '';
+    html += '<div class="custom-combobox-item" onclick="selectComboboxItem(\'' + esc(emp.nama) + '\', \'' + esc(emp.nik || '') + '\')">';
+    html += '  <div class="combobox-item-name"><strong>' + esc(emp.nama) + '</strong><span class="combobox-item-nik">' + esc(nikTag) + '</span></div>';
+    html += '  <div class="combobox-item-sec">' + esc(emp.section || '') + '</div>';
+    html += '</div>';
+  });
+  menu.innerHTML = html;
+}
+
+function selectComboboxItem(name, nik) {
+  var inp = document.getElementById('login-email');
+  if (inp) {
+    inp.value = name;
+  }
+  var menu = document.getElementById('custom-combobox-menu');
+  if (menu) menu.style.display = 'none';
+  var btn = document.querySelector('.combobox-toggle-btn');
+  if (btn) btn.style.transform = 'translateY(-50%) rotate(0deg)';
+
+  var err = document.getElementById('login-err');
+  if (err) err.classList.remove('show');
+
+  // Auto-focus ke input PIN agar alur login mulus 1-2 langkah!
+  var pin = document.getElementById('login-pin');
+  if (pin) pin.focus();
+}
+
+function onComboboxKeydown(e) {
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    openComboboxMenu();
+  } else if (e.key === 'Enter') {
+    var menu = document.getElementById('custom-combobox-menu');
+    if (menu && menu.style.display === 'block') {
+      var first = menu.querySelector('.custom-combobox-item');
+      if (first) {
+        e.preventDefault();
+        first.click();
+        return;
+      }
+    }
+    var pin = document.getElementById('login-pin');
+    if (pin && !pin.value) {
+      e.preventDefault();
+      pin.focus();
+    } else {
+      doLogin();
+    }
+  } else if (e.key === 'Escape') {
+    var menu = document.getElementById('custom-combobox-menu');
+    if (menu) menu.style.display = 'none';
+  }
+}
+
 // ══ INIT ══
 (function(){
   function checkMob(){var isMob=window.innerWidth<=600;var fab=document.getElementById('mob-fab');if(fab)fab.style.display=isMob?'flex':'none';}
   checkMob();window.addEventListener('resize',checkMob);
   try{if(localStorage.getItem('pns_side')==='1'){var sb=document.getElementById('sidebar');if(sb&&window.innerWidth>900)sb.classList.add('collapsed');}}catch(e){}
   showDash();
+  if (typeof initCombobox === 'function') initCombobox();
   if (typeof loadMasterOptions === 'function') loadMasterOptions();
 })();
 
