@@ -10881,7 +10881,7 @@ var API={
 
 // ════ DUAL-ENGINE API ROUTER (GAS WebApp + GitHub Pages Hybrid) ════
 var DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwGWJu-yKAJAmcLBzOu825p-F-D83eMhdO_lVnBzau5b3vlvTVvw8pDUu7PrvQN6QYRMQ/exec";
-var PNS_APP_BUILD = "2026.11.03.v5";
+var PNS_APP_BUILD = "2026.11.03.v6";
 
 // Auto-purge stale or broken localStorage URLs from older deployments
 try {
@@ -10919,6 +10919,13 @@ function unpackGasResponse(res) {
 
 function api(action, extra) {
   extra = extra || {};
+  try {
+    if (typeof _session !== 'undefined' && _session && typeof extra === 'object') {
+      if (!extra.userId && _session.id) extra.userId = _session.id;
+      if (!extra.userEmail && _session.email) extra.userEmail = _session.email;
+      if (!extra.userName && (_session.nama || _session.name)) extra.userName = (_session.nama || _session.name);
+    }
+  } catch(e){}
 
   // 1. Jika berjalan langsung di dalam runtime Google Apps Script Web App
   if (typeof google !== 'undefined' && google.script && google.script.run) {
@@ -11189,19 +11196,36 @@ function doChangePin(){
   if(np1 === '1234'){ err.textContent = 'PIN baru tidak boleh menggunakan PIN default (1234).'; err.classList.add('show'); return; }
   if(np1 !== np2){ err.textContent = 'Konfirmasi PIN baru tidak cocok.'; err.classList.add('show'); return; }
   if(np1 === op){ err.textContent = 'PIN baru tidak boleh sama dengan PIN lama.'; err.classList.add('show'); return; }
-  
+
+  var uid = (_session && _session.id) ? _session.id : '';
+  var uEmail = (_session && _session.email) ? _session.email : '';
+  var uNik = (_session && _session.nik) ? _session.nik : '';
+  var uNama = (_session && (_session.nama || _session.name)) ? (_session.nama || _session.name) : '';
+
   btn.disabled = true;
   btn.textContent = 'Menyimpan…';
-  api('changePin', { oldPin: op, newPin: np1 }).then(function(){
+  api('changePin', {
+    userId: uid,
+    id: uid,
+    email: uEmail,
+    nik: uNik,
+    nama: uNama,
+    oldPin: op,
+    newPin: np1
+  }).then(function(){
     btn.textContent = '✓ Berhasil Diubah';
-    if(_session) _session.isDefaultPin = false;
+    if(_session) {
+      _session.isDefaultPin = false;
+      _session.pin = np1;
+      try { localStorage.setItem('pns_session', JSON.stringify(_session)); } catch(e){}
+    }
     var defAlert = document.getElementById('alert-default-pin');
     if(defAlert) defAlert.style.display = 'none';
     setTimeout(function(){
       closePinModal();
       btn.disabled = false;
       btn.textContent = 'Simpan PIN Baru';
-      showAlert('PIN keamanan berhasil diperbarui. Silakan gunakan PIN baru untuk login selanjutnya.', 'ok');
+      showAlert('✓ PIN keamanan berhasil diperbarui. Silakan gunakan PIN baru untuk login selanjutnya.', 'ok');
     }, 1200);
   }).catch(function(e){
     err.textContent = e.message || 'Gagal mengubah PIN.';
