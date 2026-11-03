@@ -10660,7 +10660,9 @@ function getRows(){return(_raw&&_raw.recentRows)||[];}
 function buildMonthIdx(rows){
   var idx={};
   rows.forEach(function(r){
-    var ds=r.startDate||'';if(!ds||String(r.status||'').toLowerCase()==='cancelled')return;
+    var ds=r.startDate||'';
+    if(ds.length>10)ds=ds.substring(0,10);
+    if(!ds||String(r.status||'').toLowerCase()==='cancelled')return;
     var rk=/besar/i.test(r.room)?'besar':/kecil/i.test(r.room)?'kecil':(r.room===VIRTUAL_ROOM?'virtual':null);
     if(!rk)return;
     if(!idx[ds])idx[ds]=[];
@@ -10672,7 +10674,9 @@ function buildDayIdx(rows,ds){
   var idx={};
   DET_HOURS.forEach(function(h){idx[h]={besar:null,kecil:null,virtual:[]};});
   rows.forEach(function(r){
-    if((r.startDate||'')!==ds)return;
+    var rDate=r.startDate||'';
+    if(rDate.length>10)rDate=rDate.substring(0,10);
+    if(rDate!==ds)return;
     var can=String(r.status||'').toLowerCase()==='cancelled';
     if(can)return;
     var isVirt=(r.room===VIRTUAL_ROOM)||(r.zoom&&String(r.zoom).trim()!=='');
@@ -10818,6 +10822,39 @@ function renderDet(dk){
   var bb=document.getElementById('det-body-besar');if(bb)bb.innerHTML=buildCol('besar');
   var bv=document.getElementById('det-body-virtual');if(bv)bv.innerHTML=buildVirtCol();
   var bk=document.getElementById('det-body-kecil');if(bk)bk.innerHTML=buildCol('kecil');
+
+  // Tampilkan notifikasi jika ada booking di luar jam standar (08:00 - 18:00) agar tidak membingungkan
+  var offHoursBookings = rows.filter(function(r){
+    var rDate = (r.startDate || '').substring(0, 10);
+    if (rDate !== dk || String(r.status || '').toLowerCase() === 'cancelled') return false;
+    var sh = 8;
+    if (r.start && r.start.length >= 16) sh = parseInt(r.start.substring(11, 13), 10);
+    return (sh < 8 || sh >= 18);
+  });
+  var offEl = document.getElementById('det-offhours-box');
+  if (!offEl) {
+    offEl = document.createElement('div');
+    offEl.id = 'det-offhours-box';
+    offEl.style.cssText = 'padding: 10px 14px; margin: 10px 14px 4px; background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 10px; font-size: 12px; color: #b45309; line-height: 1.5;';
+    var detPanel = document.getElementById('det-panel');
+    if (detPanel) {
+      var colsEl = detPanel.querySelector('.det-cols');
+      if (colsEl) detPanel.insertBefore(offEl, colsEl);
+    }
+  }
+  if (offHoursBookings.length > 0) {
+    offEl.style.display = 'block';
+    var offHtml = '<div style="font-weight:700;display:flex;align-items:center;gap:6px;"><span>⚠</span> Booking di luar jam operasional normal:</div><ul style="margin:4px 0 0 18px;padding:0;">';
+    offHoursBookings.forEach(function(ob){
+      var timeStr = (ob.start ? ob.start.substring(11, 16) : '') + (ob.end ? ' – ' + ob.end.substring(11, 16) : '');
+      offHtml += '<li><strong>' + esc(ob.room) + '</strong> (' + timeStr + '): ' + esc(ob.person) + ' — ' + esc(ob.tujuan) + '</li>';
+    });
+    offHtml += '</ul>';
+    offEl.innerHTML = offHtml;
+  } else if (offEl) {
+    offEl.style.display = 'none';
+  }
+
   document.getElementById('det-panel').classList.add('open');
   var cr=document.getElementById('content-row');if(cr)cr.classList.add('with-detail');
 }
