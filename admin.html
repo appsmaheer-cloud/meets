@@ -8243,7 +8243,6 @@ html, body {
     </div>
   </div>
 </div>
-</div>
 
 <!-- MODAL REGISTRASI USER BARU -->
 <div class="modal-overlay" id="reg-modal-overlay" style="display:none" onclick="if(event.target===this)closeRegisterModal()">
@@ -8592,6 +8591,7 @@ html, body {
               <button class="gs-tab-btn" data-f="Diterima GS" onclick="edocFilter('Diterima GS')">Diterima GS</button>
               <button class="gs-tab-btn" data-f="Dalam Pengiriman" onclick="edocFilter('Dalam Pengiriman')">Sedang Dikirim</button>
               <button class="gs-tab-btn" data-f="Terkirim" onclick="edocFilter('Terkirim')">Terkirim</button>
+              <button class="gs-tab-btn" data-f="inbound_pending" onclick="edocFilter('inbound_pending')">📦 Inbound Siap Diambil <span id="edoc-inbound-pending-count" style="display:none;background:#2563eb;color:#fff;border-radius:10px;padding:1px 6px;font-size:10px;margin-left:3px">0</span></button>
               <button class="gs-tab-btn tab-need-resi" data-f="need_resi" onclick="edocFilter('need_resi')" title="Dokumen vendor ekspedisi yang belum memiliki nomor resi">
                 <span class="tab-warn-dot"></span>⚠️ Perlu Input Resi <span id="edoc-tab-need-count" style="display:none;background:#b45309;color:#fff;border-radius:10px;padding:0 5px;font-size:10px;margin-left:3px">0</span>
               </button>
@@ -9156,7 +9156,7 @@ html, body {
 <!-- ══════════════════════════════════════════════════════════════════════
      💎 GOOGLE CALENDAR STYLE EVENT DETAIL POPUP MODAL (UI UX PRO MAX)
      ══════════════════════════════════════════════════════════════════════ -->
-<div class="gcal-popup-overlay" id="gcal-event-overlay" onclick="if(event.target===this)closeGCalPopup()">
+<div class="gcal-popup-overlay" id="gcal-event-overlay" style="display:none!important" onclick="if(event.target===this)closeGCalPopup()">
   <div class="gcal-popup-card" role="dialog" aria-modal="true" aria-labelledby="gcal-pop-title">
     
     <!-- Top Action Toolbar -->
@@ -9431,30 +9431,66 @@ html, body {
 </div>
 
 <!-- E-DOC INBOUND MODAL (Pencatatan & Serah Terima Langsung) -->
-<div class="modal-overlay" id="edoc-inbound-overlay" onclick="if(event.target===this)closeEdocInboundModal()">
-  <div class="modal" style="max-width:560px">
-    <div class="modal-head"><div><div class="modal-ttl">🤝 Serah Terima Dokumen / Paket Masuk (Eksternal ke User)</div><div class="modal-sub">Pencatatan paket dari kurir luar &amp; serah terima langsung via mobile dengan bukti foto paket dan tanda tangan digital</div></div><button class="modal-close" onclick="closeEdocInboundModal()">✕ Tutup</button></div>
-    <div style="padding:20px 22px;overflow-y:auto;max-height:80vh">
+<!-- MODAL PENCATATAN DOKUMEN MASUK (INBOUND: DRAFT & SERAH TERIMA) -->
+<div class="modal-overlay" id="edoc-inbound-overlay" style="display:none" onclick="if(event.target===this)closeEdocInboundModal()">
+  <div class="modal" style="max-width:580px;border-radius:20px;overflow:hidden">
+    <div class="modal-head" style="background:linear-gradient(135deg, rgba(37,99,235,0.08), transparent)">
+      <div>
+        <div class="modal-ttl" style="display:flex;align-items:center;gap:8px">📥 Catat Dokumen Masuk (Inbound Eksternal)</div>
+        <div class="modal-sub">Catat paket dari kurir luar sebagai draft. Satu penerima dapat menerima beberapa dokumen sebelum diserahkan serentak.</div>
+      </div>
+      <button class="modal-close" onclick="closeEdocInboundModal()">✕</button>
+    </div>
+    <div style="padding:20px 24px;overflow-y:auto;max-height:80vh">
       
       <div class="frow2">
-        <div><label>Dari (Vendor / Pengirim) <span class="req">*</span></label><input type="text" id="edoc-in-sender" list="master-vendors-list" placeholder="Mis. JNE, PT ABC"></div>
-        <div><label>Tujuan / Serah Terima Ke <span class="req">*</span></label><input type="text" id="edoc-in-recipient" list="master-users-list" placeholder="Mis. Ibu Sarah (HRD)"></div>
+        <div>
+          <label>Dari (Vendor / Kurir / Pengirim) <span class="req">*</span></label>
+          <input type="text" id="edoc-in-sender" list="master-vendors-list" placeholder="Mis. JNE Express, J&T, PT ABC">
+        </div>
+        <div>
+          <label>Tujuan / Penerima Internal <span class="req">*</span></label>
+          <input type="text" id="edoc-in-recipient" list="master-users-list" placeholder="Ketik nama karyawan penerima...">
+        </div>
       </div>
 
       <div class="frow">
-        <label>Isi Dokumen / Perihal <span class="req">*</span></label>
-        <input type="text" id="edoc-in-title" placeholder="Mis. Dokumen Kontrak, Paket Pribadi">
+        <label>Perihal / Isi Dokumen Paket <span class="req">*</span></label>
+        <input type="text" id="edoc-in-title" placeholder="Mis. Dokumen Kontrak Sewa, Faktur Pajak Asli, Invoice Vendor">
       </div>
 
-      <div style="background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:var(--r10);padding:12px 14px;margin-bottom:12px">
-        <div style="font-size:11px;font-weight:700;color:var(--amber-d);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">📷 Bukti Serah Terima</div>
+      <div class="frow2">
+        <div>
+          <label>No. Resi Kurir / AWB <span style="font-size:11px;color:var(--muted)">(Opsional)</span></label>
+          <input type="text" id="edoc-in-resi" placeholder="Mis. JP1234567890">
+        </div>
+        <div>
+          <label>Lokasi Simpan di GS <span style="font-size:11px;color:var(--muted)">(Opsional)</span></label>
+          <input type="text" id="edoc-in-lokasi" placeholder="Mis. Meja Resepsionis / Rak Inbound A">
+        </div>
+      </div>
+
+      <!-- TOGGLE PILIHAN: DRAFT ATAU LANGSUNG SERAH TERIMA -->
+      <div style="background:rgba(37,99,235,0.06);border:1px solid rgba(37,99,235,0.2);border-radius:12px;padding:12px 14px;margin:14px 0">
+        <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-weight:600;font-size:13px;color:var(--navy);margin:0">
+          <input type="checkbox" id="edoc-in-immediate-chk" onchange="toggleEdocImmediateHandover(this.checked)" style="width:18px;height:18px;accent-color:var(--green)">
+          <span>Penerima sudah ada di tempat (Langsung ambil foto &amp; tanda tangan sekarang)</span>
+        </label>
+        <div style="font-size:11px;color:var(--muted);margin-top:4px;margin-left:28px">
+          Biarkan tidak tercentang untuk menyimpan sebagai <strong>Draft Paket Inbound</strong>. Tanda tangan dan foto bisa dilakukan nanti saat user mengambil bundle dokumennya.
+        </div>
+      </div>
+
+      <!-- AREA BUKTI SERAH TERIMA LANGSUNG (HANYA AKTIF JIKA IMMEDIATE DICENTANG) -->
+      <div id="edoc-in-immediate-section" style="display:none;background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:var(--r10);padding:14px;margin-bottom:14px">
+        <div style="font-size:11.5px;font-weight:700;color:var(--green-d);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">📷 Bukti Serah Terima Langsung</div>
         <div class="frow" style="margin-bottom:10px">
-          <label>Foto Paket / Tanda Terima <span class="req">*</span></label>
+          <label>Foto Paket / Penerima <span class="req">*</span></label>
           <div style="border:1.5px dashed var(--border);border-radius:var(--r8);padding:10px;text-align:center;background:#fff">
             <input type="file" id="edoc-in-file-input" accept="image/*" capture="environment" onchange="uploadEdocInboundReceipt(this)" style="display:none">
             <input type="hidden" id="edoc-in-photo">
-            <button type="button" class="btn-rs" onclick="document.getElementById('edoc-in-file-input').click()" style="padding:6px 12px;font-size:11.5px;background:#fff;border-color:var(--blue);color:var(--blue);font-weight:600">
-              📷 Ambil Foto (Kamera)
+            <button type="button" class="btn-rs" onclick="document.getElementById('edoc-in-file-input').click()" style="padding:6px 14px;font-size:11.5px;background:#fff;border-color:var(--blue);color:var(--blue);font-weight:600">
+              📸 Ambil Foto (Kamera / File)
             </button>
             <div id="edoc-in-preview-wrap" style="display:none;margin-top:8px;text-align:center">
               <img id="edoc-in-preview-img" src="" style="max-height:100px;border-radius:var(--r6);border:1px solid var(--border)">
@@ -9465,19 +9501,20 @@ html, body {
         <div class="frow" style="margin-bottom:0">
           <label>Tanda Tangan Penerima <span class="req">*</span></label>
           <div style="border:1px solid var(--border);background:#fff;border-radius:var(--r8);overflow:hidden;position:relative">
-            <canvas id="edoc-in-sig-pad" width="500" height="130" style="display:block;width:100%;height:130px;touch-action:none;cursor:crosshair;user-select:none;-webkit-user-select:none"></canvas>
-            <button type="button" onclick="clearEdocInSignature()" style="position:absolute;top:6px;right:6px;background:var(--red-l);color:var(--red);border:1px solid rgba(239,68,68,0.3);border-radius:4px;font-size:10px;padding:2px 6px;cursor:pointer">Hapus</button>
+            <canvas id="edoc-in-sig-pad" width="500" height="120" style="display:block;width:100%;height:120px;touch-action:none;cursor:crosshair;user-select:none;-webkit-user-select:none"></canvas>
+            <button type="button" onclick="clearEdocInSignature()" style="position:absolute;top:6px;right:6px;background:var(--red-l);color:var(--red);border:1px solid rgba(239,68,68,0.3);border-radius:4px;font-size:10px;padding:2px 8px;cursor:pointer">Hapus</button>
           </div>
-          <div style="font-size:10.5px;color:var(--slate);margin-top:4px">Minta penerima menandatangani di area atas.</div>
         </div>
       </div>
 
-      <div id="edoc-in-err" style="background:var(--red-l);color:var(--red);padding:8px 12px;border-radius:var(--r6);font-size:11.5px;margin:10px 0;display:none"></div>
-      <div id="edoc-in-ok" style="background:var(--green-l);color:var(--green-d);padding:8px 12px;border-radius:var(--r6);font-size:11.5px;margin:10px 0;display:none;font-weight:600"></div>
+      <div id="edoc-in-err" style="background:var(--red-l);color:var(--red);padding:9px 14px;border-radius:var(--r6);font-size:12px;margin:10px 0;display:none"></div>
+      <div id="edoc-in-ok" style="background:var(--green-l);color:var(--green-d);padding:9px 14px;border-radius:var(--r6);font-size:12px;margin:10px 0;display:none;font-weight:600"></div>
 
-      <div style="display:flex;gap:8px;justify-content:flex-end;padding-top:12px;border-top:1px solid var(--border2)">
+      <div style="display:flex;gap:10px;justify-content:flex-end;padding-top:14px;border-top:1px solid var(--border2);flex-wrap:wrap">
         <button class="btn-prev" onclick="closeEdocInboundModal()">✕ Batal</button>
-        <button class="btn-next" id="btn-edoc-in-submit" onclick="submitEdocInbound()">💾 Simpan Serah Terima</button>
+        <button class="btn-next" id="btn-edoc-in-submit" onclick="submitEdocInbound()" style="background:#059669;font-weight:700;padding:10px 18px">
+          📥 Simpan ke Draft Inbound
+        </button>
       </div>
     </div>
   </div>
@@ -9779,26 +9816,74 @@ html, body {
 
 
 <!-- E-DOC HANDOVER MODAL -->
-<div class="modal-overlay" id="edoc-handover-overlay" onclick="if(event.target===this)closeEdocHandoverModal()">
-  <div class="modal" style="max-width:560px">
-    <div class="modal-head"><div><div class="modal-ttl">Serahkan Dokumen ke User</div><div class="modal-sub">Penyerahan fisik dokumen ke penerima</div></div><button class="modal-close" onclick="closeEdocHandoverModal()">✕ Tutup</button></div>
-    <div style="padding:20px 22px;overflow-y:auto;max-height:80vh">
-      <input type="hidden" id="edh-id">
-      <div class="frow">
-        <label>Diserahkan Kepada <span class="req">*</span></label>
-        <input type="text" id="edh-to" placeholder="Nama orang yang menerima fisik dokumen">
+<!-- MODAL SERAH TERIMA BATCH / BUNDLE PAKET DOKUMEN INBOUND (1x FOTO & 1x TTD) -->
+<div class="modal-overlay" id="edoc-handover-overlay" style="display:none" onclick="if(event.target===this)closeEdocHandoverModal()">
+  <div class="modal" style="max-width:580px;border-radius:20px;overflow:hidden">
+    <div class="modal-head" style="background:linear-gradient(135deg, rgba(16,185,129,0.1), transparent)">
+      <div>
+        <div class="modal-ttl" style="display:flex;align-items:center;gap:8px">📦 Serah Terima Paket Dokumen Inbound</div>
+        <div class="modal-sub">Serahkan bundle dokumen sekaligus ke penerima dengan 1 foto dan 1 tanda tangan digital</div>
       </div>
-      <div class="frow">
-        <label>Foto Bukti Serah Terima <span class="req">*</span></label>
-        <input type="file" id="edh-file-input" accept="image/*" onchange="uploadEdocHandoverProof(this)">
-        <input type="hidden" id="edh-proof-path">
-        <div id="edh-preview-wrap" style="display:none;margin-top:6px">
-          <img id="edh-preview-img" src="" style="max-height:100px;border-radius:var(--r6);border:1px solid var(--border)" alt="Bukti Handover">
+      <button class="modal-close" onclick="closeEdocHandoverModal()">✕</button>
+    </div>
+    <div style="padding:20px 24px;overflow-y:auto;max-height:80vh">
+      <input type="hidden" id="edh-id">
+      <input type="hidden" id="edh-ids">
+
+      <!-- BUNDLE DOCUMENT SUMMARY CARD -->
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:16px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+          <div style="font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.05em">
+            📄 Daftar Dokumen Dalam Paket (<span id="edh-bundle-count">1</span>)
+          </div>
+          <span class="own-badge" id="edh-bundle-badge">Bundle Paket</span>
+        </div>
+        <div id="edh-bundle-list" style="display:flex;flex-direction:column;gap:8px;max-height:160px;overflow-y:auto">
+          <!-- Item dokumen bundle dimasukkan dinamis -->
         </div>
       </div>
-      <div class="frow"><label>Catatan Penyerahan</label><textarea id="edh-notes" placeholder="Misal: Diterima langsung, atau dititipkan di meja..."></textarea></div>
-      <div id="edh-err" style="background:var(--red-l);color:var(--red);padding:8px 12px;border-radius:var(--r6);font-size:11.5px;margin-bottom:10px;display:none"></div>
-      <div style="display:flex;gap:8px;justify-content:flex-end;padding-top:10px;border-top:1px solid var(--border2)"><button class="btn-prev" onclick="closeEdocHandoverModal()">✕ Batal</button><button class="btn-next" id="btn-edh-submit" onclick="submitEdocHandover()">📤 Konfirmasi Penyerahan</button></div>
+
+      <div class="frow">
+        <label>Nama Pengambil / Diserahkan Kepada <span class="req">*</span></label>
+        <input type="text" id="edh-to" placeholder="Nama karyawan yang mengambil dokumen fisik">
+      </div>
+
+      <!-- 1x FOTO BUKTI SERAH TERIMA -->
+      <div class="frow" style="margin-bottom:14px">
+        <label>Foto Bukti Penyerahan Paket <span class="req">*</span></label>
+        <div style="border:1.5px dashed var(--border);border-radius:12px;padding:12px;text-align:center;background:#fff">
+          <input type="file" id="edh-file-input" accept="image/*" capture="environment" onchange="uploadEdocHandoverProof(this)" style="display:none">
+          <input type="hidden" id="edh-proof-path">
+          <button type="button" class="btn-rs" onclick="document.getElementById('edh-file-input').click()" style="padding:7px 16px;font-size:12px;background:#fff;border-color:var(--blue);color:var(--blue);font-weight:600">
+            📸 Ambil Foto Penerima / Paket
+          </button>
+          <div id="edh-preview-wrap" style="display:none;margin-top:10px;text-align:center">
+            <img id="edh-preview-img" src="" style="max-height:110px;border-radius:8px;border:1px solid var(--border)" alt="Bukti Handover">
+          </div>
+        </div>
+      </div>
+
+      <!-- 1x TANDA TANGAN DIGITAL PENERIMA -->
+      <div class="frow" style="margin-bottom:14px">
+        <label>Tanda Tangan Digital Penerima <span class="req">*</span></label>
+        <div style="border:1px solid var(--border);background:#fff;border-radius:12px;overflow:hidden;position:relative">
+          <canvas id="edh-sig-pad" width="500" height="130" style="display:block;width:100%;height:130px;touch-action:none;cursor:crosshair;user-select:none;-webkit-user-select:none"></canvas>
+          <button type="button" onclick="clearEdhSignature()" style="position:absolute;top:8px;right:8px;background:var(--red-l);color:var(--red);border:1px solid rgba(239,68,68,0.3);border-radius:6px;font-size:10.5px;padding:3px 8px;cursor:pointer">Hapus TTD</button>
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-top:4px">Minta penerima menandatangani di kotak atas sebagai bukti serah terima resmi.</div>
+      </div>
+
+      <div class="frow"><label>Catatan Penyerahan (Opsional)</label><textarea id="edh-notes" placeholder="Misal: Diterima langsung lengkap dengan dokumen asli..."></textarea></div>
+
+      <div id="edh-err" style="background:var(--red-l);color:var(--red);padding:9px 14px;border-radius:var(--r6);font-size:12px;margin-bottom:12px;display:none"></div>
+      <div id="edh-ok" style="background:var(--green-l);color:var(--green-d);padding:9px 14px;border-radius:var(--r6);font-size:12px;margin-bottom:12px;display:none;font-weight:600"></div>
+
+      <div style="display:flex;gap:10px;justify-content:flex-end;padding-top:12px;border-top:1px solid var(--border2)">
+        <button class="btn-prev" onclick="closeEdocHandoverModal()">✕ Batal</button>
+        <button class="btn-next" id="btn-edh-submit" onclick="submitEdocHandover()" style="background:#059669;font-weight:700;padding:10px 18px">
+          ✅ Selesaikan Serah Terima Paket
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -11450,7 +11535,7 @@ var API={
 
 // ════ DUAL-ENGINE API ROUTER (GAS WebApp + GitHub Pages Hybrid) ════
 var DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwGWJu-yKAJAmcLBzOu825p-F-D83eMhdO_lVnBzau5b3vlvTVvw8pDUu7PrvQN6QYRMQ/exec";
-var PNS_APP_BUILD = "2026.11.04.v3";
+var PNS_APP_BUILD = "2026.11.04.v4";
 
 // Auto-purge stale or broken localStorage URLs from older deployments
 try {
@@ -13236,7 +13321,7 @@ function renderEdocList(rows){
     
     if(isGsStaff){
       if(r.direction === 'inbound' && st !== 'Diserahkan ke User') {
-        html+='<button class="ent-btn ent-btn-handover" onclick="openEdocHandoverModal('+r.id+',\''+esc(r.doc_no)+'\',\''+esc(r.recipient_name)+'\')" title="Serahkan Dokumen Fisik ke User Penerima">'+_entIcons.handover+' Serahkan</button>';
+        html+='<button class="ent-btn ent-btn-handover" onclick="openEdocBatchHandoverModal(\''+esc(r.recipient_name)+'\',['+r.id+'])" title="Serahkan Dokumen Fisik ke User Penerima">'+_entIcons.handover+' Serahkan</button>';
       } else {
         html+='<button class="ent-btn ent-btn-blue" onclick="openEdocStatusModal('+r.id+',\''+esc(r.doc_no)+'\',\''+esc(r.doc_title)+'\',\''+esc(r.status)+'\',\''+esc(r.courier_name||'')+'\',\''+esc(r.tracking_no||'')+'\','+(r.courier_cost||0)+',\''+esc(r.gs_notes||'')+'\',\''+esc(r.delivery_type||'OB / Messenger GS')+'\',\''+esc(r.courier_type||'')+'\',\''+esc(r.attachment||'')+'\')" title="Kelola Penugasan & Status GS">'+_entIcons.gear+' GS</button>';
       }
@@ -13664,7 +13749,8 @@ function submitEdocStatus(){
 
 // ── E-DOC: HANDOVER PENYERAHAN DOKUMEN ──
 
-function openEdocHandoverModal(id, docNo, recipient) {
+function openEdocHandoverModal(id, docNo, recipient) { return openEdocBatchHandoverModal(recipient, [id]); }
+function _oldOpenEdocHandoverModal(id, docNo, recipient) {
   document.getElementById('edoc-handover-overlay').classList.add('open');
   document.body.style.overflow='hidden';
   document.getElementById('edh-id').value = id;
@@ -17410,6 +17496,166 @@ function copyGCalReqNo() {
   }).catch(function() {
     showAlert('Nomor reservasi: ' + reqNo, 'ok');
   });
+}
+
+
+// ══════════════════════════════════════════════════════════════════════
+// 💎 E-DOC INBOUND DRAFTING & BATCH BUNDLE HANDOVER ENGINE
+// ══════════════════════════════════════════════════════════════════════
+var edhSigPad = null;
+var edhSigCtx = null;
+var edhSigDrawing = false;
+var edhSigHasDrawn = false;
+
+function toggleEdocImmediateHandover(isChecked) {
+  var sec = document.getElementById('edoc-in-immediate-section');
+  var btn = document.getElementById('btn-edoc-in-submit');
+  if (sec) sec.style.display = isChecked ? 'block' : 'none';
+  if (btn) {
+    btn.innerHTML = isChecked ? '✍️ Simpan &amp; Serahkan Langsung' : '📥 Simpan ke Draft Inbound';
+    btn.style.background = isChecked ? '#2563eb' : '#059669';
+  }
+  if (isChecked) {
+    setTimeout(initEdocInSignature, 60);
+  }
+}
+
+function initEdhSignature() {
+  edhSigPad = document.getElementById('edh-sig-pad');
+  if (!edhSigPad) return;
+
+  var container = edhSigPad.parentElement;
+  var displayWidth = (container && container.clientWidth) ? container.clientWidth : (edhSigPad.clientWidth || 480);
+  var displayHeight = 130;
+  var dpr = window.devicePixelRatio || 1;
+
+  edhSigPad.style.width = '100%';
+  edhSigPad.style.height = displayHeight + 'px';
+  edhSigPad.width = Math.round(displayWidth * dpr);
+  edhSigPad.height = Math.round(displayHeight * dpr);
+
+  edhSigCtx = edhSigPad.getContext('2d');
+  edhSigCtx.setTransform(1, 0, 0, 1, 0, 0);
+  edhSigCtx.scale(dpr, dpr);
+
+  clearEdhSignature();
+
+  function getPos(evt) {
+    var rect = edhSigPad.getBoundingClientRect();
+    var clientX = evt.clientX;
+    var clientY = evt.clientY;
+    if (clientX === undefined && evt.touches && evt.touches.length > 0) {
+      clientX = evt.touches[0].clientX;
+      clientY = evt.touches[0].clientY;
+    }
+    return {
+      x: clientX - rect.left,
+      y: clientY - rect.top
+    };
+  }
+
+  function startStroke(pos) {
+    edhSigDrawing = true;
+    edhSigHasDrawn = true;
+    edhSigPad.removeAttribute('data-empty');
+    edhSigCtx.beginPath();
+    edhSigCtx.moveTo(pos.x, pos.y);
+  }
+
+  function moveStroke(pos) {
+    if (!edhSigDrawing) return;
+    edhSigCtx.lineWidth = 2.5;
+    edhSigCtx.lineCap = 'round';
+    edhSigCtx.lineJoin = 'round';
+    edhSigCtx.strokeStyle = '#0f172a';
+    edhSigCtx.lineTo(pos.x, pos.y);
+    edhSigCtx.stroke();
+  }
+
+  function endStroke() {
+    edhSigDrawing = false;
+  }
+
+  edhSigPad.onmousedown = function(e) { startStroke(getPos(e)); };
+  edhSigPad.onmousemove = function(e) { moveStroke(getPos(e)); };
+  window.addEventListener('mouseup', endStroke);
+
+  edhSigPad.ontouchstart = function(e) { e.preventDefault(); startStroke(getPos(e)); };
+  edhSigPad.ontouchmove = function(e) { e.preventDefault(); moveStroke(getPos(e)); };
+  window.addEventListener('touchend', endStroke);
+}
+
+function clearEdhSignature() {
+  if (!edhSigCtx || !edhSigPad) return;
+  edhSigCtx.clearRect(0, 0, edhSigPad.width, edhSigPad.height);
+  edhSigHasDrawn = false;
+  edhSigPad.setAttribute('data-empty', 'true');
+}
+
+// Open Handover Modal for Single or Batch Bundle of Documents
+function openEdocBatchHandoverModal(recipientName, docIds) {
+  var m = document.getElementById('edoc-handover-overlay');
+  if (!m) return;
+  m.style.display = 'flex';
+  m.classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  set('edh-to', recipientName || '');
+  set('edh-notes', '');
+  set('edh-proof-path', '');
+  var fInp = document.getElementById('edh-file-input');
+  if (fInp) fInp.value = '';
+  var prevWrap = document.getElementById('edh-preview-wrap');
+  if (prevWrap) prevWrap.style.display = 'none';
+  var err = document.getElementById('edh-err');
+  if (err) err.style.display = 'none';
+  var ok = document.getElementById('edh-ok');
+  if (ok) ok.style.display = 'none';
+
+  // Cari dokumen-dokumen milik penerima ini yang masih status Inbound Pending
+  var allDocs = (_raw && _raw.edoc) || _edocRows || [];
+  var matched = [];
+  if (docIds && docIds.length) {
+    matched = allDocs.filter(function(d){ return docIds.indexOf(Number(d.id)) !== -1; });
+  } else if (recipientName) {
+    matched = allDocs.filter(function(d){
+      return (d.direction === 'inbound' || String(d.doc_no).indexOf('IN') !== -1) &&
+             String(d.status).indexOf('Diserahkan') === -1 &&
+             String(d.recipient_name || '').toLowerCase().trim() === recipientName.toLowerCase().trim();
+    });
+  }
+
+  var bCount = document.getElementById('edh-bundle-count');
+  var bList = document.getElementById('edh-bundle-list');
+  var idsInput = document.getElementById('edh-ids');
+  var idInput = document.getElementById('edh-id');
+
+  if (matched.length > 0) {
+    if (bCount) bCount.textContent = matched.length;
+    var idsArr = matched.map(function(d){ return d.id; });
+    if (idsInput) idsInput.value = idsArr.join(',');
+    if (idInput) idInput.value = idsArr[0];
+
+    if (bList) {
+      var html = '';
+      matched.forEach(function(d, idx){
+        html += '<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#fff;border-radius:8px;border:1px solid var(--border)">';
+        html += '  <div>';
+        html += '    <div style="font-weight:700;color:var(--navy);font-size:12.5px">' + (idx+1) + '. ' + esc(d.doc_title) + '</div>';
+        html += '    <div style="font-size:11px;color:var(--muted)">' + esc(d.doc_no) + ' • Dari: <strong>' + esc(d.sender_company || d.sender_name || 'Eksternal') + '</strong></div>';
+        html += '  </div>';
+        html += '  <span class="badge-status-diterima" style="font-size:10px;padding:2px 6px">Pending Inbound</span>';
+        html += '</div>';
+      });
+      bList.innerHTML = html;
+    }
+  } else {
+    if (bCount) bCount.textContent = '1';
+    if (idsInput) idsInput.value = docIds ? docIds.join(',') : '';
+    if (bList) bList.innerHTML = '<div style="font-size:12px;color:var(--muted)">Dokumen Terpilih</div>';
+  }
+
+  setTimeout(initEdhSignature, 60);
 }
 
 </body>
