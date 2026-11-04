@@ -7422,6 +7422,90 @@ html, body {
    🎯 BUTTON PINTASAN KOMPAK & TIDAK KEBESARAN ("button pintasan jangan terlalu besar")
    ══════════════════════════════════════════════════════════════════════════ */
 
+
+/* ══════════════════════════════════════════════════════════════════════════
+   💎 KPI CARDS SEBAGAI BUTTON INTERAKTIF (LANGSUNG CARD JADI BUTTON)
+   ══════════════════════════════════════════════════════════════════════════ */
+.kpi {
+  cursor: pointer !important;
+  user-select: none !important;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  position: relative !important;
+  outline: none !important;
+}
+
+.kpi:hover {
+  transform: translateY(-4px) scale(1.012) !important;
+  box-shadow: 0 14px 28px -6px rgba(0, 0, 0, 0.12), 0 0 0 1.5px rgba(16, 185, 129, 0.35) !important;
+}
+
+.kpi:active {
+  transform: translateY(-1px) scale(0.995) !important;
+  box-shadow: 0 6px 14px -3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.kpi::after {
+  content: '↗';
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  opacity: 0;
+  transform: translate(-3px, 3px);
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+.kpi:hover::after {
+  opacity: 0.9;
+  transform: translate(0, 0);
+  color: var(--green);
+}
+
+[data-theme='dark'] .kpi:hover {
+  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.5), 0 0 0 1.5px rgba(52, 211, 153, 0.4) !important;
+}
+
+/* Normalisasi .bld-card pada Layanan General Services agar proporsional dan tidak terpotong */
+.bld-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
+  gap: 12px !important;
+}
+
+.bld-card {
+  padding: 14px 16px !important;
+  min-height: auto !important;
+  max-height: none !important;
+  height: auto !important;
+  border-radius: 14px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.bld-card:hover {
+  transform: translateY(-3px) scale(1.01) !important;
+  box-shadow: 0 8px 20px -3px rgba(16, 185, 129, 0.18) !important;
+}
+
+.bld-name {
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  margin-bottom: 4px !important;
+}
+
+.bld-loc {
+  font-size: 11px !important;
+  line-height: 1.35 !important;
+  opacity: 0.85 !important;
+  white-space: normal !important;
+}
 /* Hub Layanan & Modul Aplikasi di Dashboard */
 .bld-grid {
   display: grid !important;
@@ -7927,108 +8011,53 @@ html, body {
     </div>
     <div class="page active" id="page-dashboard">
 
-            <!-- QUICK APP HUB (MODUL AKTIF GENERAL SERVICES) -->
-      <div style="margin-bottom:24px;">
-        <h3 style="font-size:16px;color:var(--navy);margin-bottom:12px;font-weight:700">Hub Layanan &amp; Modul Aplikasi</h3>
-        <div class="bld-grid">
-          
-          <div class="bld-card" onclick="navTo('calendar')" style="background: linear-gradient(135deg, #fffbeb, #fef3c7); border-color:#fde68a">
-            <div class="bld-icon" style="color:#d97706">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M3 10h18M5 10v11M19 10v11M9 10v11M15 10v11M4 10l8-6 8 6"/></svg>
-            </div>
-            <div class="bld-name" style="color:#78350f">Booking Ruang</div>
-            <div class="bld-loc" style="color:#b45309">Jadwal &amp; Reservasi Meeting</div>
-          </div>
-
-          <div class="bld-card" onclick="navTo('zoom')" style="background: linear-gradient(135deg, #f5f3ff, #ede9fe); border-color:#ddd6fe">
-            <div class="bld-icon" style="color:#7c3aed">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-            </div>
-            <div class="bld-name" style="color:#5b21b6">Meeting Virtual</div>
-            <div class="bld-loc" style="color:#6d28d9">Lisensi &amp; Link Zoom Pro</div>
-          </div>
-
-          <div class="bld-card" onclick="navTo('mobilisasi')" style="background: linear-gradient(135deg, #f0f9ff, #e0f2fe); border-color:#bae6fd">
-            <div class="bld-icon" style="color:#0284c7">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 11.1 2 11.5 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
-            </div>
-            <div class="bld-name" style="color:#075985">Mobil Dinas</div>
-            <div class="bld-loc" style="color:#0369a1">Peminjaman Mobil &amp; Driver</div>
-          </div>
-
-          <div class="bld-card" onclick="navTo('atk')" style="background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-color:#a7f3d0">
-            <div class="bld-icon" style="color:#059669">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/><path d="m15 5 4 4"/></svg>
-            </div>
-            <div class="bld-name" style="color:#065f46">Request ATK</div>
-            <div class="bld-loc" style="color:#047857">Permintaan Barang &amp; Perlengkapan</div>
-          </div>
-
-          <div class="bld-card gs-only-feature" onclick="navTo('atk-stock')" style="display:none;background: linear-gradient(135deg, #f0fdfa, #ccfbf1); border-color:#99f6e4">
-            <div class="bld-icon" style="color:#0d9488">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
-            </div>
-            <div class="bld-name" style="color:#115e59">Stok &amp; Mutasi ATK</div>
-            <div class="bld-loc" style="color:#0f766e">Saldo Gudang &amp; Riwayat BKB</div>
-          </div>
-
-          <div class="bld-card" onclick="navTo('edoc')" style="background: linear-gradient(135deg, #eff6ff, #dbeafe); border-color:#bfdbfe">
-            <div class="bld-icon" style="color:#2563eb">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-            </div>
-            <div class="bld-name" style="color:#1e3a8a">Pengiriman E-Doc</div>
-            <div class="bld-loc" style="color:#1d4ed8">Dokumen Tercatat &amp; Ekspedisi</div>
-          </div>
-
-        </div>
-      </div>
-<h3 style="font-size:16px;color:var(--navy);margin-bottom:12px;font-weight:700">Ringkasan Aktivitas (KPI)</h3>
-      <div class="kpi-strip" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
-        <div class="kpi c-green">
+            <h3 style="font-size:16px;color:var(--navy);margin-bottom:12px;font-weight:700">Ringkasan Aktivitas (KPI)</h3>
+            <div class="kpi-strip" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+        <div class="kpi c-green kpi-btn" onclick="navTo('calendar')" role="button" tabindex="0" title="Buka Kalender & Jadwal Ruang Meeting">
           <div class="kpi-lbl">Ruang Meeting</div>
           <div style="display:flex;align-items:flex-end;justify-content:space-between">
             <div>
-              <div class="kpi-val" id="v-tot">–</div>
-              <div class="kpi-sub"><span id="v-tot-badge" class="kpi-badge badge-eq">–</span><span>vs bln lalu</span></div>
+              <div class="kpi-val" id="v-tot">—</div>
+              <div class="kpi-sub"><span id="v-tot-badge" class="kpi-badge badge-eq">—</span><span>vs bln lalu</span></div>
             </div>
             <svg id="spark-tot" class="kpi-spark-line" width="60" height="28" viewBox="0 0 60 28"></svg>
           </div>
         </div>
-        <div class="kpi c-violet">
+        <div class="kpi c-violet kpi-btn" onclick="navTo('zoom')" role="button" tabindex="0" title="Buka Jadwal & Lisensi Meeting Virtual Zoom">
           <div class="kpi-lbl">Meeting Virtual</div>
           <div style="display:flex;align-items:flex-end;justify-content:space-between">
             <div>
-              <div class="kpi-val" id="v-virt">–</div>
+              <div class="kpi-val" id="v-virt">—</div>
               <div class="kpi-sub"><span style="color:var(--muted)">sesi Zoom</span></div>
             </div>
             <span style="font-size:22px;align-self:flex-end;margin-bottom:2px">📹</span>
           </div>
         </div>
-        <div class="kpi c-indigo">
+        <div class="kpi c-indigo kpi-btn" onclick="navTo('edoc')" role="button" tabindex="0" title="Buka Pengiriman & Tracking Dokumen E-Doc">
           <div class="kpi-lbl">E-Doc Pengiriman</div>
           <div style="display:flex;align-items:flex-end;justify-content:space-between">
             <div>
-              <div class="kpi-val" id="v-edoc">–</div>
+              <div class="kpi-val" id="v-edoc">—</div>
               <div class="kpi-sub" id="v-edoc-sub"><span style="color:var(--muted)">dokumen tercatat</span></div>
             </div>
             <span style="font-size:22px;align-self:flex-end;margin-bottom:2px">📦</span>
           </div>
         </div>
-        <div class="kpi c-amber">
+        <div class="kpi c-amber kpi-btn" onclick="navTo('mobilisasi')" role="button" tabindex="0" title="Buka Peminjaman & Jadwal Mobil Dinas">
           <div class="kpi-lbl">Mobilisasi Mobil</div>
           <div style="display:flex;align-items:flex-end;justify-content:space-between">
             <div>
-              <div class="kpi-val" id="v-car">–</div>
+              <div class="kpi-val" id="v-car">—</div>
               <div class="kpi-sub" id="v-car-sub"><span style="color:var(--muted)">perjalanan dinas</span></div>
             </div>
             <span style="font-size:22px;align-self:flex-end;margin-bottom:2px">🚗</span>
           </div>
         </div>
-        <div class="kpi c-emerald">
+        <div class="kpi c-emerald kpi-btn" onclick="navTo('atk')" role="button" tabindex="0" title="Buka Permintaan & Katalog Barang ATK">
           <div class="kpi-lbl">Permintaan ATK</div>
           <div style="display:flex;align-items:flex-end;justify-content:space-between">
             <div>
-              <div class="kpi-val" id="v-atk">–</div>
+              <div class="kpi-val" id="v-atk">—</div>
               <div class="kpi-sub" id="v-atk-sub"><span style="color:var(--muted)">kebutuhan kerja</span></div>
             </div>
             <span style="font-size:22px;align-self:flex-end;margin-bottom:2px">✏️</span>
@@ -10925,7 +10954,7 @@ var API={
 
 // ════ DUAL-ENGINE API ROUTER (GAS WebApp + GitHub Pages Hybrid) ════
 var DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwGWJu-yKAJAmcLBzOu825p-F-D83eMhdO_lVnBzau5b3vlvTVvw8pDUu7PrvQN6QYRMQ/exec";
-var PNS_APP_BUILD = "2026.11.04.v1";
+var PNS_APP_BUILD = "2026.11.04.v2";
 
 // Auto-purge stale or broken localStorage URLs from older deployments
 try {
