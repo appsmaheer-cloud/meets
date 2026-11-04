@@ -8292,6 +8292,7 @@ html, body {
     </div>
   </div>
 </div>
+</div> <!-- ══ CLOSE #login-screen ══ -->
 
 <!-- ══════════════════════════════════════════════════════════════════════════
      2. APLIKASI UTAMA (100% Identik dashboard.php dengan Semua Halaman & Modal)
@@ -10924,6 +10925,8 @@ function hideLoginScreen() {
     as.style.setProperty('display', 'flex', 'important');
     as.classList.remove('hidden');
     as.classList.add('active');
+    as.style.visibility = 'visible';
+    as.style.opacity = '1';
   }
 }
 
@@ -10939,6 +10942,9 @@ function showLoginScreen() {
   if (ls) {
     ls.style.setProperty('display', 'flex', 'important');
     ls.classList.remove('hidden');
+    ls.style.visibility = 'visible';
+    ls.style.opacity = '1';
+    ls.style.zIndex = '99999';
   }
 }
 
@@ -11147,7 +11153,7 @@ function showRegMsg(txt, isErr){
 }
 
 // ══ BOOTSTRAP AUTO-LOGIN ON LOAD ══
-(function initGasApp(){
+function bootstrapAppSession() {
   var saved = null;
   try { saved = localStorage.getItem('pns_session'); } catch(e){}
   if (saved) {
@@ -11157,15 +11163,21 @@ function showRegMsg(txt, isErr){
     } catch(e){}
   }
 
-  window.addEventListener('DOMContentLoaded', function(){
-    if (_session && _session.id) {
-      hideLoginScreen();
+  if (_session && (_session.id || _session.nama)) {
+    hideLoginScreen();
+    if (typeof showDash === 'function') {
       showDash();
-    } else {
-      showLoginScreen();
     }
-  });
-})();
+  } else {
+    showLoginScreen();
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootstrapAppSession);
+} else {
+  bootstrapAppSession();
+}
 
 // ── E-DOC INBOUND (ONE-STEP HANDOVER) ──
 
@@ -11535,7 +11547,7 @@ var API={
 
 // ════ DUAL-ENGINE API ROUTER (GAS WebApp + GitHub Pages Hybrid) ════
 var DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwGWJu-yKAJAmcLBzOu825p-F-D83eMhdO_lVnBzau5b3vlvTVvw8pDUu7PrvQN6QYRMQ/exec";
-var PNS_APP_BUILD = "2026.11.04.v4";
+var PNS_APP_BUILD = "2026.11.04.v5";
 
 // Auto-purge stale or broken localStorage URLs from older deployments
 try {
