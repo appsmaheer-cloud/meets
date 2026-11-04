@@ -7773,6 +7773,391 @@ html, body {
 }
 
 </style>
+
+/* ══════════════════════════════════════════════════════════════════════════
+   💎 GOOGLE CALENDAR STYLE EVENT POPUP CARD (UI UX PRO MAX)
+   ══════════════════════════════════════════════════════════════════════════ */
+.gcal-popup-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 999999 !important;
+  background: rgba(15, 23, 42, 0.45) !important;
+  backdrop-filter: blur(8px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(140%) !important;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px !important;
+  animation: gcalFadeIn 0.2s ease-out;
+}
+
+.gcal-popup-overlay.open {
+  display: flex !important;
+}
+
+@keyframes gcalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes gcalCardPop {
+  0% { transform: scale(0.92) translateY(12px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.gcal-popup-card {
+  background: #ffffff !important;
+  border-radius: 24px !important;
+  width: 100% !important;
+  max-width: 480px !important;
+  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.28), 0 0 1px 1px rgba(0, 0, 0, 0.08) !important;
+  overflow: hidden !important;
+  position: relative !important;
+  animation: gcalCardPop 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  color: #1e293b !important;
+  font-family: inherit !important;
+}
+
+[data-theme='dark'] .gcal-popup-card {
+  background: #1e293b !important;
+  color: #f8fafc !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 28px 70px -14px rgba(0, 0, 0, 0.75), 0 0 1px 1px rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Top Toolbar */
+.gcal-top-bar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 14px 18px 10px !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme='dark'] .gcal-top-bar {
+  border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.gcal-top-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.gcal-room-pill {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  padding: 4px 10px !important;
+  border-radius: 999px !important;
+  background: rgba(16, 185, 129, 0.12) !important;
+  color: #059669 !important;
+}
+
+.gcal-room-pill.pill-besar {
+  background: rgba(245, 158, 11, 0.15) !important;
+  color: #d97706 !important;
+}
+
+.gcal-room-pill.pill-kecil {
+  background: rgba(16, 185, 129, 0.15) !important;
+  color: #059669 !important;
+}
+
+.gcal-room-pill.pill-virtual {
+  background: rgba(124, 58, 237, 0.15) !important;
+  color: #7c3aed !important;
+}
+
+.gcal-status-pill {
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  padding: 3px 8px !important;
+  border-radius: 999px !important;
+  background: rgba(16, 185, 129, 0.1) !important;
+  color: #10b981 !important;
+}
+
+.gcal-status-pill.status-canc {
+  background: rgba(239, 68, 68, 0.1) !important;
+  color: #ef4444 !important;
+}
+
+.gcal-top-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.gcal-btn-icon {
+  background: transparent !important;
+  border: none !important;
+  color: #64748b !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.18s ease !important;
+}
+
+.gcal-btn-icon:hover {
+  background: rgba(0, 0, 0, 0.06) !important;
+  color: #0f172a !important;
+}
+
+[data-theme='dark'] .gcal-btn-icon:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}
+
+.gcal-btn-delete:hover {
+  color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.12) !important;
+}
+
+/* Event Title & Color Block */
+.gcal-header-row {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 16px !important;
+  padding: 18px 24px 12px !important;
+}
+
+.gcal-color-dot {
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 6px !important;
+  flex-shrink: 0 !important;
+  margin-top: 4px !important;
+  background: #f59e0b;
+}
+
+.gcal-color-dot.dot-besar { background: #f59e0b !important; }
+.gcal-color-dot.dot-kecil { background: #10b981 !important; }
+.gcal-color-dot.dot-virtual { background: #8b5cf6 !important; }
+
+.gcal-header-info {
+  flex: 1 !important;
+}
+
+.gcal-event-title {
+  font-size: 19px !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  color: var(--navy) !important;
+  margin: 0 0 6px 0 !important;
+}
+
+[data-theme='dark'] .gcal-event-title {
+  color: #f8fafc !important;
+}
+
+.gcal-event-time {
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  color: #64748b !important;
+}
+
+[data-theme='dark'] .gcal-event-time {
+  color: #94a3b8 !important;
+}
+
+/* Body Information List */
+.gcal-body-list {
+  padding: 4px 24px 18px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+  max-height: 52vh !important;
+  overflow-y: auto !important;
+}
+
+.gcal-row {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 16px !important;
+}
+
+.gcal-icon {
+  width: 22px !important;
+  flex-shrink: 0 !important;
+  color: #94a3b8 !important;
+  margin-top: 2px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.gcal-info {
+  flex: 1 !important;
+}
+
+.gcal-info-lbl {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: #94a3b8 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+.gcal-info-val {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: var(--navy) !important;
+  line-height: 1.4 !important;
+}
+
+[data-theme='dark'] .gcal-info-val {
+  color: #f1f5f9 !important;
+}
+
+.gcal-info-sub {
+  font-size: 12px !important;
+  color: #64748b !important;
+  margin-top: 2px !important;
+  line-height: 1.35 !important;
+}
+
+[data-theme='dark'] .gcal-info-sub {
+  color: #94a3b8 !important;
+}
+
+/* Zoom Container Inside Popup */
+.gcal-zoom-box {
+  background: rgba(124, 58, 237, 0.08) !important;
+  border: 1px solid rgba(124, 58, 237, 0.22) !important;
+  border-radius: 14px !important;
+  padding: 12px 14px !important;
+  margin-top: 4px !important;
+}
+
+[data-theme='dark'] .gcal-zoom-box {
+  background: rgba(124, 58, 237, 0.16) !important;
+  border-color: rgba(124, 58, 237, 0.35) !important;
+}
+
+.gcal-zoom-head {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-bottom: 8px !important;
+  font-size: 13px !important;
+}
+
+.gcal-zoom-body {
+  font-size: 12.5px !important;
+  color: #475569 !important;
+}
+
+[data-theme='dark'] .gcal-zoom-body {
+  color: #cbd5e1 !important;
+}
+
+/* Ticket Ref Badge */
+.gcal-ticket-ref {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 8px 12px !important;
+  background: rgba(0, 0, 0, 0.03) !important;
+  border-radius: 10px !important;
+  font-size: 11.5px !important;
+  color: #64748b !important;
+  margin-top: 6px !important;
+}
+
+[data-theme='dark'] .gcal-ticket-ref {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #94a3b8 !important;
+}
+
+/* Footer Actions */
+.gcal-footer {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 14px 20px !important;
+  background: rgba(0, 0, 0, 0.02) !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-theme='dark'] .gcal-footer {
+  background: rgba(0, 0, 0, 0.2) !important;
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.gcal-btn-action {
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  padding: 8px 14px !important;
+  border-radius: 10px !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  border: none !important;
+  transition: all 0.18s ease !important;
+}
+
+.gcal-btn-edit {
+  background: rgba(16, 185, 129, 0.14) !important;
+  color: #059669 !important;
+}
+
+.gcal-btn-edit:hover {
+  background: #10b981 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25) !important;
+}
+
+.gcal-btn-cancel {
+  background: rgba(239, 68, 68, 0.1) !important;
+  color: #ef4444 !important;
+}
+
+.gcal-btn-cancel:hover {
+  background: #ef4444 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25) !important;
+}
+
+.gcal-btn-close {
+  background: transparent !important;
+  color: #64748b !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  margin-left: auto !important;
+}
+
+.gcal-btn-close:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+  color: #0f172a !important;
+}
+
+[data-theme='dark'] .gcal-btn-close {
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  color: #cbd5e1 !important;
+}
+
+[data-theme='dark'] .gcal-btn-close:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}
+
+/* Kalender chips clickable cursor & hover */
+.cal-chip {
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+
+.cal-chip:hover {
+  transform: scale(1.04) !important;
+  filter: brightness(1.08) !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15) !important;
+  z-index: 5 !important;
+}
+
 </head>
 <body>
 <!-- ══════════════════════════════════════════════════════════════════════════
@@ -8767,6 +9152,117 @@ html, body {
   <button id="mob-fab" onclick="openModal()">+</button>
 
 <!-- BOOKING MODAL -->
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     💎 GOOGLE CALENDAR STYLE EVENT DETAIL POPUP MODAL (UI UX PRO MAX)
+     ══════════════════════════════════════════════════════════════════════ -->
+<div class="gcal-popup-overlay" id="gcal-event-overlay" onclick="if(event.target===this)closeGCalPopup()">
+  <div class="gcal-popup-card" role="dialog" aria-modal="true" aria-labelledby="gcal-pop-title">
+    
+    <!-- Top Action Toolbar -->
+    <div class="gcal-top-bar">
+      <div class="gcal-top-left">
+        <span class="gcal-room-pill" id="gcal-pop-room-badge">Ruang Meeting Besar</span>
+        <span class="gcal-status-pill" id="gcal-pop-status">Confirmed</span>
+      </div>
+      <div class="gcal-top-actions">
+        <button type="button" class="gcal-btn-icon" id="gcal-pop-btn-edit" onclick="onGCalEditClick()" title="Ubah Jadwal (Reschedule)" aria-label="Ubah Jadwal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </button>
+        <button type="button" class="gcal-btn-icon gcal-btn-delete" id="gcal-pop-btn-delete" onclick="onGCalDeleteClick()" title="Batalkan Reservasi" aria-label="Batalkan Reservasi">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+        </button>
+        <button type="button" class="gcal-btn-icon" onclick="closeGCalPopup()" title="Tutup" aria-label="Tutup">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Event Title & Color Dot -->
+    <div class="gcal-header-row">
+      <div class="gcal-color-dot" id="gcal-pop-dot"></div>
+      <div class="gcal-header-info">
+        <h3 class="gcal-event-title" id="gcal-pop-title">Agenda Meeting</h3>
+        <div class="gcal-event-time" id="gcal-pop-time">Kamis, 5 November 2026 • 09:00 – 11:00 WIB</div>
+      </div>
+    </div>
+
+    <!-- Body Information List (Google Calendar Clean Icons Layout) -->
+    <div class="gcal-body-list">
+      
+      <!-- Lokasi / Ruangan -->
+      <div class="gcal-row">
+        <div class="gcal-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="gcal-info">
+          <div class="gcal-info-val" id="gcal-pop-room">Ruang Meeting Besar</div>
+          <div class="gcal-info-sub" id="gcal-pop-capacity">Lantai 2 • Kapasitas 12–15 Orang • Smart TV 55", AC & Sound</div>
+        </div>
+      </div>
+
+      <!-- Pemohon / User -->
+      <div class="gcal-row">
+        <div class="gcal-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div class="gcal-info">
+          <div class="gcal-info-val" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span id="gcal-pop-person">Aditya Aji Asmoro</span>
+            <span class="own-badge" id="gcal-pop-mine-badge" style="display:none">Pengajuan Anda</span>
+          </div>
+          <div class="gcal-info-sub" id="gcal-pop-section">Tax • Financial &amp; Information System</div>
+        </div>
+      </div>
+
+      <!-- Keterangan / Agenda -->
+      <div class="gcal-row">
+        <div class="gcal-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="10" x2="3" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="21" y1="18" x2="7" y2="18"/></svg>
+        </div>
+        <div class="gcal-info">
+          <div class="gcal-info-lbl">Tujuan / Agenda Meeting:</div>
+          <div class="gcal-info-val" id="gcal-pop-notes" style="font-weight:400;margin-top:2px;white-space:pre-line">Koordinasi laporan bulanan</div>
+        </div>
+      </div>
+
+      <!-- Zoom Meeting Box (jika meeting virtual) -->
+      <div class="gcal-zoom-box" id="gcal-pop-zoom-box" style="display:none">
+        <div class="gcal-zoom-head">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+          <span style="font-weight:700;color:#5b21b6">Virtual Meeting Zoom Pro</span>
+        </div>
+        <div class="gcal-zoom-body" id="gcal-pop-zoom-content">
+          <!-- Diisi dinamis -->
+        </div>
+      </div>
+
+      <!-- Ref / Nomor Tiket -->
+      <div class="gcal-ticket-ref">
+        <span>No. Tiket: <strong id="gcal-pop-reqno">REQ-0001</strong></span>
+        <button type="button" class="btn-copy-mini" onclick="copyGCalReqNo()" title="Salin Nomor Tiket">📋 Salin</button>
+      </div>
+
+    </div>
+
+    <!-- Bottom Actions Footer -->
+    <div class="gcal-footer">
+      <div id="gcal-pop-owner-actions" style="display:flex;gap:8px">
+        <button type="button" class="gcal-btn-action gcal-btn-edit" onclick="onGCalEditClick()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          <span>Ubah Jadwal</span>
+        </button>
+        <button type="button" class="gcal-btn-action gcal-btn-cancel" onclick="onGCalDeleteClick()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          <span>Batalkan</span>
+        </button>
+      </div>
+      <button type="button" class="gcal-btn-action gcal-btn-close" onclick="closeGCalPopup()">Tutup</button>
+    </div>
+
+  </div>
+</div>
+
 <div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
   <div class="modal">
     <div class="modal-head">
@@ -10954,7 +11450,7 @@ var API={
 
 // ════ DUAL-ENGINE API ROUTER (GAS WebApp + GitHub Pages Hybrid) ════
 var DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwGWJu-yKAJAmcLBzOu825p-F-D83eMhdO_lVnBzau5b3vlvTVvw8pDUu7PrvQN6QYRMQ/exec";
-var PNS_APP_BUILD = "2026.11.04.v2";
+var PNS_APP_BUILD = "2026.11.04.v3";
 
 // Auto-purge stale or broken localStorage URLs from older deployments
 try {
@@ -11548,10 +12044,38 @@ function buildMonthIdx(rows){
     var ds=r.startDate||'';
     if(ds.length>10)ds=ds.substring(0,10);
     if(!ds||String(r.status||'').toLowerCase()==='cancelled')return;
-    var rk=/besar/i.test(r.room)?'besar':/kecil/i.test(r.room)?'kecil':(r.room===VIRTUAL_ROOM?'virtual':null);
+    var rk=/besar/i.test(r.room)?'besar':/kecil/i.test(r.room)?'kecil':((r.room===VIRTUAL_ROOM||(r.zoom&&String(r.zoom).trim()!==''))?'virtual':null);
     if(!rk)return;
     if(!idx[ds])idx[ds]=[];
-    idx[ds].push({room:rk,section:r.section||'',start:r.start||''});
+    var sh = 8, eh = 9;
+    if(r.start && r.start.length >= 16) sh = parseInt(r.start.substring(11, 13), 10);
+    if(r.end && r.end.length >= 16) {
+      eh = parseInt(r.end.substring(11, 13), 10);
+      var em = parseInt(r.end.substring(14, 16), 10);
+      if(em > 0) eh++;
+    }
+    if(eh <= sh) eh = sh + 1;
+    var item = {
+      room: rk,
+      roomFull: r.room || (rk==='besar'?'Ruang Meeting Besar':(rk==='kecil'?'Ruang Meeting Kecil':'Ruang Virtual (Zoom)')),
+      section: r.section || '',
+      start: r.start || '',
+      end: r.end || '',
+      startDate: ds,
+      startH: sh,
+      endH: eh,
+      person: r.person || r.user_name || '',
+      user_name: r.user_name || r.person || '',
+      tujuan: r.tujuan || 'Meeting',
+      reqNum: r.reqNum || r.req_no || '',
+      emailRaw: r.emailRaw || r.email || '',
+      userId: r.userId || r.user_id || '',
+      nik: r.nik || '',
+      zoom: r.zoom || '',
+      isMine: r.isMine,
+      status: r.status || 'Confirmed'
+    };
+    idx[ds].push(item);
   });
   return idx;
 }
@@ -11606,9 +12130,12 @@ function renderCal(){
     html+='<div class="cal-num">'+d+(isTdy?'<span class="today-dot"></span>':'')+'</div>';
     if(isHol)html+='<div class="holiday-lbl '+(hol.t==='C'?'hl-c':'hl-l')+'" title="'+esc(hol.n)+'">'+(hol.t==='C'?'◷ ':'● ')+esc(hol.n)+'</div>';
     var lim=isHol?1:2;
-    bks.slice(0,lim).forEach(function(bk){
+    bks.slice(0,lim).forEach(function(bk, bIdx){
       var sh=bk.start&&bk.start.length>=16?bk.start.substring(11,16):'';
-      html+='<div class="cal-chip cc-'+(bk.room==='besar'?'b':bk.room==='virtual'?'v':'k')+'"><span class="chip-dot"></span><span class="chip-txt">'+esc(bk.section)+'</span><span class="chip-time">'+sh+'</span></div>';
+      var bkKey = 'bk_' + (bk.reqNum || (dk + '_' + bIdx));
+      _gcalStore[bkKey] = bk;
+      var chipTitle = (bk.person ? bk.person + ': ' : '') + (bk.tujuan || bk.section || 'Booking');
+      html+='<div class="cal-chip cc-'+(bk.room==='besar'?'b':bk.room==='virtual'?'v':'k')+'" onclick="event.stopPropagation(); openGCalPopupByKey(\''+bkKey+'\')" title="'+esc(chipTitle)+'"><span class="chip-dot"></span><span class="chip-txt">'+esc(bk.person ? shortName(bk.person) : bk.section)+'</span><span class="chip-time">'+sh+'</span></div>';
     });
     if(bks.length>lim)html+='<div class="cal-more">+'+(bks.length-lim)+' lagi</div>';
     html+='</div>';
@@ -11651,7 +12178,9 @@ function renderDet(dk){
       if(isOcc){
         var isStart=(bk.startH===hh);
         var tip='data-tip-name="'+esc(bk.person)+'" data-tip-tuj="'+esc(bk.tujuan)+'" data-tip-sec="'+esc(bk.section)+'" data-tip-jam="'+pad(bk.startH)+':00–'+pad(bk.endH)+':00" data-tip-own="'+(isOwner?'1':'0')+'"';
-        html+='<div class="sbook '+rmCls+'" '+tip+' onmouseenter="showTip(event,this)" onmouseleave="hideTip()">';
+        var slotKey = 'slot_' + rm + '_' + dk + '_' + hh;
+        _gcalStore[slotKey] = bk;
+        html+='<div class="sbook '+rmCls+'" '+tip+' onclick="openGCalPopupByKey(\''+slotKey+'\')" onmouseenter="showTip(event,this)" onmouseleave="hideTip()">';
         if(isStart){
           html+='<div class="sbook-top"><span class="sn" title="'+esc(bk.person)+'">'+esc(shortName(bk.person))+'</span>';
           if(isOwner)html+='<span class="own-badge">Saya</span>';
@@ -11685,7 +12214,9 @@ function renderDet(dk){
       html+='<div class="st vt'+(isPast?' past':'')+'">'+h+'</div><div class="sc2">';
       if(list.length){
         var br=list.length>1;
-        html+='<div class="sbook sb-v">';
+        var virtKey = 'virt_' + dk + '_' + hh;
+        if(starters.length) _gcalStore[virtKey] = starters[0];
+        html+='<div class="sbook sb-v" onclick="openGCalPopupByKey(\''+virtKey+'\')">';
         if(starters.length){
           var first=starters[0];
           html+='<div class="sbook-top"><span class="sn" title="'+esc(first.person)+'">'+esc(shortName(first.person))+(starters.length>1?' +'+(starters.length-1):'')+'</span>';
@@ -16721,6 +17252,164 @@ function cancelVirtualRequest(id){
     if (typeof loadMyTicketsAll === 'function') loadMyTicketsAll();
     if (typeof silentRefresh === 'function') silentRefresh();
   }).catch(function(e){ showAlert('Gagal: ' + (e.message || 'Terjadi kesalahan'), 'err'); });
+}
+
+
+// ══════════════════════════════════════════════════════════════════════
+// 💎 GOOGLE CALENDAR POPUP ENGINE (UI UX PRO MAX)
+// ══════════════════════════════════════════════════════════════════════
+var _gcalStore = {};
+var _activeGCalBk = null;
+
+function openGCalPopupByKey(key) {
+  var bk = _gcalStore[key];
+  if (bk) showGCalEventPopup(bk);
+}
+
+function showGCalEventPopup(bk) {
+  if (!bk) return;
+  _activeGCalBk = bk;
+  var overlay = document.getElementById('gcal-event-overlay');
+  if (!overlay) return;
+
+  var isOwner = isCurrentUserBooking(bk);
+  var rm = bk.room || bk.physRoom || '';
+  var isBesar = /besar/i.test(rm) || /besar/i.test(bk.roomFull || '');
+  var isKecil = /kecil/i.test(rm) || /kecil/i.test(bk.roomFull || '');
+  var isVirt = (!isBesar && !isKecil) || /virtual/i.test(rm) || /zoom/i.test(rm) || (bk.zoom && String(bk.zoom).trim() !== '');
+
+  // Room badge & color dot
+  var dot = document.getElementById('gcal-pop-dot');
+  var badge = document.getElementById('gcal-pop-room-badge');
+  if (dot && badge) {
+    dot.className = 'gcal-color-dot ' + (isBesar ? 'dot-besar' : (isKecil ? 'dot-kecil' : 'dot-virtual'));
+    badge.className = 'gcal-room-pill ' + (isBesar ? 'pill-besar' : (isKecil ? 'pill-kecil' : 'pill-virtual'));
+    badge.textContent = isBesar ? '🏢 Ruang Meeting Besar' : (isKecil ? '🏠 Ruang Meeting Kecil' : '📹 Zoom Virtual');
+  }
+
+  // Status
+  var stEl = document.getElementById('gcal-pop-status');
+  var isCanc = String(bk.status || '').toLowerCase() === 'cancelled';
+  if (stEl) {
+    stEl.className = 'gcal-status-pill ' + (isCanc ? 'status-canc' : '');
+    stEl.textContent = isCanc ? '✕ Dibatalkan' : '✓ Confirmed';
+  }
+
+  // Edit / Delete top icons and footer actions
+  var btnEdit = document.getElementById('gcal-pop-btn-edit');
+  var btnDel = document.getElementById('gcal-pop-btn-delete');
+  var ownerActs = document.getElementById('gcal-pop-owner-actions');
+  var mineBadge = document.getElementById('gcal-pop-mine-badge');
+
+  var canModify = isOwner && !isCanc;
+  if (btnEdit) btnEdit.style.display = canModify ? 'flex' : 'none';
+  if (btnDel) btnDel.style.display = canModify ? 'flex' : 'none';
+  if (ownerActs) ownerActs.style.display = canModify ? 'flex' : 'none';
+  if (mineBadge) mineBadge.style.display = isOwner ? 'inline-block' : 'none';
+
+  // Title
+  var ttl = document.getElementById('gcal-pop-title');
+  if (ttl) ttl.textContent = bk.tujuan || 'Meeting Internal';
+
+  // Date & Time
+  var dtEl = document.getElementById('gcal-pop-time');
+  var sDate = bk.startDate || (bk.start && bk.start.length >= 10 ? bk.start.substring(0, 10) : TODAY);
+  var sh = bk.startH || (bk.start && bk.start.length >= 16 ? parseInt(bk.start.substring(11, 13), 10) : 8);
+  var eh = bk.endH || (bk.end && bk.end.length >= 16 ? parseInt(bk.end.substring(11, 13), 10) : 9);
+  if (dtEl) {
+    var parts = sDate.split('-');
+    var dn = '';
+    if (parts.length === 3) {
+      var dObj = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+      dn = DAYS_ID[(dObj.getDay() + 6) % 7] + ', ' + parseInt(parts[2]) + ' ' + MONTHS[parseInt(parts[1]) - 1] + ' ' + parts[0];
+    } else {
+      dn = fmtDate(sDate);
+    }
+    var dur = (eh - sh) > 0 ? (eh - sh) + ' jam' : '1 jam';
+    dtEl.textContent = dn + ' • ' + pad(sh) + ':00 – ' + pad(eh) + ':00 WIB (' + dur + ')';
+  }
+
+  // Location / Room Detail
+  var rmEl = document.getElementById('gcal-pop-room');
+  var capEl = document.getElementById('gcal-pop-capacity');
+  if (rmEl) rmEl.textContent = isBesar ? 'Ruang Meeting Besar (Head Office)' : (isKecil ? 'Ruang Meeting Kecil (Head Office)' : 'Ruang Virtual Zoom Meeting Pro');
+  if (capEl) {
+    capEl.textContent = isBesar 
+      ? 'Lantai 2 • Kapasitas 12–15 Orang • Smart TV 55", AC & Sound System' 
+      : (isKecil ? 'Lantai 2 • Kapasitas 4–6 Orang • Whiteboard, AC & Meja Diskusi' : 'Lisensi Zoom Pro PNS • HD Video, Breakout Rooms & Recording');
+  }
+
+  // Person & Section
+  var persEl = document.getElementById('gcal-pop-person');
+  var secEl = document.getElementById('gcal-pop-section');
+  if (persEl) persEl.textContent = bk.person || bk.user_name || 'Karyawan PNS';
+  if (secEl) secEl.textContent = bk.section ? (bk.section + ' • PT Pratama Nusantara Sakti') : 'PT Pratama Nusantara Sakti';
+
+  // Notes
+  var notesEl = document.getElementById('gcal-pop-notes');
+  if (notesEl) notesEl.textContent = bk.tujuan || 'Tidak ada catatan tambahan.';
+
+  // Zoom Box
+  var zmBox = document.getElementById('gcal-pop-zoom-box');
+  var zmContent = document.getElementById('gcal-pop-zoom-content');
+  if (zmBox && zmContent) {
+    if (isVirt || bk.zoom) {
+      zmBox.style.display = 'block';
+      var zStr = bk.zoom || '';
+      var isUrl = zStr.indexOf('http') !== -1;
+      var zHtml = '<div style="margin-bottom:6px">Informasi: <strong>' + esc(zStr || 'Link Zoom Pro Tersedia') + '</strong></div>';
+      if (isUrl) {
+        zHtml += '<a href="' + esc(zStr) + '" target="_blank" class="btn-next" style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;font-size:12px;text-decoration:none">🎥 Gabung Zoom Meeting</a>';
+      }
+      zmContent.innerHTML = zHtml;
+    } else {
+      zmBox.style.display = 'none';
+    }
+  }
+
+  // Ticket No
+  var reqNoEl = document.getElementById('gcal-pop-reqno');
+  var reqId = bk.reqNum || bk.req_no || bk.id || 'REQ-BOOKING';
+  if (reqNoEl) reqNoEl.textContent = 'REQ-' + String(reqId).padStart(4, '0');
+
+  // Open overlay
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGCalPopup() {
+  var overlay = document.getElementById('gcal-event-overlay');
+  if (overlay) overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function onGCalEditClick() {
+  if (!_activeGCalBk) return;
+  var bk = _activeGCalBk;
+  closeGCalPopup();
+  var isBesar = /besar/i.test(bk.room || bk.roomFull || '');
+  var rm = isBesar ? 'besar' : (/kecil/i.test(bk.room || bk.roomFull || '') ? 'kecil' : VIRTUAL_ROOM);
+  var sh = bk.startH || (bk.start && bk.start.length >= 16 ? parseInt(bk.start.substring(11, 13), 10) : 8);
+  var eh = bk.endH || (bk.end && bk.end.length >= 16 ? parseInt(bk.end.substring(11, 13), 10) : 9);
+  var sDate = bk.startDate || (bk.start && bk.start.length >= 10 ? bk.start.substring(0, 10) : TODAY);
+  doRS(bk.reqNum || bk.req_no, bk.tujuan, sDate, sh, eh, rm);
+}
+
+function onGCalDeleteClick() {
+  if (!_activeGCalBk) return;
+  var reqNo = _activeGCalBk.reqNum || _activeGCalBk.req_no;
+  closeGCalPopup();
+  doCancel(reqNo);
+}
+
+function copyGCalReqNo() {
+  if (!_activeGCalBk) return;
+  var reqNo = 'REQ-' + String(_activeGCalBk.reqNum || _activeGCalBk.req_no || '').padStart(4, '0');
+  navigator.clipboard.writeText(reqNo).then(function() {
+    showAlert('Nomor reservasi ' + reqNo + ' berhasil disalin!', 'ok');
+  }).catch(function() {
+    showAlert('Nomor reservasi: ' + reqNo, 'ok');
+  });
 }
 
 </body>
