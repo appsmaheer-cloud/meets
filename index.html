@@ -10791,6 +10791,48 @@ function submitEdocInbound() {
 var HOLIDAYS=window.HOLIDAYS||{};
 
 var _session=window.SESSION||null,_raw=null,_occMap={};
+// ?? CEK KEPEMILIKAN REQUEST / BOOKING KARYAWAN (USER SENDIRI) ??
+function isCurrentUserBooking(bk) {
+  if (!bk || !_session) return false;
+  if (_session.isAdmin === true) return true;
+  if (bk.isMine === true) return true;
+
+  var myName = String(_session.nama || _session.name || '').trim().toLowerCase();
+  var myId = String(_session.id || _session.user_id || '').trim();
+  var myEmail = String(_session.email || '').trim().toLowerCase();
+  var myNik = String(_session.nik || '').trim().toLowerCase();
+
+  var bName = String(bk.person || bk.user_name || bk.requester_name || bk.sender_name || bk.nama || '').trim().toLowerCase();
+  var bId = String(bk.userId || bk.user_id || '').trim();
+  var bEmail = String(bk.email || bk.emailRaw || bk.user_email || '').trim().toLowerCase();
+  var bNik = String(bk.nik || '').trim().toLowerCase();
+
+  // 1. Direct ID match
+  if (myId && bId && myId === bId) return true;
+
+  // 2. Direct Email match
+  if (myEmail && bEmail && myEmail === bEmail) return true;
+
+  // 3. NIK match (e.g. jika nama mengandung NIK atau bNik cocok)
+  if (myNik) {
+    if (bNik && myNik === bNik) return true;
+    if (bName && bName.indexOf(myNik) !== -1) return true;
+  }
+
+  // 4. Fuzzy Name match (membersihkan section/departemen kurung seperti "Aditya Aji Asmoro (Tax)")
+  if (myName && bName) {
+    var cleanBName = bName.split('(')[0].split('[')[0].trim();
+    var cleanMyName = myName.split('(')[0].split('[')[0].trim();
+    if (cleanBName && cleanMyName) {
+      if (cleanBName === cleanMyName) return true;
+      if (cleanBName.indexOf(cleanMyName) !== -1 || cleanMyName.indexOf(cleanBName) !== -1) return true;
+    }
+    if (bName.indexOf(myName) !== -1 || myName.indexOf(bName) !== -1) return true;
+  }
+
+  return false;
+}
+
 var _curY=new Date().getFullYear(),_curM=new Date().getMonth();
 var _selDate=null,_mRoom='',_mStep=1,_rsNum=null;
 var _activePage='dashboard';
@@ -10881,7 +10923,7 @@ var API={
 
 // ════ DUAL-ENGINE API ROUTER (GAS WebApp + GitHub Pages Hybrid) ════
 var DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwGWJu-yKAJAmcLBzOu825p-F-D83eMhdO_lVnBzau5b3vlvTVvw8pDUu7PrvQN6QYRMQ/exec";
-var PNS_APP_BUILD = "2026.11.03.v6";
+var PNS_APP_BUILD = "2026.11.04.v1";
 
 // Auto-purge stale or broken localStorage URLs from older deployments
 try {
@@ -11287,7 +11329,9 @@ function showDash(){
 function loadDash(){
   var uid = (_session && (_session.id || _session.user_id)) || '';
   var uemail = (_session && _session.email) || '';
-  api('getDashboard', { userId: uid, email: uemail }).then(function(d){
+  var uname = (_session && (_session.nama || _session.name)) || '';
+  api('getDashboard', { userId: uid, email: uemail, userName: uname, nama: uname }).then(function(d){
+    if(d&&d.recentRows){d.recentRows.forEach(function(r){if(!r.isMine&&isCurrentUserBooking(r))r.isMine=true;});}
     _raw=d;
     _occMap=normOcc(d.occupancyMap||{});
     renderKPI(d);
@@ -11340,7 +11384,9 @@ function silentRefresh(){
   updRbar();
   var uid = (_session && (_session.id || _session.user_id)) || '';
   var uemail = (_session && _session.email) || '';
-  api('getDashboard', { userId: uid, email: uemail }).then(function(d){
+  var uname = (_session && (_session.nama || _session.name)) || '';
+  api('getDashboard', { userId: uid, email: uemail, userName: uname, nama: uname }).then(function(d){
+    if(d&&d.recentRows){d.recentRows.forEach(function(r){if(!r.isMine&&isCurrentUserBooking(r))r.isMine=true;});}
     var sy=_curY,sm=_curM,sd=_selDate;
     _raw=d;
     _occMap=normOcc(d.occupancyMap||{});
@@ -11493,7 +11539,7 @@ function buildDayIdx(rows,ds){
     if(r.start&&r.start.length>=16)sh=parseInt(r.start.substring(11,13),10);
     if(r.end&&r.end.length>=16){eh=parseInt(r.end.substring(11,13),10);var em=parseInt(r.end.substring(14,16),10);if(em>0)eh++;}
     if(eh<=sh)eh=sh+1;
-    var info={person:r.person||'–',tujuan:r.tujuan||'–',section:r.section||'–',status:r.status||'',reqNum:r.reqNum||'',emailRaw:r.emailRaw||'',cancelled:can,startH:sh,endH:eh,room:r.room||'',physRoom:rk,zoom:r.zoom||''};
+    var info={person:r.person||r.user_name||'?',user_name:r.user_name||r.person||'',tujuan:r.tujuan||'?',section:r.section||'?',status:r.status||'',reqNum:r.reqNum||r.req_no||'',emailRaw:r.emailRaw||r.email||'',userId:r.userId||r.user_id||'',nik:r.nik||'',isMine:r.isMine,cancelled:can,startH:sh,endH:eh,room:r.room||'',physRoom:rk,zoom:r.zoom||''};
     for(var h=sh;h<eh;h++){
       var hs=pad(h)+':00';
       if(!idx[hs])idx[hs]={besar:null,kecil:null,virtual:[]};
@@ -11567,7 +11613,7 @@ function renderDet(dk){
       var hh=parseInt(h),isPast=isTdy&&hh<nowH;
       var bk=idx[h]?idx[h][rm]:null;
       var isOcc=!!(bk&&!bk.cancelled);
-      var isOwner=bk&&_session&&(_session.isAdmin||(_session.email&&_session.email.toLowerCase()===(bk.emailRaw||'').toLowerCase()));
+      var isOwner=isCurrentUserBooking(bk);
       var rmCls=rm==='besar'?'sb-b':'sb-k';
       html+='<div class="srow'+(isOcc?' srow-occ':'')+'">';
       html+='<div class="st'+(isPast?' past':'')+'">'+h+'</div><div class="sc2">';
@@ -11686,11 +11732,19 @@ function quickBook(dk,h,room){
   },100);
 }
 function doCancel(reqNum){
-  if(!confirm('Batalkan booking #'+reqNum+'?'))return;
-  api('cancelBooking',{reqNum:reqNum}).then(function(){
-    showAlert('Booking #'+reqNum+' dibatalkan.','ok');
-    setTimeout(silentRefresh,500);
-  }).catch(function(e){showAlert('Gagal: '+e.message,'err');});
+  if(!confirm('Batalkan reservasi booking #'+reqNum+'?')) return;
+  var canceller = (_session && (_session.nama || _session.name)) || 'User';
+  var uId = (_session && (_session.id || _session.user_id)) || '';
+  var uMail = (_session && _session.email) || '';
+  var isAdmin = !!(_session && _session.isAdmin);
+  api('cancelBooking', { reqNum: reqNum, reqNo: reqNum, cancelledByName: canceller, userId: uId, email: uMail, isAdmin: isAdmin }).then(function(){
+    showAlert('Booking #'+reqNum+' berhasil dibatalkan.', 'ok');
+    setTimeout(function(){
+      if (typeof silentRefresh === 'function') silentRefresh();
+      if (typeof loadMyTicketsAll === 'function') loadMyTicketsAll();
+      if (typeof loadDashboardData === 'function') loadDashboardData();
+    }, 500);
+  }).catch(function(e){ showAlert('Gagal: ' + (e.message || 'Terjadi kesalahan'), 'err'); });
 }
 function doRS(reqNum,tujuan,curDate,startH,endH,rm){
   _rsNum=reqNum;
@@ -11909,6 +11963,10 @@ function submitBooking(){
   btn.disabled=true;txt.innerHTML='<div class="spinner"></div>Memproses…';
   var ds=document.getElementById('m-date').value,sh=document.getElementById('m-start-h').value,eh=document.getElementById('m-end-h').value;
   var payload={section:_session.section,person:_session.nama,room:_mRoom,tujuan:document.getElementById('m-tujuan').value,startDate:ds+'T'+sh+':00',endDate:ds+'T'+eh+':00',zoom:document.getElementById('m-zoom-chk').checked?document.getElementById('m-zoom').value:''};
+  payload.userId = (_session && (_session.id || _session.user_id)) || '';
+  payload.email = (_session && _session.email) || '';
+  payload.userName = (_session && (_session.nama || _session.name)) || '';
+  payload.isAdmin = !!(_session && _session.isAdmin);
   var rsNum=_rsNum;if(rsNum)payload.reqNum=rsNum;
   var targetAction=rsNum?'rescheduleBooking':'submitBooking';
   api(targetAction,{data:payload}).then(function(r){
@@ -11948,7 +12006,7 @@ var _myTicketsRaw=null,_myTicketTab='all';
 
 function renderTickets(){
   if(!_raw)return;
-  var mine=(_raw.recentRows||[]).filter(function(r){return r.isMine;});
+  var mine=(_raw.recentRows||[]).filter(function(r){return r.isMine || isCurrentUserBooking(r);});
   set('ticket-count',mine.length+' tiket');
   var target=document.getElementById('ticket-list');
   if(!target)return;
@@ -11984,7 +12042,9 @@ function loadMyTicketsAll(){
   if(!el)return;
   el.innerHTML='<div class="empty-state"><div class="spinner-lg"></div></div>';
   var uid = (_session && (_session.id || _session.user_id)) || '';
-  api('getMyTickets', { userId: uid }).then(function(d){
+  var umail = (_session && _session.email) || '';
+  var uname = (_session && (_session.nama || _session.name)) || '';
+  api('getMyTickets', { userId: uid, email: umail, userName: uname, nama: uname }).then(function(d){
     _myTicketsRaw=d;
     renderMyTicketsFull();
   }).catch(function(e){
@@ -12125,6 +12185,7 @@ function renderMyTicketsFull(){
         html+='<a href="'+esc(it.raw.zoom_link)+'" target="_blank" class="btn-next" style="font-size:11px;padding:5px 10px;text-decoration:none">🚀 Join Zoom</a>';
         html+='<button class="btn-rs" style="font-size:11px;padding:5px 10px" onclick="copyZoomInvite('+it.raw.id+',\'my\')">📋 Salin &amp; Claim Host</button>';
       }
+      if(!isCanc && it.raw.id){ html+='<button class="btn-cancel" style="font-size:11px;padding:5px 10px" onclick="cancelVirtualRequest('+it.raw.id+')">✕ Batal</button>'; }
     }else if(it.type==='atk'){
       html+='<button class="btn-rs" style="font-size:11px;padding:5px 10px" onclick="openAtkDetailModal('+it.raw.id+')">🔍 Rincian</button>';
       if(it.status==='Diajukan'){
@@ -16619,6 +16680,17 @@ function loadMasterOptions() {
 }
 
 </script>
+
+function cancelVirtualRequest(id){
+  if(!confirm('Batalkan permohonan Zoom ini?')) return;
+  var canceller = (_session && (_session.nama || _session.name)) || 'User';
+  api('cancelVirtual', { id: id, cancelledByName: canceller }).then(function(){
+    showAlert('Permohonan Zoom berhasil dibatalkan.', 'ok');
+    if (typeof loadVirtualList === 'function') loadVirtualList();
+    if (typeof loadMyTicketsAll === 'function') loadMyTicketsAll();
+    if (typeof silentRefresh === 'function') silentRefresh();
+  }).catch(function(e){ showAlert('Gagal: ' + (e.message || 'Terjadi kesalahan'), 'err'); });
+}
 
 </body>
 </html>
