@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id" data-theme="light">
 <head>
   <meta charset="UTF-8">
@@ -9613,91 +9613,158 @@ body.in-app .layout {
 
 <!-- E-DOC INBOUND MODAL (Pencatatan & Serah Terima Langsung) -->
 <!-- MODAL PENCATATAN DOKUMEN MASUK (INBOUND: DRAFT & SERAH TERIMA) -->
+<!-- E-DOC INBOUND (Catat Dokumen Masuk / Penyerahan Dokumen - Mobile-First Quick Draft & Grouped Handover) -->
 <div class="modal-overlay" id="edoc-inbound-overlay" onclick="if(event.target===this)closeEdocInboundModal()">
   <div class="modal" style="max-width:580px;border-radius:20px;overflow:hidden">
     <div class="modal-head" style="background:linear-gradient(135deg, rgba(37,99,235,0.08), transparent)">
       <div>
-        <div class="modal-ttl" style="display:flex;align-items:center;gap:8px">📥 Catat Dokumen Masuk (Inbound Eksternal)</div>
-        <div class="modal-sub">Catat paket dari kurir luar sebagai draft. Satu penerima dapat menerima beberapa dokumen sebelum diserahkan serentak.</div>
+        <div class="modal-ttl" style="display:flex;align-items:center;gap:8px">📥 Penyerahan Dokumen &amp; Dokumen Masuk</div>
+        <div class="modal-sub">Catat paket kurir sebagai draf penerimaan, atau serahkan paket bundle per orang.</div>
       </div>
       <button class="modal-close" onclick="closeEdocInboundModal()">✕</button>
     </div>
-    <div style="padding:20px 24px;overflow-y:auto;max-height:80vh">
-      
-      <div class="frow2">
-        <div>
-          <label>Dari (Vendor / Kurir / Pengirim) <span class="req">*</span></label>
-          <input type="text" id="edoc-in-sender" list="master-vendors-list" placeholder="Mis. JNE Express, J&T, PT ABC">
-        </div>
-        <div>
-          <label>Tujuan / Penerima Internal <span class="req">*</span></label>
-          <input type="text" id="edoc-in-recipient" list="master-users-list" placeholder="Ketik nama karyawan penerima...">
-        </div>
-      </div>
 
-      <div class="frow">
-        <label>Perihal / Isi Dokumen Paket <span class="req">*</span></label>
-        <input type="text" id="edoc-in-title" placeholder="Mis. Dokumen Kontrak Sewa, Faktur Pajak Asli, Invoice Vendor">
-      </div>
-
-      <div class="frow2">
-        <div>
-          <label>No. Resi Kurir / AWB <span style="font-size:11px;color:var(--muted)">(Opsional)</span></label>
-          <input type="text" id="edoc-in-resi" placeholder="Mis. JP1234567890">
-        </div>
-        <div>
-          <label>Lokasi Simpan di GS <span style="font-size:11px;color:var(--muted)">(Opsional)</span></label>
-          <input type="text" id="edoc-in-lokasi" placeholder="Mis. Meja Resepsionis / Rak Inbound A">
-        </div>
-      </div>
-
-      <!-- TOGGLE PILIHAN: DRAFT ATAU LANGSUNG SERAH TERIMA -->
-      <div style="background:rgba(37,99,235,0.06);border:1px solid rgba(37,99,235,0.2);border-radius:12px;padding:12px 14px;margin:14px 0">
-        <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-weight:600;font-size:13px;color:var(--navy);margin:0">
-          <input type="checkbox" id="edoc-in-immediate-chk" onchange="toggleEdocImmediateHandover(this.checked)" style="width:18px;height:18px;accent-color:var(--green)">
-          <span>Penerima sudah ada di tempat (Langsung ambil foto &amp; tanda tangan sekarang)</span>
-        </label>
-        <div style="font-size:11px;color:var(--muted);margin-top:4px;margin-left:28px">
-          Biarkan tidak tercentang untuk menyimpan sebagai <strong>Draft Paket Inbound</strong>. Tanda tangan dan foto bisa dilakukan nanti saat user mengambil bundle dokumennya.
-        </div>
-      </div>
-
-      <!-- AREA BUKTI SERAH TERIMA LANGSUNG (HANYA AKTIF JIKA IMMEDIATE DICENTANG) -->
-      <div id="edoc-in-immediate-section" style="display:none;background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:var(--r10);padding:14px;margin-bottom:14px">
-        <div style="font-size:11.5px;font-weight:700;color:var(--green-d);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">📷 Bukti Serah Terima Langsung</div>
-        <div class="frow" style="margin-bottom:10px">
-          <label>Foto Paket / Penerima <span class="req">*</span></label>
-          <div style="border:1.5px dashed var(--border);border-radius:var(--r8);padding:10px;text-align:center;background:#fff">
-            <input type="file" id="edoc-in-file-input" accept="image/*" capture="environment" onchange="uploadEdocInboundReceipt(this)" style="display:none">
-            <input type="hidden" id="edoc-in-photo">
-            <button type="button" class="btn-rs" onclick="document.getElementById('edoc-in-file-input').click()" style="padding:6px 14px;font-size:11.5px;background:#fff;border-color:var(--blue);color:var(--blue);font-weight:600">
-              📸 Ambil Foto (Kamera / File)
-            </button>
-            <div id="edoc-in-preview-wrap" style="display:none;margin-top:8px;text-align:center">
-              <img id="edoc-in-preview-img" src="" style="max-height:100px;border-radius:var(--r6);border:1px solid var(--border)">
-            </div>
-          </div>
-        </div>
-        
-        <div class="frow" style="margin-bottom:0">
-          <label>Tanda Tangan Penerima <span class="req">*</span></label>
-          <div style="border:1px solid var(--border);background:#fff;border-radius:var(--r8);overflow:hidden;position:relative">
-            <canvas id="edoc-in-sig-pad" width="500" height="120" style="display:block;width:100%;height:120px;touch-action:none;cursor:crosshair;user-select:none;-webkit-user-select:none"></canvas>
-            <button type="button" onclick="clearEdocInSignature()" style="position:absolute;top:6px;right:6px;background:var(--red-l);color:var(--red);border:1px solid rgba(239,68,68,0.3);border-radius:4px;font-size:10px;padding:2px 8px;cursor:pointer">Hapus</button>
-          </div>
-        </div>
-      </div>
-
-      <div id="edoc-in-err" style="background:var(--red-l);color:var(--red);padding:9px 14px;border-radius:var(--r6);font-size:12px;margin:10px 0;display:none"></div>
-      <div id="edoc-in-ok" style="background:var(--green-l);color:var(--green-d);padding:9px 14px;border-radius:var(--r6);font-size:12px;margin:10px 0;display:none;font-weight:600"></div>
-
-      <div style="display:flex;gap:10px;justify-content:flex-end;padding-top:14px;border-top:1px solid var(--border2);flex-wrap:wrap">
-        <button class="btn-prev" onclick="closeEdocInboundModal()">✕ Batal</button>
-        <button class="btn-next" id="btn-edoc-in-submit" onclick="submitEdocInbound()" style="background:#059669;font-weight:700;padding:10px 18px">
-          📥 Simpan ke Draft Inbound
+    <!-- 2-SEGMENT TAB BAR -->
+    <div style="padding:10px 20px 0;background:#f8fafc;border-bottom:1px solid #e2e8f0">
+      <div style="display:flex;background:#e2e8f0;padding:3px;border-radius:12px;gap:3px">
+        <button type="button" id="tab-btn-edoc-in-draft" onclick="switchEdocInboundTab('draft')" style="flex:1;padding:8px 10px;font-size:12.5px;font-weight:700;border:none;border-radius:9px;background:#fff;color:#1e293b;box-shadow:0 1px 3px rgba(0,0,0,0.08);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px">
+          <span>📥 1. Catat Dokumen Masuk</span>
+        </button>
+        <button type="button" id="tab-btn-edoc-in-ready" onclick="switchEdocInboundTab('ready')" style="flex:1;padding:8px 10px;font-size:12.5px;font-weight:700;border:none;border-radius:9px;background:transparent;color:#475569;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px">
+          <span>🤝 2. Siap Diserahkan</span>
+          <span id="tab-badge-edoc-in-ready" style="display:none;background:#2563eb;color:#fff;border-radius:10px;padding:1px 7px;font-size:10.5px;font-weight:800">0</span>
         </button>
       </div>
     </div>
+
+    <!-- TAB 1: FORM CATAT DRAF DOKUMEN MASUK -->
+    <div id="edoc-in-tab-draft" style="padding:16px 20px 20px;overflow-y:auto;max-height:76vh">
+      
+      <!-- 1. TUJUAN / PENERIMA DOKUMEN -->
+      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:12px 14px;margin-bottom:14px">
+        <label style="font-weight:700;font-size:12px;color:#1e293b;text-transform:uppercase;letter-spacing:.03em;display:block;margin-bottom:6px">
+          🎯 Tujuan / Penerima Dokumen <span class="req">*</span>
+        </label>
+        <input type="text" id="edoc-in-recipient" list="master-users-list" placeholder="Ketik / pilih nama karyawan penerima..." style="font-size:14px;font-weight:600">
+        <div style="font-size:11px;color:#64748b;margin-top:4px">
+          Semua dokumen draf di bawah akan ditujukan kepada karyawan ini.
+        </div>
+      </div>
+
+      <!-- 2. KOTAK INPUT CEPAT DOKUMEN (MOBILE OPTIMIZED) -->
+      <div style="background:#eff6ff;border:1.5px solid #bfdbfe;border-radius:12px;padding:12px 14px;margin-bottom:14px">
+        <div style="font-size:12px;font-weight:700;color:#1d4ed8;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <span>📝 Tambah Dokumen ke Draf</span>
+          <span style="font-size:11px;font-weight:normal;color:#3b82f6">Bisa tambah banyak sebelum simpan</span>
+        </div>
+
+        <div class="frow" style="margin-bottom:8px">
+          <label style="font-size:11.5px">Dari Mana (Vendor / Kurir / Pengirim) <span class="req">*</span></label>
+          <input type="text" id="edoc-in-sender" list="master-vendors-list" placeholder="Mis. SiCepat, JNE, Bank Mandiri, Pajak Pratama">
+        </div>
+
+        <div style="display:grid;grid-template-columns:110px 1fr;gap:10px;margin-bottom:10px">
+          <div>
+            <label style="font-size:11.5px">Jumlah Dokumen</label>
+            <input type="number" id="edoc-in-qty" min="1" value="1" style="text-align:center;font-weight:700">
+          </div>
+          <div>
+            <label style="font-size:11.5px">Keterangan / Perihal Dokumen <span class="req">*</span></label>
+            <input type="text" id="edoc-in-title" placeholder="Mis. Faktur Pajak, Surat Perjanjian, BAST">
+          </div>
+        </div>
+
+        <button type="button" onclick="addEdocDraftItem()" style="width:100%;background:#2563eb;color:#fff;border:none;border-radius:8px;padding:9px;font-size:12.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px">
+          <span>➕ Tambahkan ke List Draf</span>
+        </button>
+      </div>
+
+      <!-- 3. TAMPILAN LIST KARTU DRAF (MOBILE-FRIENDLY CARD LIST) -->
+      <div id="edoc-in-draft-container" style="margin-bottom:14px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:12px;font-weight:700;color:#334155">📋 Daftar Dokumen dalam Draf:</span>
+          <span id="edoc-in-draft-count" style="font-size:11.5px;font-weight:700;color:#059669;background:#ecfdf5;padding:2px 8px;border-radius:10px">0 Item</span>
+        </div>
+        <div id="edoc-in-draft-list" style="max-height:160px;overflow-y:auto;border:1px dashed #cbd5e1;border-radius:10px;padding:8px;background:#fafafa">
+          <div style="text-align:center;color:#94a3b8;font-size:12px;padding:14px">
+            Belum ada dokumen di draf. Isi form di atas lalu klik <strong>"Tambahkan ke List Draf"</strong>.
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. LOKASI & RESI (OPSIONAL) -->
+      <div class="frow2" style="margin-bottom:10px">
+        <div>
+          <label style="font-size:11px;color:#64748b">No. Resi / AWB (Opsional)</label>
+          <input type="text" id="edoc-in-resi" placeholder="Mis. JP1234567890">
+        </div>
+        <div>
+          <label style="font-size:11px;color:#64748b">Lokasi Simpan di GS</label>
+          <input type="text" id="edoc-in-lokasi" placeholder="Mis. Meja Resepsionis / Rak Inbound">
+        </div>
+      </div>
+
+      <!-- 5. TOGGLE: PENERIMA LANGSUNG ADA DI TEMPAT -->
+      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;margin-bottom:12px">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:600;font-size:12px;color:#1e293b;margin:0">
+          <input type="checkbox" id="edoc-in-immediate-chk" onchange="toggleEdocImmediateHandover(this.checked)" style="width:16px;height:16px;accent-color:#059669">
+          <span>Penerima sudah di tempat (Langsung foto &amp; tanda tangan sekarang)</span>
+        </label>
+      </div>
+
+      <!-- AREA SERAH TERIMA LANGSUNG (JIKA DICENTANG) -->
+      <div id="edoc-in-immediate-section" style="display:none;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:12px;margin-bottom:12px">
+        <div style="font-size:11px;font-weight:700;color:#166534;text-transform:uppercase;margin-bottom:6px">📷 Bukti Serah Terima Langsung</div>
+        <div class="frow" style="margin-bottom:8px">
+          <label style="font-size:11px">Foto Penyerahan Paket (Opsional)</label>
+          <input type="file" id="edoc-in-file-input" accept="image/*" capture="environment" onchange="uploadEdocInboundReceipt(this)" style="display:none">
+          <input type="hidden" id="edoc-in-photo">
+          <button type="button" class="btn-rs" onclick="document.getElementById('edoc-in-file-input').click()" style="padding:5px 12px;font-size:11px;background:#fff;border-color:#059669;color:#059669;font-weight:600">
+            📸 Ambil Foto Bukti
+          </button>
+          <div id="edoc-in-preview-wrap" style="display:none;margin-top:6px;text-align:center">
+            <img id="edoc-in-preview-img" src="" style="max-height:80px;border-radius:6px;border:1px solid #cbd5e1">
+          </div>
+        </div>
+        <div>
+          <label style="font-size:11px">Tanda Tangan Penerima</label>
+          <div style="border:1px solid #cbd5e1;background:#fff;border-radius:6px;overflow:hidden;position:relative">
+            <canvas id="edoc-in-sig-pad" width="500" height="100" style="display:block;width:100%;height:100px;touch-action:none;cursor:crosshair"></canvas>
+            <button type="button" onclick="clearEdocInSignature()" style="position:absolute;top:4px;right:4px;background:#fee2e2;color:#ef4444;border:1px solid #fca5a5;border-radius:4px;font-size:10px;padding:2px 6px;cursor:pointer">Hapus</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="edoc-in-err" style="background:#fee2e2;color:#b91c1c;padding:8px 12px;border-radius:6px;font-size:12px;margin:8px 0;display:none"></div>
+      <div id="edoc-in-ok" style="background:#dcfce7;color:#15803d;padding:8px 12px;border-radius:6px;font-size:12px;margin:8px 0;display:none;font-weight:600"></div>
+
+      <!-- FOOTER BUTTONS -->
+      <div style="display:flex;gap:8px;justify-content:flex-end;padding-top:12px;border-top:1px solid #e2e8f0;flex-wrap:wrap">
+        <button type="button" class="btn-prev" onclick="closeEdocInboundModal()" style="padding:8px 14px;font-size:12px">✕ Tutup</button>
+        <button type="button" class="btn-next" id="btn-edoc-in-submit" onclick="submitEdocInbound()" style="background:#059669;font-weight:700;padding:9px 18px;font-size:13px">
+          💾 Simpan Semua Dokumen ke Draf
+        </button>
+      </div>
+    </div>
+
+    <!-- TAB 2: DAFTAR DOKUMEN SIAP DISERAHKAN (PER PENERIMA) -->
+    <div id="edoc-in-tab-ready" style="display:none;padding:16px 20px 20px;overflow-y:auto;max-height:76vh">
+      <div style="margin-bottom:12px">
+        <div style="font-size:12px;color:#64748b;margin-bottom:8px">
+          Daftar paket dokumen masuk yang sudah diterima di GS dan menunggu diambil. Anda bisa menyerahkan <strong>seluruh dokumen milik orang tersebut sekaligus</strong> dengan 1 foto &amp; tanda tangan.
+        </div>
+        <input type="text" id="edoc-in-ready-search" oninput="filterEdocReadyHandover(this.value)" placeholder="🔍 Cari penerima / pengirim..." style="width:100%;font-size:12.5px;padding:8px 12px;border:1px solid #cbd5e1;border-radius:8px">
+      </div>
+
+      <div id="edoc-in-ready-list" style="display:flex;flex-direction:column;gap:10px;min-height:100px">
+        <!-- Rendered dynamically by renderEdocReadyHandoverList() -->
+      </div>
+
+      <div style="display:flex;justify-content:flex-end;padding-top:14px;border-top:1px solid #e2e8f0;margin-top:14px">
+        <button type="button" class="btn-prev" onclick="closeEdocInboundModal()" style="padding:8px 16px;font-size:12px">✕ Tutup</button>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -10829,67 +10896,6 @@ body.in-app .layout {
 </div>
 
 <!-- Datalists for Master Data Karyawan HO & Section Resmi -->
-<datalist id="master-users-list">
-  <option value="M. Miftahul Khoiry">General Services</option>
-  <option value="Aditya Aji Asmoro">Tax</option>
-  <option value="Andi Wijaya">Information Technology</option>
-  <option value="Angga Prasetya Nusantara">Accounting</option>
-  <option value="Arif Budiman">Organization Development & Performance Management</option>
-  <option value="Catur Handayani">Talent Acquisition & Monitoring</option>
-  <option value="Delia Syafira">Procurement & Purchasing</option>
-  <option value="Egi Madyagi">Budget</option>
-  <option value="Eka Widhyasmara">Procurement & Purchasing</option>
-  <option value="Evasari Veronica">General Services</option>
-  <option value="Evelyn Kangdinata">Compensation Benefit & Personal Admin</option>
-  <option value="Refacha Violany Putri">Talent Acquisition & Monitoring</option>
-  <option value="Fahrizal Rinaldi">Procurement & Purchasing</option>
-  <option value="Irwan Heriyanto">Compensation Benefit & Personal Admin</option>
-  <option value="Juandela Herina Putri">Information Technology</option>
-  <option value="Muhammad Ilham">Accounting</option>
-  <option value="M. Iqbal Nurhadi">Accounting</option>
-  <option value="Muhammad Maulana">Information Technology</option>
-  <option value="Effendi">Financial & Information System</option>
-  <option value="Mohamad Ronang Wibowo">Budget</option>
-  <option value="Nicholaus Cristiardy .S">Sales & Marketing</option>
-  <option value="Veronica Louisa Shirly">Finance</option>
-  <option value="Sri Wardani Rambe">Organization Development & Performance Management</option>
-  <option value="Tama Priambodo">Information Technology</option>
-  <option value="Widi Rizky Utami">Procurement & Purchasing</option>
-  <option value="Yuki Ratna Jayanti">Sales & Marketing</option>
-  <option value="Yohanes Tirto">HRGA</option>
-  <option value="Ricky Hartanto Tonorahardjo">Procurement & Purchasing</option>
-  <option value="Bury Hardjanto">Tax</option>
-  <option value="Endro Prayogi">Information Technology</option>
-  <option value="Rudiyanto Sumardi">Procurement & Purchasing</option>
-  <option value="Ari Irawan">General Services (OB)</option>
-  <option value="Ahdi Apriyadi">General Services (Driver)</option>
-  <option value="Defiandra Pratiwi Wibowo">Finance</option>
-</datalist>
-<datalist id="master-vendors-list">
-  <option value="JNE Express"></option>
-  <option value="J&T Express"></option>
-  <option value="SiCepat Ekspres"></option>
-  <option value="POS Indonesia"></option>
-  <option value="TIKI"></option>
-  <option value="GrabExpress / GoSend"></option>
-</datalist>
-<datalist id="master-sections-list">
-  <option value="General Services"></option>
-  <option value="Information Technology"></option>
-  <option value="Accounting"></option>
-  <option value="Tax"></option>
-  <option value="Finance"></option>
-  <option value="Budget"></option>
-  <option value="Procurement & Purchasing"></option>
-  <option value="Talent Acquisition & Monitoring"></option>
-  <option value="Organization Development & Performance Management"></option>
-  <option value="Compensation Benefit & Personal Admin"></option>
-  <option value="HRGA"></option>
-  <option value="Sales & Marketing"></option>
-  <option value="Financial & Information System"></option>
-</datalist>
-
-
 <!-- FLOATING GAS CONFIGURATION BUTTON & MODAL (GITHUB PAGES EXTENSION) -->
 <!-- Hidden by default for regular users: ONLY shown to Admins -->
 <div id="gas-floating-btn" style="position:fixed;bottom:18px;right:18px;z-index:999998;display:none;align-items:center;gap:8px">
@@ -10991,7 +10997,7 @@ function updateGasStatusDisplay() {
     if (btnLabel) btnLabel.textContent = 'Google Sheets (Aktif)';
   } else {
     if (indicator) indicator.style.background = '#ef4444';
-    if (statusSpan) statusSpan.innerHTML = '<span style="color:#ef4444;font-weight:700">&#9888; Belum Terhubung</span> — Masukkan URL Web App Apps Script di atas';
+    if (statusSpan) statusSpan.innerHTML = '<span style="color:#ef4444;font-weight:700">&#9888; Belum Terhubung</span> â€” Masukkan URL Web App Apps Script di atas';
     if (btnLabel) btnLabel.textContent = 'Hubungkan Sheets';
   }
 }
@@ -11072,6 +11078,65 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
+<datalist id="master-users-list">
+  <option value="M. Miftahul Khoiry">General Services</option>
+  <option value="Aditya Aji Asmoro">Tax</option>
+  <option value="Andi Wijaya">Information Technology</option>
+  <option value="Angga Prasetya Nusantara">Accounting</option>
+  <option value="Arif Budiman">Organization Development & Performance Management</option>
+  <option value="Catur Handayani">Talent Acquisition & Monitoring</option>
+  <option value="Delia Syafira">Procurement & Purchasing</option>
+  <option value="Egi Madyagi">Budget</option>
+  <option value="Eka Widhyasmara">Procurement & Purchasing</option>
+  <option value="Evasari Veronica">General Services</option>
+  <option value="Evelyn Kangdinata">Compensation Benefit & Personal Admin</option>
+  <option value="Refacha Violany Putri">Talent Acquisition & Monitoring</option>
+  <option value="Fahrizal Rinaldi">Procurement & Purchasing</option>
+  <option value="Irwan Heriyanto">Compensation Benefit & Personal Admin</option>
+  <option value="Juandela Herina Putri">Information Technology</option>
+  <option value="Muhammad Ilham">Accounting</option>
+  <option value="M. Iqbal Nurhadi">Accounting</option>
+  <option value="Muhammad Maulana">Information Technology</option>
+  <option value="Effendi">Financial & Information System</option>
+  <option value="Mohamad Ronang Wibowo">Budget</option>
+  <option value="Nicholaus Cristiardy .S">Sales & Marketing</option>
+  <option value="Veronica Louisa Shirly">Finance</option>
+  <option value="Sri Wardani Rambe">Organization Development & Performance Management</option>
+  <option value="Tama Priambodo">Information Technology</option>
+  <option value="Widi Rizky Utami">Procurement & Purchasing</option>
+  <option value="Yuki Ratna Jayanti">Sales & Marketing</option>
+  <option value="Yohanes Tirto">HRGA</option>
+  <option value="Ricky Hartanto Tonorahardjo">Procurement & Purchasing</option>
+  <option value="Bury Hardjanto">Tax</option>
+  <option value="Endro Prayogi">Information Technology</option>
+  <option value="Rudiyanto Sumardi">Procurement & Purchasing</option>
+  <option value="Ari Irawan">General Services (OB)</option>
+  <option value="Ahdi Apriyadi">General Services (Driver)</option>
+  <option value="Defiandra Pratiwi Wibowo">Finance</option>
+</datalist>
+<datalist id="master-vendors-list">
+  <option value="JNE Express"></option>
+  <option value="J&T Express"></option>
+  <option value="SiCepat Ekspres"></option>
+  <option value="POS Indonesia"></option>
+  <option value="TIKI"></option>
+  <option value="GrabExpress / GoSend"></option>
+</datalist>
+<datalist id="master-sections-list">
+  <option value="General Services"></option>
+  <option value="Information Technology"></option>
+  <option value="Accounting"></option>
+  <option value="Tax"></option>
+  <option value="Finance"></option>
+  <option value="Budget"></option>
+  <option value="Procurement & Purchasing"></option>
+  <option value="Talent Acquisition & Monitoring"></option>
+  <option value="Organization Development & Performance Management"></option>
+  <option value="Compensation Benefit & Personal Admin"></option>
+  <option value="HRGA"></option>
+  <option value="Sales & Marketing"></option>
+  <option value="Financial & Information System"></option>
+</datalist>
 
 <script>
 
@@ -11379,7 +11444,166 @@ var edocInSigCtx = null;
 var edocInSigDrawing = false;
 var edocInSigHasDrawn = false;
 
-function openEdocInboundModal() {
+var edocDraftItems = [];
+
+function switchEdocInboundTab(tabName) {
+  var draftTab = document.getElementById('edoc-in-tab-draft');
+  var readyTab = document.getElementById('edoc-in-tab-ready');
+  var draftBtn = document.getElementById('tab-btn-edoc-in-draft');
+  var readyBtn = document.getElementById('tab-btn-edoc-in-ready');
+
+  if (tabName === 'ready') {
+    if (draftTab) draftTab.style.display = 'none';
+    if (readyTab) readyTab.style.display = 'block';
+
+    if (draftBtn) {
+      draftBtn.style.background = 'transparent';
+      draftBtn.style.color = '#475569';
+      draftBtn.style.boxShadow = 'none';
+    }
+    if (readyBtn) {
+      readyBtn.style.background = '#fff';
+      readyBtn.style.color = '#1e293b';
+      readyBtn.style.boxShadow = '0 1px 3px rgba(0,0,0,0.08)';
+    }
+    renderEdocReadyHandoverList();
+  } else {
+    if (readyTab) readyTab.style.display = 'none';
+    if (draftTab) draftTab.style.display = 'block';
+
+    if (readyBtn) {
+      readyBtn.style.background = 'transparent';
+      readyBtn.style.color = '#475569';
+      readyBtn.style.boxShadow = 'none';
+    }
+    if (draftBtn) {
+      draftBtn.style.background = '#fff';
+      draftBtn.style.color = '#1e293b';
+      draftBtn.style.boxShadow = '0 1px 3px rgba(0,0,0,0.08)';
+    }
+  }
+}
+
+function updateEdocInboundPendingBadges() {
+  var allDocs = (_raw && _raw.edoc) || _edocRows || [];
+  var pending = allDocs.filter(function(d){
+    var isDelivered = String(d.status || '').toLowerCase().indexOf('diserahkan') !== -1;
+    var isInbound = d.direction === 'inbound' || String(d.doc_no || '').indexOf('IN') !== -1;
+    return isInbound && !isDelivered;
+  });
+
+  var badgeReady = document.getElementById('tab-badge-edoc-in-ready');
+  var badgePending = document.getElementById('edoc-inbound-pending-count');
+
+  if (badgeReady) {
+    if (pending.length > 0) {
+      badgeReady.textContent = pending.length;
+      badgeReady.style.display = 'inline-block';
+    } else {
+      badgeReady.style.display = 'none';
+    }
+  }
+  if (badgePending) {
+    if (pending.length > 0) {
+      badgePending.textContent = pending.length;
+      badgePending.style.display = 'inline-block';
+    } else {
+      badgePending.style.display = 'none';
+    }
+  }
+  return pending;
+}
+
+function filterEdocReadyHandover(val) {
+  renderEdocReadyHandoverList(val);
+}
+
+function renderEdocReadyHandoverList(filterQuery) {
+  var container = document.getElementById('edoc-in-ready-list');
+  if (!container) return;
+
+  var allDocs = (_raw && _raw.edoc) || _edocRows || [];
+  var pending = allDocs.filter(function(d){
+    var isDelivered = String(d.status || '').toLowerCase().indexOf('diserahkan') !== -1;
+    var isInbound = d.direction === 'inbound' || String(d.doc_no || '').indexOf('IN') !== -1;
+    return isInbound && !isDelivered;
+  });
+
+  updateEdocInboundPendingBadges();
+
+  var q = (filterQuery || '').toLowerCase().trim();
+  if (q) {
+    pending = pending.filter(function(d){
+      var txt = (String(d.recipient_name || '') + ' ' + String(d.sender_name || '') + ' ' + String(d.sender_company || '') + ' ' + String(d.doc_title || '') + ' ' + String(d.doc_no || '')).toLowerCase();
+      return txt.indexOf(q) !== -1;
+    });
+  }
+
+  if (pending.length === 0) {
+    container.innerHTML = '<div style="text-align:center;padding:28px 16px;background:#f8fafc;border-radius:12px;border:1.5px dashed #cbd5e1;color:#64748b">' +
+      '<div style="font-size:28px;margin-bottom:6px">🎉</div>' +
+      '<div style="font-weight:700;font-size:13px;color:#1e293b">Tidak Ada Dokumen Inbound Menunggu</div>' +
+      '<div style="font-size:11.5px;margin-top:4px">Semua dokumen masuk dari kurir sudah diserahkan ke penerima, atau catat dokumen baru di tab "1. Catat Dokumen Masuk".</div>' +
+    '</div>';
+    return;
+  }
+
+  // Kelompokkan per penerima
+  var grouped = {};
+  pending.forEach(function(d){
+    var r = (d.recipient_name || 'Tanpa Nama').trim();
+    if (!grouped[r]) grouped[r] = [];
+    grouped[r].push(d);
+  });
+
+  var html = '';
+  var recipients = Object.keys(grouped).sort();
+  recipients.forEach(function(recName) {
+    var items = grouped[recName];
+    var totalDocs = 0;
+    items.forEach(function(it){ totalDocs += (parseInt(it.doc_count) || 1); });
+
+    html += '<div style="background:#fff;border:1.5px solid #e2e8f0;border-left:4px solid #10b981;border-radius:12px;padding:12px 14px;box-shadow:0 1px 3px rgba(0,0,0,0.05);transition:all .15s ease">';
+    html += '  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:8px">';
+    html += '    <div>';
+    html += '      <div style="font-weight:800;font-size:13.5px;color:#0f172a;display:flex;align-items:center;gap:6px">';
+    html += '        <span>👤 ' + escapeHtml(recName) + '</span>';
+    html += '      </div>';
+    html += '      <div style="font-size:11px;color:#64748b;margin-top:2px">Menunggu diambil di Resepsionis / GS</div>';
+    html += '    </div>';
+    html += '    <span style="background:#ecfdf5;color:#059669;border:1px solid #a7f3d0;font-weight:700;font-size:11px;padding:3px 8px;border-radius:20px;white-space:nowrap">' + items.length + ' Paket (' + totalDocs + ' Dokumen)</span>';
+    html += '  </div>';
+
+    // Item List
+    html += '  <div style="background:#f8fafc;border-radius:8px;padding:8px 10px;margin-bottom:10px;display:flex;flex-direction:column;gap:6px">';
+    items.forEach(function(it, idx) {
+      var sender = it.sender_company || it.sender_name || 'Vendor Luar';
+      var title = it.doc_title || 'Dokumen Paket';
+      var dCount = parseInt(it.doc_count) || 1;
+      html += '    <div style="font-size:11.5px;display:flex;justify-content:space-between;align-items:center;color:#334155;border-bottom:1px dashed #e2e8f0;padding-bottom:4px">';
+      html += '      <div style="overflow:hidden;text-overflow:ellipsis;margin-right:6px">';
+      html += '        <strong style="color:#2563eb">#' + (idx+1) + ' ' + escapeHtml(sender) + ':</strong> ' + escapeHtml(title);
+      if (it.tracking_no) {
+        html += ' <span style="font-size:10px;color:#64748b;background:#e2e8f0;padding:0 4px;border-radius:3px">Resi: ' + escapeHtml(it.tracking_no) + '</span>';
+      }
+      html += '      </div>';
+      html += '      <span style="font-size:10.5px;color:#475569;white-space:nowrap;font-weight:600;background:#f1f5f9;padding:1px 6px;border-radius:4px">' + dCount + ' doc</span>';
+      html += '    </div>';
+    });
+    html += '  </div>';
+
+    // Tombol 1-Klik Serahkan Paket
+    var safeRec = escapeHtml(recName).replace(/'/g, "\\'");
+    html += '  <button type="button" onclick="closeEdocInboundModal(); openEdocBatchHandoverModal(\'' + safeRec + '\');" style="width:100%;background:#10b981;color:#fff;border:none;border-radius:8px;padding:9px 12px;font-size:12.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;box-shadow:0 1px 2px rgba(16,185,129,0.25)">';
+    html += '    <span>✍️ Serahkan Semua ke ' + escapeHtml(recName) + ' (' + totalDocs + ' Dokumen)</span>';
+    html += '  </button>';
+    html += '</div>';
+  });
+
+  container.innerHTML = html;
+}
+
+function openEdocInboundModal(defaultTab) {
   var m = document.getElementById('edoc-inbound-overlay');
   if (m) {
     m.style.setProperty('display', 'flex', 'important');
@@ -11387,10 +11611,19 @@ function openEdocInboundModal() {
   }
   document.body.style.overflow = 'hidden';
 
-  ['edoc-in-sender', 'edoc-in-recipient', 'edoc-in-title', 'edoc-in-photo', 'edoc-in-file-input'].forEach(function(id) {
+  edocDraftItems = [];
+  renderEdocDraftList();
+
+  ['edoc-in-sender', 'edoc-in-recipient', 'edoc-in-title', 'edoc-in-resi', 'edoc-in-lokasi', 'edoc-in-photo', 'edoc-in-file-input', 'edoc-in-ready-search'].forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.value = '';
   });
+
+  var q = document.getElementById('edoc-in-qty');
+  if (q) q.value = '1';
+
+  var chk = document.getElementById('edoc-in-immediate-chk');
+  if (chk) { chk.checked = false; toggleEdocImmediateHandover(false); }
 
   var err = document.getElementById('edoc-in-err');
   var ok = document.getElementById('edoc-in-ok');
@@ -11403,7 +11636,10 @@ function openEdocInboundModal() {
   if (previewImg) previewImg.src = '';
   
   var btn = document.getElementById('btn-edoc-in-submit');
-  if (btn) { btn.disabled = false; btn.innerText = '💾 Simpan Serah Terima'; }
+  if (btn) { btn.disabled = false; btn.innerText = '💾 Simpan Semua Dokumen ke Draf'; }
+
+  updateEdocInboundPendingBadges();
+  switchEdocInboundTab(defaultTab === 'ready' ? 'ready' : 'draft');
 
   setTimeout(function() {
     initEdocInSignature();
@@ -11419,192 +11655,184 @@ function closeEdocInboundModal() {
   document.body.style.overflow = '';
 }
 
-function initEdocInSignature() {
-  edocInSigPad = document.getElementById('edoc-in-sig-pad');
-  if (!edocInSigPad) return;
-
-  var container = edocInSigPad.parentElement;
-  var displayWidth = (container && container.clientWidth) ? container.clientWidth : (edocInSigPad.clientWidth || 480);
-  var displayHeight = 130;
-  var dpr = window.devicePixelRatio || 1;
-
-  edocInSigPad.style.width = '100%';
-  edocInSigPad.style.height = displayHeight + 'px';
-  edocInSigPad.width = Math.round(displayWidth * dpr);
-  edocInSigPad.height = Math.round(displayHeight * dpr);
-
-  edocInSigCtx = edocInSigPad.getContext('2d');
-  edocInSigCtx.setTransform(1, 0, 0, 1, 0, 0);
-  edocInSigCtx.scale(dpr, dpr);
-
-  clearEdocInSignature();
-
-  function getPos(evt) {
-    var rect = edocInSigPad.getBoundingClientRect();
-    var clientX = evt.clientX;
-    var clientY = evt.clientY;
-    if (clientX === undefined && evt.touches && evt.touches.length > 0) {
-      clientX = evt.touches[0].clientX;
-      clientY = evt.touches[0].clientY;
-    }
-    return {
-      x: clientX - rect.left,
-      y: clientY - rect.top
-    };
-  }
-
-  function startStroke(pos) {
-    edocInSigDrawing = true;
-    edocInSigHasDrawn = true;
-    edocInSigPad.removeAttribute('data-empty');
-    edocInSigCtx.beginPath();
-    edocInSigCtx.moveTo(pos.x, pos.y);
-    edocInSigCtx.arc(pos.x, pos.y, 1.25, 0, Math.PI * 2);
-    edocInSigCtx.fillStyle = '#0f172a';
-    edocInSigCtx.fill();
-    edocInSigCtx.beginPath();
-    edocInSigCtx.moveTo(pos.x, pos.y);
-  }
-
-  function moveStroke(pos) {
-    if (!edocInSigDrawing) return;
-    edocInSigHasDrawn = true;
-    edocInSigPad.removeAttribute('data-empty');
-    edocInSigCtx.lineTo(pos.x, pos.y);
-    edocInSigCtx.stroke();
-  }
-
-  function endStroke() {
-    if (edocInSigDrawing) {
-      edocInSigDrawing = false;
-      edocInSigCtx.closePath();
-    }
-  }
-
-  if (window.PointerEvent) {
-    edocInSigPad.onpointerdown = function(e) {
-      e.preventDefault();
-      try { edocInSigPad.setPointerCapture(e.pointerId); } catch(ex) {}
-      startStroke(getPos(e));
-    };
-    edocInSigPad.onpointermove = function(e) {
-      e.preventDefault();
-      moveStroke(getPos(e));
-    };
-    edocInSigPad.onpointerup = function(e) {
-      e.preventDefault();
-      try { edocInSigPad.releasePointerCapture(e.pointerId); } catch(ex) {}
-      endStroke();
-    };
-    edocInSigPad.onpointercancel = function(e) {
-      e.preventDefault();
-      try { edocInSigPad.releasePointerCapture(e.pointerId); } catch(ex) {}
-      endStroke();
-    };
-  } else {
-    edocInSigPad.onmousedown = function(e) { e.preventDefault(); startStroke(getPos(e)); };
-    edocInSigPad.onmousemove = function(e) { e.preventDefault(); moveStroke(getPos(e)); };
-    edocInSigPad.onmouseup = function(e) { e.preventDefault(); endStroke(); };
-    edocInSigPad.onmouseleave = function(e) { endStroke(); };
-    edocInSigPad.ontouchstart = function(e) { e.preventDefault(); startStroke(getPos(e)); };
-    edocInSigPad.ontouchmove = function(e) { e.preventDefault(); moveStroke(getPos(e)); };
-    edocInSigPad.ontouchend = function(e) { e.preventDefault(); endStroke(); };
-    edocInSigPad.ontouchcancel = function(e) { endStroke(); };
+function toggleEdocImmediateHandover(isChecked) {
+  var sec = document.getElementById('edoc-in-immediate-section');
+  if (sec) sec.style.display = isChecked ? 'block' : 'none';
+  var btn = document.getElementById('btn-edoc-in-submit');
+  if (btn) {
+    btn.innerText = isChecked ? '✍️ Simpan & Serahkan Langsung' : '💾 Simpan Semua Dokumen ke Draf';
   }
 }
 
-function clearEdocInSignature() {
-  edocInSigHasDrawn = false;
-  edocInSigDrawing = false;
-
-  if (edocInSigPad) {
-    edocInSigPad.setAttribute('data-empty', 'true');
-  }
-
-  if (edocInSigCtx && edocInSigPad) {
-    edocInSigCtx.save();
-    edocInSigCtx.setTransform(1, 0, 0, 1, 0, 0);
-    edocInSigCtx.fillStyle = '#ffffff';
-    edocInSigCtx.fillRect(0, 0, edocInSigPad.width, edocInSigPad.height);
-    edocInSigCtx.restore();
-
-    edocInSigCtx.strokeStyle = '#0f172a';
-    edocInSigCtx.lineWidth = 2.5;
-    edocInSigCtx.lineCap = 'round';
-    edocInSigCtx.lineJoin = 'round';
-  }
-}
-
-function uploadEdocInboundReceipt(el) {
-  if (!el.files || !el.files[0]) return;
+function addEdocDraftItem() {
+  var sEl = document.getElementById('edoc-in-sender');
+  var tEl = document.getElementById('edoc-in-title');
+  var qEl = document.getElementById('edoc-in-qty');
   var err = document.getElementById('edoc-in-err');
+
+  var sender = (sEl ? sEl.value : '').trim();
+  var title = (tEl ? tEl.value : '').trim();
+  var qty = Math.max(1, parseInt(qEl ? qEl.value : '1') || 1);
+
   if (err) err.style.display = 'none';
-  
-  var btn = el.nextElementSibling && el.nextElementSibling.nextElementSibling ? el.nextElementSibling.nextElementSibling : null;
-  var oldTxt = btn ? btn.innerText : '📷 Ambil Foto (Kamera)';
-  if (btn) btn.innerText = '⏳ Mengunggah...';
-  
-  uploadFile('modules/edoc/upload.php', el.files[0])
-    .then(function(res){
-      if (btn) btn.innerText = oldTxt;
-      var photoInput = document.getElementById('edoc-in-photo');
-      if (photoInput) photoInput.value = res.path;
-      var wrap = document.getElementById('edoc-in-preview-wrap');
-      var img = document.getElementById('edoc-in-preview-img');
-      if(wrap && img) {
-        wrap.style.display = 'block';
-        img.src = res.path;
-      }
-    })
-    .catch(function(e){
-      if (btn) btn.innerText = oldTxt;
-      if(err){ err.innerText = e.message; err.style.display = 'block'; }
-    });
+
+  if (!sender) {
+    if (err) { err.innerText = 'Harap isi "Dari Mana" (Vendor/Kurir/Pengirim).'; err.style.display = 'block'; }
+    if (sEl) sEl.focus();
+    return;
+  }
+  if (!title) {
+    if (err) { err.innerText = 'Harap isi keterangan / perihal dokumen.'; err.style.display = 'block'; }
+    if (tEl) tEl.focus();
+    return;
+  }
+
+  edocDraftItems.push({
+    sender: sender,
+    title: title,
+    qty: qty
+  });
+
+  if (tEl) tEl.value = '';
+  if (qEl) qEl.value = '1';
+  if (sEl) sEl.focus();
+
+  renderEdocDraftList();
+}
+
+function removeEdocDraftItem(idx) {
+  if (idx >= 0 && idx < edocDraftItems.length) {
+    edocDraftItems.splice(idx, 1);
+    renderEdocDraftList();
+  }
+}
+
+function renderEdocDraftList() {
+  var listEl = document.getElementById('edoc-in-draft-list');
+  var countEl = document.getElementById('edoc-in-draft-count');
+  if (!listEl) return;
+
+  if (edocDraftItems.length === 0) {
+    listEl.innerHTML = '<div style="text-align:center;color:#94a3b8;font-size:12px;padding:12px">Belum ada dokumen di draf. Isi form di atas lalu klik <strong>"Tambahkan ke List Draf"</strong>.</div>';
+    if (countEl) countEl.innerText = '0 Dokumen';
+    return;
+  }
+
+  var totalDocs = 0;
+  var html = '<div style="display:flex;flex-direction:column;gap:6px">';
+  for (var i = 0; i < edocDraftItems.length; i++) {
+    var it = edocDraftItems[i];
+    totalDocs += it.qty;
+    html += '<div style="display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid #e2e8f0;border-left:3px solid #2563eb;border-radius:8px;padding:8px 10px;font-size:12px">' +
+      '<div style="overflow:hidden;text-overflow:ellipsis;margin-right:8px">' +
+        '<div style="font-weight:700;color:#1e293b;display:flex;align-items:center;gap:6px">' +
+          '<span style="background:#eff6ff;color:#2563eb;padding:1px 6px;border-radius:4px;font-size:11px">#' + (i + 1) + '</span> ' +
+          '<span>' + escapeHtml(it.sender) + '</span>' +
+          '<span style="background:#f1f5f9;color:#475569;padding:1px 6px;border-radius:4px;font-size:10.5px">' + it.qty + ' Dokumen</span>' +
+        '</div>' +
+        '<div style="color:#64748b;margin-top:2px;font-size:11.5px">' + escapeHtml(it.title) + '</div>' +
+      '</div>' +
+      '<button type="button" onclick="removeEdocDraftItem(' + i + ')" style="background:#fee2e2;color:#ef4444;border:none;border-radius:6px;padding:4px 8px;cursor:pointer;font-size:11px;font-weight:700">✕ Hapus</button>' +
+    '</div>';
+  }
+  html += '</div>';
+
+  listEl.innerHTML = html;
+  if (countEl) countEl.innerText = edocDraftItems.length + ' Item (' + totalDocs + ' Dokumen)';
 }
 
 function submitEdocInbound() {
-  var sender = (document.getElementById('edoc-in-sender') ? document.getElementById('edoc-in-sender').value : '').trim();
-  var recipient = (document.getElementById('edoc-in-recipient') ? document.getElementById('edoc-in-recipient').value : '').trim();
-  var title = (document.getElementById('edoc-in-title') ? document.getElementById('edoc-in-title').value : '').trim();
-  var photo = (document.getElementById('edoc-in-photo') ? document.getElementById('edoc-in-photo').value : '').trim();
-  
+  var rEl = document.getElementById('edoc-in-recipient');
+  var recipient = (rEl ? rEl.value : '').trim();
+  var resi = (document.getElementById('edoc-in-resi') ? document.getElementById('edoc-in-resi').value : '').trim();
+  var lokasi = (document.getElementById('edoc-in-lokasi') ? document.getElementById('edoc-in-lokasi').value : '').trim();
+  var isImmediate = document.getElementById('edoc-in-immediate-chk') ? document.getElementById('edoc-in-immediate-chk').checked : false;
+
   var err = document.getElementById('edoc-in-err');
   var ok = document.getElementById('edoc-in-ok');
   if (err) err.style.display = 'none';
   if (ok) ok.style.display = 'none';
-  
-  if(!sender) { if(err){ err.innerText = 'Pilih atau ketik nama pengirim / vendor.'; err.style.display = 'block'; } return; }
-  if(!recipient) { if(err){ err.innerText = 'Pilih atau ketik nama tujuan / penerima akhir.'; err.style.display = 'block'; } return; }
-  if(!title) { if(err){ err.innerText = 'Isi dokumen / perihal wajib diisi.'; err.style.display = 'block'; } return; }
-  if(!photo) { if(err){ err.innerText = 'Foto paket/tanda terima wajib dilampirkan.'; err.style.display = 'block'; } return; }
-  
-  if(!edocInSigHasDrawn || !edocInSigPad || edocInSigPad.getAttribute('data-empty') === 'true') {
-    if(err){ err.innerText = 'Tanda tangan penerima wajib diisi.'; err.style.display = 'block'; }
+
+  if (!recipient) {
+    if (err) { err.innerText = 'Pilih atau ketik nama tujuan / penerima dokumen internal.'; err.style.display = 'block'; }
+    if (rEl) rEl.focus();
     return;
   }
-  
-  var signature = edocInSigPad.toDataURL('image/png');
-  var btn = document.getElementById('btn-edoc-in-submit');
-  if(btn){ btn.disabled = true; btn.innerText = '⏳ Memproses...'; }
-  
-  api('submitEdocInbound', {
-    sender_company: sender,
-    recipient_name: recipient,
-    doc_title: title,
-    attachment: photo,
-    signature: signature,
-    one_step_handover: true
-  }).then(function(res){
-    if(ok){
-      ok.innerText = 'Pencatatan & Serah Terima berhasil (No: ' + (res.doc_no || '-') + ')';
-      ok.style.display = 'block';
+
+  // Jika admin sudah mengetik di input box tapi belum klik "Tambah ke Draf", masukkan otomatis
+  var sCur = (document.getElementById('edoc-in-sender') ? document.getElementById('edoc-in-sender').value : '').trim();
+  var tCur = (document.getElementById('edoc-in-title') ? document.getElementById('edoc-in-title').value : '').trim();
+  var qCur = Math.max(1, parseInt(document.getElementById('edoc-in-qty') ? document.getElementById('edoc-in-qty').value : '1') || 1);
+  if (sCur && tCur) {
+    edocDraftItems.push({ sender: sCur, title: tCur, qty: qCur });
+    if (document.getElementById('edoc-in-title')) document.getElementById('edoc-in-title').value = '';
+    renderEdocDraftList();
+  }
+
+  if (edocDraftItems.length === 0) {
+    if (err) { err.innerText = 'Harap tambahkan minimal satu dokumen ke list draf.'; err.style.display = 'block'; }
+    return;
+  }
+
+  var photo = (document.getElementById('edoc-in-photo') ? document.getElementById('edoc-in-photo').value : '').trim();
+  var signature = '';
+  if (isImmediate) {
+    if (edocInSigPad && edocInSigHasDrawn && edocInSigPad.getAttribute('data-empty') !== 'true') {
+      signature = edocInSigPad.toDataURL('image/png');
     }
-    if(typeof loadEdocList === 'function') loadEdocList();
-    if(typeof silentRefresh === 'function') silentRefresh();
-    setTimeout(closeEdocInboundModal, 1500);
+  }
+
+  var btn = document.getElementById('btn-edoc-in-submit');
+  if (btn) { btn.disabled = true; btn.innerText = '⏳ Menyimpan ke Google Sheets...'; }
+
+  var itemsPayload = [];
+  for (var i = 0; i < edocDraftItems.length; i++) {
+    itemsPayload.push({
+      sender_name: edocDraftItems[i].sender,
+      title: edocDraftItems[i].title,
+      doc_count: edocDraftItems[i].qty,
+      resi: resi,
+      location: lokasi
+    });
+  }
+
+  var countSaved = edocDraftItems.length;
+
+  api('submitBatchEdocInbound', {
+    recipient_name: recipient,
+    items: itemsPayload,
+    tracking_no: resi,
+    location_stored: lokasi,
+    one_step_handover: isImmediate,
+    attachment: photo,
+    signature: signature
+  }).then(function(res){
+    edocDraftItems = [];
+    renderEdocDraftList();
+
+    if (typeof loadEdocList === 'function') loadEdocList();
+    if (typeof silentRefresh === 'function') silentRefresh();
+
+    if (isImmediate) {
+      if (ok) {
+        ok.innerText = res.message || ('✅ Berhasil menyerahkan ' + countSaved + ' dokumen langsung ke ' + recipient + '!');
+        ok.style.display = 'block';
+      }
+      setTimeout(closeEdocInboundModal, 1500);
+    } else {
+      if (ok) {
+        ok.innerText = res.message || ('✅ Berhasil mencatat ' + countSaved + ' dokumen masuk untuk ' + recipient + '! Paket kini menunggu diserahkan.');
+        ok.style.display = 'block';
+      }
+      setTimeout(function(){
+        switchEdocInboundTab('ready');
+        if (ok) ok.style.display = 'none';
+        if (btn) { btn.disabled = false; btn.innerText = '💾 Simpan Semua Dokumen ke Draf'; }
+      }, 1000);
+    }
   }).catch(function(e){
-    if(err){ err.innerText = e.message; err.style.display = 'block'; }
-    if(btn){ btn.disabled = false; btn.innerText = '💾 Simpan Serah Terima'; }
+    if (err) { err.innerText = e.message; err.style.display = 'block'; }
+    if (btn) { btn.disabled = false; btn.innerText = isImmediate ? '✍️ Simpan & Serahkan Langsung' : '💾 Simpan Semua Dokumen ke Draf'; }
   });
 }
 
@@ -11741,35 +11969,41 @@ var API={
   getMasterOptions:'modules/master/options.php'
 };
 
-
-// ════ DUAL-ENGINE API ROUTER (GAS WebApp + GitHub Pages Hybrid) ════
-var DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwGWJu-yKAJAmcLBzOu825p-F-D83eMhdO_lVnBzau5b3vlvTVvw8pDUu7PrvQN6QYRMQ/exec";
-var PNS_APP_BUILD = "2026.11.04.v9";
-
-// Auto-purge stale or broken localStorage URLs from older deployments
-try {
-  if (localStorage.getItem('PNS_BUILD_VERSION') !== PNS_APP_BUILD) {
-    localStorage.removeItem('PNS_GAS_WEBAPP_URL');
-    localStorage.setItem('PNS_BUILD_VERSION', PNS_APP_BUILD);
-  }
-} catch(e){}
+// â•â•â•â• DUAL-ENGINE API ROUTER (GAS WebApp + GitHub Pages Hybrid) â•â•â•â•
+var DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwStMQb22Xbyx6ZjhYoVPc5_3syzfhq5KlZFda-sDy31-hjEClrELoqYYjoS6f6dT3Beg/exec";
 
 function getGasApiUrl() {
-  try {
-    var custom = localStorage.getItem('PNS_GAS_WEBAPP_URL');
-    if (custom && custom.indexOf('AKfy') !== -1) return custom;
-    return window.GAS_API_URL || DEFAULT_GAS_URL;
-  } catch(e) {
-    return DEFAULT_GAS_URL;
-  }
+  return window.GAS_API_URL || localStorage.getItem('PNS_GAS_WEBAPP_URL') || DEFAULT_GAS_URL;
 }
 
 function setGasApiUrl(url) {
   if (url) {
     url = url.trim();
-    try { localStorage.setItem('PNS_GAS_WEBAPP_URL', url); } catch(e){}
+    localStorage.setItem('PNS_GAS_WEBAPP_URL', url);
     window.GAS_API_URL = url;
   }
+}
+
+// â”€â”€ Fallback Mode Uji Coba Cepat (Demo / Offline) â”€â”€
+function loginDemoMode() {
+  var user = {
+    id: 1,
+    nama: 'Miftahul Khoiry',
+    email: 'miftahul.khoiry@pns.co.id',
+    section: 'GS',
+    isAdmin: true,
+    isGs: true
+  };
+  try { localStorage.setItem('pns_session', JSON.stringify(user)); } catch(e){}
+  window.SESSION = user;
+  _session = user;
+  var loginScreen = document.getElementById('login-screen');
+  var appScreen = document.getElementById('app-screen');
+  if (loginScreen) loginScreen.style.display = 'none';
+  if (appScreen) appScreen.style.display = 'flex';
+  if (typeof showDash === 'function') showDash();
+  if (typeof loadMasterOptions === 'function') loadMasterOptions();
+  if (typeof toast === 'function') toast('Masuk Mode Uji Coba (Administrator GS)', 'ok');
 }
 
 function unpackGasResponse(res) {
@@ -11782,13 +12016,6 @@ function unpackGasResponse(res) {
 
 function api(action, extra) {
   extra = extra || {};
-  try {
-    if (typeof _session !== 'undefined' && _session && typeof extra === 'object') {
-      if (!extra.userId && _session.id) extra.userId = _session.id;
-      if (!extra.userEmail && _session.email) extra.userEmail = _session.email;
-      if (!extra.userName && (_session.nama || _session.name)) extra.userName = (_session.nama || _session.name);
-    }
-  } catch(e){}
 
   // 1. Jika berjalan langsung di dalam runtime Google Apps Script Web App
   if (typeof google !== 'undefined' && google.script && google.script.run) {
@@ -11808,7 +12035,7 @@ function api(action, extra) {
     });
   }
 
-  // 2. Jika diakses dari GitHub Pages (username.github.io / domain eksternal / iframe)
+  // 2. Jika diakses dari GitHub Pages (username.github.io / domain eksternal)
   var gasUrl = getGasApiUrl();
   if (!gasUrl) {
     if (typeof shouldShowGasConfig === 'function' && shouldShowGasConfig()) {
@@ -11818,65 +12045,49 @@ function api(action, extra) {
   }
 
   var payload = Object.assign({}, extra, { action: action });
-  var GAS_ACCESS_MSG = 'Server Google Apps Script menolak akses (401 / CORS). Buka script.google.com → Deploy → Manage deployments → Edit (ikon pensil) → "Execute as: Me" dan "Who has access: Anyone" → Deploy.';
 
-  function doFetchPost() {
-    return fetch(gasUrl, {
-      method: 'POST',
-      redirect: 'follow',
-      headers: {
-        'Content-Type': 'text/plain;charset=utf-8'
-      },
-      body: JSON.stringify(payload)
-    })
-    .then(function(response) {
-      if (response.status === 401 || response.status === 403) {
-        var e401 = new Error(GAS_ACCESS_MSG); e401.isGasAccess = true; throw e401;
-      }
-      return response.text().then(function(txt) {
-        try { return JSON.parse(txt); }
-        catch (e) { var eh = new Error(GAS_ACCESS_MSG); eh.isGasAccess = true; throw eh; }
-      });
-    });
-  }
+  var GAS_ACCESS_MSG = 'Server Google Apps Script menolak akses (401). Buka script.google.com â†’ Deploy â†’ Manage deployments â†’ Edit (ikon pensil) â†’ "Execute as: Me" dan "Who has access: Anyone" â†’ Deploy.';
 
-  function doFetchGet() {
-    var qs = [];
-    for (var k in payload) {
-      if (payload.hasOwnProperty(k) && payload[k] !== undefined && payload[k] !== null) {
-        qs.push(encodeURIComponent(k) + '=' + encodeURIComponent(typeof payload[k] === 'object' ? JSON.stringify(payload[k]) : String(payload[k])));
-      }
+  return fetch(gasUrl, {
+    method: 'POST',
+    redirect: 'follow',
+    headers: {
+      'Content-Type': 'text/plain;charset=utf-8' // Menghindari CORS preflight OPTIONS request
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(function(response) {
+    if (response.status === 401 || response.status === 403) {
+      var e401 = new Error(GAS_ACCESS_MSG); e401.isGasAccess = true; throw e401;
     }
-    var getUrl = gasUrl + (gasUrl.indexOf('?') === -1 ? '?' : '&') + qs.join('&');
-    return fetch(getUrl, {
-      method: 'GET',
-      redirect: 'follow'
-    })
-    .then(function(response) {
-      return response.text().then(function(txt) {
-        try { return JSON.parse(txt); }
-        catch (e) { throw new Error('Format respons Google Sheets tidak valid.'); }
-      });
+    return response.text().then(function(txt) {
+      try { return JSON.parse(txt); }
+      catch (e) { var eh = new Error(GAS_ACCESS_MSG); eh.isGasAccess = true; throw eh; }
     });
-  }
-
-  return doFetchPost().catch(function(postErr) {
-    return doFetchGet().catch(function() {
-      throw postErr;
-    });
+  }, function(netErr) {
+    // Browser menampilkan 401 dari Google sebagai "Failed to fetch" (tanpa header CORS)
+    var en = new Error(GAS_ACCESS_MSG); en.isGasAccess = true; throw en;
   })
   .then(function(res) {
     if (!res || res.ok === false) {
       throw new Error((res && res.error) || 'Terjadi kesalahan pada Google Sheets backend.');
     }
     window.GAS_ONLINE = true;
-    try { var ind = document.getElementById('gas-status-indicator'); if (ind) ind.style.background = 'var(--green)'; } catch(e){}
     return unpackGasResponse(res);
   })
   .catch(function(err) {
     if (err && err.isGasAccess) {
       window.GAS_ONLINE = false;
       try { var ind = document.getElementById('gas-status-indicator'); if (ind) ind.style.background = '#ef4444'; } catch(e){}
+      // Fallback login SuperAdmin agar portal tetap bisa diuji saat backend belum dibuka "Anyone"
+      if (action === 'verifyPin' || action === 'login') {
+        var em = String(extra.email || '').trim().toLowerCase();
+        var okUser = (em === 'miftahul.khoiry@pns.co.id' || em === 'miftahul.khoiry' || em === 'admin');
+        if (okUser && String(extra.pin || '').trim() === '1234') {
+          if (typeof toast === 'function') setTimeout(function(){ toast('Mode Offline: backend Google Sheets belum dapat diakses (401). Data tidak tersimpan ke Sheet.', 'err'); }, 800);
+          return { id: 1, nama: 'Miftahul Khoiry', email: 'miftahul.khoiry@pns.co.id', section: 'GS', isAdmin: true, isGs: true, isDefaultPin: true, offline: true };
+        }
+      }
     }
     throw err;
   });
@@ -11919,7 +12130,6 @@ function uploadFile(url, file) {
     reader.readAsDataURL(file);
   });
 }
-
 
 function pad(n){return String(n).padStart(2,'0');}
 function todayStr(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
@@ -13530,7 +13740,7 @@ function renderEdocList(rows){
     
     if(isGsStaff){
       if(r.direction === 'inbound' && st !== 'Diserahkan ke User') {
-        html+='<button class="ent-btn ent-btn-handover" onclick="openEdocBatchHandoverModal(\''+esc(r.recipient_name)+'\',['+r.id+'])" title="Serahkan Dokumen Fisik ke User Penerima">'+_entIcons.handover+' Serahkan</button>';
+        html+='<button class="ent-btn ent-btn-handover" onclick="openEdocBatchHandoverModal(\''+esc(r.recipient_name)+'\')" title="Serahkan Dokumen Fisik ke User Penerima">'+_entIcons.handover+' Serahkan</button>';
       } else {
         html+='<button class="ent-btn ent-btn-blue" onclick="openEdocStatusModal('+r.id+',\''+esc(r.doc_no)+'\',\''+esc(r.doc_title)+'\',\''+esc(r.status)+'\',\''+esc(r.courier_name||'')+'\',\''+esc(r.tracking_no||'')+'\','+(r.courier_cost||0)+',\''+esc(r.gs_notes||'')+'\',\''+esc(r.delivery_type||'OB / Messenger GS')+'\',\''+esc(r.courier_type||'')+'\',\''+esc(r.attachment||'')+'\')" title="Kelola Penugasan & Status GS">'+_entIcons.gear+' GS</button>';
       }
