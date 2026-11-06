@@ -11554,9 +11554,114 @@ document.addEventListener('DOMContentLoaded', function() {
   var edocInSigDrawing = false;
   var edocInSigHasDrawn = false;
 
+  // ── INBOUND MODAL & DRAFTING ENGINE ──
   var edocDraftItems = [];
+  var _edocInTabActive = 'draft';
+  var _edocReadySearchQuery = '';
 
-  function openEdocInboundModal() {
+  var edocInSigPad = null;
+  var edocInSigCtx = null;
+  var edocInSigDrawing = false;
+  var edocInSigHasDrawn = false;
+
+  function initEdocInSignature() {
+    edocInSigPad = document.getElementById('edoc-in-sig-pad');
+    if (!edocInSigPad) return;
+
+    var container = edocInSigPad.parentElement;
+    var displayWidth = (container && container.clientWidth) ? container.clientWidth : (edocInSigPad.clientWidth || 480);
+    var displayHeight = 110;
+    var dpr = window.devicePixelRatio || 1;
+
+    edocInSigPad.style.width = '100%';
+    edocInSigPad.style.height = displayHeight + 'px';
+    edocInSigPad.width = Math.round(displayWidth * dpr);
+    edocInSigPad.height = Math.round(displayHeight * dpr);
+
+    edocInSigCtx = edocInSigPad.getContext('2d');
+    edocInSigCtx.setTransform(1, 0, 0, 1, 0, 0);
+    edocInSigCtx.scale(dpr, dpr);
+
+    clearEdocInSignature();
+
+    function getPos(evt) {
+      var rect = edocInSigPad.getBoundingClientRect();
+      var clientX = evt.clientX;
+      var clientY = evt.clientY;
+      if (clientX === undefined && evt.touches && evt.touches.length > 0) {
+        clientX = evt.touches[0].clientX;
+        clientY = evt.touches[0].clientY;
+      }
+      return {
+        x: clientX - rect.left,
+        y: clientY - rect.top
+      };
+    }
+
+    function startDraw(e) {
+      e.preventDefault();
+      edocInSigDrawing = true;
+      edocInSigHasDrawn = true;
+      edocInSigPad.removeAttribute('data-empty');
+      var p = getPos(e);
+      edocInSigCtx.beginPath();
+      edocInSigCtx.moveTo(p.x, p.y);
+      edocInSigCtx.strokeStyle = '#0f172a';
+      edocInSigCtx.lineWidth = 2.5;
+      edocInSigCtx.lineCap = 'round';
+      edocInSigCtx.lineJoin = 'round';
+    }
+
+    function moveDraw(e) {
+      if (!edocInSigDrawing) return;
+      e.preventDefault();
+      var p = getPos(e);
+      edocInSigCtx.lineTo(p.x, p.y);
+      edocInSigCtx.stroke();
+    }
+
+    function stopDraw(e) {
+      if (edocInSigDrawing) {
+        edocInSigDrawing = false;
+        edocInSigCtx.closePath();
+      }
+    }
+
+    edocInSigPad.onmousedown = startDraw;
+    edocInSigPad.onmousemove = moveDraw;
+    window.onmouseup = stopDraw;
+
+    edocInSigPad.ontouchstart = startDraw;
+    edocInSigPad.ontouchmove = moveDraw;
+    edocInSigPad.ontouchend = stopDraw;
+  }
+
+  function clearEdocInSignature() {
+    if (!edocInSigPad || !edocInSigCtx) return;
+    edocInSigCtx.clearRect(0, 0, edocInSigPad.width, edocInSigPad.height);
+    edocInSigCtx.fillStyle = '#ffffff';
+    edocInSigCtx.fillRect(0, 0, edocInSigPad.width, edocInSigPad.height);
+    edocInSigPad.setAttribute('data-empty', 'true');
+    edocInSigHasDrawn = false;
+  }
+
+  function uploadEdocInboundReceipt(input) {
+    if (!input || !input.files || !input.files[0]) return;
+    var file = input.files[0];
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      var b64 = e.target.result;
+      var photoInp = document.getElementById('edoc-in-photo');
+      var prevWrap = document.getElementById('edoc-in-preview-wrap');
+      var prevImg = document.getElementById('edoc-in-preview-img');
+      if (photoInp) photoInp.value = b64;
+      if (prevImg) prevImg.src = b64;
+      if (prevWrap) prevWrap.style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function openEdocInboundModal(initialTab) {
     var m = document.getElementById('edoc-inbound-overlay');
     if (m) {
       m.style.setProperty('display', 'flex', 'important');
@@ -11589,11 +11694,21 @@ document.addEventListener('DOMContentLoaded', function() {
     if (previewImg) previewImg.src = '';
 
     var btn = document.getElementById('btn-edoc-in-submit');
-    if (btn) { btn.disabled = false; btn.innerText = '💾 Simpan Semua Dokumen ke Draf'; }
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = '📥 Simpan ke Draft Inbound';
+      btn.style.background = '#059669';
+    }
+
+    // Update pending badge count
+    updateEdocInboundReadyBadge();
+
+    // Switch to initial tab
+    switchEdocInboundTab(initialTab || 'draft');
 
     setTimeout(function () {
       initEdocInSignature();
-    }, 60);
+    }, 80);
   }
 
   function closeEdocInboundModal() {
@@ -11605,12 +11720,157 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.style.overflow = '';
   }
 
+  function switchEdocInboundTab(tab) {
+    _edocInTabActive = tab || 'draft';
+    var tDraft = document.getElementById('edoc-in-tab-draft');
+    var tReady = document.getElementById('edoc-in-tab-ready');
+    var bDraft = document.getElementById('tab-btn-edoc-in-draft');
+    var bReady = document.getElementById('tab-btn-edoc-in-ready');
+
+    if (_edocInTabActive === 'ready') {
+      if (tDraft) tDraft.style.display = 'none';
+      if (tReady) tReady.style.display = 'block';
+      if (bDraft) {
+        bDraft.style.background = 'transparent';
+        bDraft.style.color = '#475569';
+        bDraft.style.boxShadow = 'none';
+      }
+      if (bReady) {
+        bReady.style.background = '#fff';
+        bReady.style.color = '#1e293b';
+        bReady.style.boxShadow = '0 1px 3px rgba(0,0,0,0.08)';
+      }
+      renderEdocReadyHandoverList();
+    } else {
+      if (tDraft) tDraft.style.display = 'block';
+      if (tReady) tReady.style.display = 'none';
+      if (bDraft) {
+        bDraft.style.background = '#fff';
+        bDraft.style.color = '#1e293b';
+        bDraft.style.boxShadow = '0 1px 3px rgba(0,0,0,0.08)';
+      }
+      if (bReady) {
+        bReady.style.background = 'transparent';
+        bReady.style.color = '#475569';
+        bReady.style.boxShadow = 'none';
+      }
+    }
+  }
+
+  function updateEdocInboundReadyBadge() {
+    var allDocs = (_raw && _raw.edoc) || _edocRows || [];
+    var pendingDocs = allDocs.filter(function (d) {
+      var isDelivered = String(d.status || '').toLowerCase().indexOf('diserahkan') !== -1;
+      var isInbound = d.direction === 'inbound' || String(d.doc_no || '').indexOf('IN') !== -1;
+      return isInbound && !isDelivered && String(d.status || '').toLowerCase() !== 'batal';
+    });
+    var badgeEl = document.getElementById('tab-badge-edoc-in-ready');
+    if (badgeEl) {
+      badgeEl.innerText = pendingDocs.length;
+      badgeEl.style.display = pendingDocs.length > 0 ? 'inline-block' : 'none';
+    }
+  }
+
+  function filterEdocReadyHandover(q) {
+    _edocReadySearchQuery = String(q || '').toLowerCase().trim();
+    renderEdocReadyHandoverList();
+  }
+
+  function renderEdocReadyHandoverList() {
+    var listEl = document.getElementById('edoc-in-ready-list');
+    if (!listEl) return;
+
+    var allDocs = (_raw && _raw.edoc) || _edocRows || [];
+    var pendingDocs = allDocs.filter(function (d) {
+      var isDelivered = String(d.status || '').toLowerCase().indexOf('diserahkan') !== -1;
+      var isInbound = d.direction === 'inbound' || String(d.doc_no || '').indexOf('IN') !== -1;
+      return isInbound && !isDelivered && String(d.status || '').toLowerCase() !== 'batal';
+    });
+
+    updateEdocInboundReadyBadge();
+
+    if (pendingDocs.length === 0) {
+      listEl.innerHTML = '<div style="text-align:center;padding:36px 16px;color:#64748b;background:#f8fafc;border-radius:14px;border:1.5px dashed #cbd5e1">' +
+        '<div style="font-size:36px;margin-bottom:8px">🎉</div>' +
+        '<div style="font-weight:800;font-size:14px;color:#0f172a">Semua Paket Sudah Diserahkan!</div>' +
+        '<div style="font-size:12px;color:#64748b;margin-top:4px">Tidak ada paket masuk yang menumpuk di meja General Services.</div>' +
+      '</div>';
+      return;
+    }
+
+    // Group by recipient
+    var grouped = {};
+    pendingDocs.forEach(function (d) {
+      var rName = (d.recipient_name || 'Umum').trim();
+      if (!grouped[rName]) grouped[rName] = [];
+      grouped[rName].push(d);
+    });
+
+    var rKeys = Object.keys(grouped).sort();
+    if (_edocReadySearchQuery) {
+      rKeys = rKeys.filter(function (rKey) {
+        if (rKey.toLowerCase().indexOf(_edocReadySearchQuery) !== -1) return true;
+        return grouped[rKey].some(function (d) {
+          var str = (String(d.doc_no || '') + ' ' + String(d.doc_title || '') + ' ' + String(d.sender_name || '') + ' ' + String(d.tracking_no || '')).toLowerCase();
+          return str.indexOf(_edocReadySearchQuery) !== -1;
+        });
+      });
+    }
+
+    if (rKeys.length === 0) {
+      listEl.innerHTML = '<div style="text-align:center;padding:24px;color:#94a3b8;font-size:12px">Tidak ditemukan penerima dengan pencarian "' + esc(_edocReadySearchQuery) + '".</div>';
+      return;
+    }
+
+    var html = '';
+    rKeys.forEach(function (recName) {
+      var docs = grouped[recName];
+      var totalItems = 0;
+      docs.forEach(function (d) { totalItems += (Number(d.doc_count) || 1); });
+      var idsJson = JSON.stringify(docs.map(function (d) { return d.id; }));
+
+      html += '<div style="background:#fff;border:1.5px solid #e2e8f0;border-left:4px solid #16a34a;border-radius:12px;padding:12px 14px;box-shadow:0 1px 3px rgba(0,0,0,0.04)">';
+      html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px">';
+      html += '<div>';
+      html += '<div style="font-weight:800;font-size:14px;color:#0f172a">🎯 ' + esc(recName) + '</div>';
+      html += '<div style="font-size:11.5px;color:#15803d;font-weight:600">' + docs.length + ' Paket Menunggu (' + totalItems + ' Dokumen)</div>';
+      html += '</div>';
+      html += '<button type="button" class="btn-next" onclick=\'closeEdocInboundModal();openEdocBatchHandoverModal(' + JSON.stringify(recName) + ', ' + idsJson + ')\' style="background:#16a34a;color:#fff;border:none;border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:6px;cursor:pointer">';
+      html += '<span>🤝 Serahkan Semua (' + docs.length + ')</span>';
+      html += '</button>';
+      html += '</div>';
+
+      html += '<div style="display:flex;flex-direction:column;gap:5px;background:#f8fafc;padding:8px 10px;border-radius:8px;font-size:11.5px">';
+      docs.forEach(function (d, dIdx) {
+        html += '<div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #f1f5f9;padding-bottom:4px">';
+        html += '<div style="overflow:hidden;text-overflow:ellipsis;margin-right:8px">';
+        html += '<span style="font-weight:700;color:#1e293b">' + (dIdx + 1) + '. ' + esc(d.sender_name || 'Vendor Luar') + '</span>';
+        if (d.tracking_no) html += ' <span style="color:#2563eb;font-size:10.5px">(' + esc(d.tracking_no) + ')</span>';
+        html += '<div style="color:#64748b;font-size:11px">' + esc(d.doc_title || 'Paket Dokumen') + '</div>';
+        html += '</div>';
+        html += '<button type="button" onclick=\'closeEdocInboundModal();openEdocSingleHandover(' + d.id + ')\' style="background:#ecfdf5;color:#059669;border:1px solid #a7f3d0;border-radius:6px;padding:3px 8px;font-size:10.5px;font-weight:700;cursor:pointer;white-space:nowrap">';
+        html += 'Serahkan Ini';
+        html += '</button>';
+        html += '</div>';
+      });
+      html += '</div>';
+
+      html += '</div>';
+    });
+
+    listEl.innerHTML = html;
+  }
+
   function toggleEdocImmediateHandover(isChecked) {
     var sec = document.getElementById('edoc-in-immediate-section');
-    if (sec) sec.style.display = isChecked ? 'block' : 'none';
     var btn = document.getElementById('btn-edoc-in-submit');
+    if (sec) sec.style.display = isChecked ? 'block' : 'none';
     if (btn) {
-      btn.innerText = isChecked ? '✍️ Simpan & Serahkan Langsung' : '💾 Simpan Semua Dokumen ke Draf';
+      btn.innerHTML = isChecked ? '✍️ Simpan &amp; Serahkan Langsung' : '📥 Simpan ke Draft Inbound';
+      btn.style.background = isChecked ? '#2563eb' : '#059669';
+    }
+    if (isChecked) {
+      setTimeout(initEdocInSignature, 60);
     }
   }
 
@@ -11632,9 +11892,7 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
     if (!title) {
-      if (err) { err.innerText = 'Harap isi keterangan / perihal dokumen.'; err.style.display = 'block'; }
-      if (tEl) tEl.focus();
-      return;
+      title = 'Paket Dokumen Fisik (' + sender + ')';
     }
 
     edocDraftItems.push({
@@ -11663,7 +11921,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!listEl) return;
 
     if (edocDraftItems.length === 0) {
-      listEl.innerHTML = '<div style="text-align:center;color:#94a3b8;font-size:12px;padding:12px">Belum ada dokumen di draf. Isi form di atas lalu klik <strong>"Tambahkan ke List Draf"</strong>.</div>';
+      listEl.innerHTML = '<div style="text-align:center;color:#94a3b8;font-size:12px;padding:12px">Belum ada dokumen di draf. Isi form di atas lalu klik <strong>"Tambahkan ke List Draf"</strong> (atau langsung klik Simpan).</div>';
       if (countEl) countEl.innerText = '0 Dokumen';
       return;
     }
@@ -11677,10 +11935,10 @@ document.addEventListener('DOMContentLoaded', function() {
         '<div style="overflow:hidden;text-overflow:ellipsis;margin-right:8px">' +
         '<div style="font-weight:700;color:#1e293b;display:flex;align-items:center;gap:6px">' +
         '<span style="background:#eff6ff;color:#2563eb;padding:1px 6px;border-radius:4px;font-size:11px">#' + (i + 1) + '</span> ' +
-        '<span>' + escapeHtml(it.sender) + '</span>' +
+        '<span>' + esc(it.sender) + '</span>' +
         '<span style="background:#f1f5f9;color:#475569;padding:1px 6px;border-radius:4px;font-size:10.5px">' + it.qty + ' Dokumen</span>' +
         '</div>' +
-        '<div style="color:#64748b;margin-top:2px;font-size:11.5px">' + escapeHtml(it.title) + '</div>' +
+        '<div style="color:#64748b;margin-top:2px;font-size:11.5px">' + esc(it.title) + '</div>' +
         '</div>' +
         '<button type="button" onclick="removeEdocDraftItem(' + i + ')" style="background:#fee2e2;color:#ef4444;border:none;border-radius:6px;padding:4px 8px;cursor:pointer;font-size:11px;font-weight:700">✕ Hapus</button>' +
         '</div>';
@@ -11695,7 +11953,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var rEl = document.getElementById('edoc-in-recipient');
     var recipient = (rEl ? rEl.value : '').trim();
     var resi = (document.getElementById('edoc-in-resi') ? document.getElementById('edoc-in-resi').value : '').trim();
-    var lokasi = (document.getElementById('edoc-in-lokasi') ? document.getElementById('edoc-in-lokasi').value : '').trim();
+    var lokasi = (document.getElementById('edoc-in-lokasi') ? document.getElementById('edoc-in-lokasi').value : '').trim() || 'Meja GS / Rak Inbound';
     var isImmediate = document.getElementById('edoc-in-immediate-chk') ? document.getElementById('edoc-in-immediate-chk').checked : false;
 
     var err = document.getElementById('edoc-in-err');
@@ -11704,23 +11962,27 @@ document.addEventListener('DOMContentLoaded', function() {
     if (ok) ok.style.display = 'none';
 
     if (!recipient) {
-      if (err) { err.innerText = 'Pilih atau ketik nama tujuan / penerima dokumen internal.'; err.style.display = 'block'; }
+      if (err) { err.innerText = 'Harap ketik atau pilih nama tujuan / penerima dokumen (karyawan/departemen).'; err.style.display = 'block'; }
       if (rEl) rEl.focus();
       return;
     }
 
-    // Jika admin sudah mengetik di input box tapi belum klik "Tambah ke Draf", masukkan otomatis
+    // Auto-capture input form jika admin belum klik tombol "Tambah ke Draf"
     var sCur = (document.getElementById('edoc-in-sender') ? document.getElementById('edoc-in-sender').value : '').trim();
     var tCur = (document.getElementById('edoc-in-title') ? document.getElementById('edoc-in-title').value : '').trim();
     var qCur = Math.max(1, parseInt(document.getElementById('edoc-in-qty') ? document.getElementById('edoc-in-qty').value : '1') || 1);
-    if (sCur && tCur) {
-      edocDraftItems.push({ sender: sCur, title: tCur, qty: qCur });
+    if (sCur || tCur) {
+      edocDraftItems.push({
+        sender: sCur || 'Kurir Eksternal',
+        title: tCur || ('Paket Dokumen Fisik (' + (sCur || 'Inbound') + ')'),
+        qty: qCur
+      });
       if (document.getElementById('edoc-in-title')) document.getElementById('edoc-in-title').value = '';
       renderEdocDraftList();
     }
 
     if (edocDraftItems.length === 0) {
-      if (err) { err.innerText = 'Harap tambahkan minimal satu dokumen ke list draf.'; err.style.display = 'block'; }
+      if (err) { err.innerText = 'Harap isi informasi pengirim atau keterangan dokumen yang masuk.'; err.style.display = 'block'; }
       return;
     }
 
@@ -11756,7 +12018,7 @@ document.addEventListener('DOMContentLoaded', function() {
       signature: signature
     }).then(function (res) {
       if (ok) {
-        ok.innerText = res.message || ('Berhasil mencatat ' + edocDraftItems.length + ' item dokumen untuk ' + recipient + '!');
+        ok.innerText = res.message || ('✅ Berhasil mencatat ' + edocDraftItems.length + ' item dokumen untuk ' + recipient + '!');
         ok.style.display = 'block';
       }
       edocDraftItems = [];
@@ -11764,10 +12026,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
       if (typeof loadEdocList === 'function') loadEdocList();
       if (typeof silentRefresh === 'function') silentRefresh();
-      setTimeout(closeEdocInboundModal, 1500);
+
+      updateEdocInboundReadyBadge();
+
+      setTimeout(function () {
+        switchEdocInboundTab('ready');
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = isImmediate ? '✍️ Simpan &amp; Serahkan Langsung' : '📥 Simpan ke Draft Inbound';
+        }
+      }, 900);
     }).catch(function (e) {
-      if (err) { err.innerText = e.message; err.style.display = 'block'; }
-      if (btn) { btn.disabled = false; btn.innerText = isImmediate ? '✍️ Simpan & Serahkan Langsung' : '💾 Simpan Semua Dokumen ke Draf'; }
+      if (err) { err.innerText = e.message || 'Gagal menyimpan dokumen masuk.'; err.style.display = 'block'; }
+      if (btn) { btn.disabled = false; btn.innerHTML = isImmediate ? '✍️ Simpan &amp; Serahkan Langsung' : '📥 Simpan ke Draft Inbound'; }
     });
   }
 
