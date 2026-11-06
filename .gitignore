@@ -1,0 +1,26 @@
+# Sensitive credentials & environment files
+.env
+.env.*
+*.env
+*.key
+*.pem
+credentials*.json
+
+# Database & spreadsheets
+*.sql
+*.xlsx
+*.xls
+*.csv
+
+# System files & backups
+.DS_Store
+Thumbs.db
+desktop.ini
+*.bak
+*.swp
+*.log
+
+# Scratch & temporary directories
+scratch/
+tmp/
+temp/
