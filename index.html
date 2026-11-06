@@ -8502,7 +8502,7 @@ body.in-app .layout {
     <button class="nav-item" data-page="zoom" onclick="navTo('zoom')"><span class="ni-icon">📹</span><span class="ni-txt">Meeting Virtual (Zoom)</span></button>
     <button class="nav-item" data-page="mobilisasi" onclick="navTo('mobilisasi')"><span class="ni-icon">🚗</span><span class="ni-txt">Peminjaman Mobil Dinas</span></button>
     <button class="nav-item" data-page="atk" onclick="navTo('atk')"><span class="ni-icon">✏️</span><span class="ni-txt">Request Permintaan ATK</span></button>
-    <button class="nav-item" data-page="edoc" onclick="navTo('edoc')"><span class="ni-icon">📦</span><span class="ni-txt">Pengiriman E-doc</span></button>
+    <button class="nav-item" data-page="edoc" onclick="navTo('edoc')"><span class="ni-icon">📦</span><span class="ni-txt">E-DOC</span></button>
 
 
     <!-- ATK & LOGISTIK (KHUSUS GS & ADMIN) -->
@@ -8665,19 +8665,12 @@ body.in-app .layout {
                 <div class="bld-name">Request ATK</div>
                 <div class="bld-loc">Alat tulis kantor &amp; perlengkapan kerja</div>
               </div>
-              <div class="bld-card" onclick="openEdocModal()">
+              <div class="bld-card" onclick="navTo('edoc')">
                 <div class="bld-icon" style="color:#2563eb">
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                 </div>
-                <div class="bld-name">Pengiriman Dokumen</div>
-                <div class="bld-loc">Kirim dokumen keluar via kurir / ekspedisi</div>
-              </div>
-              <div class="bld-card gs-only-feature" style="display:none" onclick="openEdocInboundModal()">
-                <div class="bld-icon" style="color:#0d9488">
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg>
-                </div>
-                <div class="bld-name">Penyerahan Dokumen</div>
-                <div class="bld-loc">Penerimaan & serah terima paket inbound di HO</div>
+                <div class="bld-name">E-DOC</div>
+                <div class="bld-loc">Pengiriman &amp; penerimaan dokumen fisik GS</div>
               </div>
               <div class="bld-card gs-only-feature" onclick="navTo('atk-stock')" style="display:none">
                 <div class="bld-icon" style="color:#0d9488">
@@ -8757,22 +8750,22 @@ body.in-app .layout {
     <div class="page" id="page-edoc">
       <!-- 2 PILIHAN UTAMA VIEW USER & GS: DOKUMEN DIKIRIM (OUTBOUND) VS DOKUMEN DITERIMA DI HO (INBOUND) -->
       <div class="edoc-main-nav-tabs" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:12px;margin-bottom:16px">
-        <button type="button" id="edoc-tab-view-outbound" onclick="switchEdocMainTab('outbound')" style="padding:14px 18px;border-radius:14px;border:2px solid #2563eb;background:#eff6ff;color:#1e293b;cursor:pointer;display:flex;align-items:center;gap:12px;text-align:left;box-shadow:0 2px 4px rgba(37,99,235,0.08);transition:all .2s ease">
+        <button type="button" id="edoc-tab-view-outbound" onclick="switchEdocMainTab('outbound')" style="padding:14px 18px;border-radius:14px;border:1px solid #2563eb;background:#eff6ff;color:#1e293b;cursor:pointer;display:flex;align-items:center;gap:12px;text-align:left;box-shadow:0 2px 4px rgba(37,99,235,0.08);transition:all .2s ease">
           <div style="width:42px;height:42px;border-radius:10px;background:#dbeafe;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">📤</div>
           <div style="flex:1;min-width:0">
             <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-              <span style="font-weight:800;font-size:14px;color:#1d4ed8">1. Dokumen Dikirim (Outbound)</span>
+              <span style="font-weight:600;font-size:13.5px;color:#1d4ed8">1. Dokumen Dikirim (Outbound)</span>
               <span id="edoc-badge-outbound-count" style="background:#2563eb;color:#fff;font-size:11px;font-weight:700;padding:1px 8px;border-radius:12px">0</span>
             </div>
             <div style="font-size:11.5px;color:#64748b;margin-top:2px">Pengiriman surat/dokumen keluar kantor &amp; resi ekspedisi</div>
           </div>
         </button>
 
-        <button type="button" id="edoc-tab-view-inbound" onclick="switchEdocMainTab('inbound')" style="padding:14px 18px;border-radius:14px;border:1.5px solid #cbd5e1;background:#fff;color:#475569;cursor:pointer;display:flex;align-items:center;gap:12px;text-align:left;transition:all .2s ease">
+        <button type="button" id="edoc-tab-view-inbound" onclick="switchEdocMainTab('inbound')" style="padding:14px 18px;border-radius:14px;border:1px solid #e2e8f0;background:#fff;color:#475569;cursor:pointer;display:flex;align-items:center;gap:12px;text-align:left;transition:all .2s ease">
           <div style="width:42px;height:42px;border-radius:10px;background:#ecfdf5;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">📥</div>
           <div style="flex:1;min-width:0">
             <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-              <span style="font-weight:800;font-size:14px;color:#0f172a">2. Dokumen Diterima di HO &amp; Penyerahan</span>
+              <span style="font-weight:600;font-size:13.5px;color:#0f172a">2. Dokumen Diterima di HO &amp; Penyerahan</span>
               <span id="edoc-badge-inbound-pending" style="background:#059669;color:#fff;font-size:11px;font-weight:700;padding:1px 8px;border-radius:12px">0 Menunggu</span>
             </div>
             <div style="font-size:11.5px;color:#64748b;margin-top:2px">Paket kurir tiba di HO &amp; serah terima bundling per departemen</div>
@@ -9710,140 +9703,123 @@ body.in-app .layout {
 <!-- MODAL PENCATATAN DOKUMEN MASUK (INBOUND: DRAFT & SERAH TERIMA) -->
 <!-- E-DOC INBOUND (Catat Dokumen Masuk / Penyerahan Dokumen - Mobile-First Quick Draft & Grouped Handover) -->
 <div class="modal-overlay" id="edoc-inbound-overlay" onclick="if(event.target===this)closeEdocInboundModal()">
-  <div class="modal" style="max-width:580px;border-radius:20px;overflow:hidden">
-    <div class="modal-head" style="background:linear-gradient(135deg, rgba(37,99,235,0.08), transparent)">
+  <div class="modal" style="max-width:540px;border-radius:16px;border:1px solid #e2e8f0;box-shadow:0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.06);overflow:hidden">
+    <div class="modal-head" style="padding:16px 20px;border-bottom:1px solid #e2e8f0;background:#ffffff">
       <div>
-        <div class="modal-ttl" style="display:flex;align-items:center;gap:8px">📥 Penyerahan Dokumen &amp; Dokumen Masuk</div>
-        <div class="modal-sub">Catat paket kurir sebagai draf penerimaan, atau serahkan paket bundle per orang.</div>
+        <div class="modal-ttl" style="display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:#0f172a">
+          <span>📥</span> E-DOC — Catat Dokumen Masuk
+        </div>
+        <div class="modal-sub" style="font-size:12px;color:#64748b;margin-top:2px">
+          Penerimaan paket atau surat dari kurir/vendor di meja General Services.
+        </div>
       </div>
-      <button class="modal-close" onclick="closeEdocInboundModal()">✕</button>
+      <button class="modal-close" onclick="closeEdocInboundModal()" style="font-size:18px;color:#64748b">✕</button>
     </div>
 
     <!-- 2-SEGMENT TAB BAR -->
     <div style="padding:10px 20px 0;background:#f8fafc;border-bottom:1px solid #e2e8f0">
-      <div style="display:flex;background:#e2e8f0;padding:3px;border-radius:12px;gap:3px">
-        <button type="button" id="tab-btn-edoc-in-draft" onclick="switchEdocInboundTab('draft')" style="flex:1;padding:8px 10px;font-size:12.5px;font-weight:700;border:none;border-radius:9px;background:#fff;color:#1e293b;box-shadow:0 1px 3px rgba(0,0,0,0.08);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px">
+      <div style="display:flex;background:#e2e8f0;padding:3px;border-radius:10px;gap:3px">
+        <button type="button" id="tab-btn-edoc-in-draft" onclick="switchEdocInboundTab('draft')" style="flex:1;padding:8px 10px;font-size:12.5px;font-weight:600;border:none;border-radius:7px;background:#fff;color:#0f172a;box-shadow:0 1px 2px rgba(0,0,0,0.06);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px">
           <span>📥 1. Catat Dokumen Masuk</span>
         </button>
-        <button type="button" id="tab-btn-edoc-in-ready" onclick="switchEdocInboundTab('ready')" style="flex:1;padding:8px 10px;font-size:12.5px;font-weight:700;border:none;border-radius:9px;background:transparent;color:#475569;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px">
+        <button type="button" id="tab-btn-edoc-in-ready" onclick="switchEdocInboundTab('ready')" style="flex:1;padding:8px 10px;font-size:12.5px;font-weight:500;border:none;border-radius:7px;background:transparent;color:#64748b;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px">
           <span>🤝 2. Siap Diserahkan</span>
-          <span id="tab-badge-edoc-in-ready" style="display:none;background:#2563eb;color:#fff;border-radius:10px;padding:1px 7px;font-size:10.5px;font-weight:800">0</span>
+          <span id="tab-badge-edoc-in-ready" style="display:none;background:#2563eb;color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;font-weight:600">0</span>
         </button>
       </div>
     </div>
 
-    <!-- TAB 1: FORM CATAT DRAF DOKUMEN MASUK -->
-    <div id="edoc-in-tab-draft" style="padding:16px 20px 20px;overflow-y:auto;max-height:76vh">
+    <!-- TAB 1: FORM CATAT DOKUMEN MASUK (Direct single-step) -->
+    <div id="edoc-in-tab-draft" style="padding:18px 20px 20px;overflow-y:auto;max-height:76vh;background:#ffffff">
       
       <!-- 1. TUJUAN / PENERIMA DOKUMEN -->
-      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:12px 14px;margin-bottom:14px">
-        <label style="font-weight:700;font-size:12px;color:#1e293b;text-transform:uppercase;letter-spacing:.03em;display:block;margin-bottom:6px">
-          🎯 Tujuan / Penerima Dokumen <span class="req">*</span>
+      <div style="margin-bottom:14px">
+        <label style="display:block;font-size:12px;font-weight:600;color:#334155;margin-bottom:6px">
+          Tujuan / Penerima Dokumen <span style="color:#ef4444">*</span>
         </label>
-        <input type="text" id="edoc-in-recipient" list="master-users-list" placeholder="Ketik / pilih nama karyawan penerima..." style="font-size:14px;font-weight:600">
+        <input type="text" id="edoc-in-recipient" list="master-users-list" placeholder="Pilih atau ketik nama karyawan / divisi penerima..." style="width:100%;font-size:13.5px;padding:9px 12px;border:1px solid #cbd5e1;border-radius:8px;outline:none;background:#ffffff">
         <div style="font-size:11px;color:#64748b;margin-top:4px">
-          Semua dokumen draf di bawah akan ditujukan kepada karyawan ini.
+          Contoh: Andra (Finance), Purchasing, HRGA, dll.
         </div>
       </div>
 
-      <!-- 2. KOTAK INPUT CEPAT DOKUMEN (MOBILE OPTIMIZED) -->
-      <div style="background:#eff6ff;border:1.5px solid #bfdbfe;border-radius:12px;padding:12px 14px;margin-bottom:14px">
-        <div style="font-size:12px;font-weight:700;color:#1d4ed8;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-          <span>📝 Tambah Dokumen ke Draf</span>
-          <span style="font-size:11px;font-weight:normal;color:#3b82f6">Bisa tambah banyak sebelum simpan</span>
-        </div>
-
-        <div class="frow" style="margin-bottom:8px">
-          <label style="font-size:11.5px">Dari Mana (Vendor / Kurir / Pengirim) <span class="req">*</span></label>
-          <input type="text" id="edoc-in-sender" list="master-vendors-list" placeholder="Mis. SiCepat, JNE, Bank Mandiri, Pajak Pratama">
-        </div>
-
-        <div style="display:grid;grid-template-columns:110px 1fr;gap:10px;margin-bottom:10px">
-          <div>
-            <label style="font-size:11.5px">Jumlah Dokumen</label>
-            <input type="number" id="edoc-in-qty" min="1" value="1" style="text-align:center;font-weight:700">
-          </div>
-          <div>
-            <label style="font-size:11.5px">Keterangan / Perihal Dokumen <span class="req">*</span></label>
-            <input type="text" id="edoc-in-title" placeholder="Mis. Faktur Pajak, Surat Perjanjian, BAST">
-          </div>
-        </div>
-
-        <button type="button" onclick="addEdocDraftItem()" style="width:100%;background:#2563eb;color:#fff;border:none;border-radius:8px;padding:9px;font-size:12.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px">
-          <span>➕ Tambahkan ke List Draf</span>
-        </button>
+      <!-- 2. PENGIRIM / EKSPEDISI -->
+      <div style="margin-bottom:14px">
+        <label style="display:block;font-size:12px;font-weight:600;color:#334155;margin-bottom:6px">
+          Dari Mana (Kurir / Vendor / Pengirim) <span style="color:#ef4444">*</span>
+        </label>
+        <input type="text" id="edoc-in-sender" list="master-vendors-list" placeholder="Pilih kurir (JNE, J&T, SiCepat) atau ketik nama vendor..." style="width:100%;font-size:13.5px;padding:9px 12px;border:1px solid #cbd5e1;border-radius:8px;outline:none;background:#ffffff">
       </div>
 
-      <!-- 3. TAMPILAN LIST KARTU DRAF (MOBILE-FRIENDLY CARD LIST) -->
-      <div id="edoc-in-draft-container" style="margin-bottom:14px">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-          <span style="font-size:12px;font-weight:700;color:#334155">📋 Daftar Dokumen dalam Draf:</span>
-          <span id="edoc-in-draft-count" style="font-size:11.5px;font-weight:700;color:#059669;background:#ecfdf5;padding:2px 8px;border-radius:10px">0 Item</span>
-        </div>
-        <div id="edoc-in-draft-list" style="max-height:160px;overflow-y:auto;border:1px dashed #cbd5e1;border-radius:10px;padding:8px;background:#fafafa">
-          <div style="text-align:center;color:#94a3b8;font-size:12px;padding:14px">
-            Belum ada dokumen di draf. Isi form di atas lalu klik <strong>"Tambahkan ke List Draf"</strong>.
-          </div>
-        </div>
-      </div>
-
-      <!-- 4. LOKASI & RESI (OPSIONAL) -->
-      <div class="frow2" style="margin-bottom:10px">
+      <!-- 3. RESI & PERIHAL (2 COLUMN GRID) -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
         <div>
-          <label style="font-size:11px;color:#64748b">No. Resi / AWB (Opsional)</label>
-          <input type="text" id="edoc-in-resi" placeholder="Mis. JP1234567890">
+          <label style="display:block;font-size:12px;font-weight:500;color:#475569;margin-bottom:6px">
+            No. Resi / AWB <span style="font-size:11px;color:#94a3b8">(Opsional)</span>
+          </label>
+          <input type="text" id="edoc-in-resi" placeholder="Misal: JP1234567890" style="width:100%;font-size:13px;padding:8px 12px;border:1px solid #cbd5e1;border-radius:8px;background:#ffffff">
         </div>
         <div>
-          <label style="font-size:11px;color:#64748b">Lokasi Simpan di GS</label>
-          <input type="text" id="edoc-in-lokasi" placeholder="Mis. Meja Resepsionis / Rak Inbound">
+          <label style="display:block;font-size:12px;font-weight:500;color:#475569;margin-bottom:6px">
+            Perihal / Keterangan <span style="font-size:11px;color:#94a3b8">(Opsional)</span>
+          </label>
+          <input type="text" id="edoc-in-title" placeholder="Misal: Faktur Pajak, Kontrak, BAST" style="width:100%;font-size:13px;padding:8px 12px;border:1px solid #cbd5e1;border-radius:8px;background:#ffffff">
         </div>
+      </div>
+
+      <!-- 4. LOKASI SIMPAN DI GS -->
+      <div style="margin-bottom:14px">
+        <label style="display:block;font-size:12px;font-weight:500;color:#475569;margin-bottom:6px">
+          Lokasi Simpan di GS
+        </label>
+        <input type="text" id="edoc-in-lokasi" placeholder="Meja GS / Resepsionis" value="Meja GS / Resepsionis" style="width:100%;font-size:13px;padding:8px 12px;border:1px solid #cbd5e1;border-radius:8px;background:#ffffff">
       </div>
 
       <!-- 5. TOGGLE: PENERIMA LANGSUNG ADA DI TEMPAT -->
-      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;margin-bottom:12px">
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:600;font-size:12px;color:#1e293b;margin:0">
-          <input type="checkbox" id="edoc-in-immediate-chk" onchange="toggleEdocImmediateHandover(this.checked)" style="width:16px;height:16px;accent-color:#059669">
-          <span>Penerima sudah di tempat (Langsung foto &amp; tanda tangan sekarang)</span>
+      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px 12px;margin-bottom:14px">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:12.5px;color:#334155;margin:0;user-select:none">
+          <input type="checkbox" id="edoc-in-immediate-chk" onchange="toggleEdocImmediateHandover(this.checked)" style="width:16px;height:16px;accent-color:#059669;cursor:pointer">
+          <span>Penerima langsung ada di tempat (serahkan &amp; tanda tangan sekarang)</span>
         </label>
       </div>
 
       <!-- AREA SERAH TERIMA LANGSUNG (JIKA DICENTANG) -->
-      <div id="edoc-in-immediate-section" style="display:none;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:12px;margin-bottom:12px">
-        <div style="font-size:11px;font-weight:700;color:#166534;text-transform:uppercase;margin-bottom:6px">📷 Bukti Serah Terima Langsung</div>
-        <div class="frow" style="margin-bottom:8px">
-          <label style="font-size:11px">Foto Penyerahan Paket (Opsional)</label>
+      <div id="edoc-in-immediate-section" style="display:none;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:12px;margin-bottom:14px">
+        <div style="font-size:11.5px;font-weight:600;color:#166534;margin-bottom:8px">Bukti Serah Terima Langsung</div>
+        <div style="margin-bottom:10px">
+          <label style="display:block;font-size:11.5px;color:#475569;margin-bottom:4px">Foto Penyerahan Paket (Opsional)</label>
           <input type="file" id="edoc-in-file-input" accept="image/*" capture="environment" onchange="uploadEdocInboundReceipt(this)" style="display:none">
           <input type="hidden" id="edoc-in-photo">
-          <button type="button" class="btn-rs" onclick="document.getElementById('edoc-in-file-input').click()" style="padding:5px 12px;font-size:11px;background:#fff;border-color:#059669;color:#059669;font-weight:600">
-            📸 Ambil Foto Bukti
+          <button type="button" class="btn-rs" onclick="document.getElementById('edoc-in-file-input').click()" style="padding:6px 14px;font-size:11.5px;background:#fff;border:1px solid #059669;color:#059669;border-radius:6px;cursor:pointer">
+            📷 Ambil Foto Bukti
           </button>
           <div id="edoc-in-preview-wrap" style="display:none;margin-top:6px;text-align:center">
             <img id="edoc-in-preview-img" src="" style="max-height:80px;border-radius:6px;border:1px solid #cbd5e1">
           </div>
         </div>
         <div>
-          <label style="font-size:11px">Tanda Tangan Penerima</label>
+          <label style="display:block;font-size:11.5px;color:#475569;margin-bottom:4px">Tanda Tangan Penerima</label>
           <div style="border:1px solid #cbd5e1;background:#fff;border-radius:6px;overflow:hidden;position:relative">
-            <canvas id="edoc-in-sig-pad" width="500" height="100" style="display:block;width:100%;height:100px;touch-action:none;cursor:crosshair"></canvas>
+            <canvas id="edoc-in-sig-pad" width="500" height="90" style="display:block;width:100%;height:90px;touch-action:none;cursor:crosshair"></canvas>
             <button type="button" onclick="clearEdocInSignature()" style="position:absolute;top:4px;right:4px;background:#fee2e2;color:#ef4444;border:1px solid #fca5a5;border-radius:4px;font-size:10px;padding:2px 6px;cursor:pointer">Hapus</button>
           </div>
         </div>
       </div>
 
-      <div id="edoc-in-err" style="background:#fee2e2;color:#b91c1c;padding:8px 12px;border-radius:6px;font-size:12px;margin:8px 0;display:none"></div>
-      <div id="edoc-in-ok" style="background:#dcfce7;color:#15803d;padding:8px 12px;border-radius:6px;font-size:12px;margin:8px 0;display:none;font-weight:600"></div>
+      <div id="edoc-in-err" style="background:#fee2e2;color:#b91c1c;padding:8px 12px;border-radius:6px;font-size:12px;margin:8px 0;display:none;border:1px solid #fecaca"></div>
+      <div id="edoc-in-ok" style="background:#dcfce7;color:#15803d;padding:8px 12px;border-radius:6px;font-size:12px;margin:8px 0;display:none;font-weight:500;border:1px solid #bbf7d0"></div>
 
       <!-- FOOTER BUTTONS -->
-      <div style="display:flex;gap:8px;justify-content:flex-end;padding-top:12px;border-top:1px solid #e2e8f0;flex-wrap:wrap">
-        <button type="button" class="btn-prev" onclick="closeEdocInboundModal()" style="padding:8px 14px;font-size:12px">✕ Tutup</button>
-        <button type="button" class="btn-next" id="btn-edoc-in-submit" onclick="submitEdocInbound()" style="background:#059669;font-weight:700;padding:9px 18px;font-size:13px">
-          💾 Simpan Semua Dokumen ke Draf
+      <div style="display:flex;gap:8px;justify-content:flex-end;padding-top:14px;border-top:1px solid #e2e8f0;flex-wrap:wrap">
+        <button type="button" class="btn-prev" onclick="closeEdocInboundModal()" style="padding:8px 16px;font-size:12.5px;border-radius:8px;border:1px solid #cbd5e1;background:#fff;color:#475569;cursor:pointer">✕ Batal</button>
+        <button type="button" class="btn-next" id="btn-edoc-in-submit" onclick="submitEdocInbound()" style="background:#059669;font-weight:600;padding:8px 20px;font-size:13px;border-radius:8px;border:none;color:#fff;cursor:pointer">
+          📥 Simpan Dokumen Masuk
         </button>
       </div>
     </div>
 
     <!-- TAB 2: DAFTAR DOKUMEN SIAP DISERAHKAN (PER PENERIMA) -->
-    <div id="edoc-in-tab-ready" style="display:none;padding:16px 20px 20px;overflow-y:auto;max-height:76vh">
+    <div id="edoc-in-tab-ready" style="display:none;padding:16px 20px 20px;overflow-y:auto;max-height:76vh;background:#ffffff">
       <div style="margin-bottom:12px">
         <div style="font-size:12px;color:#64748b;margin-bottom:8px">
           Daftar paket dokumen masuk yang sudah diterima di GS dan menunggu diambil. Anda bisa menyerahkan <strong>seluruh dokumen milik orang tersebut sekaligus</strong> dengan 1 foto &amp; tanda tangan.
@@ -9856,12 +9832,13 @@ body.in-app .layout {
       </div>
 
       <div style="display:flex;justify-content:flex-end;padding-top:14px;border-top:1px solid #e2e8f0;margin-top:14px">
-        <button type="button" class="btn-prev" onclick="closeEdocInboundModal()" style="padding:8px 16px;font-size:12px">✕ Tutup</button>
+        <button type="button" class="btn-prev" onclick="closeEdocInboundModal()" style="padding:8px 16px;font-size:12px;border-radius:8px;border:1px solid #cbd5e1;background:#fff;color:#475569;cursor:pointer">✕ Tutup</button>
       </div>
     </div>
 
   </div>
 </div>
+
 
 <!-- E-DOC MODAL (Form Pengajuan Kirim Dokumen - Streamlined & Friction-free) -->
 <div class="modal-overlay" id="edoc-overlay" onclick="if(event.target===this)closeEdocModal()">
@@ -11696,7 +11673,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var btn = document.getElementById('btn-edoc-in-submit');
     if (btn) {
       btn.disabled = false;
-      btn.innerHTML = '📥 Simpan ke Draft Inbound';
+      btn.innerHTML = '📥 Simpan Dokumen Masuk';
       btn.style.background = '#059669';
     }
 
@@ -11866,7 +11843,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var btn = document.getElementById('btn-edoc-in-submit');
     if (sec) sec.style.display = isChecked ? 'block' : 'none';
     if (btn) {
-      btn.innerHTML = isChecked ? '✍️ Simpan &amp; Serahkan Langsung' : '📥 Simpan ke Draft Inbound';
+      btn.innerHTML = isChecked ? '✍️ Simpan &amp; Serahkan Langsung' : '📥 Simpan Dokumen Masuk';
       btn.style.background = isChecked ? '#2563eb' : '#059669';
     }
     if (isChecked) {
@@ -11952,8 +11929,12 @@ document.addEventListener('DOMContentLoaded', function() {
   function submitEdocInbound() {
     var rEl = document.getElementById('edoc-in-recipient');
     var recipient = (rEl ? rEl.value : '').trim();
+    var sEl = document.getElementById('edoc-in-sender');
+    var sender = (sEl ? sEl.value : '').trim();
+    var tEl = document.getElementById('edoc-in-title');
+    var title = (tEl ? tEl.value : '').trim();
     var resi = (document.getElementById('edoc-in-resi') ? document.getElementById('edoc-in-resi').value : '').trim();
-    var lokasi = (document.getElementById('edoc-in-lokasi') ? document.getElementById('edoc-in-lokasi').value : '').trim() || 'Meja GS / Rak Inbound';
+    var lokasi = (document.getElementById('edoc-in-lokasi') ? document.getElementById('edoc-in-lokasi').value : '').trim() || 'Meja GS / Resepsionis';
     var isImmediate = document.getElementById('edoc-in-immediate-chk') ? document.getElementById('edoc-in-immediate-chk').checked : false;
 
     var err = document.getElementById('edoc-in-err');
@@ -11962,27 +11943,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (ok) ok.style.display = 'none';
 
     if (!recipient) {
-      if (err) { err.innerText = 'Harap ketik atau pilih nama tujuan / penerima dokumen (karyawan/departemen).'; err.style.display = 'block'; }
+      if (err) { err.innerText = 'Harap pilih atau ketik nama penerima dokumen.'; err.style.display = 'block'; }
       if (rEl) rEl.focus();
       return;
     }
 
-    // Auto-capture input form jika admin belum klik tombol "Tambah ke Draf"
-    var sCur = (document.getElementById('edoc-in-sender') ? document.getElementById('edoc-in-sender').value : '').trim();
-    var tCur = (document.getElementById('edoc-in-title') ? document.getElementById('edoc-in-title').value : '').trim();
-    var qCur = Math.max(1, parseInt(document.getElementById('edoc-in-qty') ? document.getElementById('edoc-in-qty').value : '1') || 1);
-    if (sCur || tCur) {
-      edocDraftItems.push({
-        sender: sCur || 'Kurir Eksternal',
-        title: tCur || ('Paket Dokumen Fisik (' + (sCur || 'Inbound') + ')'),
-        qty: qCur
-      });
-      if (document.getElementById('edoc-in-title')) document.getElementById('edoc-in-title').value = '';
-      renderEdocDraftList();
-    }
-
-    if (edocDraftItems.length === 0) {
-      if (err) { err.innerText = 'Harap isi informasi pengirim atau keterangan dokumen yang masuk.'; err.style.display = 'block'; }
+    if (!sender) {
+      if (err) { err.innerText = 'Harap pilih atau ketik pengirim / kurir / vendor.'; err.style.display = 'block'; }
+      if (sEl) sEl.focus();
       return;
     }
 
@@ -11995,34 +11963,35 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     var btn = document.getElementById('btn-edoc-in-submit');
-    if (btn) { btn.disabled = true; btn.innerText = '⏳ Menyimpan ke Google Sheets...'; }
+    if (btn) { btn.disabled = true; btn.innerText = '⏳ Menyimpan...'; }
 
-    var itemsPayload = [];
-    for (var i = 0; i < edocDraftItems.length; i++) {
-      itemsPayload.push({
-        sender_name: edocDraftItems[i].sender,
-        title: edocDraftItems[i].title,
-        doc_count: edocDraftItems[i].qty,
-        resi: resi,
-        location: lokasi
-      });
-    }
-
-    api('submitBatchEdocInbound', {
+    var payload = {
       recipient_name: recipient,
-      items: itemsPayload,
+      sender_name: sender,
+      doc_title: title || ('Paket Dokumen (' + sender + ')'),
+      doc_count: 1,
       tracking_no: resi,
       location_stored: lokasi,
       one_step_handover: isImmediate,
       attachment: photo,
       signature: signature
-    }).then(function (res) {
+    };
+
+    // Universal compatibility: always call submitEdocInbound (supported on all backend versions)
+    api('submitEdocInbound', payload).then(function (res) {
       if (ok) {
-        ok.innerText = res.message || ('✅ Berhasil mencatat ' + edocDraftItems.length + ' item dokumen untuk ' + recipient + '!');
+        ok.innerText = res.message || ('✅ Dokumen dari ' + sender + ' berhasil dicatat untuk ' + recipient + '!');
         ok.style.display = 'block';
       }
-      edocDraftItems = [];
-      renderEdocDraftList();
+
+      // Reset form fields
+      if (sEl) sEl.value = '';
+      if (tEl) tEl.value = '';
+      if (document.getElementById('edoc-in-resi')) document.getElementById('edoc-in-resi').value = '';
+      if (document.getElementById('edoc-in-photo')) document.getElementById('edoc-in-photo').value = '';
+      var preview = document.getElementById('edoc-in-preview-wrap');
+      if (preview) preview.style.display = 'none';
+      if (typeof clearEdocInSignature === 'function') clearEdocInSignature();
 
       if (typeof loadEdocList === 'function') loadEdocList();
       if (typeof silentRefresh === 'function') silentRefresh();
@@ -12030,15 +11999,22 @@ document.addEventListener('DOMContentLoaded', function() {
       updateEdocInboundReadyBadge();
 
       setTimeout(function () {
-        switchEdocInboundTab('ready');
         if (btn) {
           btn.disabled = false;
-          btn.innerHTML = isImmediate ? '✍️ Simpan &amp; Serahkan Langsung' : '📥 Simpan ke Draft Inbound';
+          btn.innerHTML = isImmediate ? '✍️ Simpan &amp; Serahkan Langsung' : '📥 Simpan Dokumen Masuk';
         }
-      }, 900);
+        if (isImmediate) {
+          closeEdocInboundModal();
+        } else {
+          switchEdocInboundTab('ready');
+        }
+      }, 700);
     }).catch(function (e) {
       if (err) { err.innerText = e.message || 'Gagal menyimpan dokumen masuk.'; err.style.display = 'block'; }
-      if (btn) { btn.disabled = false; btn.innerHTML = isImmediate ? '✍️ Simpan &amp; Serahkan Langsung' : '📥 Simpan ke Draft Inbound'; }
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = isImmediate ? '✍️ Simpan &amp; Serahkan Langsung' : '📥 Simpan Dokumen Masuk';
+      }
     });
   }
 
