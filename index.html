@@ -8338,17 +8338,26 @@ body.in-app .layout {
     padding: 12px 10px 80px 10px !important;
   }
 }
-</style>
-
 
 /* ── LIGHTWEIGHT IMAGE TRANSITION SLIDESHOW (REPLACES HEAVY VIDEO) ── */
+.global-ambient-layer {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+}
+
 .bg-slideshow {
   position: absolute !important;
   inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
+  width: 100vw !important;
+  height: 100vh !important;
   overflow: hidden !important;
   z-index: 0 !important;
+  background-color: #0f172a !important;
 }
 
 .bg-slide {
@@ -8378,6 +8387,17 @@ body.in-app .layout {
   z-index: 0 !important;
 }
 
+.global-ambient-layer .bg-video-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 2 !important;
+  background: rgba(15, 23, 42, 0.38) !important;
+  backdrop-filter: blur(2px) !important;
+  -webkit-backdrop-filter: blur(2px) !important;
+  transition: background 0.6s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.6s ease !important;
+}
+</style>
+
 </head>
 <body>
 <!-- ══════════════════════════════════════════════════════════════════════════
@@ -8385,12 +8405,12 @@ body.in-app .layout {
      ══════════════════════════════════════════════════════════════════════════ -->
 <div class="global-ambient-layer" id="global-ambient-layer" aria-hidden="true">
   <div class="bg-slideshow" id="bg-slideshow">
-    <div class="bg-slide active" data-bg="bg-1.jpg" style="background-image: url('assets/img/bg-1.jpg'), url('bg-1.jpg');"></div>
-    <div class="bg-slide" data-bg="bg-2.jpg" style="background-image: url('assets/img/bg-2.jpg'), url('bg-2.jpg');"></div>
-    <div class="bg-slide" data-bg="bg-3.jpg" style="background-image: url('assets/img/bg-3.jpg'), url('bg-3.jpg');"></div>
-    <div class="bg-slide" data-bg="bg-4.jpg" style="background-image: url('assets/img/bg-4.jpg'), url('bg-4.jpg');"></div>
+    <div class="bg-slide active" data-bg="bg-1.jpg" style="background-image: url('https://appsmaheer-cloud.github.io/meets/assets/img/bg-1.jpg');"></div>
+    <div class="bg-slide" data-bg="bg-2.jpg" style="background-image: url('https://appsmaheer-cloud.github.io/meets/assets/img/bg-2.jpg');"></div>
+    <div class="bg-slide" data-bg="bg-3.jpg" style="background-image: url('https://appsmaheer-cloud.github.io/meets/assets/img/bg-3.jpg');"></div>
+    <div class="bg-slide" data-bg="bg-4.jpg" style="background-image: url('https://appsmaheer-cloud.github.io/meets/assets/img/bg-4.jpg');"></div>
   </div>
-  <div class="bg-video-overlay" id="bg-video-overlay"></div>
+    <div class="bg-video-overlay" id="bg-video-overlay"></div>
 </div>
 
 <!-- Toast Notification Box -->
@@ -11124,7 +11144,7 @@ function updateGasStatusDisplay() {
     if (btnLabel) btnLabel.textContent = 'Google Sheets (Aktif)';
   } else {
     if (indicator) indicator.style.background = '#ef4444';
-    if (statusSpan) statusSpan.innerHTML = '<span style="color:#ef4444;font-weight:700">&#9888; Belum Terhubung</span> — Masukkan URL Web App Apps Script di atas';
+    if (statusSpan) statusSpan.innerHTML = '<span style="color:#ef4444;font-weight:700">&#9888; Belum Terhubung</span> â€” Masukkan URL Web App Apps Script di atas';
     if (btnLabel) btnLabel.textContent = 'Hubungkan Sheets';
   }
 }
@@ -12059,45 +12079,44 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   
-  // ── BACKGROUND SLIDESHOW TRANSITION (LIGHTWEIGHT & SMOOTH) ──
+  /// ── BACKGROUND SLIDESHOW TRANSITION (LIGHTWEIGHT & SMOOTH) ──
   (function initBgSlideshow() {
-    function start() {
+    function applyBg() {
       var slides = document.querySelectorAll('.bg-slide');
-      if (!slides || slides.length <= 1) return;
-
+      if (!slides || !slides.length) return;
       var isGas = window.location.hostname.indexOf('google') !== -1 || window.location.hostname.indexOf('googleusercontent') !== -1;
       var cdnBase = 'https://appsmaheer-cloud.github.io/meets/assets/img/';
-      if (isGas) {
-        slides.forEach(function (el) {
-          var bg = el.getAttribute('data-bg');
-          if (bg) {
-            el.style.backgroundImage = "url('" + cdnBase + bg + "'), url('assets/img/" + bg + "')";
+      slides.forEach(function (el) {
+        var bg = el.getAttribute('data-bg');
+        if (bg) {
+          if (isGas) {
+            el.style.backgroundImage = "url('" + cdnBase + bg + "')";
+          } else {
+            el.style.backgroundImage = "url('assets/img/" + bg + "'), url('" + cdnBase + bg + "')";
           }
-        });
+        }
+      });
+    }
+
+    var currentIdx = 0;
+    var intervalMs = 6500;
+    function rotate() {
+      var slides = document.querySelectorAll('.bg-slide');
+      if (!slides || slides.length <= 1) return;
+      var prevIdx = currentIdx;
+      currentIdx = (currentIdx + 1) % slides.length;
+      if (slides[prevIdx]) {
+        slides[prevIdx].classList.remove('active');
+        slides[prevIdx].classList.add('previous');
       }
-
-      var currentIdx = 0;
-      var intervalMs = 6500; // Rotasi transisi halus setiap 6.5 detik
-
-      setInterval(function () {
-        var prevIdx = currentIdx;
-        currentIdx = (currentIdx + 1) % slides.length;
-        if (slides[prevIdx]) {
-          slides[prevIdx].classList.remove('active');
-          slides[prevIdx].classList.add('previous');
-        }
-        if (slides[currentIdx]) {
-          slides[currentIdx].classList.add('active');
-          slides[currentIdx].classList.remove('previous');
-        }
-      }, intervalMs);
+      if (slides[currentIdx]) {
+        slides[currentIdx].classList.add('active');
+        slides[currentIdx].classList.remove('previous');
+      }
     }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', start);
-    } else {
-      setTimeout(start, 50);
-    }
+    applyBg();
+    setInterval(rotate, intervalMs);
   })();
 
 
@@ -12234,7 +12253,7 @@ document.addEventListener('DOMContentLoaded', function() {
     getMasterOptions: 'modules/master/options.php'
   };
 
-  // ════ DUAL-ENGINE API ROUTER (GAS WebApp + GitHub Pages Hybrid) ════
+  // â•â•â•â• DUAL-ENGINE API ROUTER (GAS WebApp + GitHub Pages Hybrid) â•â•â•â•
 var DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwStMQb22Xbyx6ZjhYoVPc5_3syzfhq5KlZFda-sDy31-hjEClrELoqYYjoS6f6dT3Beg/exec";
 
 function getGasApiUrl() {
@@ -12249,7 +12268,7 @@ function setGasApiUrl(url) {
   }
 }
 
-// ── Fallback Mode Uji Coba Cepat (Demo / Offline) ──
+// â”€â”€ Fallback Mode Uji Coba Cepat (Demo / Offline) â”€â”€
 function loginDemoMode() {
   var user = {
     id: 1,
@@ -12311,7 +12330,7 @@ function api(action, extra) {
 
   var payload = Object.assign({}, extra, { action: action });
 
-  var GAS_ACCESS_MSG = 'Server Google Apps Script menolak akses (401). Buka script.google.com → Deploy → Manage deployments → Edit (ikon pensil) → "Execute as: Me" dan "Who has access: Anyone" → Deploy.';
+  var GAS_ACCESS_MSG = 'Server Google Apps Script menolak akses (401). Buka script.google.com â†’ Deploy â†’ Manage deployments â†’ Edit (ikon pensil) â†’ "Execute as: Me" dan "Who has access: Anyone" â†’ Deploy.';
 
   return fetch(gasUrl, {
     method: 'POST',
