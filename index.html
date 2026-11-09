@@ -8340,16 +8340,56 @@ body.in-app .layout {
 }
 </style>
 
+
+/* ── LIGHTWEIGHT IMAGE TRANSITION SLIDESHOW (REPLACES HEAVY VIDEO) ── */
+.bg-slideshow {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  z-index: 0 !important;
+}
+
+.bg-slide {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  opacity: 0 !important;
+  transform: scale(1.04) !important;
+  transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1), transform 9s ease-out !important;
+  pointer-events: none !important;
+  will-change: opacity, transform !important;
+}
+
+.bg-slide.active {
+  opacity: 0.92 !important;
+  transform: scale(1) !important;
+  z-index: 1 !important;
+}
+
+.bg-slide.previous {
+  opacity: 0 !important;
+  transform: scale(1.02) !important;
+  z-index: 0 !important;
+}
+
 </head>
 <body>
 <!-- ══════════════════════════════════════════════════════════════════════════
      GLOBAL LUXURY AMBIENT VIDEO LAYER (UI UX PRO MAX — PERSISTENT BACKGROUND)
      ══════════════════════════════════════════════════════════════════════════ -->
 <div class="global-ambient-layer" id="global-ambient-layer" aria-hidden="true">
-  <video autoplay muted loop playsinline class="bg-video" id="bg-video">
-    <source src="video.mp4" type="video/mp4">
-    <source src="assets/img/gemini_generated_video_1cc5ccc9.mp4" type="video/mp4">
-  </video>
+  <div class="bg-slideshow" id="bg-slideshow">
+    <div class="bg-slide active" data-bg="bg-1.jpg" style="background-image: url('assets/img/bg-1.jpg'), url('bg-1.jpg');"></div>
+    <div class="bg-slide" data-bg="bg-2.jpg" style="background-image: url('assets/img/bg-2.jpg'), url('bg-2.jpg');"></div>
+    <div class="bg-slide" data-bg="bg-3.jpg" style="background-image: url('assets/img/bg-3.jpg'), url('bg-3.jpg');"></div>
+    <div class="bg-slide" data-bg="bg-4.jpg" style="background-image: url('assets/img/bg-4.jpg'), url('bg-4.jpg');"></div>
+  </div>
   <div class="bg-video-overlay" id="bg-video-overlay"></div>
 </div>
 
@@ -11084,7 +11124,7 @@ function updateGasStatusDisplay() {
     if (btnLabel) btnLabel.textContent = 'Google Sheets (Aktif)';
   } else {
     if (indicator) indicator.style.background = '#ef4444';
-    if (statusSpan) statusSpan.innerHTML = '<span style="color:#ef4444;font-weight:700">&#9888; Belum Terhubung</span> â€” Masukkan URL Web App Apps Script di atas';
+    if (statusSpan) statusSpan.innerHTML = '<span style="color:#ef4444;font-weight:700">&#9888; Belum Terhubung</span> — Masukkan URL Web App Apps Script di atas';
     if (btnLabel) btnLabel.textContent = 'Hubungkan Sheets';
   }
 }
@@ -12018,6 +12058,49 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  
+  // ── BACKGROUND SLIDESHOW TRANSITION (LIGHTWEIGHT & SMOOTH) ──
+  (function initBgSlideshow() {
+    function start() {
+      var slides = document.querySelectorAll('.bg-slide');
+      if (!slides || slides.length <= 1) return;
+
+      var isGas = window.location.hostname.indexOf('google') !== -1 || window.location.hostname.indexOf('googleusercontent') !== -1;
+      var cdnBase = 'https://appsmaheer-cloud.github.io/meets/assets/img/';
+      if (isGas) {
+        slides.forEach(function (el) {
+          var bg = el.getAttribute('data-bg');
+          if (bg) {
+            el.style.backgroundImage = "url('" + cdnBase + bg + "'), url('assets/img/" + bg + "')";
+          }
+        });
+      }
+
+      var currentIdx = 0;
+      var intervalMs = 6500; // Rotasi transisi halus setiap 6.5 detik
+
+      setInterval(function () {
+        var prevIdx = currentIdx;
+        currentIdx = (currentIdx + 1) % slides.length;
+        if (slides[prevIdx]) {
+          slides[prevIdx].classList.remove('active');
+          slides[prevIdx].classList.add('previous');
+        }
+        if (slides[currentIdx]) {
+          slides[currentIdx].classList.add('active');
+          slides[currentIdx].classList.remove('previous');
+        }
+      }, intervalMs);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', start);
+    } else {
+      setTimeout(start, 50);
+    }
+  })();
+
+
   // ══ HOLIDAYS ══
   var HOLIDAYS = window.HOLIDAYS || {};
 
@@ -12151,7 +12234,7 @@ document.addEventListener('DOMContentLoaded', function() {
     getMasterOptions: 'modules/master/options.php'
   };
 
-  // â•â•â•â• DUAL-ENGINE API ROUTER (GAS WebApp + GitHub Pages Hybrid) â•â•â•â•
+  // ════ DUAL-ENGINE API ROUTER (GAS WebApp + GitHub Pages Hybrid) ════
 var DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwStMQb22Xbyx6ZjhYoVPc5_3syzfhq5KlZFda-sDy31-hjEClrELoqYYjoS6f6dT3Beg/exec";
 
 function getGasApiUrl() {
@@ -12166,7 +12249,7 @@ function setGasApiUrl(url) {
   }
 }
 
-// â”€â”€ Fallback Mode Uji Coba Cepat (Demo / Offline) â”€â”€
+// ── Fallback Mode Uji Coba Cepat (Demo / Offline) ──
 function loginDemoMode() {
   var user = {
     id: 1,
@@ -12228,7 +12311,7 @@ function api(action, extra) {
 
   var payload = Object.assign({}, extra, { action: action });
 
-  var GAS_ACCESS_MSG = 'Server Google Apps Script menolak akses (401). Buka script.google.com â†’ Deploy â†’ Manage deployments â†’ Edit (ikon pensil) â†’ "Execute as: Me" dan "Who has access: Anyone" â†’ Deploy.';
+  var GAS_ACCESS_MSG = 'Server Google Apps Script menolak akses (401). Buka script.google.com → Deploy → Manage deployments → Edit (ikon pensil) → "Execute as: Me" dan "Who has access: Anyone" → Deploy.';
 
   return fetch(gasUrl, {
     method: 'POST',
