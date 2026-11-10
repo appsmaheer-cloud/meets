@@ -8396,6 +8396,555 @@ body.in-app .layout {
   -webkit-backdrop-filter: blur(2px) !important;
   transition: background 0.6s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.6s ease !important;
 }
+
+/* ==============================================================================
+   CLEAN ENTERPRISE LIGHT THEME (ANTI-AI-SLOP & FLAT CLARITY)
+   - Luminous, clean white/slate workspace inside operational portal
+   - Ambient sugarcane slideshow visible on login screen only
+   - Zero text-shadows, thin crisp typography, high clarity
+   - Subtle 1px neutral borders, minimal elevation shadows
+   - Standardized enterprise forms & modals
+   - Balanced 7-column calendar with comfortable spacing
+   ============================================================================== */
+
+/* 1. Global Zero Text-Shadow & Clean Font Rendering */
+*, *::before, *::after {
+  text-shadow: none !important;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeLegibility !important;
+}
+
+/* 2. In-App Pure White Clean Enterprise Environment */
+body.in-app .global-ambient-layer {
+  display: none !important; /* Nonaktifkan background foto bergerak di dalam aplikasi agar workspace bersih dan fokus */
+}
+
+body.in-app {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+body.in-app .layout {
+  background: #f8fafc !important;
+}
+
+body.in-app .main {
+  background: #f8fafc !important;
+}
+
+body.in-app .topbar {
+  background: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02) !important;
+}
+
+body.in-app .sidebar {
+  background: #ffffff !important;
+  border-right: 1px solid #e2e8f0 !important;
+}
+
+body.in-app .side-brand {
+  border-bottom: 1px solid #f1f5f9 !important;
+}
+
+body.in-app .side-menu a,
+body.in-app .nav-item {
+  font-weight: 500 !important;
+  font-size: 13.5px !important;
+  color: #475569 !important;
+  border-radius: 8px !important;
+  transition: all 0.15s ease !important;
+}
+
+body.in-app .side-menu a:hover,
+body.in-app .nav-item:hover {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+body.in-app .side-menu a.active,
+body.in-app .nav-item.active {
+  background: #f0fdf4 !important;
+  color: #16a34a !important;
+  font-weight: 600 !important;
+  border-left: 3px solid #16a34a !important;
+}
+
+body.in-app .page-wrap {
+  padding: 24px 32px 80px 32px !important;
+  max-width: 1440px !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 768px) {
+  body.in-app .page-wrap {
+    padding: 14px 12px 80px 12px !important;
+  }
+}
+
+/* 3. Typography: Thin, Crisp, High Clarity (No Heavy Bold Bloat) */
+h1, h2, h3, h4, .page-ttl, .modal-ttl, .card-ttl, .bld-name {
+  font-weight: 600 !important;
+  color: #0f172a !important;
+  letter-spacing: -0.015em !important;
+  text-shadow: none !important;
+}
+
+.page-sub, .modal-sub, .card-sub, .form-hint {
+  font-weight: 400 !important;
+  color: #64748b !important;
+  font-size: 12.5px !important;
+  line-height: 1.45 !important;
+  letter-spacing: normal !important;
+}
+
+p, span, td, div {
+  text-shadow: none !important;
+}
+
+/* 4. Enterprise Cards & Surfaces (Flat, 1px Subtle Border, Minimal Soft Shadow) */
+.card,
+.bld-card,
+.kpi,
+.cal-card,
+.ent-card,
+.det-panel,
+.panel,
+.box,
+.dash-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.03), 0 1px 2px -1px rgba(0, 0, 0, 0.02) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.card:hover,
+.bld-card:hover,
+.kpi:hover {
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -2px rgba(0, 0, 0, 0.02) !important;
+}
+
+/* KPI Card Refinement */
+.kpi {
+  padding: 18px 20px 16px 20px !important;
+}
+.kpi-lbl {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: #64748b !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  margin-bottom: 6px !important;
+}
+.kpi-val {
+  font-size: 26px !important;
+  font-weight: 600 !important;
+  color: #0f172a !important;
+  font-family: inherit !important;
+}
+
+/* Room / Building Card */
+.bld-card {
+  padding: 18px 20px !important;
+}
+.bld-top {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 10px !important;
+}
+.bld-name {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+}
+
+/* 5. Enterprise Forms & Input Fields */
+.form-group, .field, .f-group {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  margin-bottom: 16px !important;
+}
+
+label, .form-label, .field-label {
+  font-size: 12.5px !important;
+  font-weight: 500 !important;
+  color: #475569 !important;
+  letter-spacing: -0.01em !important;
+  margin-bottom: 2px !important;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+select,
+textarea {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  height: 38px !important;
+  padding: 0 12px !important;
+  font-size: 13.5px !important;
+  font-weight: 400 !important;
+  color: #0f172a !important;
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 7px !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02) !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+  outline: none !important;
+}
+
+textarea {
+  height: auto !important;
+  min-height: 80px !important;
+  padding: 9px 12px !important;
+  line-height: 1.5 !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #16a34a !important;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.12) !important;
+  background: #ffffff !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8 !important;
+  font-weight: 400 !important;
+  font-size: 13px !important;
+}
+
+/* 6. Standardized Enterprise Modals */
+.modal-overlay {
+  background: rgba(15, 23, 42, 0.45) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+}
+
+.modal {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.07), 0 8px 10px -6px rgba(0, 0, 0, 0.03) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  overflow: hidden !important;
+}
+
+.modal-head {
+  background: #ffffff !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  padding: 18px 24px 14px 24px !important;
+}
+
+.modal-body {
+  background: #ffffff !important;
+  padding: 20px 24px !important;
+}
+
+.modal-close {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #64748b !important;
+  border-radius: 6px !important;
+  padding: 4px 10px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+.modal-close:hover {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Action Buttons */
+.modal-actions, .modal-ftr, .modal-footer, .form-actions {
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 14px 24px !important;
+  border-top: 1px solid #f1f5f9 !important;
+  background: #fafafa !important;
+  margin-top: 16px !important;
+}
+
+.btn, .btn-primary, .btn-submit, .btn-save {
+  height: 38px !important;
+  padding: 0 18px !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  border-radius: 7px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+  border: none !important;
+  text-shadow: none !important;
+}
+
+.btn-primary, .btn-submit, .btn-save {
+  background: #16a34a !important;
+  color: #ffffff !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+}
+.btn-primary:hover, .btn-submit:hover, .btn-save:hover {
+  background: #15803d !important;
+}
+
+.btn-cancel, .btn-secondary, .btn-close {
+  background: #ffffff !important;
+  color: #475569 !important;
+  border: 1px solid #cbd5e1 !important;
+}
+.btn-cancel:hover, .btn-secondary:hover, .btn-close:hover {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  border-color: #94a3b8 !important;
+}
+
+/* 7. Clean Balanced 7-Column Calendar & Layout Spacing */
+.cal-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
+  margin-bottom: 24px !important;
+  overflow: hidden !important;
+}
+
+.cal-top {
+  background: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  padding: 14px 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+}
+
+.cal-month-lbl {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: #0f172a !important;
+  letter-spacing: -0.01em !important;
+}
+
+.cal-nav-btn {
+  width: 32px !important;
+  height: 32px !important;
+  border: 1px solid #e2e8f0 !important;
+  background: #ffffff !important;
+  border-radius: 6px !important;
+  color: #475569 !important;
+  font-size: 13px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+.cal-nav-btn:hover {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+  transform: none !important;
+}
+
+/* Equal 7-column calendar header */
+.cal-dow {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr) !important;
+  background: #f8fafc !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+.cal-dow div {
+  text-align: center !important;
+  padding: 10px 4px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: #64748b !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  border-right: 1px solid #f1f5f9 !important;
+}
+.cal-dow div:last-child {
+  border-right: none !important;
+}
+
+/* Equal 7-column calendar day grid */
+.cal-grid {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr) !important;
+  background: #ffffff !important;
+}
+
+.cal-cell {
+  min-height: 98px !important;
+  padding: 8px !important;
+  border-right: 1px solid #f1f5f9 !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  background: #ffffff !important;
+  transition: background 0.12s ease !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+  box-sizing: border-box !important;
+}
+
+.cal-cell:hover:not(.ec) {
+  background: #f8fafc !important;
+  transform: none !important;
+}
+
+.cal-cell.ec {
+  background: #fafafa !important;
+  opacity: 0.45 !important;
+  cursor: default !important;
+}
+
+.cal-cell.tc {
+  background: #f0fdf4 !important;
+  border-color: #bbf7d0 !important;
+}
+
+.cal-num {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: #334155 !important;
+  margin-bottom: 4px !important;
+  line-height: 1 !important;
+}
+
+.cal-cell.tc .cal-num {
+  color: #16a34a !important;
+  font-weight: 600 !important;
+}
+
+/* Flat Clean Event Chips in Calendar */
+.cal-chip {
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  padding: 3px 6px !important;
+  border-radius: 4px !important;
+  margin-bottom: 2px !important;
+  background: #f0fdf4 !important;
+  border-left: 3px solid #16a34a !important;
+  color: #166534 !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  line-height: 1.35 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.cal-chip:hover {
+  transform: none !important;
+  filter: brightness(0.97) !important;
+}
+
+.cal-chip.cc-v, .cal-chip[data-type="zoom"] {
+  background: #eff6ff !important;
+  border-left: 3px solid #2563eb !important;
+  color: #1e40af !important;
+}
+
+.cal-chip.cc-k, .cal-chip[data-type="car"] {
+  background: #fffbeb !important;
+  border-left: 3px solid #d97706 !important;
+  color: #92400e !important;
+}
+
+/* 8. Flat Clean Enterprise Data Table */
+.ent-table-wrap {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  padding: 0 !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02) !important;
+  overflow-x: auto !important;
+}
+
+.ent-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+}
+
+.ent-table th {
+  background: #f8fafc !important;
+  color: #475569 !important;
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  padding: 11px 16px !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  border-top: none !important;
+}
+
+.ent-table td {
+  background: #ffffff !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  padding: 12px 16px !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  color: #1e293b !important;
+  box-shadow: none !important;
+}
+
+.ent-table tbody tr:hover td {
+  background: #f8fafc !important;
+}
+
+/* 9. Login Screen Refinement: Clean White Card on Sugarcane Background */
+.login-box {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.03) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  padding: 32px 28px !important;
+}
+
+.login-box h2, .login-box .login-ttl {
+  font-weight: 600 !important;
+  color: #0f172a !important;
+  font-size: 18px !important;
+  text-shadow: none !important;
+}
+
+.login-box p, .login-box .login-sub {
+  font-weight: 400 !important;
+  color: #64748b !important;
+  font-size: 13px !important;
+}
+
 </style>
 
 </head>
@@ -8489,7 +9038,7 @@ body.in-app .layout {
 <!-- MODAL REGISTRASI USER BARU -->
 <div class="modal-overlay" id="reg-modal-overlay" onclick="if(event.target===this)closeRegisterModal()">
   <div class="modal" style="max-width:460px;border-radius:var(--r16);overflow:hidden">
-    <div class="modal-head" style="background:linear-gradient(135deg, rgba(16,185,129,0.1), transparent)">
+    <div class="modal-head">
       <div>
         <div class="modal-ttl" style="display:flex;align-items:center;gap:8px">📝 Pendaftaran Akun Karyawan PNS</div>
         <div class="modal-sub">Gunakan email resmi perusahaan (@pns.co.id) untuk aktivasi</div>
@@ -9763,7 +10312,7 @@ body.in-app .layout {
 <!-- MODAL PENCATATAN DOKUMEN MASUK (INBOUND: DRAFT & SERAH TERIMA) -->
 <!-- E-DOC INBOUND (Catat Dokumen Masuk / Penyerahan Dokumen - Mobile-First Quick Draft & Grouped Handover) -->
 <div class="modal-overlay" id="edoc-inbound-overlay" onclick="if(event.target===this)closeEdocInboundModal()">
-  <div class="modal" style="max-width:540px;border-radius:16px;border:1px solid #e2e8f0;box-shadow:0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.06);overflow:hidden">
+  <div class="modal" style="max-width:540px;border-radius:10px;border:1px solid #e2e8f0;box-shadow: 0 1px 3px rgba(0,0,0,0.03);overflow:hidden">
     <div class="modal-head" style="padding:16px 20px;border-bottom:1px solid #e2e8f0;background:#ffffff">
       <div>
         <div class="modal-ttl" style="display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:#0f172a">
@@ -10198,8 +10747,8 @@ body.in-app .layout {
 <!-- E-DOC HANDOVER MODAL -->
 <!-- MODAL SERAH TERIMA BATCH / BUNDLE PAKET DOKUMEN INBOUND (1x FOTO & 1x TTD) -->
 <div class="modal-overlay" id="edoc-handover-overlay" onclick="if(event.target===this)closeEdocHandoverModal()">
-  <div class="modal" style="max-width:580px;border-radius:20px;overflow:hidden">
-    <div class="modal-head" style="background:linear-gradient(135deg, rgba(16,185,129,0.1), transparent)">
+  <div class="modal" style="max-width:580px;border-radius:12px;overflow:hidden">
+    <div class="modal-head">
       <div>
         <div class="modal-ttl" style="display:flex;align-items:center;gap:8px">🤝 Penyerahan Dokumen (Bundling Serah Terima)</div>
         <div class="modal-sub">Pilih tujuan orang / departemen, centang paket yang diserahkan, dan konfirmasi dengan 1 tanda tangan</div>
