@@ -9675,6 +9675,151 @@ label, th, .gs-tab-btn, .modal-ttl {
   font-weight: 500 !important;
 }
 
+
+/* ==========================================================================
+   SMOOTH LIGHTWEIGHT PNS VIDEO BACKGROUND + LOWER OPACITY LUXURY GLASS (LOGIN & APPS)
+   ========================================================================== */
+
+/* 1. Persistent Smooth PNS Video Layer (Visible on Login AND inside Apps) */
+.global-ambient-layer,
+body.in-app .global-ambient-layer {
+  display: block !important;
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+  background: #0f172a url('https://appsmaheer-cloud.github.io/meets/assets/img/bg-1.jpg') center/cover no-repeat !important;
+}
+
+.bg-video-pns {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  opacity: 0 !important;
+  transform: scale(1.02) translateZ(0) !important;
+  will-change: opacity !important;
+  transition: opacity 0.9s ease-out !important;
+  pointer-events: none !important;
+}
+
+.bg-video-pns.is-ready {
+  opacity: 1 !important;
+}
+
+/* Soft overlay on Login Screen so video looks crisp & vibrant */
+.global-ambient-layer .bg-video-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+  background: rgba(15, 23, 42, 0.22) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: background 0.4s ease !important;
+}
+
+/* Soft luminous mist overlay INSIDE Apps so PNS video shines subtly without hurting readability */
+body.in-app .global-ambient-layer .bg-video-overlay {
+  background: rgba(248, 250, 252, 0.62) !important;
+  backdrop-filter: blur(2px) !important;
+  -webkit-backdrop-filter: blur(2px) !important;
+}
+
+/* Ensure interactive layers sit cleanly above ambient video */
+#login-screen,
+#app-screen {
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* 2. Lower Opacity Glass Login Card (Video PNS clearly visible behind card) */
+.login-box {
+  background: rgba(255, 255, 255, 0.78) !important;
+  backdrop-filter: blur(16px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(140%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.65) !important;
+  box-shadow: 0 12px 32px -8px rgba(15, 23, 42, 0.16) !important;
+}
+
+.login-box .login-guide-card {
+  background: rgba(240, 253, 250, 0.72) !important;
+  border: 1px solid rgba(204, 251, 241, 0.85) !important;
+}
+
+.login-box input,
+.login-box .custom-combobox-input {
+  background: rgba(255, 255, 255, 0.86) !important;
+}
+
+/* 3. Transparent App Shell & Lower Opacity Glass Surfaces INSIDE Apps */
+body.in-app,
+body.in-app .layout,
+body.in-app .main {
+  background: transparent !important;
+}
+
+body.in-app .sidebar {
+  background: rgba(255, 255, 255, 0.78) !important;
+  backdrop-filter: blur(14px) saturate(135%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(135%) !important;
+  border-right: 1px solid rgba(226, 232, 240, 0.75) !important;
+}
+
+body.in-app .topbar {
+  background: rgba(255, 255, 255, 0.80) !important;
+  backdrop-filter: blur(14px) saturate(135%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(135%) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.75) !important;
+}
+
+body.in-app .side-foot {
+  background: rgba(248, 250, 252, 0.65) !important;
+}
+
+body.in-app .panel,
+body.in-app .card,
+body.in-app .kpi,
+body.in-app .bld-card,
+body.in-app .cal-card,
+body.in-app .zoom-hero,
+body.in-app .ent-table-wrap {
+  background: rgba(255, 255, 255, 0.78) !important;
+  backdrop-filter: blur(12px) saturate(130%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(130%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.78) !important;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04) !important;
+}
+
+body.in-app .bld-card:hover,
+body.in-app .kpi:hover {
+  background: rgba(255, 255, 255, 0.90) !important;
+  border-color: #0f766e !important;
+}
+
+body.in-app .ent-table td {
+  background: rgba(255, 255, 255, 0.55) !important;
+}
+
+body.in-app .ent-table th {
+  background: rgba(248, 250, 252, 0.78) !important;
+}
+
+body.in-app .cal-cell,
+body.in-app [data-theme='dark'] .cal-cell {
+  background: rgba(255, 255, 255, 0.82) !important;
+}
+
+body.in-app .cal-cell.wc,
+body.in-app [data-theme='dark'] .cal-cell.wc {
+  background: rgba(248, 250, 252, 0.72) !important;
+}
+
 </style>
 
 </head>
@@ -9683,15 +9828,12 @@ label, th, .gs-tab-btn, .modal-ttl {
      GLOBAL LUXURY AMBIENT VIDEO LAYER (UI UX PRO MAX — PERSISTENT BACKGROUND)
      ══════════════════════════════════════════════════════════════════════════ -->
 <div class="global-ambient-layer" id="global-ambient-layer" aria-hidden="true">
-  <div class="bg-slideshow" id="bg-slideshow">
-    <div class="bg-slide active" data-bg="bg-1.jpg" style="background-image: url('https://appsmaheer-cloud.github.io/meets/assets/img/bg-1.jpg');"></div>
-    <div class="bg-slide" data-bg="bg-2.jpg" style="background-image: url('https://appsmaheer-cloud.github.io/meets/assets/img/bg-2.jpg');"></div>
-    <div class="bg-slide" data-bg="bg-3.jpg" style="background-image: url('https://appsmaheer-cloud.github.io/meets/assets/img/bg-3.jpg');"></div>
-    <div class="bg-slide" data-bg="bg-4.jpg" style="background-image: url('https://appsmaheer-cloud.github.io/meets/assets/img/bg-4.jpg');"></div>
-  </div>
-    <div class="bg-video-overlay" id="bg-video-overlay"></div>
+  <video id="bg-video-pns" class="bg-video-pns" autoplay muted loop playsinline preload="metadata" poster="https://appsmaheer-cloud.github.io/meets/assets/img/bg-1.jpg">
+    <source src="video-pns.mp4" type="video/mp4">
+    <source src="https://appsmaheer-cloud.github.io/meets/video-pns.mp4" type="video/mp4">
+  </video>
+  <div class="bg-video-overlay" id="bg-video-overlay"></div>
 </div>
-
 <!-- Toast Notification Box -->
 <div id="toast-box" class="toast-box"></div>
 
@@ -20225,7 +20367,7 @@ function pad(n) { return String(n).padStart(2, '0'); }
       + '</style></head><body>'
       + '<div class="no-print-bar"><span>Standar Label Paket Indonesia (A6 / 100&times;150mm)</span><button class="btn-do-print" onclick="window.print()">🖨️ Cetak Label</button></div>'
       + cardsHtml
-      + '<script>setTimeout(function(){ window.focus(); window.print(); }, 350);</script>'
+      + '<' + 'script>setTimeout(function(){ window.focus(); window.print(); }, 350);<' + '/script>'
       + '</body></html>';
 
     win.document.open();
