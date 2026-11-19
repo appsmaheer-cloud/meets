@@ -9550,6 +9550,131 @@ label, th, .gs-tab-btn, .modal-ttl {
   font-weight: 500 !important;
 }
 
+
+/* ==========================================================================
+   LOGIN MODE TABS (KARYAWAN VS ADMIN/GS) & SIDEBAR SUB-MODULE TREE
+   ========================================================================== */
+.login-mode-tabs {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 4px !important;
+  background: #f1f5f9 !important;
+  padding: 4px !important;
+  border-radius: 9px !important;
+  margin-bottom: 14px !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.login-mode-btn {
+  padding: 8px 10px !important;
+  border: none !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  color: #64748b !important;
+  font-size: 12.5px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+
+.login-mode-btn:hover {
+  color: #0f172a !important;
+}
+
+.login-mode-btn.active {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  font-weight: 600 !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06) !important;
+}
+
+.btn-login-submit.is-admin-btn {
+  background: #0f172a !important;
+  border-color: #0f172a !important;
+}
+
+.btn-login-submit.is-admin-btn:hover {
+  background: #1e293b !important;
+}
+
+/* Sidebar Collapsible Module & Sub-Module Tree */
+.nav-group {
+  margin: 2px 0 !important;
+}
+
+.nav-group-btn {
+  width: calc(100% - 20px) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 8px 12px !important;
+  margin: 2px 10px !important;
+  border-radius: 8px !important;
+  border: none !important;
+  background: transparent !important;
+  color: #0f172a !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  text-align: left !important;
+  transition: background 0.15s ease !important;
+}
+
+.nav-group-btn:hover {
+  background: #f8fafc !important;
+}
+
+.nav-group-btn .ni-icon {
+  font-size: 15px !important;
+  opacity: 0.85 !important;
+}
+
+.nav-group-btn .ni-txt {
+  flex: 1 1 auto !important;
+}
+
+.nav-chevron {
+  font-size: 11px !important;
+  color: #94a3b8 !important;
+  transition: transform 0.18s ease !important;
+}
+
+.nav-group:not(.open) .nav-chevron {
+  transform: rotate(-90deg) !important;
+}
+
+.nav-sublist {
+  display: none !important;
+  margin: 2px 10px 6px 24px !important;
+  padding-left: 10px !important;
+  border-left: 1px solid #e2e8f0 !important;
+}
+
+.nav-group.open .nav-sublist {
+  display: block !important;
+}
+
+.nav-item.nav-subitem {
+  width: 100% !important;
+  margin: 2px 0 !important;
+  padding: 7px 10px !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  color: #475569 !important;
+}
+
+.nav-item.nav-subitem:hover {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+.nav-item.nav-subitem.active {
+  background: #f0fdfa !important;
+  color: #0f766e !important;
+  border: 1px solid #ccfbf1 !important;
+  font-weight: 500 !important;
+}
+
 </style>
 
 </head>
@@ -9592,19 +9717,23 @@ label, th, .gs-tab-btn, .modal-ttl {
   <div id="login-err" class="err-msg"></div>
 
     <div id="login-form">
+    <!-- PEMILIH MODE LOGIN: KARYAWAN VS ADMIN / GS -->
+    <div class="login-mode-tabs" role="tablist" aria-label="Pilih Jenis Login">
+      <button type="button" id="login-mode-user" class="login-mode-btn active" onclick="setLoginMode('user')" role="tab" aria-selected="true">Login Karyawan</button>
+      <button type="button" id="login-mode-admin" class="login-mode-btn" onclick="setLoginMode('admin')" role="tab" aria-selected="false">Login Admin / GS</button>
+    </div>
+
     <!-- PETUNJUK LOGIN -->
-    <div class="login-guide-card">
-      <div class="login-guide-head">
-        <span>💡</span> Petunjuk Masuk Karyawan:
+    <div class="login-guide-card" id="login-guide-card">
+      <div class="login-guide-head" id="login-guide-head">
+        <span>Portal Karyawan</span>
       </div>
-      <div class="login-guide-item">1. Pilih <strong>Nama Karyawan</strong> pada dropdown di bawah (atau ketik NIK).</div>
-      <div class="login-guide-item">2. Masukkan <strong>PIN</strong> Anda (PIN Bawaan / Default: <strong class="login-pin-badge">1234</strong>).</div>
-      <div class="login-guide-item">3. Klik tombol <strong>Masuk Portal</strong>.</div>
+      <div class="login-guide-item" id="login-guide-desc">Pilih nama karyawan atau ketik NIK, lalu masukkan PIN akses Anda (default: <span class="login-pin-badge">1234</span>).</div>
     </div>
 
     <!-- PILIHAN KARYAWAN -->
     <div class="lrow" style="position:relative;z-index:30">
-      <label for="login-email">Nama Karyawan / NIK <span class="req">*</span></label>
+      <label for="login-email" id="login-email-lbl">Nama Karyawan / NIK <span class="req">*</span></label>
       <div class="custom-combobox-wrap" id="custom-combobox-wrap">
         <input type="text" id="login-email" autocomplete="off" placeholder="Pilih atau ketik Nama / NIK Karyawan..." class="custom-combobox-input" onfocus="openComboboxMenu()" oninput="filterComboboxMenu(this.value)" onkeydown="onComboboxKeydown(event)">
         <button type="button" class="combobox-toggle-btn" onclick="toggleComboboxMenu(event)" aria-label="Buka daftar nama" title="Pilih karyawan">▾</button>
@@ -9614,7 +9743,7 @@ label, th, .gs-tab-btn, .modal-ttl {
 
     <!-- INPUT PIN -->
     <div class="lrow">
-      <label for="login-pin">PIN Akses (4 Digit) <span class="req">*</span></label>
+      <label for="login-pin" id="login-pin-lbl">PIN Akses (4 Digit) <span class="req">*</span></label>
       <div class="pin-wrap" style="pointer-events:auto!important;position:relative;z-index:20">
         <input type="password" id="login-pin" inputmode="numeric" pattern="[0-9]*" maxlength="6" placeholder="Masukkan PIN (Default: 1234)" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()" style="pointer-events:auto!important;letter-spacing:2px;font-weight:600">
         <button type="button" class="pin-eye" onclick="togglePin(event)" id="pin-eye-btn" aria-label="Tampilkan PIN" title="Tampilkan / sembunyikan PIN" style="pointer-events:auto!important">👁️</button>
@@ -9625,7 +9754,7 @@ label, th, .gs-tab-btn, .modal-ttl {
     
 
 
-    <div style="margin-top:12px;text-align:center;font-size:12.5px;color:var(--muted);pointer-events:auto!important;position:relative;z-index:20">
+    <div id="login-reg-wrap" style="margin-top:12px;text-align:center;font-size:12.5px;color:var(--muted);pointer-events:auto!important;position:relative;z-index:20">
       Belum terdaftar? <a href="javascript:void(0)" onclick="openRegisterModal()" style="color:var(--green);font-weight:600;text-decoration:none;pointer-events:auto!important">Daftar Akun Baru</a>
     </div>
 
@@ -9705,23 +9834,78 @@ label, th, .gs-tab-btn, .modal-ttl {
     </div>
   </div>
   <nav class="side-nav">
+    <!-- UTAMA -->
     <div class="side-sect">Utama</div>
     <button class="nav-item active" data-page="dashboard" onclick="navTo('dashboard')"><span class="ni-icon">📊</span><span class="ni-txt">Dashboard</span></button>
     <button class="nav-item" data-page="tickets" onclick="navTo('tickets')"><span class="ni-icon">🎫</span><span class="ni-txt">Tiket Saya</span></button>
 
-    <div class="side-sect">Layanan</div>
-    <button class="nav-item" data-page="calendar" onclick="navTo('calendar')"><span class="ni-icon">🏛️</span><span class="ni-txt">Ruang Meeting</span></button>
-    <button class="nav-item" data-page="zoom" onclick="navTo('zoom')"><span class="ni-icon">📹</span><span class="ni-txt">Zoom Meeting</span></button>
-    <button class="nav-item" data-page="mobilisasi" onclick="navTo('mobilisasi')"><span class="ni-icon">🚗</span><span class="ni-txt">Mobil Dinas</span></button>
-    <button class="nav-item" data-page="atk" onclick="navTo('atk')"><span class="ni-icon">✏️</span><span class="ni-txt">Request ATK</span></button>
-    <button class="nav-item" data-page="edoc" onclick="navTo('edoc')"><span class="ni-icon">📦</span><span class="ni-txt">E-DOC</span></button>
+    <!-- MODUL & SUB-MODUL LAYANAN -->
+    <div class="side-sect">Modul Layanan</div>
 
-    <div class="side-sect gs-only-feature" style="display:none">Gudang</div>
-    <button class="nav-item gs-only-feature" style="display:none" data-page="atk-stock" onclick="navTo('atk-stock')"><span class="ni-icon">📦</span><span class="ni-txt">Stok ATK</span></button>
+    <!-- Grup: Meeting -->
+    <div class="nav-group open" id="nav-grp-meeting">
+      <button type="button" class="nav-group-btn" onclick="toggleNavGroup('nav-grp-meeting')">
+        <span class="ni-icon">🏛️</span>
+        <span class="ni-txt">Meeting</span>
+        <span class="nav-chevron">▾</span>
+      </button>
+      <div class="nav-sublist">
+        <button class="nav-item nav-subitem" data-page="calendar" onclick="navTo('calendar')"><span class="ni-txt">Ruang Meeting</span></button>
+        <button class="nav-item nav-subitem" data-page="zoom" onclick="navTo('zoom')"><span class="ni-txt">Zoom Meeting</span></button>
+      </div>
+    </div>
 
+    <!-- Grup: Transportasi -->
+    <div class="nav-group open" id="nav-grp-transport">
+      <button type="button" class="nav-group-btn" onclick="toggleNavGroup('nav-grp-transport')">
+        <span class="ni-icon">🚗</span>
+        <span class="ni-txt">Transportasi</span>
+        <span class="nav-chevron">▾</span>
+      </button>
+      <div class="nav-sublist">
+        <button class="nav-item nav-subitem" data-page="mobilisasi" onclick="navTo('mobilisasi')"><span class="ni-txt">Mobil Dinas</span></button>
+      </div>
+    </div>
+
+    <!-- Grup: ATK & Gudang -->
+    <div class="nav-group open" id="nav-grp-atk">
+      <button type="button" class="nav-group-btn" onclick="toggleNavGroup('nav-grp-atk')">
+        <span class="ni-icon">✏️</span>
+        <span class="ni-txt">ATK &amp; Gudang</span>
+        <span class="nav-chevron">▾</span>
+      </button>
+      <div class="nav-sublist">
+        <button class="nav-item nav-subitem" data-page="atk" onclick="navTo('atk')"><span class="ni-txt">Request ATK</span></button>
+        <button class="nav-item nav-subitem gs-only-feature" style="display:none" data-page="atk-stock" onclick="navTo('atk-stock')"><span class="ni-txt">Stok ATK</span></button>
+      </div>
+    </div>
+
+    <!-- Grup: E-DOC (1-klik langsung ke Dokumen Keluar / Masuk) -->
+    <div class="nav-group open" id="nav-grp-edoc">
+      <button type="button" class="nav-group-btn" onclick="toggleNavGroup('nav-grp-edoc')">
+        <span class="ni-icon">📦</span>
+        <span class="ni-txt">E-DOC</span>
+        <span class="nav-chevron">▾</span>
+      </button>
+      <div class="nav-sublist">
+        <button class="nav-item nav-subitem" data-page="edoc-out" onclick="navTo('edoc-out')"><span class="ni-txt">Dokumen Keluar</span></button>
+        <button class="nav-item nav-subitem" data-page="edoc-in" onclick="navTo('edoc-in')"><span class="ni-txt">Dokumen Masuk</span></button>
+      </div>
+    </div>
+
+    <!-- ADMIN (KHUSUS ADMIN) -->
     <div class="side-sect admin-only-feature" style="display:none">Admin</div>
-    <button class="nav-item admin-only-feature" style="display:none" id="nav-admin-users" data-page="users" onclick="navTo('users')"><span class="ni-icon">👥</span><span class="ni-txt">Pengguna</span><span class="ni-badge pending-users-badge" id="nav-pending-users-badge" style="background:var(--amber);display:none">0</span></button>
-    <button class="nav-item admin-only-feature" style="display:none" id="nav-admin-sync" data-page="sync" onclick="navTo('sync')"><span class="ni-icon">🔄</span><span class="ni-txt">Sinkronisasi</span><span class="ni-badge" id="nav-sync-badge" style="background:var(--green);display:none">Live</span></button>
+    <div class="nav-group open admin-only-feature" id="nav-grp-admin" style="display:none">
+      <button type="button" class="nav-group-btn" onclick="toggleNavGroup('nav-grp-admin')">
+        <span class="ni-icon">⚙️</span>
+        <span class="ni-txt">Pengaturan</span>
+        <span class="nav-chevron">▾</span>
+      </button>
+      <div class="nav-sublist">
+        <button class="nav-item nav-subitem admin-only-feature" style="display:none" id="nav-admin-users" data-page="users" onclick="navTo('users')"><span class="ni-txt">Pengguna</span><span class="ni-badge pending-users-badge" id="nav-pending-users-badge" style="background:var(--amber);display:none">0</span></button>
+        <button class="nav-item nav-subitem admin-only-feature" style="display:none" id="nav-admin-sync" data-page="sync" onclick="navTo('sync')"><span class="ni-txt">Sinkronisasi</span><span class="ni-badge" id="nav-sync-badge" style="background:var(--green);display:none">Live</span></button>
+      </div>
+    </div>
   </nav>
   <div class="side-foot"><div class="side-user" id="side-user"></div></div>
 </aside>
@@ -12493,6 +12677,107 @@ document.addEventListener('DOMContentLoaded', function() {
     if (typeof showAlert === 'function') showAlert('Masuk sebagai ' + user.nama, 'ok');
   }
 
+  var _loginMode = (window.IS_ADMIN_PORTAL === true) ? 'admin' : 'user';
+
+  function setLoginMode(mode) {
+    _loginMode = (mode === 'admin') ? 'admin' : 'user';
+    var btnUser = document.getElementById('login-mode-user');
+    var btnAdmin = document.getElementById('login-mode-admin');
+    var guideHead = document.getElementById('login-guide-head');
+    var guideDesc = document.getElementById('login-guide-desc');
+    var emailLbl = document.getElementById('login-email-lbl');
+    var pinLbl = document.getElementById('login-pin-lbl');
+    var emailInp = document.getElementById('login-email');
+    var pinInp = document.getElementById('login-pin');
+    var submitBtn = document.getElementById('btn-login');
+    var regWrap = document.getElementById('login-reg-wrap');
+    var err = document.getElementById('login-err');
+
+    if (err) err.classList.remove('show');
+    if (btnUser) {
+      btnUser.classList.toggle('active', _loginMode === 'user');
+      btnUser.setAttribute('aria-selected', _loginMode === 'user' ? 'true' : 'false');
+    }
+    if (btnAdmin) {
+      btnAdmin.classList.toggle('active', _loginMode === 'admin');
+      btnAdmin.setAttribute('aria-selected', _loginMode === 'admin' ? 'true' : 'false');
+    }
+
+    if (_loginMode === 'admin') {
+      if (guideHead) guideHead.innerHTML = '<span>Panel Admin &amp; General Services</span>';
+      if (guideDesc) guideDesc.innerHTML = 'Khusus Administrator dan Tim GS untuk kelola stok ATK, mobil dinas, E-DOC, dan pengguna.';
+      if (emailLbl) emailLbl.innerHTML = 'Nama / Email Admin GS <span class="req">*</span>';
+      if (pinLbl) pinLbl.innerHTML = 'PIN Admin <span class="req">*</span>';
+      if (emailInp) emailInp.placeholder = 'Pilih atau ketik nama Admin / GS...';
+      if (pinInp) pinInp.placeholder = 'Masukkan PIN Admin';
+      if (submitBtn) {
+        submitBtn.textContent = 'Masuk Panel Admin / GS';
+        submitBtn.classList.add('is-admin-btn');
+      }
+      if (regWrap) regWrap.style.display = 'none';
+    } else {
+      if (guideHead) guideHead.innerHTML = '<span>Portal Karyawan</span>';
+      if (guideDesc) guideDesc.innerHTML = 'Pilih nama karyawan atau ketik NIK, lalu masukkan PIN akses Anda (default: <span class="login-pin-badge">1234</span>).';
+      if (emailLbl) emailLbl.innerHTML = 'Nama Karyawan / NIK <span class="req">*</span>';
+      if (pinLbl) pinLbl.innerHTML = 'PIN Akses (4 Digit) <span class="req">*</span>';
+      if (emailInp) emailInp.placeholder = 'Pilih atau ketik Nama / NIK Karyawan...';
+      if (pinInp) pinInp.placeholder = 'Masukkan PIN (Default: 1234)';
+      if (submitBtn) {
+        submitBtn.textContent = 'Masuk sebagai Karyawan';
+        submitBtn.classList.remove('is-admin-btn');
+      }
+      if (regWrap) regWrap.style.display = 'block';
+    }
+  }
+  window.setLoginMode = setLoginMode;
+
+  function validateAndApplySession(user) {
+    if (!user) return;
+    var hasAdminOrGs = !!(user.isAdmin || user.isGs || /gs|general service|admin/i.test(user.section || '') || user.role === 'admin');
+    if (_loginMode === 'admin' && !hasAdminOrGs) {
+      var err = document.getElementById('login-err');
+      var btn = document.getElementById('btn-login');
+      if (err) {
+        err.textContent = 'Akun ini bukan Administrator/GS. Silakan gunakan tab Login Karyawan.';
+        err.classList.add('show');
+      }
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = 'Masuk Panel Admin / GS';
+      }
+      return false;
+    }
+    user.loginMode = _loginMode;
+    applyUserSession(user);
+    if (typeof showAlert === 'function') {
+      showAlert('Selamat datang, ' + (user.nama || 'Pengguna') + (_loginMode === 'admin' ? ' (Mode Admin/GS)' : ''), 'ok');
+    }
+    return true;
+  }
+
+  function switchActivePortalMode(targetMode) {
+    if (!_session) return;
+    var hasAdminOrGs = !!(_session.isAdmin || _session.isGs);
+    if (targetMode === 'admin' && !hasAdminOrGs) {
+      if (typeof showAlert === 'function') showAlert('Akun Anda tidak memiliki akses Admin/GS.', 'err');
+      return;
+    }
+    _session.loginMode = targetMode;
+    try { localStorage.setItem('pns_session', JSON.stringify(_session)); } catch (e) { }
+    showDash();
+    navTo('dashboard');
+    if (typeof showAlert === 'function') {
+      showAlert(targetMode === 'admin' ? 'Beralih ke Mode Admin / GS' : 'Beralih ke Mode Karyawan', 'ok');
+    }
+  }
+  window.switchActivePortalMode = switchActivePortalMode;
+
+  function toggleNavGroup(groupId) {
+    var grp = document.getElementById(groupId);
+    if (grp) grp.classList.toggle('open');
+  }
+  window.toggleNavGroup = toggleNavGroup;
+
   function doLogin() {
     var userInp = document.getElementById('login-email');
     var email = (userInp ? userInp.value : '').trim(),
@@ -12516,8 +12801,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 1. FAST LOCAL VERIFY: Jika menggunakan PIN Bawaan (1234) dan karyawan terdaftar
     var localEmp = findLocalEmployee(email);
     if (localEmp && pin === '1234') {
-      applyUserSession(localEmp);
-      if (typeof showAlert === 'function') showAlert('Selamat datang, ' + localEmp.nama + '!', 'ok');
+      if (!validateAndApplySession(Object.assign({}, localEmp))) return;
       // Sinkronisasi data di latar belakang ke Google Sheets
       api('verifyPin', { email: email, pin: pin }).catch(function () { });
       return;
@@ -12525,8 +12809,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 2. REMOTE VERIFY via Google Apps Script (Untuk custom PIN atau akun baru)
     api('verifyPin', { email: email, pin: pin }).then(function (user) {
-      applyUserSession(user);
-      if (typeof showAlert === 'function') showAlert('Selamat datang, ' + (user.nama || 'Karyawan') + '!', 'ok');
+      validateAndApplySession(user);
     }).catch(function (e) {
       // Jika koneksi server gagal tapi PIN default 1234, izinkan masuk
       if (pin === '1234') {
@@ -13693,7 +13976,11 @@ function pad(n) { return String(n).padStart(2, '0'); }
     syncTheme(isDark);
     if (!_session) return;
     var ini = (_session.nama || '?').charAt(0).toUpperCase();
-    var ab = _session.isAdmin ? '<span class="admin-badge">Admin</span>' : '';
+    var ab = (_session.isAdmin || _session.isGs)
+      ? (_session.loginMode === 'user'
+          ? '<span class="admin-badge" style="background:#f1f5f9;color:#475569;border:1px solid #cbd5e1;cursor:pointer" onclick="event.stopPropagation();switchActivePortalMode(\'admin\')" title="Klik untuk masuk Mode Admin/GS">Mode User ⇄</span>'
+          : '<span class="admin-badge" style="cursor:pointer" onclick="event.stopPropagation();switchActivePortalMode(\'user\')" title="Klik untuk pratinjau Mode Karyawan">Admin GS</span>')
+      : '<span class="admin-badge" style="background:#f1f5f9;color:#475569">Karyawan</span>';
     var chip = document.getElementById('user-chip');
     if (chip) {
       chip.innerHTML = '<div class="user-av">' + ini + '</div><div class="user-meta"><div class="user-name">' + esc(_session.nama) + '</div><div class="user-sec">' + esc(_session.section || '') + '&nbsp;' + ab + '</div></div><span style="font-size:12px;opacity:0.6;margin-left:4px" title="Klik untuk ubah PIN">🔐</span>';
@@ -13702,9 +13989,12 @@ function pad(n) { return String(n).padStart(2, '0'); }
       chip.onclick = function () { openPinModal(); };
     }
 
-    // Toggle Visibility for Role-based UI in GAS SPA
-    var isAdmin = !!(_session && _session.isAdmin);
-    var isGs = !!(_session && (_session.isGs || _session.isAdmin));
+    // Toggle Visibility for Role-based UI in GAS SPA (Respects Login Karyawan vs Login Admin/GS)
+    var canAdmin = !!(_session && _session.isAdmin);
+    var canGs = !!(_session && (_session.isGs || _session.isAdmin));
+    var inUserMode = (_session && _session.loginMode === 'user');
+    var isAdmin = canAdmin && !inUserMode;
+    var isGs = canGs && !inUserMode;
 
     document.body.classList.toggle('is-admin', isAdmin);
     document.body.classList.toggle('is-gs', isGs);
@@ -14668,6 +14958,13 @@ function pad(n) { return String(n).padStart(2, '0'); }
 
   function switchEdocMainTab(tab) {
     _edocMainTab = tab || 'outbound';
+    if (_activePage === 'edoc') {
+      var targetKey = (_edocMainTab === 'inbound') ? 'edoc-in' : 'edoc-out';
+      document.querySelectorAll('.nav-item').forEach(function (n) {
+        n.classList.toggle('active', n.getAttribute('data-page') === targetKey);
+      });
+      set('page-title', _edocMainTab === 'inbound' ? 'E-DOC · Dokumen Masuk' : 'E-DOC · Dokumen Keluar');
+    }
     var btnOut = document.getElementById('edoc-tab-view-outbound');
     var btnIn = document.getElementById('edoc-tab-view-inbound');
     var wrapOut = document.getElementById('edoc-view-outbound');
@@ -14910,7 +15207,7 @@ function pad(n) { return String(n).padStart(2, '0'); }
     var html = '';
     html += '<div id="edoc-bulk-actions" style="margin-bottom:15px;display:none;padding:10px 15px;background:#eef2ff;border-radius:6px;border:1px solid #c7d2fe;align-items:center;justify-content:space-between;">';
     html += '  <div style="font-size:13px;font-weight:600;color:#3730a3"><span id="edoc-sel-count">0</span> dokumen terpilih</div>';
-    html += '  <div><button class="btn-primary" style="font-size:12px;padding:6px 12px;background:#4f46e5;color:#fff;border:none;border-radius:4px;cursor:pointer" onclick="printSelectedEdocs()">🖨️ Cetak Multiple Receipt</button></div>';
+    html += '  <div><button class="btn-primary" style="font-size:12px;padding:6px 12px;background:#4f46e5;color:#fff;border:none;border-radius:4px;cursor:pointer" onclick="printSelectedEdocs()">🖨️ Print Label Terpilih</button></div>';
     html += '</div>';
 
     html += '<div class="ent-table-wrap">';
@@ -15024,7 +15321,7 @@ function pad(n) { return String(n).padStart(2, '0'); }
       html += '<td style="text-align:right">';
       html += '<div class="ent-actions">';
       html += '<button class="ent-btn ent-btn-detail" onclick="openEdocDetailModal(' + r.id + ')" title="Lihat Rincian & Timeline Lacak">' + _entIcons.eye + ' Detail</button>';
-      html += '<button class="ent-btn" onclick="printEdocSingle(' + r.id + ')" title="Cetak Formulir Tanda Terima" style="background:#eef2ff;color:#4338ca;border:1px solid #c7d2fe;padding:4px 8px;font-size:11px;font-weight:600;border-radius:4px;cursor:pointer">🖨️ Cetak</button>';
+      html += '<button class="ent-btn" onclick="printEdocSingle(' + r.id + ')" title="Print Label Alamat Standar Paket Indonesia (Kode GS)" style="background:#eef2ff;color:#4338ca;border:1px solid #c7d2fe;padding:4px 8px;font-size:11px;font-weight:600;border-radius:4px;cursor:pointer">🖨️ Cetak</button>';
       html += '<button class="ent-btn ent-btn-action" onclick="openEdocUpdateModal(' + r.id + ')" title="Update Resi / OB / Foto Struk">' + _entIcons.box + ' Resi</button>';
 
       if (isGsStaff) {
@@ -15756,7 +16053,7 @@ function pad(n) { return String(n).padStart(2, '0'); }
 
       var isOb = (doc.delivery_type === 'OB / Messenger GS');
 
-      var printBtnHTML = '<button class="ent-btn ent-btn-blue" onclick="printEdocSingle(' + doc.id + ')" style="margin-bottom:15px; width:100%; display:flex; justify-content:center; gap:8px; font-weight:600; cursor:pointer">🖨️ Cetak Formulir Pengiriman</button>';
+      var printBtnHTML = '<button class="ent-btn ent-btn-blue" onclick="printEdocSingle(' + doc.id + ')" style="margin-bottom:15px; width:100%; display:flex; justify-content:center; gap:8px; font-weight:600; cursor:pointer">🖨️ Print Label Alamat (Kode GS)</button>';
 
       // Stepper logic
       var steps = ['Diajukan', 'Diterima GS', 'Dalam Pengiriman', 'Terkirim'];
@@ -18388,18 +18685,23 @@ function pad(n) { return String(n).padStart(2, '0'); }
       return;
     }
 
-    _activePage = page;
+    var actualPage = (page === 'edoc-out' || page === 'edoc-in') ? 'edoc' : page;
+    var activeNavKey = (page === 'edoc') ? 'edoc-out' : page;
+    _activePage = actualPage;
+
     document.querySelectorAll('.nav-item').forEach(function (n) {
-      n.classList.toggle('active', n.getAttribute('data-page') === page);
+      n.classList.toggle('active', n.getAttribute('data-page') === activeNavKey);
     });
     document.querySelectorAll('.page').forEach(function (p) {
-      p.classList.toggle('active', p.id === 'page-' + page);
+      p.classList.toggle('active', p.id === 'page-' + actualPage);
     });
     var titles = {
       dashboard: 'Dashboard',
       calendar: 'Ruang Meeting',
       zoom: 'Zoom Meeting',
-      edoc: 'E-DOC',
+      edoc: 'E-DOC · Dokumen Keluar',
+      'edoc-out': 'E-DOC · Dokumen Keluar',
+      'edoc-in': 'E-DOC · Dokumen Masuk',
       mobilisasi: 'Mobil Dinas',
       atk: 'Request ATK',
       tickets: 'Tiket Saya',
@@ -18409,8 +18711,13 @@ function pad(n) { return String(n).padStart(2, '0'); }
     };
     set('page-title', titles[page] || 'Dashboard');
 
-    if (page === 'tickets') loadMyTicketsAll();
-    else if (page === 'edoc') loadEdocList();
+    if (page === 'edoc-in') {
+      if (typeof switchEdocMainTab === 'function') switchEdocMainTab('inbound');
+      loadEdocList();
+    } else if (page === 'edoc-out' || page === 'edoc') {
+      if (typeof switchEdocMainTab === 'function') switchEdocMainTab('outbound');
+      loadEdocList();
+    } else if (page === 'tickets') loadMyTicketsAll();
     else if (page === 'mobilisasi') loadCarList();
     else if (page === 'atk') loadAtkList();
     else if (page === 'zoom') loadVirtualList();
@@ -19769,9 +20076,197 @@ function pad(n) { return String(n).padStart(2, '0'); }
     return false;
   }
 
+
+  /* ==========================================================================
+     PRINT LABEL ALAMAT PENGIRIMAN STANDAR PAKET INDONESIA + KODE GENERAL SERVICE
+     ========================================================================== */
+  function buildGsCode(doc) {
+    var raw = String((doc && doc.doc_no) || '').trim();
+    if (!raw) {
+      var yr = new Date().getFullYear();
+      var num = String((doc && doc.id) || Math.floor(1000 + Math.random() * 9000)).padStart(4, '0');
+      return 'GS-EDOC-' + yr + '-' + num;
+    }
+    return raw.toUpperCase().indexOf('GS-') === 0 ? raw.toUpperCase() : ('GS-' + raw.toUpperCase());
+  }
+
+  function buildBarcodeSvg(codeText) {
+    var str = '*' + String(codeText || 'GS-EDOC').toUpperCase().replace(/[^A-Z0-9\-\.\$\/\+% ]/g, '') + '*';
+    var bars = [];
+    var x = 4;
+    for (var i = 0; i < str.length; i++) {
+      var c = str.charCodeAt(i);
+      for (var b = 0; b < 6; b++) {
+        var w = ((c >> b) & 1) ? 2.4 : 1.1;
+        if (b % 2 === 0) {
+          bars.push('<rect x="' + x.toFixed(1) + '" y="0" width="' + w.toFixed(1) + '" height="42" fill="#0f172a"/>');
+        }
+        x += w + 0.9;
+      }
+      x += 1.4;
+    }
+    var totalW = Math.max(160, Math.ceil(x + 4));
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + totalW + ' 42" style="width:100%;max-width:260px;height:42px;display:block;margin:4px auto">' + bars.join('') + '</svg>';
+  }
+
+  function renderShippingLabelCard(doc) {
+    var gsCode = buildGsCode(doc);
+    var isOb = (doc.delivery_type === 'OB / Messenger GS');
+    var courierLabel = isOb ? 'KURIR INTERNAL (OB GS)' : String(doc.courier_type || 'EKSPEDISI').toUpperCase();
+    var resi = String(doc.tracking_no || '').trim();
+    var urgency = String(doc.urgency || 'Biasa').toUpperCase();
+    var tgl = fmtDate(doc.created_at) || new Date().toLocaleDateString('id-ID');
+    var recipientName = esc(doc.recipient_name || '-');
+    var recipientCompany = esc(doc.recipient_company || '');
+    var recipientAddress = esc(doc.recipient_address || doc.destination_city || '-');
+    var recipientCity = esc(doc.destination_city || '');
+    var recipientPhone = esc(doc.recipient_phone || '-');
+    var senderName = esc(doc.sender_name || '-');
+    var senderSection = esc(doc.section || 'General Services');
+    var docTitle = esc(doc.doc_title || 'Dokumen Perusahaan');
+    var docType = esc(doc.doc_type || 'Dokumen') + (doc.doc_count > 1 ? ' (' + doc.doc_count + ' berkas)' : ' (1 berkas)');
+
+    return ''
+      + '<div class="gs-label-sheet">'
+      + '  <div class="lbl-head">'
+      + '    <div>'
+      + '      <div class="lbl-company">PT PRATAMA NUSANTARA SAKTI</div>'
+      + '      <div class="lbl-dept">GENERAL SERVICES · LABEL PENGIRIMAN RESMI</div>'
+      + '    </div>'
+      + '    <div class="lbl-courier-box">'
+      + '      <div class="lbl-courier-name">' + esc(courierLabel) + '</div>'
+      + '      <div class="lbl-urg">' + esc(urgency) + '</div>'
+      + '    </div>'
+      + '  </div>'
+      + '  <div class="lbl-code-box">'
+      + '    <div class="lbl-code-cap">KODE GENERAL SERVICE</div>'
+      + '    <div class="lbl-code-val">' + esc(gsCode) + '</div>'
+      +      buildBarcodeSvg(gsCode)
+      + (resi ? '    <div class="lbl-resi">NO. RESI / AWB: <strong>' + esc(resi) + '</strong></div>' : '    <div class="lbl-resi lbl-resi-empty">NO. RESI / AWB: ........................................</div>')
+      + '  </div>'
+      + '  <div class="lbl-section lbl-to">'
+      + '    <div class="lbl-sec-tag">KEPADA / PENERIMA (TO):</div>'
+      + '    <div class="lbl-to-name">' + recipientName + '</div>'
+      + (recipientCompany ? '    <div class="lbl-to-comp">' + recipientCompany + '</div>' : '')
+      + '    <div class="lbl-to-addr">' + recipientAddress + (recipientCity && recipientAddress.toLowerCase().indexOf(recipientCity.toLowerCase()) === -1 ? ', ' + recipientCity : '') + '</div>'
+      + '    <div class="lbl-to-phone">Telp / HP: <strong>' + recipientPhone + '</strong></div>'
+      + '  </div>'
+      + '  <div class="lbl-section lbl-from">'
+      + '    <div class="lbl-sec-tag">DARI / PENGIRIM (FROM):</div>'
+      + '    <div class="lbl-from-name"><strong>' + senderName + '</strong> &middot; Bagian ' + senderSection + '</div>'
+      + '    <div class="lbl-from-addr">PT Pratama Nusantara Sakti (Head Office / RO) — General Services</div>'
+      + '  </div>'
+      + '  <div class="lbl-meta-grid">'
+      + '    <div><span class="m-k">ISI / PERIHAL</span><span class="m-v">' + docTitle + '</span></div>'
+      + '    <div><span class="m-k">BERKAS</span><span class="m-v">' + docType + '</span></div>'
+      + '    <div><span class="m-k">TANGGAL</span><span class="m-v">' + esc(tgl) + '</span></div>'
+      + '  </div>'
+      + '  <div class="lbl-notice">DOKUMEN PENTING PERUSAHAAN — MOHON JANGAN DILIPAT / JANGAN BASAH</div>'
+      + '  <div class="lbl-sign-row">'
+      + '    <div class="lbl-sign-col"><div class="s-ttl">Petugas GS</div><div class="s-line"></div></div>'
+      + '    <div class="lbl-sign-col"><div class="s-ttl">Kurir / Ekspedisi</div><div class="s-line"></div></div>'
+      + '    <div class="lbl-sign-col"><div class="s-ttl">Penerima</div><div class="s-line"></div></div>'
+      + '  </div>'
+      + '</div>';
+  }
+
+  function printEdocReceipt(docsInput) {
+    var list = Array.isArray(docsInput) ? docsInput : (docsInput ? [docsInput] : []);
+    if (!list.length) {
+      if (typeof showAlert === 'function') showAlert('Data dokumen tidak ditemukan untuk dicetak.', 'err');
+      return;
+    }
+
+    var cardsHtml = list.map(renderShippingLabelCard).join('');
+    var win = window.open('', '_blank', 'width=520,height=740');
+    if (!win) {
+      if (typeof showAlert === 'function') showAlert('Pop-up diblokir browser. Izinkan pop-up untuk mencetak label alamat.', 'err');
+      return;
+    }
+
+    var printDoc = '<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><title>Label Pengiriman GS — PT Pratama Nusantara Sakti</title>'
+      + '<style>'
+      + '@page { size: 100mm 150mm; margin: 4mm; }'
+      + '* { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; color: #0f172a; }'
+      + 'body { background: #f1f5f9; padding: 14px; }'
+      + '.no-print-bar { max-width: 100mm; margin: 0 auto 12px; display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; }'
+      + '.no-print-bar span { font-size: 12px; color: #475569; }'
+      + '.btn-do-print { background: #0f766e; color: #fff; border: none; padding: 7px 14px; border-radius: 6px; font-size: 12.5px; font-weight: 600; cursor: pointer; }'
+      + '.gs-label-sheet { width: 96mm; min-height: 138mm; margin: 0 auto 14px; background: #ffffff; border: 2px solid #0f172a; padding: 8px 10px; display: flex; flex-direction: column; justify-content: space-between; page-break-after: always; }'
+      + '.gs-label-sheet:last-child { page-break-after: auto; }'
+      + '.lbl-head { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #0f172a; padding-bottom: 6px; gap: 6px; }'
+      + '.lbl-company { font-size: 11px; font-weight: 800; letter-spacing: 0.02em; }'
+      + '.lbl-dept { font-size: 8.5px; color: #334155; margin-top: 2px; font-weight: 600; }'
+      + '.lbl-courier-box { text-align: right; }'
+      + '.lbl-courier-name { font-size: 10px; font-weight: 800; border: 1.5px solid #0f172a; padding: 2px 6px; display: inline-block; }'
+      + '.lbl-urg { font-size: 8.5px; font-weight: 700; margin-top: 2px; letter-spacing: 0.04em; }'
+      + '.lbl-code-box { text-align: center; border-bottom: 1.5px dashed #0f172a; padding: 6px 0; }'
+      + '.lbl-code-cap { font-size: 8px; font-weight: 700; letter-spacing: 0.08em; color: #475569; }'
+      + '.lbl-code-val { font-family: "Courier New", monospace; font-size: 15px; font-weight: 800; letter-spacing: 0.05em; margin-top: 1px; }'
+      + '.lbl-resi { font-size: 9.5px; margin-top: 3px; padding: 2px 6px; background: #f8fafc; border: 1px solid #cbd5e1; display: inline-block; }'
+      + '.lbl-resi-empty { color: #64748b; background: #fff; }'
+      + '.lbl-section { padding: 7px 0; border-bottom: 1px solid #cbd5e1; }'
+      + '.lbl-sec-tag { font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #475569; margin-bottom: 3px; }'
+      + '.lbl-to-name { font-size: 15px; font-weight: 800; line-height: 1.2; }'
+      + '.lbl-to-comp { font-size: 11.5px; font-weight: 700; margin-top: 2px; }'
+      + '.lbl-to-addr { font-size: 11px; line-height: 1.4; margin-top: 4px; }'
+      + '.lbl-to-phone { font-size: 10.5px; margin-top: 4px; }'
+      + '.lbl-from-name { font-size: 10.5px; line-height: 1.3; }'
+      + '.lbl-from-addr { font-size: 9.5px; color: #334155; margin-top: 2px; }'
+      + '.lbl-meta-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 6px; padding: 6px 0; border-bottom: 1px solid #cbd5e1; }'
+      + '.lbl-meta-grid .m-k { display: block; font-size: 7.5px; font-weight: 700; color: #475569; }'
+      + '.lbl-meta-grid .m-v { display: block; font-size: 9.5px; font-weight: 600; margin-top: 1px; }'
+      + '.lbl-notice { font-size: 8px; font-weight: 700; text-align: center; padding: 4px; border: 1px solid #0f172a; margin: 6px 0; letter-spacing: 0.02em; }'
+      + '.lbl-sign-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; padding-top: 4px; }'
+      + '.lbl-sign-col { text-align: center; }'
+      + '.s-ttl { font-size: 8px; color: #475569; margin-bottom: 18px; }'
+      + '.s-line { border-bottom: 1px solid #0f172a; }'
+      + '@media print { body { background: #fff; padding: 0; } .no-print-bar { display: none !important; } .gs-label-sheet { margin: 0; width: 100%; border: 1.5px solid #0f172a; } }'
+      + '</style></head><body>'
+      + '<div class="no-print-bar"><span>Standar Label Paket Indonesia (A6 / 100&times;150mm)</span><button class="btn-do-print" onclick="window.print()">🖨️ Cetak Label</button></div>'
+      + cardsHtml
+      + '<script>setTimeout(function(){ window.focus(); window.print(); }, 350);</script>'
+      + '</body></html>';
+
+    win.document.open();
+    win.document.write(printDoc);
+    win.document.close();
+  }
+  window.printEdocReceipt = printEdocReceipt;
+
+  function printEdocSingle(id) {
+    var found = (_edocRows || []).find(function (r) { return String(r.id) === String(id); });
+    if (found) {
+      printEdocReceipt([found]);
+      return;
+    }
+    api('getEdocDetail', { id: id }).then(function (d) {
+      var doc = d.doc || (d.data ? d.data : d);
+      if (doc) printEdocReceipt([doc]);
+    }).catch(function () {
+      if (typeof showAlert === 'function') showAlert('Gagal memuat data dokumen untuk dicetak.', 'err');
+    });
+  }
+  window.printEdocSingle = printEdocSingle;
+
+  function printSelectedEdocs() {
+    var cbs = document.querySelectorAll('.edoc-cb-row:checked');
+    var ids = [];
+    cbs.forEach(function (cb) { ids.push(String(cb.value)); });
+    if (!ids.length) {
+      if (typeof showAlert === 'function') showAlert('Pilih minimal 1 dokumen terlebih dahulu.', 'err');
+      return;
+    }
+    var selected = (_edocRows || []).filter(function (r) { return ids.indexOf(String(r.id)) !== -1; });
+    printEdocReceipt(selected);
+  }
+  window.printSelectedEdocs = printSelectedEdocs;
+
 </script>
+
 <script>
 window.IS_ADMIN_PORTAL = true;
+document.addEventListener('DOMContentLoaded', function(){ if (typeof setLoginMode === 'function') setLoginMode('admin'); });
 // Otomatis arahkan ke dashboard admin ketika login
 var _origDoLogin = doLogin;
 doLogin = function() {
