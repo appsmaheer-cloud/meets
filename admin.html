@@ -9818,6 +9818,118 @@ body.in-app [data-theme='dark'] .cal-cell.wc {
   background: rgba(248, 250, 252, 0.72) !important;
 }
 
+
+/* ==========================================================================
+   REDESIGN MODUL E-DOC: CLEAN, COMPACT, ABOVE-THE-FOLD ENTERPRISE LAYOUT
+   ========================================================================== */
+.edoc-clean-head {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  flex-wrap: wrap !important;
+  margin-bottom: 16px !important;
+}
+
+.edoc-kpi-row {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+  margin-bottom: 14px !important;
+}
+
+.edoc-kpi-row.edoc-kpi-row-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+@media (max-width: 768px) {
+  .edoc-kpi-row,
+  .edoc-kpi-row.edoc-kpi-row-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+.edoc-kpi-box {
+  background: rgba(255, 255, 255, 0.80) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  border-radius: 10px !important;
+  padding: 12px 16px !important;
+}
+
+.edoc-kpi-lbl {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: #64748b !important;
+}
+
+.edoc-kpi-num {
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  color: #0f172a !important;
+  margin-top: 4px !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.edoc-toolbar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+  background: rgba(255, 255, 255, 0.78) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  border-radius: 10px !important;
+  padding: 10px 12px !important;
+  margin-bottom: 14px !important;
+}
+
+.edoc-toolbar-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+}
+
+.edoc-select {
+  height: 34px !important;
+  padding: 0 10px !important;
+  font-size: 12.5px !important;
+  color: #334155 !important;
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 7px !important;
+  outline: none !important;
+}
+
+.edoc-search-inp {
+  height: 34px !important;
+  min-width: 210px !important;
+  padding: 0 12px !important;
+  font-size: 12.5px !important;
+  color: #0f172a !important;
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 7px !important;
+  outline: none !important;
+}
+
+.edoc-search-inp:focus,
+.edoc-select:focus {
+  border-color: #0f766e !important;
+}
+
+.edoc-footnote {
+  margin-top: 10px !important;
+  font-size: 11.5px !important;
+  color: #64748b !important;
+  line-height: 1.5 !important;
+}
+
 </style>
 
 </head>
@@ -9826,7 +9938,7 @@ body.in-app [data-theme='dark'] .cal-cell.wc {
      GLOBAL LUXURY AMBIENT VIDEO LAYER (UI UX PRO MAX — PERSISTENT BACKGROUND)
      ══════════════════════════════════════════════════════════════════════════ -->
 <div class="global-ambient-layer" id="global-ambient-layer" aria-hidden="true">
-  <video id="bg-video-pns" class="bg-video-pns" autoplay muted loop playsinline preload="auto" poster="https://appsmaheer-cloud.github.io/meets/assets/img/bg-1.jpg">
+  <video id="bg-video-pns" class="bg-video-pns" autoplay muted loop playsinline preload="auto" onloadedmetadata="this.playbackRate=0.55" onplay="this.playbackRate=0.55" poster="https://appsmaheer-cloud.github.io/meets/assets/img/bg-1.jpg">
     <source src="video-pns.mp4" type="video/mp4">
     <source src="https://appsmaheer-cloud.github.io/meets/video-pns.mp4" type="video/mp4">
   </video>
@@ -9857,18 +9969,9 @@ body.in-app [data-theme='dark'] .cal-cell.wc {
   <div id="login-err" class="err-msg"></div>
 
     <div id="login-form">
-    <!-- PEMILIH MODE LOGIN: KARYAWAN VS ADMIN / GS -->
-    <div class="login-mode-tabs" role="tablist" aria-label="Pilih Jenis Login">
-      <button type="button" id="login-mode-user" class="login-mode-btn active" onclick="setLoginMode('user')" role="tab" aria-selected="true">Login Karyawan</button>
-      <button type="button" id="login-mode-admin" class="login-mode-btn" onclick="setLoginMode('admin')" role="tab" aria-selected="false">Login Admin / GS</button>
-    </div>
-
     <!-- PETUNJUK LOGIN -->
     <div class="login-guide-card" id="login-guide-card">
-      <div class="login-guide-head" id="login-guide-head">
-        <span>Portal Karyawan</span>
-      </div>
-      <div class="login-guide-item" id="login-guide-desc">Pilih nama karyawan atau ketik NIK, lalu masukkan PIN akses Anda (default: <span class="login-pin-badge">1234</span>).</div>
+      <div class="login-guide-item" id="login-guide-desc">Pilih nama karyawan atau ketik NIK, lalu masukkan PIN akses (default: <span class="login-pin-badge">1234</span>). Akses menu menyesuaikan role akun secara otomatis.</div>
     </div>
 
     <!-- PILIHAN KARYAWAN -->
@@ -10274,184 +10377,136 @@ body.in-app [data-theme='dark'] .cal-cell.wc {
 
     <!-- PAGE E-DOC (PENGIRIMAN & PENYERAHAN DOKUMEN HO) -->
     <div class="page" id="page-edoc">
-      <!-- 2 PILIHAN UTAMA VIEW USER & GS: DOKUMEN DIKIRIM (OUTBOUND) VS DOKUMEN DITERIMA DI HO (INBOUND) -->
-      <div class="edoc-main-nav-tabs" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:12px;margin-bottom:16px">
-        <button type="button" id="edoc-tab-view-outbound" onclick="switchEdocMainTab('outbound')" style="padding:14px 18px;border-radius:14px;border:1px solid #2563eb;background:#eff6ff;color:#1e293b;cursor:pointer;display:flex;align-items:center;gap:12px;text-align:left;box-shadow:0 2px 4px rgba(37,99,235,0.08);transition:all .2s ease">
-          <div style="width:42px;height:42px;border-radius:10px;background:#dbeafe;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">📤</div>
-          <div style="flex:1;min-width:0">
-            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-              <span style="font-weight:600;font-size:13.5px;color:#1d4ed8">1. Dokumen Dikirim (Outbound)</span>
-              <span id="edoc-badge-outbound-count" style="background:#2563eb;color:#fff;font-size:11px;font-weight:700;padding:1px 8px;border-radius:12px">0</span>
-            </div>
-            <div style="font-size:11.5px;color:#64748b;margin-top:2px">Pengiriman surat/dokumen keluar kantor &amp; resi ekspedisi</div>
-          </div>
-        </button>
+      <!-- Hidden badges for backward JS compatibility -->
+      <span id="edoc-badge-outbound-count" style="display:none">0</span>
+      <span id="edoc-badge-inbound-pending" style="display:none">0</span>
 
-        <button type="button" id="edoc-tab-view-inbound" onclick="switchEdocMainTab('inbound')" style="padding:14px 18px;border-radius:14px;border:1px solid #e2e8f0;background:#fff;color:#475569;cursor:pointer;display:flex;align-items:center;gap:12px;text-align:left;transition:all .2s ease">
-          <div style="width:42px;height:42px;border-radius:10px;background:#ecfdf5;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">📥</div>
-          <div style="flex:1;min-width:0">
-            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-              <span style="font-weight:600;font-size:13.5px;color:#0f172a">2. Dokumen Diterima di HO &amp; Penyerahan</span>
-              <span id="edoc-badge-inbound-pending" style="background:#059669;color:#fff;font-size:11px;font-weight:700;padding:1px 8px;border-radius:12px">0 Menunggu</span>
-            </div>
-            <div style="font-size:11.5px;color:#64748b;margin-top:2px">Paket kurir tiba di HO &amp; serah terima bundling per departemen</div>
-          </div>
-        </button>
-      </div>
-
-      <!-- VIEW 1: DOKUMEN DIKIRIM (OUTBOUND) -->
+      <!-- VIEW 1: DOKUMEN KELUAR (OUTBOUND) -->
       <div id="edoc-view-outbound">
-        <!-- KETENTUAN RESI & PENGIRIMAN -->
-        <div style="background:#eff6ff;border:1px solid #bfdbfe;border-left:4px solid #2563eb;border-radius:var(--r8);padding:10px 14px;margin-bottom:14px;font-size:12px;color:#1e40af;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
-          <div style="display:flex;align-items:center;gap:8px">
-            <span style="font-size:18px">📌</span>
-            <span><strong>Ketentuan Layanan E-Doc Outbound:</strong> Tanggung jawab General Services (GS) untuk pengiriman dokumen via vendor ekspedisi berlaku sampai <strong>nomor resi diterbitkan di sistem</strong>. Pengguna dapat melacak status paket secara mandiri via tombol <strong>🔍 Cek Resi</strong>.</span>
+        <div class="edoc-clean-head">
+          <div>
+            <h1 class="page-hero-title">Dokumen Keluar</h1>
+            <p class="page-hero-sub">Kelola pengiriman dokumen via kurir internal atau ekspedisi &amp; cetak label kode GS.</p>
           </div>
-          <button class="btn-next" style="padding:7px 14px;font-size:12px;display:inline-flex;align-items:center;gap:6px" onclick="openEdocModal()">
-            ➕ Kirim Dokumen Baru
-          </button>
-        </div>
-
-        <div class="gs-filter-bar">
-          <div style="display:flex;flex-direction:column;gap:8px;width:100%">
-            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
-              <div class="gs-filter-tabs">
-                <button class="gs-tab-btn active" data-f="all" onclick="edocFilter('all')">Semua Status</button>
-                <button class="gs-tab-btn" data-f="Diajukan" onclick="edocFilter('Diajukan')">Diajukan</button>
-                <button class="gs-tab-btn" data-f="Diterima GS" onclick="edocFilter('Diterima GS')">Diterima GS</button>
-                <button class="gs-tab-btn" data-f="Dalam Pengiriman" onclick="edocFilter('Dalam Pengiriman')">Sedang Dikirim</button>
-                <button class="gs-tab-btn" data-f="Terkirim" onclick="edocFilter('Terkirim')">Terkirim</button>
-                <button class="gs-tab-btn tab-need-resi" data-f="need_resi" onclick="edocFilter('need_resi')" title="Dokumen vendor ekspedisi yang belum memiliki nomor resi">
-                  <span class="tab-warn-dot"></span>⚠️ Perlu Input Resi <span id="edoc-tab-need-count" style="display:none;background:#b45309;color:#fff;border-radius:10px;padding:0 5px;font-size:10px;margin-left:3px">0</span>
-                </button>
-              </div>
-              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-                <div class="gs-search-box">
-                  <input type="text" id="edoc-search-outbound" placeholder="Cari Resi, Dokumen, Penerima, OB…" oninput="onEdocSearch(this.value)">
-                </div>
-                <select id="edoc-scope-sel" class="gs-only-feature" onchange="onEdocScopeChange(this.value)" style="display:none;font-size:12px;padding:6px 10px;border-radius:var(--r8);border:1px solid var(--border);background:var(--surface2)">
-                  <option value="all" selected>Semua Pengiriman (GS)</option>
-                  <option value="my">Dokumen Saya Saja</option>
-                </select>
-              </div>
-            </div>
-            <!-- Channel Selector: OB vs Vendor -->
-            <div class="edoc-channel-filter-strip">
-              <span style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em">Jalur Pengiriman:</span>
-              <div class="edoc-chan-pills">
-                <button class="edoc-chan-btn active" data-chan="all" onclick="edocChannelFilter('all')">Semua Jalur</button>
-                <button class="edoc-chan-btn" data-chan="OB / Messenger GS" onclick="edocChannelFilter('OB / Messenger GS')">Kurir Internal (OB / Messenger)</button>
-                <button class="edoc-chan-btn" data-chan="Vendor Ekspedisi" onclick="edocChannelFilter('Vendor Ekspedisi')">Vendor Ekspedisi (JNE / J&amp;T / dll)</button>
-              </div>
-            </div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <button type="button" class="btn-next" onclick="openEdocModal()" style="padding:8px 16px;font-size:13px">+ Kirim Dokumen</button>
           </div>
         </div>
 
-        <div class="gs-kpi-grid">
-          <div class="gs-kpi-card c-green">
-            <div class="gs-kpi-title">Total Dokumen Dikirim</div>
-            <div class="gs-kpi-number" id="edoc-kpi-total">0</div>
-            <div class="gs-kpi-sub">Outbound tercatat</div>
+        <!-- Ringkasan KPI Kompak (Tanpa garis warna pelangi) -->
+        <div class="edoc-kpi-row">
+          <div class="edoc-kpi-box">
+            <div class="edoc-kpi-lbl">Total Keluar</div>
+            <div class="edoc-kpi-num" id="edoc-kpi-total">0</div>
           </div>
-          <div class="gs-kpi-card c-amber">
-            <div class="gs-kpi-title">Kurir Internal (OB)</div>
-            <div class="gs-kpi-number" id="edoc-kpi-ob">0</div>
-            <div class="gs-kpi-sub">Messenger GS kantor</div>
+          <div class="edoc-kpi-box">
+            <div class="edoc-kpi-lbl">Kurir Internal (OB)</div>
+            <div class="edoc-kpi-num" id="edoc-kpi-ob">0</div>
           </div>
-          <div class="gs-kpi-card c-blue">
-            <div class="gs-kpi-title">Vendor Ekspedisi</div>
-            <div class="gs-kpi-number" id="edoc-kpi-vendor">0</div>
-            <div class="gs-kpi-sub">JNE, J&amp;T, SiCepat, dll</div>
+          <div class="edoc-kpi-box">
+            <div class="edoc-kpi-lbl">Ekspedisi</div>
+            <div class="edoc-kpi-num" id="edoc-kpi-vendor">0</div>
           </div>
-          <div class="gs-kpi-card c-indigo">
-            <div class="gs-kpi-title">Selesai Terkirim</div>
-            <div class="gs-kpi-number" id="edoc-kpi-terkirim">0</div>
-            <div class="gs-kpi-sub">Sampai di penerima luar</div>
+          <div class="edoc-kpi-box">
+            <div class="edoc-kpi-lbl">Selesai Terkirim</div>
+            <div class="edoc-kpi-num" id="edoc-kpi-terkirim">0</div>
           </div>
         </div>
 
+        <!-- Toolbar Filter 1 Baris Rapi -->
+        <div class="edoc-toolbar">
+          <div class="gs-filter-tabs">
+            <button class="gs-tab-btn active" data-f="all" onclick="edocFilter('all')">Semua</button>
+            <button class="gs-tab-btn" data-f="Diajukan" onclick="edocFilter('Diajukan')">Diajukan</button>
+            <button class="gs-tab-btn" data-f="Diterima GS" onclick="edocFilter('Diterima GS')">Diterima GS</button>
+            <button class="gs-tab-btn" data-f="Dalam Pengiriman" onclick="edocFilter('Dalam Pengiriman')">Dikirim</button>
+            <button class="gs-tab-btn" data-f="Terkirim" onclick="edocFilter('Terkirim')">Terkirim</button>
+            <button class="gs-tab-btn tab-need-resi" data-f="need_resi" onclick="edocFilter('need_resi')">
+              Perlu Resi <span id="edoc-tab-need-count" style="display:none;background:#b45309;color:#fff;border-radius:8px;padding:0 5px;font-size:10px;margin-left:3px">0</span>
+            </button>
+          </div>
+          <div class="edoc-toolbar-right">
+            <select id="edoc-channel-sel" onchange="edocChannelFilter(this.value)" class="edoc-select" aria-label="Filter Jalur">
+              <option value="all">Semua Jalur</option>
+              <option value="OB / Messenger GS">Kurir OB</option>
+              <option value="Vendor Ekspedisi">Ekspedisi</option>
+            </select>
+            <select id="edoc-scope-sel" class="gs-only-feature edoc-select" onchange="onEdocScopeChange(this.value)" style="display:none" aria-label="Filter Cakupan">
+              <option value="all" selected>Semua Pengiriman</option>
+              <option value="my">Dokumen Saya</option>
+            </select>
+            <input type="text" id="edoc-search-outbound" class="edoc-search-inp" placeholder="Cari resi, dokumen, penerima..." oninput="onEdocSearch(this.value)">
+          </div>
+        </div>
+
+        <!-- Tabel Utama -->
         <div class="panel">
-          <div class="panel-head">
-            <div>
-              <div class="panel-ttl">Daftar Pengiriman Dokumen Keluar (Outbound)</div>
-              <div class="panel-sub">Lacak status real-time, no. resi/AWB, kurir internal OB &amp; update dari pengirim</div>
-            </div>
+          <div class="panel-head" style="padding:12px 16px">
+            <div class="panel-ttl">Daftar Dokumen Keluar</div>
             <span class="tickets-count" id="edoc-count-badge">–</span>
           </div>
-          <div class="panel-body" style="padding:0;overflow:hidden;border-radius:0 0 var(--r12) var(--r12)">
+          <div class="panel-body" style="padding:0;overflow:hidden;border-radius:0 0 10px 10px">
             <div id="edoc-list-container">
               <div class="empty-state"><div class="spinner-lg"></div></div>
             </div>
           </div>
         </div>
+
+        <div class="edoc-footnote">
+          Catatan: Tanggung jawab General Services (GS) untuk pengiriman ekspedisi berlaku hingga nomor resi diterbitkan di sistem. Pelacakan mandiri tersedia melalui tombol Cek Resi.
+        </div>
       </div>
 
-      <!-- VIEW 2: DOKUMEN DITERIMA DI HO & PENYERAHAN (INBOUND & HANDOVER) -->
+      <!-- VIEW 2: DOKUMEN MASUK (INBOUND & PENYERAHAN) -->
       <div id="edoc-view-inbound" style="display:none">
-        <!-- ACTION BAR & KETERANGAN INBOUND -->
-        <div style="background:rgba(240,253,250,0.85);border:1px solid #ccfbf1;border-left:3px solid #0f766e;border-radius:10px;padding:14px 16px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div class="edoc-clean-head">
           <div>
-            <div style="font-weight:600;font-size:14px;color:#0f172a;display:flex;align-items:center;gap:6px">
-              <span>Dokumen Masuk (HO)</span>
-            </div>
-            <div style="font-size:12.5px;color:#64748b;margin-top:2px">
-              Pantau paket &amp; surat yang tiba di meja General Services. Pencatatan dan penyerahan dilakukan oleh Admin / Tim GS.
-            </div>
+            <h1 class="page-hero-title">Dokumen Masuk</h1>
+            <p class="page-hero-sub">Pantau paket &amp; surat yang tiba di kantor. Pencatatan dan penyerahan dilakukan oleh Admin / GS.</p>
           </div>
-          <div class="gs-only-feature" style="display:none;gap:8px;flex-wrap:wrap">
-            <button type="button" class="btn-rs" onclick="openEdocInboundModal('draft')" style="padding:7px 14px;font-size:12.5px;background:#ffffff;border:1px solid #0f766e;color:#0f766e;font-weight:500;display:inline-flex;align-items:center;gap:6px">
-              + Catat Paket Masuk
+          <div class="gs-only-feature" data-flex="1" style="display:none;align-items:center;gap:8px;flex-wrap:wrap">
+            <button type="button" class="btn-rs" onclick="openEdocInboundModal('draft')" style="padding:8px 14px;font-size:13px;background:#ffffff;border:1px solid #0f766e;color:#0f766e;font-weight:500">+ Catat Masuk</button>
+            <button type="button" class="btn-next" onclick="openEdocBatchHandoverModal()" style="padding:8px 16px;font-size:13px">Penyerahan</button>
+          </div>
+        </div>
+
+        <!-- Ringkasan KPI Inbound Kompak -->
+        <div class="edoc-kpi-row edoc-kpi-row-3">
+          <div class="edoc-kpi-box">
+            <div class="edoc-kpi-lbl">Total Paket Masuk</div>
+            <div class="edoc-kpi-num" id="edoc-kpi-in-total">0</div>
+          </div>
+          <div class="edoc-kpi-box">
+            <div class="edoc-kpi-lbl">Menunggu Diambil</div>
+            <div class="edoc-kpi-num" id="edoc-kpi-in-pending">0</div>
+          </div>
+          <div class="edoc-kpi-box">
+            <div class="edoc-kpi-lbl">Sudah Diserahkan</div>
+            <div class="edoc-kpi-num" id="edoc-kpi-in-delivered">0</div>
+          </div>
+        </div>
+
+        <!-- Toolbar Filter Inbound 1 Baris -->
+        <div class="edoc-toolbar">
+          <div class="gs-filter-tabs">
+            <button class="gs-tab-btn active" data-inf="all" onclick="edocInboundFilter('all')">Semua</button>
+            <button class="gs-tab-btn" data-inf="pending" onclick="edocInboundFilter('pending')">
+              Menunggu <span id="edoc-in-filter-pending-count" style="display:none;background:#b45309;color:#fff;border-radius:8px;padding:0 5px;font-size:10px;margin-left:3px">0</span>
             </button>
-            <button type="button" class="btn-next" onclick="openEdocBatchHandoverModal()" style="padding:7px 16px;font-size:12.5px;background:#0f766e;color:#ffffff;border:none;font-weight:500;display:inline-flex;align-items:center;gap:6px">
-              Penyerahan Dokumen
-            </button>
+            <button class="gs-tab-btn" data-inf="delivered" onclick="edocInboundFilter('delivered')">Sudah Diserahkan</button>
+          </div>
+          <div class="edoc-toolbar-right">
+            <input type="text" id="edoc-search-inbound" class="edoc-search-inp" placeholder="Cari penerima, pengirim, resi..." oninput="onEdocInboundSearch(this.value)">
           </div>
         </div>
 
-        <div class="gs-filter-bar">
-          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;width:100%">
-            <div class="gs-filter-tabs">
-              <button class="gs-tab-btn active" data-inf="all" onclick="edocInboundFilter('all')">Semua Dokumen Masuk</button>
-              <button class="gs-tab-btn" data-inf="pending" onclick="edocInboundFilter('pending')">
-                ⏳ Menunggu Penyerahan di GS <span id="edoc-in-filter-pending-count" style="display:none;background:#b45309;color:#fff;border-radius:10px;padding:1px 6px;font-size:10px;margin-left:3px">0</span>
-              </button>
-              <button class="gs-tab-btn" data-inf="delivered" onclick="edocInboundFilter('delivered')">
-                ✅ Sudah Diserahkan ke User
-              </button>
-            </div>
-            <div class="gs-search-box">
-              <input type="text" id="edoc-search-inbound" placeholder="Cari Penerima, Pengirim, Resi, Perihal…" oninput="onEdocInboundSearch(this.value)">
-            </div>
-          </div>
-        </div>
-
-        <div class="gs-kpi-grid">
-          <div class="gs-kpi-card c-green">
-            <div class="gs-kpi-title">Total Paket Masuk</div>
-            <div class="gs-kpi-number" id="edoc-kpi-in-total">0</div>
-            <div class="gs-kpi-sub">Diterima di kantor HO</div>
-          </div>
-          <div class="gs-kpi-card c-amber">
-            <div class="gs-kpi-title">Menunggu Penyerahan</div>
-            <div class="gs-kpi-number" id="edoc-kpi-in-pending">0</div>
-            <div class="gs-kpi-sub">Masih di meja / rak GS</div>
-          </div>
-          <div class="gs-kpi-card c-blue">
-            <div class="gs-kpi-title">Sudah Diserahkan</div>
-            <div class="gs-kpi-number" id="edoc-kpi-in-delivered">0</div>
-            <div class="gs-kpi-sub">Lengkap TTD &amp; bukti serah</div>
-          </div>
-        </div>
-
+        <!-- Tabel Inbound -->
         <div class="panel">
-          <div class="panel-head">
-            <div>
-              <div class="panel-ttl">Log Dokumen Masuk HO &amp; Status Penyerahan</div>
-              <div class="panel-sub">Informasi tanggal &amp; jam diterima di GS vs tanggal &amp; jam diserahkan ke user</div>
-            </div>
+          <div class="panel-head" style="padding:12px 16px">
+            <div class="panel-ttl">Daftar Dokumen Masuk</div>
             <span class="tickets-count" id="edoc-in-count-badge">–</span>
           </div>
-          <div class="panel-body" style="padding:0;overflow:hidden;border-radius:0 0 var(--r12) var(--r12)">
+          <div class="panel-body" style="padding:0;overflow:hidden;border-radius:0 0 10px 10px">
             <div id="edoc-inbound-list-container">
               <div class="empty-state"><div class="spinner-lg"></div></div>
             </div>
@@ -12874,39 +12929,22 @@ document.addEventListener('DOMContentLoaded', function() {
   window.setLoginMode = setLoginMode;
 
   function validateAndApplySession(user) {
-    if (!user) return;
-    var hasAdminOrGs = !!(user.isAdmin || user.isGs || /gs|general service|admin/i.test(user.section || '') || user.role === 'admin');
-    if (_loginMode === 'admin' && !hasAdminOrGs) {
-      var err = document.getElementById('login-err');
-      var btn = document.getElementById('btn-login');
-      if (err) {
-        err.textContent = 'Akun ini bukan Administrator/GS. Silakan gunakan tab Login Karyawan.';
-        err.classList.add('show');
-      }
-      if (btn) {
-        btn.disabled = false;
-        btn.textContent = 'Masuk Panel Admin / GS';
-      }
-      return false;
-    }
-    user.loginMode = _loginMode;
+    if (!user) return false;
     applyUserSession(user);
     if (typeof showAlert === 'function') {
-      showAlert('Selamat datang, ' + (user.nama || 'Pengguna') + (_loginMode === 'admin' ? ' (Mode Admin/GS)' : ''), 'ok');
+      showAlert('Selamat datang, ' + (user.nama || 'Pengguna') + '!', 'ok');
     }
     return true;
   }
 
   function isEffectiveGs() {
     if (!_session) return false;
-    if (_session.loginMode === 'user') return false;
     return !!(_session.isAdmin || _session.isGs || _session.role === 'admin' || _session.role === 'gs');
   }
   window.isEffectiveGs = isEffectiveGs;
 
   function isEffectiveAdmin() {
     if (!_session) return false;
-    if (_session.loginMode === 'user') return false;
     return !!(_session.isAdmin || _session.role === 'admin');
   }
   window.isEffectiveAdmin = isEffectiveAdmin;
@@ -14133,11 +14171,9 @@ function pad(n) { return String(n).padStart(2, '0'); }
     syncTheme(isDark);
     if (!_session) return;
     var ini = (_session.nama || '?').charAt(0).toUpperCase();
-    var ab = (_session.isAdmin || _session.isGs)
-      ? (_session.loginMode === 'user'
-          ? '<span class="admin-badge" style="background:#f1f5f9;color:#475569;border:1px solid #cbd5e1;cursor:pointer" onclick="event.stopPropagation();switchActivePortalMode(\'admin\')" title="Klik untuk masuk Mode Admin/GS">Mode User ⇄</span>'
-          : '<span class="admin-badge" style="cursor:pointer" onclick="event.stopPropagation();switchActivePortalMode(\'user\')" title="Klik untuk pratinjau Mode Karyawan">Admin GS</span>')
-      : '<span class="admin-badge" style="background:#f1f5f9;color:#475569">Karyawan</span>';
+    var ab = _session.isAdmin
+      ? '<span class="admin-badge">Admin GS</span>'
+      : (_session.isGs ? '<span class="admin-badge" style="background:#f0fdfa;color:#0f766e;border:1px solid #ccfbf1">Petugas GS</span>' : '<span class="admin-badge" style="background:#f1f5f9;color:#475569">Karyawan</span>');
     var chip = document.getElementById('user-chip');
     if (chip) {
       chip.innerHTML = '<div class="user-av">' + ini + '</div><div class="user-meta"><div class="user-name">' + esc(_session.nama) + '</div><div class="user-sec">' + esc(_session.section || '') + '&nbsp;' + ab + '</div></div><span style="font-size:12px;opacity:0.6;margin-left:4px" title="Klik untuk ubah PIN">🔐</span>';
@@ -14147,11 +14183,8 @@ function pad(n) { return String(n).padStart(2, '0'); }
     }
 
     // Toggle Visibility for Role-based UI in GAS SPA (Respects Login Karyawan vs Login Admin/GS)
-    var canAdmin = !!(_session && _session.isAdmin);
-    var canGs = !!(_session && (_session.isGs || _session.isAdmin));
-    var inUserMode = (_session && _session.loginMode === 'user');
-    var isAdmin = canAdmin && !inUserMode;
-    var isGs = canGs && !inUserMode;
+    var isAdmin = !!(_session && (_session.isAdmin || _session.role === 'admin'));
+    var isGs = !!(_session && (_session.isGs || _session.isAdmin || _session.role === 'gs' || _session.role === 'admin'));
 
     document.body.classList.toggle('is-admin', isAdmin);
     document.body.classList.toggle('is-gs', isGs);
@@ -19619,10 +19652,7 @@ function pad(n) { return String(n).padStart(2, '0'); }
     var menu = document.getElementById('custom-combobox-menu');
     if (!menu) return;
     var q = (query || '').toLowerCase().trim();
-    var rawDir = (typeof PNS_EMPLOYEE_DIRECTORY !== 'undefined') ? PNS_EMPLOYEE_DIRECTORY : [];
-    var dir = (_loginMode === 'admin')
-      ? rawDir.filter(function (emp) { return emp.isAdmin || emp.isGs || emp.role === 'admin' || emp.role === 'gs'; })
-      : rawDir;
+    var dir = (typeof PNS_EMPLOYEE_DIRECTORY !== 'undefined') ? PNS_EMPLOYEE_DIRECTORY : [];
     var filtered = dir.filter(function (emp) {
       if (!q) return true;
       return (emp.nama && emp.nama.toLowerCase().indexOf(q) !== -1) ||
