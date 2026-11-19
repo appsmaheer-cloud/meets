@@ -9729,11 +9729,44 @@ body.in-app .global-ambient-layer .bg-video-overlay {
   -webkit-backdrop-filter: blur(2px) !important;
 }
 
-/* Ensure interactive layers sit cleanly above ambient video */
-#login-screen,
-#app-screen {
+/* BULLETPROOF CLICKABILITY & STACKING ORDER (NEVER BLOCK CLICKS) */
+#login-screen::before,
+#login-screen::after,
+.global-ambient-layer,
+.global-ambient-layer *,
+.bg-video-pns,
+.bg-video-overlay {
+  pointer-events: none !important;
+}
+
+body:not(.in-app) #login-screen,
+body:not(.in-app) .login-screen-fluid {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 99999 !important;
+  pointer-events: auto !important;
+}
+
+.login-box {
   position: relative !important;
-  z-index: 10 !important;
+  z-index: 100000 !important;
+  pointer-events: auto !important;
+}
+
+.login-box input,
+.login-box button,
+.login-box a,
+.login-box select,
+.login-box .custom-combobox-menu,
+.login-box .custom-combobox-item {
+  pointer-events: auto !important;
+}
+
+body.in-app #app-screen {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 20 !important;
+  pointer-events: auto !important;
 }
 
 /* 2. Lower Opacity Glass Login Card (Video PNS clearly visible behind card) */
@@ -20457,6 +20490,16 @@ function pad(n) { return String(n).padStart(2, '0'); }
     printEdocReceipt(selected);
   }
   window.printSelectedEdocs = printSelectedEdocs;
+
+
+  /* Explicit global exports for inline onclick handlers */
+  try {
+    ['doLogin','togglePin','openComboboxMenu','toggleComboboxMenu','filterComboboxMenu','selectComboboxItem','onComboboxKeydown','openRegisterModal','closeRegisterModal','doRegister','navTo','toggleNavGroup','openModal','openZoom','openCarModal','openAtkModal','openEdocModal','openEdocInboundModal','openEdocBatchHandoverModal','openEdocDetailModal','printEdocSingle','printSelectedEdocs','printEdocReceipt','logout','openPinModal','toggleSidebar','toggleTheme'].forEach(function(fnName){
+      if (typeof window[fnName] === 'undefined') {
+        try { var fn = eval(fnName); if (typeof fn === 'function') window[fnName] = fn; } catch(e){}
+      }
+    });
+  } catch(e) {}
 
 </script>
 
