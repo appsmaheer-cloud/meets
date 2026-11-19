@@ -9701,10 +9701,8 @@ body.in-app .global-ambient-layer {
   height: 100% !important;
   object-fit: cover !important;
   object-position: center center !important;
-  opacity: 0 !important;
-  transform: scale(1.02) translateZ(0) !important;
-  will-change: opacity !important;
-  transition: opacity 0.9s ease-out !important;
+  opacity: 1 !important;
+  transform: scale(1.01) translateZ(0) !important;
   pointer-events: none !important;
 }
 
@@ -9828,7 +9826,7 @@ body.in-app [data-theme='dark'] .cal-cell.wc {
      GLOBAL LUXURY AMBIENT VIDEO LAYER (UI UX PRO MAX — PERSISTENT BACKGROUND)
      ══════════════════════════════════════════════════════════════════════════ -->
 <div class="global-ambient-layer" id="global-ambient-layer" aria-hidden="true">
-  <video id="bg-video-pns" class="bg-video-pns" autoplay muted loop playsinline preload="metadata" poster="https://appsmaheer-cloud.github.io/meets/assets/img/bg-1.jpg">
+  <video id="bg-video-pns" class="bg-video-pns" autoplay muted loop playsinline preload="auto" poster="https://appsmaheer-cloud.github.io/meets/assets/img/bg-1.jpg">
     <source src="video-pns.mp4" type="video/mp4">
     <source src="https://appsmaheer-cloud.github.io/meets/video-pns.mp4" type="video/mp4">
   </video>
@@ -10391,21 +10389,21 @@ body.in-app [data-theme='dark'] .cal-cell.wc {
       <!-- VIEW 2: DOKUMEN DITERIMA DI HO & PENYERAHAN (INBOUND & HANDOVER) -->
       <div id="edoc-view-inbound" style="display:none">
         <!-- ACTION BAR & KETERANGAN INBOUND -->
-        <div style="background:#f0fdf4;border:1.5px solid #bbf7d0;border-left:4px solid #16a34a;border-radius:var(--r8);padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div style="background:rgba(240,253,250,0.85);border:1px solid #ccfbf1;border-left:3px solid #0f766e;border-radius:10px;padding:14px 16px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
           <div>
-            <div style="font-weight:700;font-size:13.5px;color:#15803d;display:flex;align-items:center;gap:6px">
-              <span>📥</span> Penerimaan &amp; Serah Terima Dokumen Inbound (HO)
+            <div style="font-weight:600;font-size:14px;color:#0f172a;display:flex;align-items:center;gap:6px">
+              <span>Dokumen Masuk (HO)</span>
             </div>
-            <div style="font-size:11.5px;color:#166534;margin-top:2px">
-              Catat paket yang tiba dari kurir luar, dan serahkan secara serentak (bundling) saat karyawan / perwakilan departemen datang mengambil.
+            <div style="font-size:12.5px;color:#64748b;margin-top:2px">
+              Pantau paket &amp; surat yang tiba di meja General Services. Pencatatan dan penyerahan dilakukan oleh Admin / Tim GS.
             </div>
           </div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button type="button" class="btn-rs" onclick="openEdocInboundModal('draft')" style="padding:7px 14px;font-size:12px;background:#fff;border-color:#16a34a;color:#15803d;font-weight:700;display:inline-flex;align-items:center;gap:6px">
-              <span>📥</span> + Catat Paket Masuk Baru
+          <div class="gs-only-feature" style="display:none;gap:8px;flex-wrap:wrap">
+            <button type="button" class="btn-rs" onclick="openEdocInboundModal('draft')" style="padding:7px 14px;font-size:12.5px;background:#ffffff;border:1px solid #0f766e;color:#0f766e;font-weight:500;display:inline-flex;align-items:center;gap:6px">
+              + Catat Paket Masuk
             </button>
-            <button type="button" class="btn-next" onclick="openEdocBatchHandoverModal()" style="padding:7px 16px;font-size:12px;background:#15803d;color:#fff;border:none;font-weight:700;display:inline-flex;align-items:center;gap:6px">
-              <span>🤝</span> Penyerahan Dokumen (Bundling)
+            <button type="button" class="btn-next" onclick="openEdocBatchHandoverModal()" style="padding:7px 16px;font-size:12.5px;background:#0f766e;color:#ffffff;border:none;font-weight:500;display:inline-flex;align-items:center;gap:6px">
+              Penyerahan Dokumen
             </button>
           </div>
         </div>
@@ -12767,7 +12765,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // ════ 36 KARYAWAN ACTIVE LOCAL DIRECTORY (INSTANT FAST VERIFY) ════
-  var PNS_EMPLOYEE_DIRECTORY = [{ "id": 1, "nik": "240082", "nama": "M. Miftahul Khoiry", "email": "miftahul.khoiry@pns.co.id", "section": "GS HO & RO", "departemen": "HRGA", "bagian": "GS HO & RO", "jabatan": "Superintendent", "posisi": "General Services Superintendent", "isAdmin": true, "isGs": true, "isDefaultPin": true }, { "id": 2, "nik": "210051", "nama": "Aditya Aji Asmoro", "email": "asmoroaji8@gmail.com", "section": "Tax", "departemen": "Financial & Information System", "bagian": "Tax", "jabatan": "Supervisor", "posisi": "Tax Officer", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 3, "nik": "210053", "nama": "Andi Wijaya", "email": "wijaya9973@gmail.com", "section": "Information Technology", "departemen": "Financial & Information System", "bagian": "Information Technology", "jabatan": "Supervisor", "posisi": "IT Application Development Officer", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 4, "nik": "180001", "nama": "Angga Prasetya Nusantara", "email": "anggaong@gmail.com", "section": "Accounting", "departemen": "Financial & Information System", "bagian": "Accounting", "jabatan": "Supervisor", "posisi": "Accounting Officer", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 5, "nik": "220045", "nama": "Arif Budiman", "email": "arifbudiman.cp@gmail.com", "section": "Organizational Development & Performance Management", "departemen": "HRGA", "bagian": "Organizational Development & Performance Management", "jabatan": "Supervisor", "posisi": "ODPM Officer", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 6, "nik": "130028", "nama": "Catur Handayani", "email": "handayani.catur1202@gmail.com", "section": "Talent Acquisition & Monitoring", "departemen": "HRGA", "bagian": "Talent Acquisition & Monitoring", "jabatan": "Superintendent", "posisi": "Talent Acquisition & Monitoring Superintendent", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 7, "nik": "210049", "nama": "Delia Syafira", "email": "deliasyafiira@gmail.com", "section": "Procurement & Purchasing", "departemen": "Procurement & Purchasing", "bagian": "Procurement & Purchasing", "jabatan": "Staff", "posisi": "Purchasing Staff", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 8, "nik": "180096", "nama": "Egi Madyagi", "email": "emadyagi@gmail.com", "section": "Financial & Information System", "departemen": "Financial & Information System", "bagian": "-", "jabatan": "Coordinator", "posisi": "Financial Reporting & Analysis Coordinator", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 9, "nik": "170145", "nama": "Eka Widhyasmara", "email": "ekawidhyasmara1@gmail.com", "section": "Procurement & Purchasing", "departemen": "Procurement & Purchasing", "bagian": "Procurement & Purchasing", "jabatan": "Supervisor", "posisi": "Procurement Supervisor", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 10, "nik": "120022", "nama": "Evasari Veronica", "email": "eva.veonica@gmail.com", "section": "GS HO & RO", "departemen": "HRGA", "bagian": "GS HO & RO", "jabatan": "Supervisor", "posisi": "General Services Supervisor", "isAdmin": false, "isGs": true, "isDefaultPin": true }, { "id": 11, "nik": "210062", "nama": "Evelyn Kangdinata", "email": "evelynkangdinata8@gmail.com", "section": "Compensation Benefit & Personal Admin", "departemen": "HRGA", "bagian": "Compensation Benefit & Personal Admin", "jabatan": "Supervisor", "posisi": "CBPA Officer", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 12, "nik": "160047", "nama": "Refacha Violany Putri", "email": "rviolany04@gmail.com", "section": "Talent Acquisition & Monitoring", "departemen": "HRGA", "bagian": "Talent Acquisition & Monitoring", "jabatan": "Supervisor", "posisi": "Talent Acquisition & Monitoring Officer", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 13, "nik": "200075", "nama": "Fahrizal Rinaldi", "email": "fahrizalrinaldi01@gmail.com", "section": "Procurement & Purchasing", "departemen": "Procurement & Purchasing", "bagian": "Procurement & Purchasing", "jabatan": "Staff", "posisi": "Procurement Staff", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 14, "nik": "230001", "nama": "Irwan Heriyanto", "email": "heriyanto.one@gmail.com", "section": "Compensation Benefit & Personal Admin", "departemen": "HRGA", "bagian": "Compensation Benefit & Personal Admin", "jabatan": "Superintendent", "posisi": "CBPA Superintendent", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 15, "nik": "220016", "nama": "Juandela Herina Putri", "email": "juandelaherinaputri24420@gmail.com", "section": "Information Technology", "departemen": "Financial & Information System", "bagian": "Information Technology", "jabatan": "Jr. Staff", "posisi": "IT Support & Infrastructure Staff", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 16, "nik": "220039", "nama": "Muhammad Ilham", "email": "ilham.muhammad19@gmail.com", "section": "Accounting", "departemen": "Financial & Information System", "bagian": "Accounting", "jabatan": "Supervisor", "posisi": "Accounting Officer", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 17, "nik": "150074", "nama": "M. Iqbal Nurhadi", "email": "nurhadi.miqbal@gmail.com", "section": "Accounting", "departemen": "Financial & Information System", "bagian": "Accounting", "jabatan": "Superintendent", "posisi": "Accounting Superintendent", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 18, "nik": "220031", "nama": "Muhammad Maulana", "email": "mlana141013@gmail.com", "section": "Information Technology", "departemen": "Financial & Information System", "bagian": "Information Technology", "jabatan": "Supervisor", "posisi": "IT Application Development Officer", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 20, "nik": "230091", "nama": "Mohamad Ronang Wibowo", "email": "mohamadronangwibowo@gmail.com", "section": "Budget", "departemen": "Financial & Information System", "bagian": "Budget", "jabatan": "Supervisor", "posisi": "Budget Officer", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 21, "nik": "220058", "nama": "Nicholaus Cristiardy .S", "email": "sumardinicholaus@gmail.com", "section": "Sales & Marketing", "departemen": "Sales & Marketing", "bagian": "Sales & Marketing", "jabatan": "Jr. Staff", "posisi": "Sales & Marketing Staff", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 22, "nik": "170155", "nama": "Shirly", "email": "veronicalouisashirly@gmail.com", "section": "Finance", "departemen": "Financial & Information System", "bagian": "Finance", "jabatan": "Sr. Supervisor", "posisi": "Finance Supervisor", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 23, "nik": "240071", "nama": "Sri Wardani Rambe", "email": "swrakses@gmail.com", "section": "Organizational Development & Performance Management", "departemen": "HRGA", "bagian": "Organizational Development & Performance Management", "jabatan": "Superintendent", "posisi": "ODPM Superintendent", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 24, "nik": "140023", "nama": "Tama Priambodo", "email": "tamapriambodo@gmail.com", "section": "Information Technology", "departemen": "Financial & Information System", "bagian": "Information Technology", "jabatan": "Superintendent", "posisi": "IT Superintendent", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 25, "nik": "190332", "nama": "Widi Rizky Utami", "email": "widirk.utami@gmail.com", "section": "Procurement & Purchasing", "departemen": "Procurement & Purchasing", "bagian": "Procurement & Purchasing", "jabatan": "Supervisor", "posisi": "Purchasing Supervisor", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 26, "nik": "130046", "nama": "Yuki Ratna Jayanti", "email": "yukirj90@gmail.com", "section": "Sales & Marketing", "departemen": "Sales & Marketing", "bagian": "Sales & Marketing", "jabatan": "Superintendent", "posisi": "Sales & Marketing Superintendent", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 27, "nik": "ADMIN01", "nama": "ul (Admin GS)", "email": "taoel.telecaster@gmail.com", "section": "General Services", "departemen": "HRGA", "bagian": "GS HO & RO", "jabatan": "System Administrator", "posisi": "Admin Portal", "isAdmin": true, "isGs": true, "isDefaultPin": true }, { "id": 28, "nik": "GS-HO", "nama": "GS Head Office", "email": "gs_ho@pns.co.id", "section": "General Services", "departemen": "HRGA", "bagian": "GS HO & RO", "jabatan": "Support Operator", "posisi": "GS Service Account", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 29, "nik": "120034", "nama": "Effendi", "email": "effendi@pns.co.id", "section": "Head Office", "departemen": "-", "bagian": "-", "jabatan": "General Manager", "posisi": "Financial & Information System General Manager", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 30, "nik": "140059", "nama": "Yohanes Tirto", "email": "yohanes.tirto@pns.co.id", "section": "Head Office", "departemen": "-", "bagian": "-", "jabatan": "General Manager", "posisi": "HRGA General Manager", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 31, "nik": "150056", "nama": "Ricky Hartanto Tonorahardjo", "email": "ricky.hartanto@pns.co.id", "section": "Procurement & Purchasing", "departemen": "Procurement & Purchasing", "bagian": "-", "jabatan": "Manager", "posisi": "Procurement & Purchasing Manager", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 32, "nik": "150089", "nama": "Bury Hardjanto", "email": "bury.hardjanto@pns.co.id", "section": "Tax", "departemen": "Financial & Information System", "bagian": "Tax", "jabatan": "Superintendent", "posisi": "Tax Superintendent", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 33, "nik": "160145", "nama": "Endro Prayogi", "email": "endro.prayogi@pns.co.id", "section": "Information Technology", "departemen": "Financial & Information System", "bagian": "Information Technology", "jabatan": "Supervisor", "posisi": "IT Support & Infrastructure Supervisor", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 34, "nik": "190274", "nama": "Rudiyanto Sumardi", "email": "rudiyanto.sumardi@pns.co.id", "section": "Procurement & Purchasing", "departemen": "Procurement & Purchasing", "bagian": "Procurement & Purchasing", "jabatan": "Superintendent", "posisi": "Procurement & Purchasing Superintendent", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 35, "nik": "220055", "nama": "Ari Irawan", "email": "ari.irawan@pns.co.id", "section": "GS HO & RO", "departemen": "HRGA", "bagian": "GS HO & RO", "jabatan": "Operator", "posisi": "Office Boy", "isAdmin": false, "isGs": true, "isDefaultPin": true }, { "id": 36, "nik": "230053", "nama": "Defiandra Pratiwi Wibowo", "email": "defiandra.pratiwi@pns.co.id", "section": "Finance", "departemen": "Financial & Information System", "bagian": "Finance", "jabatan": "Jr. Staff", "posisi": "Finance Staff", "isAdmin": false, "isGs": false, "isDefaultPin": true }, { "id": 37, "nik": "230077", "nama": "Ahdi Apriyadi", "email": "ahdi.apriyadi@pns.co.id", "section": "GS HO & RO", "departemen": "HRGA", "bagian": "GS HO & RO", "jabatan": "Operator", "posisi": "Driver Head Office", "isAdmin": false, "isGs": true, "isDefaultPin": true }];
+  var PNS_EMPLOYEE_DIRECTORY = [{"id":1,"nik":"240082","nama":"M. Miftahul Khoiry","email":"miftahul.khoiry@pns.co.id","section":"GS HO & RO","departemen":"HRGA","bagian":"GS HO & RO","jabatan":"Superintendent","posisi":"General Services Superintendent","isAdmin":true,"isGs":true,"isDefaultPin":true,"role":"admin","roleLabel":"Admin GS"},{"id":2,"nik":"210051","nama":"Aditya Aji Asmoro","email":"asmoroaji8@gmail.com","section":"Tax","departemen":"Financial & Information System","bagian":"Tax","jabatan":"Supervisor","posisi":"Tax Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":3,"nik":"210053","nama":"Andi Wijaya","email":"wijaya9973@gmail.com","section":"Information Technology","departemen":"Financial & Information System","bagian":"Information Technology","jabatan":"Supervisor","posisi":"IT Application Development Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":4,"nik":"180001","nama":"Angga Prasetya Nusantara","email":"anggaong@gmail.com","section":"Accounting","departemen":"Financial & Information System","bagian":"Accounting","jabatan":"Supervisor","posisi":"Accounting Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":5,"nik":"220045","nama":"Arif Budiman","email":"arifbudiman.cp@gmail.com","section":"Organizational Development & Performance Management","departemen":"HRGA","bagian":"Organizational Development & Performance Management","jabatan":"Supervisor","posisi":"ODPM Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":6,"nik":"130028","nama":"Catur Handayani","email":"handayani.catur1202@gmail.com","section":"Talent Acquisition & Monitoring","departemen":"HRGA","bagian":"Talent Acquisition & Monitoring","jabatan":"Superintendent","posisi":"Talent Acquisition & Monitoring Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":7,"nik":"210049","nama":"Delia Syafira","email":"deliasyafiira@gmail.com","section":"Procurement & Purchasing","departemen":"Procurement & Purchasing","bagian":"Procurement & Purchasing","jabatan":"Staff","posisi":"Purchasing Staff","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":8,"nik":"180096","nama":"Egi Madyagi","email":"emadyagi@gmail.com","section":"Financial & Information System","departemen":"Financial & Information System","bagian":"-","jabatan":"Coordinator","posisi":"Financial Reporting & Analysis Coordinator","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":9,"nik":"170145","nama":"Eka Widhyasmara","email":"ekawidhyasmara1@gmail.com","section":"Procurement & Purchasing","departemen":"Procurement & Purchasing","bagian":"Procurement & Purchasing","jabatan":"Supervisor","posisi":"Procurement Supervisor","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":10,"nik":"120022","nama":"Evasari Veronica","email":"eva.veonica@gmail.com","section":"GS HO & RO","departemen":"HRGA","bagian":"GS HO & RO","jabatan":"Supervisor","posisi":"General Services Supervisor","isAdmin":true,"isGs":true,"isDefaultPin":true,"role":"admin","roleLabel":"Admin GS"},{"id":11,"nik":"210062","nama":"Evelyn Kangdinata","email":"evelynkangdinata8@gmail.com","section":"Compensation Benefit & Personal Admin","departemen":"HRGA","bagian":"Compensation Benefit & Personal Admin","jabatan":"Supervisor","posisi":"CBPA Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":12,"nik":"160047","nama":"Refacha Violany Putri","email":"rviolany04@gmail.com","section":"Talent Acquisition & Monitoring","departemen":"HRGA","bagian":"Talent Acquisition & Monitoring","jabatan":"Supervisor","posisi":"Talent Acquisition & Monitoring Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":13,"nik":"200075","nama":"Fahrizal Rinaldi","email":"fahrizalrinaldi01@gmail.com","section":"Procurement & Purchasing","departemen":"Procurement & Purchasing","bagian":"Procurement & Purchasing","jabatan":"Staff","posisi":"Procurement Staff","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":14,"nik":"230001","nama":"Irwan Heriyanto","email":"heriyanto.one@gmail.com","section":"Compensation Benefit & Personal Admin","departemen":"HRGA","bagian":"Compensation Benefit & Personal Admin","jabatan":"Superintendent","posisi":"CBPA Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":15,"nik":"220016","nama":"Juandela Herina Putri","email":"juandelaherinaputri24420@gmail.com","section":"Information Technology","departemen":"Financial & Information System","bagian":"Information Technology","jabatan":"Jr. Staff","posisi":"IT Support & Infrastructure Staff","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":16,"nik":"220039","nama":"Muhammad Ilham","email":"ilham.muhammad19@gmail.com","section":"Accounting","departemen":"Financial & Information System","bagian":"Accounting","jabatan":"Supervisor","posisi":"Accounting Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":17,"nik":"150074","nama":"M. Iqbal Nurhadi","email":"nurhadi.miqbal@gmail.com","section":"Accounting","departemen":"Financial & Information System","bagian":"Accounting","jabatan":"Superintendent","posisi":"Accounting Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":18,"nik":"220031","nama":"Muhammad Maulana","email":"mlana141013@gmail.com","section":"Information Technology","departemen":"Financial & Information System","bagian":"Information Technology","jabatan":"Supervisor","posisi":"IT Application Development Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":20,"nik":"230091","nama":"Mohamad Ronang Wibowo","email":"mohamadronangwibowo@gmail.com","section":"Budget","departemen":"Financial & Information System","bagian":"Budget","jabatan":"Supervisor","posisi":"Budget Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":21,"nik":"220058","nama":"Nicholaus Cristiardy .S","email":"sumardinicholaus@gmail.com","section":"Sales & Marketing","departemen":"Sales & Marketing","bagian":"Sales & Marketing","jabatan":"Jr. Staff","posisi":"Sales & Marketing Staff","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":22,"nik":"170155","nama":"Shirly","email":"veronicalouisashirly@gmail.com","section":"Finance","departemen":"Financial & Information System","bagian":"Finance","jabatan":"Sr. Supervisor","posisi":"Finance Supervisor","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":23,"nik":"240071","nama":"Sri Wardani Rambe","email":"swrakses@gmail.com","section":"Organizational Development & Performance Management","departemen":"HRGA","bagian":"Organizational Development & Performance Management","jabatan":"Superintendent","posisi":"ODPM Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":24,"nik":"140023","nama":"Tama Priambodo","email":"tamapriambodo@gmail.com","section":"Information Technology","departemen":"Financial & Information System","bagian":"Information Technology","jabatan":"Superintendent","posisi":"IT Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":25,"nik":"190332","nama":"Widi Rizky Utami","email":"widirk.utami@gmail.com","section":"Procurement & Purchasing","departemen":"Procurement & Purchasing","bagian":"Procurement & Purchasing","jabatan":"Supervisor","posisi":"Purchasing Supervisor","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":26,"nik":"130046","nama":"Yuki Ratna Jayanti","email":"yukirj90@gmail.com","section":"Sales & Marketing","departemen":"Sales & Marketing","bagian":"Sales & Marketing","jabatan":"Superintendent","posisi":"Sales & Marketing Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":27,"nik":"ADMIN01","nama":"ul (Admin GS)","email":"taoel.telecaster@gmail.com","section":"General Services","departemen":"HRGA","bagian":"GS HO & RO","jabatan":"System Administrator","posisi":"Admin Portal","isAdmin":true,"isGs":true,"isDefaultPin":true,"role":"admin","roleLabel":"Admin GS"},{"id":28,"nik":"GS-HO","nama":"GS Head Office","email":"gs_ho@pns.co.id","section":"General Services","departemen":"HRGA","bagian":"GS HO & RO","jabatan":"Support Operator","posisi":"GS Service Account","isAdmin":true,"isGs":true,"isDefaultPin":true,"role":"admin","roleLabel":"Admin GS"},{"id":29,"nik":"120034","nama":"Effendi","email":"effendi@pns.co.id","section":"Head Office","departemen":"-","bagian":"-","jabatan":"General Manager","posisi":"Financial & Information System General Manager","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":30,"nik":"140059","nama":"Yohanes Tirto","email":"yohanes.tirto@pns.co.id","section":"Head Office","departemen":"-","bagian":"-","jabatan":"General Manager","posisi":"HRGA General Manager","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":31,"nik":"150056","nama":"Ricky Hartanto Tonorahardjo","email":"ricky.hartanto@pns.co.id","section":"Procurement & Purchasing","departemen":"Procurement & Purchasing","bagian":"-","jabatan":"Manager","posisi":"Procurement & Purchasing Manager","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":32,"nik":"150089","nama":"Bury Hardjanto","email":"bury.hardjanto@pns.co.id","section":"Tax","departemen":"Financial & Information System","bagian":"Tax","jabatan":"Superintendent","posisi":"Tax Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":33,"nik":"160145","nama":"Endro Prayogi","email":"endro.prayogi@pns.co.id","section":"Information Technology","departemen":"Financial & Information System","bagian":"Information Technology","jabatan":"Supervisor","posisi":"IT Support & Infrastructure Supervisor","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":34,"nik":"190274","nama":"Rudiyanto Sumardi","email":"rudiyanto.sumardi@pns.co.id","section":"Procurement & Purchasing","departemen":"Procurement & Purchasing","bagian":"Procurement & Purchasing","jabatan":"Superintendent","posisi":"Procurement & Purchasing Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":35,"nik":"220055","nama":"Ari Irawan","email":"ari.irawan@pns.co.id","section":"GS HO & RO","departemen":"HRGA","bagian":"GS HO & RO","jabatan":"Operator","posisi":"Office Boy","isAdmin":false,"isGs":true,"isDefaultPin":true,"role":"gs","roleLabel":"Petugas GS"},{"id":36,"nik":"230053","nama":"Defiandra Pratiwi Wibowo","email":"defiandra.pratiwi@pns.co.id","section":"Finance","departemen":"Financial & Information System","bagian":"Finance","jabatan":"Jr. Staff","posisi":"Finance Staff","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":37,"nik":"230077","nama":"Ahdi Apriyadi","email":"ahdi.apriyadi@pns.co.id","section":"GS HO & RO","departemen":"HRGA","bagian":"GS HO & RO","jabatan":"Operator","posisi":"Driver Head Office","isAdmin":false,"isGs":true,"isDefaultPin":true,"role":"gs","roleLabel":"Petugas GS"}];
 
   function findLocalEmployee(term) {
     if (!term) return null;
@@ -12836,6 +12834,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var err = document.getElementById('login-err');
 
     if (err) err.classList.remove('show');
+    if (emailInp) emailInp.value = '';
+    if (typeof filterComboboxMenu === 'function') filterComboboxMenu('');
     if (btnUser) {
       btnUser.classList.toggle('active', _loginMode === 'user');
       btnUser.setAttribute('aria-selected', _loginMode === 'user' ? 'true' : 'false');
@@ -12896,6 +12896,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     return true;
   }
+
+  function isEffectiveGs() {
+    if (!_session) return false;
+    if (_session.loginMode === 'user') return false;
+    return !!(_session.isAdmin || _session.isGs || _session.role === 'admin' || _session.role === 'gs');
+  }
+  window.isEffectiveGs = isEffectiveGs;
+
+  function isEffectiveAdmin() {
+    if (!_session) return false;
+    if (_session.loginMode === 'user') return false;
+    return !!(_session.isAdmin || _session.role === 'admin');
+  }
+  window.isEffectiveAdmin = isEffectiveAdmin;
 
   function switchActivePortalMode(targetMode) {
     if (!_session) return;
@@ -13219,6 +13233,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function openEdocInboundModal(initialTab) {
+    if (!isEffectiveGs()) { if (typeof showAlert === 'function') showAlert('Pencatatan dokumen masuk hanya dapat dilakukan oleh Admin / Tim GS.', 'err'); return; }
     var m = document.getElementById('edoc-inbound-overlay');
     if (m) {
       m.style.setProperty('display', 'flex', 'important');
@@ -14145,7 +14160,11 @@ function pad(n) { return String(n).padStart(2, '0'); }
       el.style.display = isAdmin ? '' : 'none';
     });
     document.querySelectorAll('.gs-only-feature, .gs-only-sect, .gs-only-item, [data-page="atk-stock"]').forEach(function (el) {
-      el.style.display = isGs ? '' : 'none';
+      if (!isGs) {
+        el.style.display = 'none';
+      } else {
+        el.style.display = el.getAttribute('data-flex') === '1' || el.style.gap ? 'flex' : '';
+      }
     });
     var adp = document.getElementById('alert-default-pin');
     if (adp) {
@@ -15344,7 +15363,7 @@ function pad(n) { return String(n).padStart(2, '0'); }
       return;
     }
 
-    var isGsStaff = _session && (_session.isAdmin || _session.isGs || /gs|general service|kurir|messenger|ob/i.test(_session.section || ''));
+    var isGsStaff = isEffectiveGs();
 
     var html = '';
     html += '<div id="edoc-bulk-actions" style="margin-bottom:15px;display:none;padding:10px 15px;background:#eef2ff;border-radius:6px;border:1px solid #c7d2fe;align-items:center;justify-content:space-between;">';
@@ -15515,16 +15534,14 @@ function pad(n) { return String(n).padStart(2, '0'); }
         '<div style="font-size:36px;margin-bottom:8px">📥</div>' +
         '<div style="font-weight:700;font-size:14px;color:var(--navy)">Tidak ada dokumen masuk ditemukan</div>' +
         '<div style="font-size:12px;color:var(--muted);margin-top:4px">Belum ada paket kurir tiba di HO pada filter ini.</div>' +
-        '<div style="margin-top:14px">' +
-        '  <button type="button" class="btn-rs" onclick="openEdocInboundModal(\'draft\')" style="padding:8px 16px;font-size:12px;background:#16a34a;color:#fff;border-color:#16a34a;font-weight:700">' +
-        '    📥 + Catat Paket Masuk Baru' +
-        '  </button>' +
-        '</div>' +
+        (isEffectiveGs()
+          ? '<div style="margin-top:14px"><button type="button" class="btn-rs" onclick="openEdocInboundModal(\'draft\')" style="padding:8px 16px;font-size:12px;background:#0f766e;color:#fff;border-color:#0f766e;font-weight:500">+ Catat Paket Masuk Baru</button></div>'
+          : '') +
       '</div>';
       return;
     }
 
-    var isGsStaff = _session && (_session.isAdmin || _session.isGs || /gs|general service|kurir|messenger|ob/i.test(_session.section || ''));
+    var isGsStaff = isEffectiveGs();
 
     var html = '';
     html += '<div class="ent-table-wrap">';
@@ -16051,7 +16068,8 @@ function pad(n) { return String(n).padStart(2, '0'); }
 
   // ── E-DOC: HANDOVER PENYERAHAN DOKUMEN ──
 
-  function openEdocHandoverModal(id, docNo, recipient) { return openEdocBatchHandoverModal(recipient, [id]); }
+  function openEdocHandoverModal(id, docNo, recipient) {
+    if (!isEffectiveGs()) { if (typeof showAlert === 'function') showAlert('Penyerahan dokumen hanya dapat dilakukan oleh Admin / Tim GS.', 'err'); return; } return openEdocBatchHandoverModal(recipient, [id]); }
   function _oldOpenEdocHandoverModal(id, docNo, recipient) {
     var m = document.getElementById('edoc-handover-overlay');
     if (m) {
@@ -16277,7 +16295,7 @@ function pad(n) { return String(n).padStart(2, '0'); }
       html += '</div>';
 
       // Action button to update resi/courier directly from detail
-      var isGsStaff = _session && (_session.isAdmin || _session.isGs || /gs|general service|kurir|messenger|ob/i.test(_session.section || ''));
+      var isGsStaff = isEffectiveGs();
       html += '<div style="margin-top:14px;display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap">';
       html += '<button class="btn-next" style="font-size:11.5px;padding:7px 16px;background:var(--green-d);font-weight:600;display:inline-flex;align-items:center;gap:6px" onclick="openEdocUpdateModal(' + doc.id + ')">📦 Update Resi &amp; Pengiriman</button>';
       if (isGsStaff) {
@@ -19601,7 +19619,10 @@ function pad(n) { return String(n).padStart(2, '0'); }
     var menu = document.getElementById('custom-combobox-menu');
     if (!menu) return;
     var q = (query || '').toLowerCase().trim();
-    var dir = (typeof PNS_EMPLOYEE_DIRECTORY !== 'undefined') ? PNS_EMPLOYEE_DIRECTORY : [];
+    var rawDir = (typeof PNS_EMPLOYEE_DIRECTORY !== 'undefined') ? PNS_EMPLOYEE_DIRECTORY : [];
+    var dir = (_loginMode === 'admin')
+      ? rawDir.filter(function (emp) { return emp.isAdmin || emp.isGs || emp.role === 'admin' || emp.role === 'gs'; })
+      : rawDir;
     var filtered = dir.filter(function (emp) {
       if (!q) return true;
       return (emp.nama && emp.nama.toLowerCase().indexOf(q) !== -1) ||
@@ -19622,7 +19643,9 @@ function pad(n) { return String(n).padStart(2, '0'); }
     items.forEach(function (emp) {
       var nikTag = emp.nik ? ' [' + emp.nik + ']' : '';
       html += '<div class="custom-combobox-item" onclick="selectComboboxItem(\'' + esc(emp.nama) + '\', \'' + esc(emp.nik || '') + '\')">';
-      html += '  <div class="combobox-item-name"><strong>' + esc(emp.nama) + '</strong><span class="combobox-item-nik">' + esc(nikTag) + '</span></div>';
+      var rLbl = emp.roleLabel || (emp.isAdmin ? 'Admin GS' : (emp.isGs ? 'Petugas GS' : 'Karyawan'));
+      var rStyle = emp.isAdmin ? 'background:#0f172a;color:#fff' : (emp.isGs ? 'background:#f0fdfa;color:#0f766e;border:1px solid #ccfbf1' : 'background:#f1f5f9;color:#475569');
+      html += '  <div class="combobox-item-name" style="display:flex;align-items:center;justify-content:space-between;gap:6px"><span><strong style="font-weight:500">' + esc(emp.nama) + '</strong><span class="combobox-item-nik">' + esc(nikTag) + '</span></span><span style="font-size:10px;padding:1px 6px;border-radius:4px;font-weight:500;' + rStyle + '">' + esc(rLbl) + '</span></div>';
       html += '  <div class="combobox-item-sec">' + esc(emp.section || '') + '</div>';
       html += '</div>';
     });
@@ -19981,6 +20004,7 @@ function pad(n) { return String(n).padStart(2, '0'); }
   }
 
   function openEdocBatchHandoverModal(recipientName, docIds) {
+    if (!isEffectiveGs()) { if (typeof showAlert === 'function') showAlert('Penyerahan dokumen hanya dapat dilakukan oleh Admin / Tim GS.', 'err'); return; }
     var m = document.getElementById('edoc-handover-overlay');
     if (!m) return;
     m.style.setProperty('display', 'flex', 'important');
