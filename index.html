@@ -9963,6 +9963,95 @@ body.in-app [data-theme='dark'] .cal-cell.wc {
   line-height: 1.5 !important;
 }
 
+
+/* ==========================================================================
+   60 FPS ZERO-LAG PERFORMANCE + HD STATIC BACKGROUND IN APPS + MODULE PERMS UI
+   ========================================================================== */
+
+/* Disable GPU-heavy real-time backdrop-filter blur inside apps (instant smooth scroll & clicks!) */
+body.in-app .sidebar,
+body.in-app .topbar,
+body.in-app .panel,
+body.in-app .card,
+body.in-app .kpi,
+body.in-app .bld-card,
+body.in-app .cal-card,
+body.in-app .zoom-hero,
+body.in-app .ent-table-wrap,
+body.in-app .edoc-kpi-box,
+body.in-app .edoc-toolbar,
+body.in-app .global-ambient-layer .bg-video-overlay {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Crisp translucent surfaces so HD background remains softly visible without GPU blur lag */
+body.in-app .global-ambient-layer .bg-video-overlay {
+  background: rgba(248, 250, 252, 0.72) !important;
+}
+
+body.in-app .sidebar {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-right: 1px solid #e2e8f0 !important;
+}
+
+body.in-app .topbar {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+body.in-app .panel,
+body.in-app .card,
+body.in-app .kpi,
+body.in-app .bld-card,
+body.in-app .cal-card,
+body.in-app .zoom-hero,
+body.in-app .ent-table-wrap,
+body.in-app .edoc-kpi-box,
+body.in-app .edoc-toolbar {
+  background: rgba(255, 255, 255, 0.90) !important;
+  border: 1px solid rgba(226, 232, 240, 0.92) !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03) !important;
+}
+
+/* Login card: light blur only on login box (single element = fast & smooth over HD video) */
+.login-box {
+  background: rgba(255, 255, 255, 0.84) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+/* Admin Per-User Module Permission Checkbox Grid */
+.um-mod-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  padding: 10px 12px !important;
+}
+
+.um-mod-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  font-size: 12.5px !important;
+  font-weight: 400 !important;
+  color: #334155 !important;
+  cursor: pointer !important;
+  margin: 0 !important;
+  padding: 3px 2px !important;
+}
+
+.um-mod-item input[type="checkbox"] {
+  width: 15px !important;
+  height: 15px !important;
+  accent-color: #0f766e !important;
+  cursor: pointer !important;
+  margin: 0 !important;
+}
+
 </style>
 
 </head>
@@ -9971,7 +10060,7 @@ body.in-app [data-theme='dark'] .cal-cell.wc {
      GLOBAL LUXURY AMBIENT VIDEO LAYER (UI UX PRO MAX — PERSISTENT BACKGROUND)
      ══════════════════════════════════════════════════════════════════════════ -->
 <div class="global-ambient-layer" id="global-ambient-layer" aria-hidden="true">
-  <video id="bg-video-pns" class="bg-video-pns" autoplay muted loop playsinline preload="auto" onloadedmetadata="this.playbackRate=0.55" onplay="this.playbackRate=0.55" poster="https://appsmaheer-cloud.github.io/meets/assets/img/bg-1.jpg">
+  <video id="bg-video-pns" class="bg-video-pns" autoplay muted loop playsinline preload="auto" onloadedmetadata="this.playbackRate=0.6" onplay="this.playbackRate=0.6" poster="https://appsmaheer-cloud.github.io/meets/assets/img/bg-1.jpg">
     <source src="video-pns.mp4" type="video/mp4">
     <source src="https://appsmaheer-cloud.github.io/meets/video-pns.mp4" type="video/mp4">
   </video>
@@ -10299,42 +10388,42 @@ body.in-app [data-theme='dark'] .cal-cell.wc {
           <div class="panel-head"><div><div class="panel-ttl">Pilih Layanan</div><div class="panel-sub">Klik menu di bawah untuk membuat pengajuan baru</div></div></div>
           <div class="panel-body">
             <div class="bld-grid">
-              <div class="bld-card bld-card-room" onclick="openModal()">
+              <div class="bld-card bld-card-room" data-mod="calendar" onclick="openModal()">
                 <div class="bld-icon" style="color:#d97706">
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M3 10h18M5 10v11M19 10v11M9 10v11M15 10v11M4 10l8-6 8 6"/></svg>
                 </div>
                 <div class="bld-name">Ruang Meeting</div>
                 <div class="bld-loc">Pesan ruang rapat</div>
               </div>
-              <div class="bld-card bld-card-zoom" onclick="openZoom()">
+              <div class="bld-card bld-card-zoom" data-mod="zoom" onclick="openZoom()">
                 <div class="bld-icon" style="color:#7c3aed">
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
                 </div>
                 <div class="bld-name">Zoom Meeting</div>
                 <div class="bld-loc">Ajukan link &amp; jadwal Zoom</div>
               </div>
-              <div class="bld-card bld-card-car" onclick="openCarModal()">
+              <div class="bld-card bld-card-car" data-mod="mobilisasi" onclick="openCarModal()">
                 <div class="bld-icon" style="color:#0284c7">
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 11.1 2 11.5 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
                 </div>
                 <div class="bld-name">Mobil Dinas</div>
                 <div class="bld-loc">Pinjam kendaraan &amp; sopir</div>
               </div>
-              <div class="bld-card bld-card-atk" onclick="openAtkModal()">
+              <div class="bld-card bld-card-atk" data-mod="atk" onclick="openAtkModal()">
                 <div class="bld-icon" style="color:#059669">
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/><path d="m15 5 4 4"/></svg>
                 </div>
                 <div class="bld-name">Request ATK</div>
                 <div class="bld-loc">Minta alat tulis kantor</div>
               </div>
-              <div class="bld-card bld-card-edoc" onclick="navTo('edoc')">
+              <div class="bld-card bld-card-edoc" data-mod="edoc-out" onclick="navTo('edoc-out')">
                 <div class="bld-icon" style="color:#2563eb">
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                 </div>
                 <div class="bld-name">E-DOC</div>
                 <div class="bld-loc">Kirim &amp; terima dokumen</div>
               </div>
-              <div class="bld-card bld-card-stock gs-only-feature" onclick="navTo('atk-stock')" style="display:none">
+              <div class="bld-card bld-card-stock gs-only-feature" data-mod="atk-stock" onclick="navTo('atk-stock')" style="display:none">
                 <div class="bld-icon" style="color:#0d9488">
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
                 </div>
@@ -12321,7 +12410,7 @@ body.in-app [data-theme='dark'] .cal-cell.wc {
 
 <!-- USER FORM MODAL (Admin only) -->
 <div class="modal-overlay" id="user-modal-overlay" onclick="if(event.target===this)closeUserModal()">
-  <div class="modal" style="max-width:440px">
+  <div class="modal" style="max-width:520px">
     <div class="modal-head">
       <div>
         <div class="modal-ttl" id="um-ttl">➕ Tambah User</div>
@@ -12350,10 +12439,25 @@ body.in-app [data-theme='dark'] .cal-cell.wc {
         </div>
         <div>
           <label>Role Akses</label>
-          <select id="um-role">
-            <option value="0">User Biasa</option>
-            <option value="1">Administrator</option>
+          <select id="um-role" onchange="onUserRolePresetChange(this.value)">
+            <option value="user">Karyawan</option>
+            <option value="gs">Petugas GS</option>
+            <option value="admin">Administrator</option>
           </select>
+        </div>
+      </div>
+      <div class="frow" style="margin-top:8px">
+        <label style="margin-bottom:6px;display:block">Akses Modul Per User (Diatur Admin)</label>
+        <div id="um-modules-grid" class="um-mod-grid">
+          <label class="um-mod-item"><input type="checkbox" class="um-mod-cb" value="calendar" checked> <span>Ruang Meeting</span></label>
+          <label class="um-mod-item"><input type="checkbox" class="um-mod-cb" value="zoom" checked> <span>Zoom Meeting</span></label>
+          <label class="um-mod-item"><input type="checkbox" class="um-mod-cb" value="mobilisasi" checked> <span>Mobil Dinas</span></label>
+          <label class="um-mod-item"><input type="checkbox" class="um-mod-cb" value="atk" checked> <span>Request ATK</span></label>
+          <label class="um-mod-item"><input type="checkbox" class="um-mod-cb" value="edoc-out" checked> <span>E-DOC Keluar</span></label>
+          <label class="um-mod-item"><input type="checkbox" class="um-mod-cb" value="edoc-in"> <span>E-DOC Masuk &amp; Serah Terima</span></label>
+          <label class="um-mod-item"><input type="checkbox" class="um-mod-cb" value="atk-stock"> <span>Stok ATK (Gudang)</span></label>
+          <label class="um-mod-item"><input type="checkbox" class="um-mod-cb" value="users"> <span>Kelola Pengguna</span></label>
+          <label class="um-mod-item"><input type="checkbox" class="um-mod-cb" value="sync"> <span>Sinkronisasi</span></label>
         </div>
       </div>
       <div id="um-err" style="background:var(--red-l);border:1px solid rgba(239,68,68,.2);color:var(--red);border-radius:var(--r8);padding:9px 13px;font-size:11.5px;margin-bottom:10px;display:none"></div>
@@ -12812,6 +12916,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // ════ HELPER TOGGLE SCREEN ════
   function hideLoginScreen() {
     document.body.classList.add('in-app');
+    var v = document.getElementById('bg-video-pns');
+    if (v && typeof v.pause === 'function') { try { v.pause(); } catch(e){} }
     try { window.scrollTo(0, 0); } catch (e) { }
     var ls = document.getElementById('login-screen');
     var as = document.getElementById('app-screen');
@@ -12833,6 +12939,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function showLoginScreen() {
     document.body.classList.remove('in-app');
+    var v = document.getElementById('bg-video-pns');
+    if (v && typeof v.play === 'function') { try { v.playbackRate = 0.6; v.play().catch(function(){}); } catch(e){} }
     try { window.scrollTo(0, 0); } catch (e) { }
     var ls = document.getElementById('login-screen');
     var as = document.getElementById('app-screen');
@@ -14232,6 +14340,7 @@ function pad(n) { return String(n).padStart(2, '0'); }
         el.style.display = el.getAttribute('data-flex') === '1' || el.style.gap ? 'flex' : '';
       }
     });
+    if (typeof applyPerUserModuleVisibility === 'function') applyPerUserModuleVisibility();
     var adp = document.getElementById('alert-default-pin');
     if (adp) {
       adp.style.display = (_session && _session.isDefaultPin) ? 'flex' : 'none';
@@ -18759,16 +18868,20 @@ function pad(n) { return String(n).padStart(2, '0'); }
       document.getElementById('um-nama').value = u.nama;
       document.getElementById('um-email').value = u.email;
       document.getElementById('um-section').value = u.section;
-      document.getElementById('um-role').value = u.isAdmin ? '1' : '0';
+      var uRole = u.isAdmin ? 'admin' : ((u.isGs || u.role === 'gs') ? 'gs' : 'user');
+      document.getElementById('um-role').value = uRole;
+      var uMods = getUserAllowedModules(u);
+      document.querySelectorAll('.um-mod-cb').forEach(function (cb) { cb.checked = uMods.indexOf(cb.value) !== -1; });
       document.getElementById('um-pin-req').style.display = 'none';
     } else {
       document.getElementById('um-ttl').textContent = '➕ Tambah User';
-      document.getElementById('um-sub').textContent = 'Buat akun pengguna baru secara manual';
+      document.getElementById('um-sub').textContent = 'Buat akun pengguna & atur akses modulnya';
       document.getElementById('um-id').value = '';
       document.getElementById('um-nama').value = '';
       document.getElementById('um-email').value = '';
       document.getElementById('um-section').value = '';
-      document.getElementById('um-role').value = '0';
+      document.getElementById('um-role').value = 'user';
+      onUserRolePresetChange('user');
       document.getElementById('um-pin-req').style.display = 'inline';
     }
     document.getElementById('um-pin').value = '';
@@ -18790,7 +18903,14 @@ function pad(n) { return String(n).padStart(2, '0'); }
     if (!id && (!pin || pin.length < 4)) { err.textContent = 'PIN minimal 4 digit wajib diisi untuk user baru.'; err.style.display = 'block'; return; }
     if (pin && pin.length < 4) { err.textContent = 'PIN minimal 4 digit.'; err.style.display = 'block'; return; }
     btn.disabled = true; btn.textContent = 'Menyimpan...';
-    api('saveUser', { id: id, nama: nama, email: email, section: section, pin: pin, is_admin: role }).then(function (res) {
+    (function(){
+      var selMods = [];
+      document.querySelectorAll('.um-mod-cb:checked').forEach(function(cb){ selMods.push(cb.value); });
+      saveStoredModulePerms(email, id, selMods);
+      var isAdmNum = (role === 'admin' || role === '1') ? 1 : 0;
+      var isGsNum = (role === 'admin' || role === 'gs' || role === '1' || selMods.indexOf('edoc-in') !== -1 || selMods.indexOf('atk-stock') !== -1) ? 1 : 0;
+      return api('saveUser', { id: id, nama: nama, email: email, section: section, pin: pin, is_admin: isAdmNum, is_gs: isGsNum, role: role, allowed_modules: selMods.join(',') });
+    })().then(function (res) {
       btn.disabled = false; btn.textContent = '💾 Simpan User';
       ok.textContent = '✓ ' + (res.message || 'User berhasil disimpan.');
       ok.style.display = 'block';
@@ -18911,6 +19031,10 @@ function pad(n) { return String(n).padStart(2, '0'); }
       return;
     }
 
+    if (typeof userCanAccessModule === 'function' && !userCanAccessModule(page)) {
+      if (typeof showAlert === 'function') showAlert('Akses modul ini belum diaktifkan oleh Administrator.', 'err');
+      return;
+    }
     var actualPage = (page === 'edoc-out' || page === 'edoc-in') ? 'edoc' : page;
     var activeNavKey = (page === 'edoc') ? 'edoc-out' : page;
     _activePage = actualPage;
@@ -20492,9 +20616,94 @@ function pad(n) { return String(n).padStart(2, '0'); }
   window.printSelectedEdocs = printSelectedEdocs;
 
 
+  
+  /* ==========================================================================
+     GRANULAR PER-USER MODULE ACCESS CONTROL (CONFIGURED BY ADMIN)
+     ========================================================================== */
+  var MODULE_PRESETS = {
+    admin: ['calendar', 'zoom', 'mobilisasi', 'atk', 'edoc-out', 'edoc-in', 'atk-stock', 'users', 'sync'],
+    gs:    ['calendar', 'zoom', 'mobilisasi', 'atk', 'edoc-out', 'edoc-in', 'atk-stock'],
+    user:  ['calendar', 'zoom', 'mobilisasi', 'atk', 'edoc-out']
+  };
+
+  function getStoredModulePermsMap() {
+    try { return JSON.parse(localStorage.getItem('pns_user_module_perms') || '{}') || {}; } catch (e) { return {}; }
+  }
+
+  function saveStoredModulePerms(email, id, modsArray) {
+    try {
+      var map = getStoredModulePermsMap();
+      if (email) map[String(email).toLowerCase().trim()] = modsArray;
+      if (id) map['id_' + String(id)] = modsArray;
+      localStorage.setItem('pns_user_module_perms', JSON.stringify(map));
+    } catch (e) { }
+  }
+
+  function getUserAllowedModules(user) {
+    if (!user) return MODULE_PRESETS.user.slice();
+    // 1. From backend user object if present
+    if (user.allowed_modules) {
+      if (Array.isArray(user.allowed_modules)) return user.allowed_modules;
+      var parsed = String(user.allowed_modules).split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+      if (parsed.length) return parsed;
+    }
+    // 2. From Admin local override store
+    var map = getStoredModulePermsMap();
+    var byEmail = user.email ? map[String(user.email).toLowerCase().trim()] : null;
+    var byId = user.id ? map['id_' + String(user.id)] : null;
+    if (Array.isArray(byEmail) && byEmail.length) return byEmail;
+    if (Array.isArray(byId) && byId.length) return byId;
+    // 3. Fallback by role preset
+    if (user.isAdmin || user.role === 'admin') return MODULE_PRESETS.admin.slice();
+    if (user.isGs || user.role === 'gs') return MODULE_PRESETS.gs.slice();
+    return MODULE_PRESETS.user.slice();
+  }
+
+  function userCanAccessModule(modKey) {
+    if (!modKey || modKey === 'dashboard' || modKey === 'tickets') return true;
+    if (!_session) return false;
+    var mods = getUserAllowedModules(_session);
+    if (modKey === 'edoc') return mods.indexOf('edoc-out') !== -1 || mods.indexOf('edoc-in') !== -1;
+    return mods.indexOf(modKey) !== -1;
+  }
+  window.userCanAccessModule = userCanAccessModule;
+
+  function onUserRolePresetChange(roleVal) {
+    var preset = MODULE_PRESETS[roleVal] || MODULE_PRESETS.user;
+    document.querySelectorAll('.um-mod-cb').forEach(function (cb) {
+      cb.checked = preset.indexOf(cb.value) !== -1;
+    });
+  }
+  window.onUserRolePresetChange = onUserRolePresetChange;
+
+  function applyPerUserModuleVisibility() {
+    if (!_session) return;
+    var mods = getUserAllowedModules(_session);
+    // Sidebar sub-module buttons
+    ['calendar', 'zoom', 'mobilisasi', 'atk', 'atk-stock', 'edoc-out', 'edoc-in', 'users', 'sync'].forEach(function (m) {
+      var allowed = mods.indexOf(m) !== -1;
+      document.querySelectorAll('.nav-item[data-page="' + m + '"]').forEach(function (el) {
+        el.style.display = allowed ? '' : 'none';
+      });
+      document.querySelectorAll('.bld-card[data-mod="' + m + '"]').forEach(function (el) {
+        el.style.display = allowed ? '' : 'none';
+      });
+    });
+    // Auto-hide empty nav groups if all children are hidden
+    ['nav-grp-meeting', 'nav-grp-transport', 'nav-grp-atk', 'nav-grp-edoc', 'nav-grp-admin'].forEach(function (gid) {
+      var grp = document.getElementById(gid);
+      if (!grp) return;
+      var items = grp.querySelectorAll('.nav-subitem');
+      var anyVisible = false;
+      items.forEach(function (it) { if (it.style.display !== 'none') anyVisible = true; });
+      grp.style.display = anyVisible ? '' : 'none';
+    });
+  }
+  window.applyPerUserModuleVisibility = applyPerUserModuleVisibility;
+
   /* Explicit global exports for inline onclick handlers */
   try {
-    ['doLogin','togglePin','openComboboxMenu','toggleComboboxMenu','filterComboboxMenu','selectComboboxItem','onComboboxKeydown','openRegisterModal','closeRegisterModal','doRegister','navTo','toggleNavGroup','openModal','openZoom','openCarModal','openAtkModal','openEdocModal','openEdocInboundModal','openEdocBatchHandoverModal','openEdocDetailModal','printEdocSingle','printSelectedEdocs','printEdocReceipt','logout','openPinModal','toggleSidebar','toggleTheme'].forEach(function(fnName){
+    ['doLogin','togglePin','openComboboxMenu','toggleComboboxMenu','filterComboboxMenu','selectComboboxItem','onComboboxKeydown','openRegisterModal','closeRegisterModal','doRegister','navTo','toggleNavGroup','openModal','openZoom','openCarModal','openAtkModal','openEdocModal','openEdocInboundModal','openEdocBatchHandoverModal','openEdocDetailModal','printEdocSingle','printSelectedEdocs','printEdocReceipt','logout','openPinModal','toggleSidebar','toggleTheme','onUserRolePresetChange','userCanAccessModule','applyPerUserModuleVisibility'].forEach(function(fnName){
       if (typeof window[fnName] === 'undefined') {
         try { var fn = eval(fnName); if (typeof fn === 'function') window[fnName] = fn; } catch(e){}
       }
