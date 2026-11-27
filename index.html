@@ -12800,7 +12800,7 @@ function updateGasStatusDisplay() {
     if (btnLabel) btnLabel.textContent = 'Google Sheets (Aktif)';
   } else {
     if (indicator) indicator.style.background = '#ef4444';
-    if (statusSpan) statusSpan.innerHTML = '<span style="color:#ef4444;font-weight:700">&#9888; Belum Terhubung</span> â€” Masukkan URL Web App Apps Script di atas';
+    if (statusSpan) statusSpan.innerHTML = '<span style="color:#ef4444;font-weight:700">&#9888; Belum Terhubung</span> — Masukkan URL Web App Apps Script di atas';
     if (btnLabel) btnLabel.textContent = 'Hubungkan Sheets';
   }
 }
@@ -14030,11 +14030,21 @@ document.addEventListener('DOMContentLoaded', function() {
     getMasterOptions: 'modules/master/options.php'
   };
 
-  // â•â•â•â• DUAL-ENGINE API ROUTER (GAS WebApp + GitHub Pages Hybrid) â•â•â•â•
-var DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwStMQb22Xbyx6ZjhYoVPc5_3syzfhq5KlZFda-sDy31-hjEClrELoqYYjoS6f6dT3Beg/exec";
+  // ════ DUAL-ENGINE API ROUTER (GAS WebApp + GitHub Pages Hybrid) ════
+var DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwGWJu-yKAJAmcLBzOu825p-F-D83eMhdO_lVnBzau5b3vlvTVvw8pDUu7PrvQN6QYRMQ/exec";
+var LEGACY_OLD_GAS_URL = "AKfycbwStMQb22Xbyx6ZjhYoVPc5_3syzfhq5KlZFda-sDy31-hjEClrELoqYYjoS6f6dT3Beg";
 
 function getGasApiUrl() {
-  return window.GAS_API_URL || localStorage.getItem('PNS_GAS_WEBAPP_URL') || DEFAULT_GAS_URL;
+  try {
+    var saved = localStorage.getItem('PNS_GAS_WEBAPP_URL');
+    if (saved && saved.indexOf(LEGACY_OLD_GAS_URL) !== -1) {
+      localStorage.removeItem('PNS_GAS_WEBAPP_URL');
+      saved = null;
+    }
+    return window.GAS_API_URL || saved || DEFAULT_GAS_URL;
+  } catch (e) {
+    return window.GAS_API_URL || DEFAULT_GAS_URL;
+  }
 }
 
 function setGasApiUrl(url) {
@@ -14045,7 +14055,7 @@ function setGasApiUrl(url) {
   }
 }
 
-// â”€â”€ Fallback Mode Uji Coba Cepat (Demo / Offline) â”€â”€
+// ── Fallback Mode Uji Coba Cepat (Demo / Offline) ──
 function loginDemoMode() {
   var user = {
     id: 1,
@@ -14107,7 +14117,7 @@ function api(action, extra) {
 
   var payload = Object.assign({}, extra, { action: action });
 
-  var GAS_ACCESS_MSG = 'Server Google Apps Script menolak akses (401). Buka script.google.com â†’ Deploy â†’ Manage deployments â†’ Edit (ikon pensil) â†’ "Execute as: Me" dan "Who has access: Anyone" â†’ Deploy.';
+  var GAS_ACCESS_MSG = 'Server Google Apps Script menolak akses (401). Buka script.google.com → Deploy → Manage deployments → Edit (ikon pensil) → "Execute as: Me" dan "Who has access: Anyone" → Deploy.';
 
   return fetch(gasUrl, {
     method: 'POST',
