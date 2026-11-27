@@ -10052,6 +10052,31 @@ body.in-app .edoc-toolbar {
   margin: 0 !important;
 }
 
+
+/* Module Release Status Tags (Aktif vs Pengembangan) */
+.mod-live-tag {
+  font-style: normal !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  padding: 1px 6px !important;
+  border-radius: 4px !important;
+  background: #f0fdfa !important;
+  color: #0f766e !important;
+  border: 1px solid #ccfbf1 !important;
+  margin-left: 4px !important;
+}
+.mod-dev-tag {
+  font-style: normal !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  padding: 1px 6px !important;
+  border-radius: 4px !important;
+  background: #f1f5f9 !important;
+  color: #64748b !important;
+  border: 1px solid #e2e8f0 !important;
+  margin-left: 4px !important;
+}
+
 </style>
 
 </head>
@@ -10331,7 +10356,7 @@ body.in-app .edoc-toolbar {
       </div>
       <div class="section-label">Ringkasan Aktivitas</div>
             <div class="kpi-strip" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
-        <div class="kpi c-green kpi-btn" onclick="navTo('calendar')" role="button" tabindex="0" title="Buka Kalender & Jadwal Ruang Meeting">
+        <div class="kpi c-green kpi-btn" data-mod="calendar" onclick="navTo('calendar')" role="button" tabindex="0" title="Buka Kalender & Jadwal Ruang Meeting">
           <div class="kpi-lbl">Ruang Meeting</div>
           <div style="display:flex;align-items:flex-end;justify-content:space-between">
             <div>
@@ -10341,7 +10366,7 @@ body.in-app .edoc-toolbar {
             <svg id="spark-tot" class="kpi-spark-line" width="60" height="28" viewBox="0 0 60 28"></svg>
           </div>
         </div>
-        <div class="kpi c-violet kpi-btn" onclick="navTo('zoom')" role="button" tabindex="0" title="Buka Jadwal & Lisensi Meeting Virtual Zoom">
+        <div class="kpi c-violet kpi-btn" data-mod="zoom" onclick="navTo('zoom')" role="button" tabindex="0" title="Buka Jadwal & Lisensi Meeting Virtual Zoom">
           <div class="kpi-lbl">Zoom Meeting</div>
           <div style="display:flex;align-items:flex-end;justify-content:space-between">
             <div>
@@ -10351,7 +10376,7 @@ body.in-app .edoc-toolbar {
             <span style="font-size:22px;align-self:flex-end;margin-bottom:2px">📹</span>
           </div>
         </div>
-        <div class="kpi c-indigo kpi-btn" onclick="navTo('edoc')" role="button" tabindex="0" title="Buka Pengiriman & Tracking Dokumen E-Doc">
+        <div class="kpi c-indigo kpi-btn" data-mod="edoc-out" onclick="navTo('edoc-out')" role="button" tabindex="0" title="Buka Pengiriman & Tracking Dokumen E-Doc">
           <div class="kpi-lbl">E-DOC</div>
           <div style="display:flex;align-items:flex-end;justify-content:space-between">
             <div>
@@ -10361,7 +10386,7 @@ body.in-app .edoc-toolbar {
             <span style="font-size:22px;align-self:flex-end;margin-bottom:2px">📦</span>
           </div>
         </div>
-        <div class="kpi c-amber kpi-btn" onclick="navTo('mobilisasi')" role="button" tabindex="0" title="Buka Peminjaman & Jadwal Mobil Dinas">
+        <div class="kpi c-amber kpi-btn" data-mod="mobilisasi" onclick="navTo('mobilisasi')" role="button" tabindex="0" title="Buka Peminjaman & Jadwal Mobil Dinas">
           <div class="kpi-lbl">Mobil Dinas</div>
           <div style="display:flex;align-items:flex-end;justify-content:space-between">
             <div>
@@ -10371,7 +10396,7 @@ body.in-app .edoc-toolbar {
             <span style="font-size:22px;align-self:flex-end;margin-bottom:2px">🚗</span>
           </div>
         </div>
-        <div class="kpi c-emerald kpi-btn" onclick="navTo('atk')" role="button" tabindex="0" title="Buka Permintaan & Katalog Barang ATK">
+        <div class="kpi c-emerald kpi-btn" data-mod="atk" onclick="navTo('atk')" role="button" tabindex="0" title="Buka Permintaan & Katalog Barang ATK">
           <div class="kpi-lbl">Request ATK</div>
           <div style="display:flex;align-items:flex-end;justify-content:space-between">
             <div>
@@ -10769,11 +10794,11 @@ body.in-app .edoc-toolbar {
 
       <div class="gs-filter-tabs" style="margin-bottom:14px">
         <button class="gs-tab-btn active" data-tf="all" onclick="ticketTabFilter('all')">Semua Layanan</button>
-        <button class="gs-tab-btn" data-tf="meeting" onclick="ticketTabFilter('meeting')">🏛️ Ruang Meeting</button>
-        <button class="gs-tab-btn" data-tf="zoom" onclick="ticketTabFilter('zoom')">📹 Zoom Virtual</button>
-        <button class="gs-tab-btn" data-tf="edoc" onclick="ticketTabFilter('edoc')">📦 E-Doc Dokumen</button>
-        <button class="gs-tab-btn" data-tf="car" onclick="ticketTabFilter('car')">🚗 Mobil Dinas</button>
-        <button class="gs-tab-btn" data-tf="atk" onclick="ticketTabFilter('atk')">✏️ Request ATK</button>
+        <button class="gs-tab-btn" data-tf="meeting" data-mod="calendar" onclick="ticketTabFilter('meeting')">🏛️ Ruang Meeting</button>
+        <button class="gs-tab-btn" data-tf="zoom" data-mod="zoom" onclick="ticketTabFilter('zoom')">📹 Zoom Virtual</button>
+        <button class="gs-tab-btn" data-tf="edoc" data-mod="edoc-out" onclick="ticketTabFilter('edoc')">📦 E-Doc Dokumen</button>
+        <button class="gs-tab-btn" data-tf="car" data-mod="mobilisasi" onclick="ticketTabFilter('car')">🚗 Mobil Dinas</button>
+        <button class="gs-tab-btn" data-tf="atk" data-mod="atk" onclick="ticketTabFilter('atk')">✏️ Request ATK</button>
       </div>
 
       <div class="ticket-list" id="ticket-list-full"><div class="empty-state"><div class="spinner-lg"></div></div></div>
@@ -10970,6 +10995,26 @@ body.in-app .edoc-toolbar {
         <div class="kpi c-green"><div class="kpi-top"><span class="kpi-lbl">Pengguna Aktif</span></div><div class="kpi-mid"><span class="kpi-val" id="user-kpi-active">0</span></div><div class="kpi-sub">Total terdaftar &amp; disetujui</div></div>
         <div class="kpi c-amber"><div class="kpi-top"><span class="kpi-lbl">Menunggu Approval</span></div><div class="kpi-mid"><span class="kpi-val" id="user-kpi-pending">0</span></div><div class="kpi-sub">Butuh persetujuan admin</div></div>
         <div class="kpi c-violet"><div class="kpi-top"><span class="kpi-lbl">Administrator</span></div><div class="kpi-mid"><span class="kpi-val" id="user-kpi-admin">0</span></div><div class="kpi-sub">Akses pengelola penuh</div></div>
+      </div>
+
+      <!-- PENGATURAN RILIS MODUL GLOBAL UNTUK KARYAWAN (DIATUR ADMIN) -->
+      <div class="panel" id="panel-global-modules" style="margin-bottom:16px">
+        <div class="panel-head" style="padding:12px 16px">
+          <div>
+            <div class="panel-ttl">Pengaturan Modul Dibuka untuk Karyawan</div>
+            <div class="panel-sub">Saat ini hanya modul Meeting yang dibuka. Centang modul lain jika sudah siap dirilis ke seluruh karyawan (atau atur per user lewat tombol Edit).</div>
+          </div>
+          <button type="button" class="btn-next" onclick="saveGlobalUserModules()" style="padding:7px 14px;font-size:12.5px">Simpan Rilis Modul</button>
+        </div>
+        <div class="panel-body" style="padding:12px 16px">
+          <div class="um-mod-grid" style="grid-template-columns:repeat(auto-fit, minmax(170px, 1fr))">
+            <label class="um-mod-item"><input type="checkbox" class="gm-mod-cb" value="calendar" checked> <span>Ruang Meeting <em class="mod-live-tag">Aktif</em></span></label>
+            <label class="um-mod-item"><input type="checkbox" class="gm-mod-cb" value="zoom" checked> <span>Zoom Meeting <em class="mod-live-tag">Aktif</em></span></label>
+            <label class="um-mod-item"><input type="checkbox" class="gm-mod-cb" value="mobilisasi"> <span>Mobil Dinas <em class="mod-dev-tag">Pengembangan</em></span></label>
+            <label class="um-mod-item"><input type="checkbox" class="gm-mod-cb" value="atk"> <span>Request ATK <em class="mod-dev-tag">Pengembangan</em></span></label>
+            <label class="um-mod-item"><input type="checkbox" class="gm-mod-cb" value="edoc-out"> <span>E-DOC Keluar <em class="mod-dev-tag">Pengembangan</em></span></label>
+          </div>
+        </div>
       </div>
 
       <div class="panel" id="panel-pending-users" style="display:none;margin-bottom:20px">
@@ -12451,9 +12496,9 @@ body.in-app .edoc-toolbar {
         <div id="um-modules-grid" class="um-mod-grid">
           <label class="um-mod-item"><input type="checkbox" class="um-mod-cb" value="calendar" checked> <span>Ruang Meeting</span></label>
           <label class="um-mod-item"><input type="checkbox" class="um-mod-cb" value="zoom" checked> <span>Zoom Meeting</span></label>
-          <label class="um-mod-item"><input type="checkbox" class="um-mod-cb" value="mobilisasi" checked> <span>Mobil Dinas</span></label>
-          <label class="um-mod-item"><input type="checkbox" class="um-mod-cb" value="atk" checked> <span>Request ATK</span></label>
-          <label class="um-mod-item"><input type="checkbox" class="um-mod-cb" value="edoc-out" checked> <span>E-DOC Keluar</span></label>
+          <label class="um-mod-item"><input type="checkbox" class="um-mod-cb" value="mobilisasi"> <span>Mobil Dinas <em class="mod-dev-tag">Dev</em></span></label>
+          <label class="um-mod-item"><input type="checkbox" class="um-mod-cb" value="atk"> <span>Request ATK <em class="mod-dev-tag">Dev</em></span></label>
+          <label class="um-mod-item"><input type="checkbox" class="um-mod-cb" value="edoc-out"> <span>E-DOC Keluar <em class="mod-dev-tag">Dev</em></span></label>
           <label class="um-mod-item"><input type="checkbox" class="um-mod-cb" value="edoc-in"> <span>E-DOC Masuk &amp; Serah Terima</span></label>
           <label class="um-mod-item"><input type="checkbox" class="um-mod-cb" value="atk-stock"> <span>Stok ATK (Gudang)</span></label>
           <label class="um-mod-item"><input type="checkbox" class="um-mod-cb" value="users"> <span>Kelola Pengguna</span></label>
@@ -12973,7 +13018,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // ════ 36 KARYAWAN ACTIVE LOCAL DIRECTORY (INSTANT FAST VERIFY) ════
-  var PNS_EMPLOYEE_DIRECTORY = [{"id":1,"nik":"240082","nama":"M. Miftahul Khoiry","email":"miftahul.khoiry@pns.co.id","section":"GS HO & RO","departemen":"HRGA","bagian":"GS HO & RO","jabatan":"Superintendent","posisi":"General Services Superintendent","isAdmin":true,"isGs":true,"isDefaultPin":true,"role":"admin","roleLabel":"Admin GS"},{"id":2,"nik":"210051","nama":"Aditya Aji Asmoro","email":"asmoroaji8@gmail.com","section":"Tax","departemen":"Financial & Information System","bagian":"Tax","jabatan":"Supervisor","posisi":"Tax Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":3,"nik":"210053","nama":"Andi Wijaya","email":"wijaya9973@gmail.com","section":"Information Technology","departemen":"Financial & Information System","bagian":"Information Technology","jabatan":"Supervisor","posisi":"IT Application Development Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":4,"nik":"180001","nama":"Angga Prasetya Nusantara","email":"anggaong@gmail.com","section":"Accounting","departemen":"Financial & Information System","bagian":"Accounting","jabatan":"Supervisor","posisi":"Accounting Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":5,"nik":"220045","nama":"Arif Budiman","email":"arifbudiman.cp@gmail.com","section":"Organizational Development & Performance Management","departemen":"HRGA","bagian":"Organizational Development & Performance Management","jabatan":"Supervisor","posisi":"ODPM Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":6,"nik":"130028","nama":"Catur Handayani","email":"handayani.catur1202@gmail.com","section":"Talent Acquisition & Monitoring","departemen":"HRGA","bagian":"Talent Acquisition & Monitoring","jabatan":"Superintendent","posisi":"Talent Acquisition & Monitoring Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":7,"nik":"210049","nama":"Delia Syafira","email":"deliasyafiira@gmail.com","section":"Procurement & Purchasing","departemen":"Procurement & Purchasing","bagian":"Procurement & Purchasing","jabatan":"Staff","posisi":"Purchasing Staff","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":8,"nik":"180096","nama":"Egi Madyagi","email":"emadyagi@gmail.com","section":"Financial & Information System","departemen":"Financial & Information System","bagian":"-","jabatan":"Coordinator","posisi":"Financial Reporting & Analysis Coordinator","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":9,"nik":"170145","nama":"Eka Widhyasmara","email":"ekawidhyasmara1@gmail.com","section":"Procurement & Purchasing","departemen":"Procurement & Purchasing","bagian":"Procurement & Purchasing","jabatan":"Supervisor","posisi":"Procurement Supervisor","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":10,"nik":"120022","nama":"Evasari Veronica","email":"eva.veonica@gmail.com","section":"GS HO & RO","departemen":"HRGA","bagian":"GS HO & RO","jabatan":"Supervisor","posisi":"General Services Supervisor","isAdmin":true,"isGs":true,"isDefaultPin":true,"role":"admin","roleLabel":"Admin GS"},{"id":11,"nik":"210062","nama":"Evelyn Kangdinata","email":"evelynkangdinata8@gmail.com","section":"Compensation Benefit & Personal Admin","departemen":"HRGA","bagian":"Compensation Benefit & Personal Admin","jabatan":"Supervisor","posisi":"CBPA Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":12,"nik":"160047","nama":"Refacha Violany Putri","email":"rviolany04@gmail.com","section":"Talent Acquisition & Monitoring","departemen":"HRGA","bagian":"Talent Acquisition & Monitoring","jabatan":"Supervisor","posisi":"Talent Acquisition & Monitoring Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":13,"nik":"200075","nama":"Fahrizal Rinaldi","email":"fahrizalrinaldi01@gmail.com","section":"Procurement & Purchasing","departemen":"Procurement & Purchasing","bagian":"Procurement & Purchasing","jabatan":"Staff","posisi":"Procurement Staff","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":14,"nik":"230001","nama":"Irwan Heriyanto","email":"heriyanto.one@gmail.com","section":"Compensation Benefit & Personal Admin","departemen":"HRGA","bagian":"Compensation Benefit & Personal Admin","jabatan":"Superintendent","posisi":"CBPA Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":15,"nik":"220016","nama":"Juandela Herina Putri","email":"juandelaherinaputri24420@gmail.com","section":"Information Technology","departemen":"Financial & Information System","bagian":"Information Technology","jabatan":"Jr. Staff","posisi":"IT Support & Infrastructure Staff","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":16,"nik":"220039","nama":"Muhammad Ilham","email":"ilham.muhammad19@gmail.com","section":"Accounting","departemen":"Financial & Information System","bagian":"Accounting","jabatan":"Supervisor","posisi":"Accounting Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":17,"nik":"150074","nama":"M. Iqbal Nurhadi","email":"nurhadi.miqbal@gmail.com","section":"Accounting","departemen":"Financial & Information System","bagian":"Accounting","jabatan":"Superintendent","posisi":"Accounting Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":18,"nik":"220031","nama":"Muhammad Maulana","email":"mlana141013@gmail.com","section":"Information Technology","departemen":"Financial & Information System","bagian":"Information Technology","jabatan":"Supervisor","posisi":"IT Application Development Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":20,"nik":"230091","nama":"Mohamad Ronang Wibowo","email":"mohamadronangwibowo@gmail.com","section":"Budget","departemen":"Financial & Information System","bagian":"Budget","jabatan":"Supervisor","posisi":"Budget Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":21,"nik":"220058","nama":"Nicholaus Cristiardy .S","email":"sumardinicholaus@gmail.com","section":"Sales & Marketing","departemen":"Sales & Marketing","bagian":"Sales & Marketing","jabatan":"Jr. Staff","posisi":"Sales & Marketing Staff","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":22,"nik":"170155","nama":"Shirly","email":"veronicalouisashirly@gmail.com","section":"Finance","departemen":"Financial & Information System","bagian":"Finance","jabatan":"Sr. Supervisor","posisi":"Finance Supervisor","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":23,"nik":"240071","nama":"Sri Wardani Rambe","email":"swrakses@gmail.com","section":"Organizational Development & Performance Management","departemen":"HRGA","bagian":"Organizational Development & Performance Management","jabatan":"Superintendent","posisi":"ODPM Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":24,"nik":"140023","nama":"Tama Priambodo","email":"tamapriambodo@gmail.com","section":"Information Technology","departemen":"Financial & Information System","bagian":"Information Technology","jabatan":"Superintendent","posisi":"IT Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":25,"nik":"190332","nama":"Widi Rizky Utami","email":"widirk.utami@gmail.com","section":"Procurement & Purchasing","departemen":"Procurement & Purchasing","bagian":"Procurement & Purchasing","jabatan":"Supervisor","posisi":"Purchasing Supervisor","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":26,"nik":"130046","nama":"Yuki Ratna Jayanti","email":"yukirj90@gmail.com","section":"Sales & Marketing","departemen":"Sales & Marketing","bagian":"Sales & Marketing","jabatan":"Superintendent","posisi":"Sales & Marketing Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":27,"nik":"ADMIN01","nama":"ul (Admin GS)","email":"taoel.telecaster@gmail.com","section":"General Services","departemen":"HRGA","bagian":"GS HO & RO","jabatan":"System Administrator","posisi":"Admin Portal","isAdmin":true,"isGs":true,"isDefaultPin":true,"role":"admin","roleLabel":"Admin GS"},{"id":28,"nik":"GS-HO","nama":"GS Head Office","email":"gs_ho@pns.co.id","section":"General Services","departemen":"HRGA","bagian":"GS HO & RO","jabatan":"Support Operator","posisi":"GS Service Account","isAdmin":true,"isGs":true,"isDefaultPin":true,"role":"admin","roleLabel":"Admin GS"},{"id":29,"nik":"120034","nama":"Effendi","email":"effendi@pns.co.id","section":"Head Office","departemen":"-","bagian":"-","jabatan":"General Manager","posisi":"Financial & Information System General Manager","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":30,"nik":"140059","nama":"Yohanes Tirto","email":"yohanes.tirto@pns.co.id","section":"Head Office","departemen":"-","bagian":"-","jabatan":"General Manager","posisi":"HRGA General Manager","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":31,"nik":"150056","nama":"Ricky Hartanto Tonorahardjo","email":"ricky.hartanto@pns.co.id","section":"Procurement & Purchasing","departemen":"Procurement & Purchasing","bagian":"-","jabatan":"Manager","posisi":"Procurement & Purchasing Manager","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":32,"nik":"150089","nama":"Bury Hardjanto","email":"bury.hardjanto@pns.co.id","section":"Tax","departemen":"Financial & Information System","bagian":"Tax","jabatan":"Superintendent","posisi":"Tax Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":33,"nik":"160145","nama":"Endro Prayogi","email":"endro.prayogi@pns.co.id","section":"Information Technology","departemen":"Financial & Information System","bagian":"Information Technology","jabatan":"Supervisor","posisi":"IT Support & Infrastructure Supervisor","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":34,"nik":"190274","nama":"Rudiyanto Sumardi","email":"rudiyanto.sumardi@pns.co.id","section":"Procurement & Purchasing","departemen":"Procurement & Purchasing","bagian":"Procurement & Purchasing","jabatan":"Superintendent","posisi":"Procurement & Purchasing Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":35,"nik":"220055","nama":"Ari Irawan","email":"ari.irawan@pns.co.id","section":"GS HO & RO","departemen":"HRGA","bagian":"GS HO & RO","jabatan":"Operator","posisi":"Office Boy","isAdmin":false,"isGs":true,"isDefaultPin":true,"role":"gs","roleLabel":"Petugas GS"},{"id":36,"nik":"230053","nama":"Defiandra Pratiwi Wibowo","email":"defiandra.pratiwi@pns.co.id","section":"Finance","departemen":"Financial & Information System","bagian":"Finance","jabatan":"Jr. Staff","posisi":"Finance Staff","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan"},{"id":37,"nik":"230077","nama":"Ahdi Apriyadi","email":"ahdi.apriyadi@pns.co.id","section":"GS HO & RO","departemen":"HRGA","bagian":"GS HO & RO","jabatan":"Operator","posisi":"Driver Head Office","isAdmin":false,"isGs":true,"isDefaultPin":true,"role":"gs","roleLabel":"Petugas GS"}];
+  var PNS_EMPLOYEE_DIRECTORY = [{"id":1,"nik":"240082","nama":"M. Miftahul Khoiry","email":"miftahul.khoiry@pns.co.id","section":"GS HO & RO","departemen":"HRGA","bagian":"GS HO & RO","jabatan":"Superintendent","posisi":"General Services Superintendent","isAdmin":true,"isGs":true,"isDefaultPin":true,"role":"admin","roleLabel":"Admin GS","allowed_modules":"calendar,zoom,mobilisasi,atk,edoc-out,edoc-in,atk-stock,users,sync"},{"id":2,"nik":"210051","nama":"Aditya Aji Asmoro","email":"asmoroaji8@gmail.com","section":"Tax","departemen":"Financial & Information System","bagian":"Tax","jabatan":"Supervisor","posisi":"Tax Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":3,"nik":"210053","nama":"Andi Wijaya","email":"wijaya9973@gmail.com","section":"Information Technology","departemen":"Financial & Information System","bagian":"Information Technology","jabatan":"Supervisor","posisi":"IT Application Development Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":4,"nik":"180001","nama":"Angga Prasetya Nusantara","email":"anggaong@gmail.com","section":"Accounting","departemen":"Financial & Information System","bagian":"Accounting","jabatan":"Supervisor","posisi":"Accounting Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":5,"nik":"220045","nama":"Arif Budiman","email":"arifbudiman.cp@gmail.com","section":"Organizational Development & Performance Management","departemen":"HRGA","bagian":"Organizational Development & Performance Management","jabatan":"Supervisor","posisi":"ODPM Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":6,"nik":"130028","nama":"Catur Handayani","email":"handayani.catur1202@gmail.com","section":"Talent Acquisition & Monitoring","departemen":"HRGA","bagian":"Talent Acquisition & Monitoring","jabatan":"Superintendent","posisi":"Talent Acquisition & Monitoring Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":7,"nik":"210049","nama":"Delia Syafira","email":"deliasyafiira@gmail.com","section":"Procurement & Purchasing","departemen":"Procurement & Purchasing","bagian":"Procurement & Purchasing","jabatan":"Staff","posisi":"Purchasing Staff","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":8,"nik":"180096","nama":"Egi Madyagi","email":"emadyagi@gmail.com","section":"Financial & Information System","departemen":"Financial & Information System","bagian":"-","jabatan":"Coordinator","posisi":"Financial Reporting & Analysis Coordinator","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":9,"nik":"170145","nama":"Eka Widhyasmara","email":"ekawidhyasmara1@gmail.com","section":"Procurement & Purchasing","departemen":"Procurement & Purchasing","bagian":"Procurement & Purchasing","jabatan":"Supervisor","posisi":"Procurement Supervisor","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":10,"nik":"120022","nama":"Evasari Veronica","email":"eva.veonica@gmail.com","section":"GS HO & RO","departemen":"HRGA","bagian":"GS HO & RO","jabatan":"Supervisor","posisi":"General Services Supervisor","isAdmin":true,"isGs":true,"isDefaultPin":true,"role":"admin","roleLabel":"Admin GS","allowed_modules":"calendar,zoom,mobilisasi,atk,edoc-out,edoc-in,atk-stock,users,sync"},{"id":11,"nik":"210062","nama":"Evelyn Kangdinata","email":"evelynkangdinata8@gmail.com","section":"Compensation Benefit & Personal Admin","departemen":"HRGA","bagian":"Compensation Benefit & Personal Admin","jabatan":"Supervisor","posisi":"CBPA Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":12,"nik":"160047","nama":"Refacha Violany Putri","email":"rviolany04@gmail.com","section":"Talent Acquisition & Monitoring","departemen":"HRGA","bagian":"Talent Acquisition & Monitoring","jabatan":"Supervisor","posisi":"Talent Acquisition & Monitoring Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":13,"nik":"200075","nama":"Fahrizal Rinaldi","email":"fahrizalrinaldi01@gmail.com","section":"Procurement & Purchasing","departemen":"Procurement & Purchasing","bagian":"Procurement & Purchasing","jabatan":"Staff","posisi":"Procurement Staff","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":14,"nik":"230001","nama":"Irwan Heriyanto","email":"heriyanto.one@gmail.com","section":"Compensation Benefit & Personal Admin","departemen":"HRGA","bagian":"Compensation Benefit & Personal Admin","jabatan":"Superintendent","posisi":"CBPA Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":15,"nik":"220016","nama":"Juandela Herina Putri","email":"juandelaherinaputri24420@gmail.com","section":"Information Technology","departemen":"Financial & Information System","bagian":"Information Technology","jabatan":"Jr. Staff","posisi":"IT Support & Infrastructure Staff","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":16,"nik":"220039","nama":"Muhammad Ilham","email":"ilham.muhammad19@gmail.com","section":"Accounting","departemen":"Financial & Information System","bagian":"Accounting","jabatan":"Supervisor","posisi":"Accounting Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":17,"nik":"150074","nama":"M. Iqbal Nurhadi","email":"nurhadi.miqbal@gmail.com","section":"Accounting","departemen":"Financial & Information System","bagian":"Accounting","jabatan":"Superintendent","posisi":"Accounting Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":18,"nik":"220031","nama":"Muhammad Maulana","email":"mlana141013@gmail.com","section":"Information Technology","departemen":"Financial & Information System","bagian":"Information Technology","jabatan":"Supervisor","posisi":"IT Application Development Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":20,"nik":"230091","nama":"Mohamad Ronang Wibowo","email":"mohamadronangwibowo@gmail.com","section":"Budget","departemen":"Financial & Information System","bagian":"Budget","jabatan":"Supervisor","posisi":"Budget Officer","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":21,"nik":"220058","nama":"Nicholaus Cristiardy .S","email":"sumardinicholaus@gmail.com","section":"Sales & Marketing","departemen":"Sales & Marketing","bagian":"Sales & Marketing","jabatan":"Jr. Staff","posisi":"Sales & Marketing Staff","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":22,"nik":"170155","nama":"Shirly","email":"veronicalouisashirly@gmail.com","section":"Finance","departemen":"Financial & Information System","bagian":"Finance","jabatan":"Sr. Supervisor","posisi":"Finance Supervisor","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":23,"nik":"240071","nama":"Sri Wardani Rambe","email":"swrakses@gmail.com","section":"Organizational Development & Performance Management","departemen":"HRGA","bagian":"Organizational Development & Performance Management","jabatan":"Superintendent","posisi":"ODPM Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":24,"nik":"140023","nama":"Tama Priambodo","email":"tamapriambodo@gmail.com","section":"Information Technology","departemen":"Financial & Information System","bagian":"Information Technology","jabatan":"Superintendent","posisi":"IT Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":25,"nik":"190332","nama":"Widi Rizky Utami","email":"widirk.utami@gmail.com","section":"Procurement & Purchasing","departemen":"Procurement & Purchasing","bagian":"Procurement & Purchasing","jabatan":"Supervisor","posisi":"Purchasing Supervisor","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":26,"nik":"130046","nama":"Yuki Ratna Jayanti","email":"yukirj90@gmail.com","section":"Sales & Marketing","departemen":"Sales & Marketing","bagian":"Sales & Marketing","jabatan":"Superintendent","posisi":"Sales & Marketing Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":27,"nik":"ADMIN01","nama":"ul (Admin GS)","email":"taoel.telecaster@gmail.com","section":"General Services","departemen":"HRGA","bagian":"GS HO & RO","jabatan":"System Administrator","posisi":"Admin Portal","isAdmin":true,"isGs":true,"isDefaultPin":true,"role":"admin","roleLabel":"Admin GS","allowed_modules":"calendar,zoom,mobilisasi,atk,edoc-out,edoc-in,atk-stock,users,sync"},{"id":28,"nik":"GS-HO","nama":"GS Head Office","email":"gs_ho@pns.co.id","section":"General Services","departemen":"HRGA","bagian":"GS HO & RO","jabatan":"Support Operator","posisi":"GS Service Account","isAdmin":true,"isGs":true,"isDefaultPin":true,"role":"admin","roleLabel":"Admin GS","allowed_modules":"calendar,zoom,mobilisasi,atk,edoc-out,edoc-in,atk-stock,users,sync"},{"id":29,"nik":"120034","nama":"Effendi","email":"effendi@pns.co.id","section":"Head Office","departemen":"-","bagian":"-","jabatan":"General Manager","posisi":"Financial & Information System General Manager","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":30,"nik":"140059","nama":"Yohanes Tirto","email":"yohanes.tirto@pns.co.id","section":"Head Office","departemen":"-","bagian":"-","jabatan":"General Manager","posisi":"HRGA General Manager","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":31,"nik":"150056","nama":"Ricky Hartanto Tonorahardjo","email":"ricky.hartanto@pns.co.id","section":"Procurement & Purchasing","departemen":"Procurement & Purchasing","bagian":"-","jabatan":"Manager","posisi":"Procurement & Purchasing Manager","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":32,"nik":"150089","nama":"Bury Hardjanto","email":"bury.hardjanto@pns.co.id","section":"Tax","departemen":"Financial & Information System","bagian":"Tax","jabatan":"Superintendent","posisi":"Tax Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":33,"nik":"160145","nama":"Endro Prayogi","email":"endro.prayogi@pns.co.id","section":"Information Technology","departemen":"Financial & Information System","bagian":"Information Technology","jabatan":"Supervisor","posisi":"IT Support & Infrastructure Supervisor","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":34,"nik":"190274","nama":"Rudiyanto Sumardi","email":"rudiyanto.sumardi@pns.co.id","section":"Procurement & Purchasing","departemen":"Procurement & Purchasing","bagian":"Procurement & Purchasing","jabatan":"Superintendent","posisi":"Procurement & Purchasing Superintendent","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":35,"nik":"220055","nama":"Ari Irawan","email":"ari.irawan@pns.co.id","section":"GS HO & RO","departemen":"HRGA","bagian":"GS HO & RO","jabatan":"Operator","posisi":"Office Boy","isAdmin":false,"isGs":true,"isDefaultPin":true,"role":"gs","roleLabel":"Petugas GS","allowed_modules":"calendar,zoom,mobilisasi,atk,edoc-out,edoc-in,atk-stock"},{"id":36,"nik":"230053","nama":"Defiandra Pratiwi Wibowo","email":"defiandra.pratiwi@pns.co.id","section":"Finance","departemen":"Financial & Information System","bagian":"Finance","jabatan":"Jr. Staff","posisi":"Finance Staff","isAdmin":false,"isGs":false,"isDefaultPin":true,"role":"user","roleLabel":"Karyawan","allowed_modules":"calendar,zoom"},{"id":37,"nik":"230077","nama":"Ahdi Apriyadi","email":"ahdi.apriyadi@pns.co.id","section":"GS HO & RO","departemen":"HRGA","bagian":"GS HO & RO","jabatan":"Operator","posisi":"Driver Head Office","isAdmin":false,"isGs":true,"isDefaultPin":true,"role":"gs","roleLabel":"Petugas GS","allowed_modules":"calendar,zoom,mobilisasi,atk,edoc-out,edoc-in,atk-stock"}];
 
   function findLocalEmployee(term) {
     if (!term) return null;
@@ -13841,8 +13886,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
 
-    applyBg();
-    setInterval(rotate, intervalMs);
+    /* Removed unused slideshow interval — video-pns.mp4 active */
   })();
 
 
@@ -18683,7 +18727,40 @@ function pad(n) { return String(n).padStart(2, '0'); }
     pel.innerHTML = '<div class="empty-state"><div class="spinner-lg"></div></div>';
     ael.innerHTML = '<div class="empty-state"><div class="spinner-lg"></div></div>';
     api('getAdminUsers').then(function (d) {
-      var pending = d.pending || [], active = d.active || [];
+      var pending = [], active = [];
+      if (Array.isArray(d)) {
+        d.forEach(function (u) {
+          var norm = Object.assign({}, u, {
+            isAdmin: !!(u.isAdmin || u.is_admin === true || Number(u.is_admin) === 1),
+            isGs: !!(u.isGs || u.is_gs === true || Number(u.is_gs) === 1 || u.role === 'gs' || u.role === 'admin' || /gs|general service|ob|driver/i.test(u.section || ''))
+          });
+          if (u.is_active === false || Number(u.is_active) === 0) pending.push(norm);
+          else active.push(norm);
+        });
+      } else {
+        pending = (d && d.pending) ? d.pending : [];
+        active = (d && d.active) ? d.active : [];
+      }
+      // Enrich / ensure all 36 master users have roles & allowed_modules populated
+      if (typeof PNS_EMPLOYEE_DIRECTORY !== 'undefined' && PNS_EMPLOYEE_DIRECTORY.length) {
+        var existingByEmail = {};
+        active.forEach(function (u) {
+          var key = String(u.email || u.nama || '').toLowerCase().trim();
+          existingByEmail[key] = u;
+          var dirMatch = findLocalEmployee(u.email || u.nama);
+          if (dirMatch) {
+            if (!u.role) u.role = dirMatch.role;
+            if (!u.roleLabel) u.roleLabel = dirMatch.roleLabel;
+            if (!u.allowed_modules) u.allowed_modules = dirMatch.allowed_modules;
+            if (dirMatch.isGs && !u.isGs) u.isGs = true;
+            if (dirMatch.isAdmin && !u.isAdmin) u.isAdmin = true;
+          }
+        });
+        PNS_EMPLOYEE_DIRECTORY.forEach(function (du) {
+          var key = String(du.email || du.nama || '').toLowerCase().trim();
+          if (!existingByEmail[key]) active.push(Object.assign({ is_active: true }, du));
+        });
+      }
       var adminCnt = active.filter(function (u) { return u.isAdmin; }).length;
       set('user-kpi-active', active.length);
       set('user-kpi-pending', pending.length);
@@ -18700,9 +18777,16 @@ function pad(n) { return String(n).padStart(2, '0'); }
       }
       renderPendingUsers(pending);
       renderActiveUsers(active);
-    }).catch(function (e) {
-      pel.innerHTML = '<div class="empty-state">⚠ ' + esc(e.message) + '</div>';
-      ael.innerHTML = '<div class="empty-state">⚠ ' + esc(e.message) + '</div>';
+    }).catch(function () {
+      var active = (typeof PNS_EMPLOYEE_DIRECTORY !== 'undefined') ? PNS_EMPLOYEE_DIRECTORY.map(function (u) { return Object.assign({ is_active: true }, u); }) : [];
+      var adminCnt = active.filter(function (u) { return u.isAdmin; }).length;
+      set('user-kpi-active', active.length);
+      set('user-kpi-pending', 0);
+      set('user-kpi-admin', adminCnt);
+      set('pending-users-count', 0);
+      set('active-users-count', active.length);
+      renderPendingUsers([]);
+      renderActiveUsers(active);
     });
   }
 
@@ -18767,8 +18851,9 @@ function pad(n) { return String(n).padStart(2, '0'); }
     html += '<th style="width:45px;text-align:center">#</th>';
     html += '<th>Pengguna</th>';
     html += '<th>Section / Bagian</th>';
-    html += '<th style="width:110px">Peran</th>';
-    html += '<th style="width:90px">Status</th>';
+    html += '<th style="width:115px">Role</th>';
+    html += '<th>Modul Dibuka</th>';
+    html += '<th style="width:85px">Status</th>';
     html += '<th style="width:120px">Terdaftar</th>';
     html += '<th style="text-align:right;white-space:nowrap;width:1%">Aksi</th>';
     html += '</tr></thead><tbody>';
@@ -18782,13 +18867,21 @@ function pad(n) { return String(n).padStart(2, '0'); }
       html += '<span class="ent-sub-text">✉ ' + esc(u.email) + '</span>';
       html += '</td>';
       html += '<td><span style="font-weight:600;color:var(--navy)">' + esc(u.section || '–') + '</span></td>';
+      var uMods = getUserAllowedModules(u);
+      var modNames = { calendar: 'Ruang Meeting', zoom: 'Zoom', mobilisasi: 'Mobil', atk: 'ATK', 'edoc-out': 'E-DOC Out', 'edoc-in': 'E-DOC In', 'atk-stock': 'Stok ATK', users: 'Pengguna', sync: 'Sync' };
+      var modBadges = uMods.length >= 8
+        ? '<span style="font-size:11px;padding:2px 7px;border-radius:5px;background:#f0fdfa;color:#0f766e;border:1px solid #ccfbf1">Semua Modul</span>'
+        : uMods.map(function (mk) { return '<span style="display:inline-block;font-size:10.5px;padding:1px 6px;margin:1px 2px 1px 0;border-radius:4px;background:#f1f5f9;color:#334155">' + esc(modNames[mk] || mk) + '</span>'; }).join('');
       html += '<td>';
-      if (u.isAdmin) {
-        html += '<span class="admin-badge" style="font-size:11px">Admin</span>';
+      if (u.isAdmin || u.role === 'admin') {
+        html += '<span class="admin-badge" style="font-size:11px">Admin GS</span>';
+      } else if (u.isGs || u.role === 'gs') {
+        html += '<span style="font-size:11px;padding:2px 7px;border-radius:5px;background:#f0fdfa;color:#0f766e;border:1px solid #ccfbf1;font-weight:500">Petugas GS</span>';
       } else {
-        html += '<span class="user-badge" style="font-size:11px;background:var(--surface2);color:var(--muted);padding:2px 8px;border-radius:6px;border:1px solid var(--border)">User</span>';
+        html += '<span class="user-badge" style="font-size:11px;background:var(--surface2);color:var(--muted);padding:2px 8px;border-radius:6px;border:1px solid var(--border)">Karyawan</span>';
       }
       html += '</td>';
+      html += '<td>' + modBadges + '</td>';
       html += '<td><span class="badge-status-disetujui" style="font-size:11px">Aktif</span></td>';
       html += '<td><span style="color:var(--muted);font-size:11.5px">' + fmtDate(u.createdAt) + '</span></td>';
       html += '<td style="text-align:right;white-space:nowrap">';
@@ -20635,7 +20728,7 @@ function pad(n) { return String(n).padStart(2, '0'); }
   var MODULE_PRESETS = {
     admin: ['calendar', 'zoom', 'mobilisasi', 'atk', 'edoc-out', 'edoc-in', 'atk-stock', 'users', 'sync'],
     gs:    ['calendar', 'zoom', 'mobilisasi', 'atk', 'edoc-out', 'edoc-in', 'atk-stock'],
-    user:  ['calendar', 'zoom', 'mobilisasi', 'atk', 'edoc-out']
+    user:  ['calendar', 'zoom']
   };
 
   function getStoredModulePermsMap() {
@@ -20668,7 +20761,7 @@ function pad(n) { return String(n).padStart(2, '0'); }
     // 3. Fallback by role preset
     if (user.isAdmin || user.role === 'admin') return MODULE_PRESETS.admin.slice();
     if (user.isGs || user.role === 'gs') return MODULE_PRESETS.gs.slice();
-    return MODULE_PRESETS.user.slice();
+    return getGlobalUserModules();
   }
 
   function userCanAccessModule(modKey) {
@@ -20688,16 +20781,49 @@ function pad(n) { return String(n).padStart(2, '0'); }
   }
   window.onUserRolePresetChange = onUserRolePresetChange;
 
+  function getGlobalUserModules() {
+    try {
+      var saved = JSON.parse(localStorage.getItem('pns_global_user_modules') || 'null');
+      if (Array.isArray(saved) && saved.length) return saved;
+    } catch (e) { }
+    return MODULE_PRESETS.user.slice(); // Default sementara: ['calendar', 'zoom'] (Meeting saja)
+  }
+
+  function syncGlobalModuleCheckboxes() {
+    var activeGlobal = getGlobalUserModules();
+    document.querySelectorAll('.gm-mod-cb').forEach(function (cb) {
+      cb.checked = activeGlobal.indexOf(cb.value) !== -1;
+    });
+  }
+
+  function saveGlobalUserModules() {
+    var picked = [];
+    document.querySelectorAll('.gm-mod-cb:checked').forEach(function (cb) { picked.push(cb.value); });
+    if (!picked.length) picked = ['calendar', 'zoom'];
+    try { localStorage.setItem('pns_global_user_modules', JSON.stringify(picked)); } catch (e) { }
+    MODULE_PRESETS.user = picked.slice();
+    // Update default user presets in directory
+    if (typeof PNS_EMPLOYEE_DIRECTORY !== 'undefined') {
+      PNS_EMPLOYEE_DIRECTORY.forEach(function (u) {
+        if (!u.isAdmin && !u.isGs && u.role === 'user') u.allowed_modules = picked.join(',');
+      });
+    }
+    if (typeof applyPerUserModuleVisibility === 'function') applyPerUserModuleVisibility();
+    if (typeof applyUserFilterAndRender === 'function') applyUserFilterAndRender();
+    if (typeof showAlert === 'function') showAlert('Pengaturan modul untuk karyawan disimpan (' + picked.join(', ') + ').', 'ok');
+  }
+  window.saveGlobalUserModules = saveGlobalUserModules;
+
   function applyPerUserModuleVisibility() {
     if (!_session) return;
     var mods = getUserAllowedModules(_session);
-    // Sidebar sub-module buttons
+    // Sidebar sub-module buttons, Dashboard KPIs, Service Cards, and Tiket Saya filter tabs
     ['calendar', 'zoom', 'mobilisasi', 'atk', 'atk-stock', 'edoc-out', 'edoc-in', 'users', 'sync'].forEach(function (m) {
       var allowed = mods.indexOf(m) !== -1;
       document.querySelectorAll('.nav-item[data-page="' + m + '"]').forEach(function (el) {
         el.style.display = allowed ? '' : 'none';
       });
-      document.querySelectorAll('.bld-card[data-mod="' + m + '"]').forEach(function (el) {
+      document.querySelectorAll('[data-mod="' + m + '"]').forEach(function (el) {
         el.style.display = allowed ? '' : 'none';
       });
     });
@@ -20710,12 +20836,38 @@ function pad(n) { return String(n).padStart(2, '0'); }
       items.forEach(function (it) { if (it.style.display !== 'none') anyVisible = true; });
       grp.style.display = anyVisible ? '' : 'none';
     });
+    // Sync global module checkboxes for Admin
+    syncGlobalModuleCheckboxes();
   }
+
+  /* Audit Fix: Define all 3 previously missing handler functions cleanly */
+  function toggleAllEdocCb(masterCb) {
+    var checked = !!(masterCb && masterCb.checked);
+    document.querySelectorAll('.edoc-cb-row').forEach(function (cb) { cb.checked = checked; });
+    updateEdocBulkUI();
+  }
+  window.toggleAllEdocCb = toggleAllEdocCb;
+
+  function updateEdocBulkUI() {
+    var selected = document.querySelectorAll('.edoc-cb-row:checked').length;
+    var bar = document.getElementById('edoc-bulk-actions');
+    var cnt = document.getElementById('edoc-sel-count');
+    if (cnt) cnt.textContent = String(selected);
+    if (bar) bar.style.display = selected > 0 ? 'flex' : 'none';
+  }
+  window.updateEdocBulkUI = updateEdocBulkUI;
+
+  function openAssetAction(code) {
+    if (typeof showAlert === 'function') {
+      showAlert('Item inventaris: ' + (code || '-') + ' (Mode lihat).', 'ok');
+    }
+  }
+  window.openAssetAction = openAssetAction;
   window.applyPerUserModuleVisibility = applyPerUserModuleVisibility;
 
   /* Explicit global exports for inline onclick handlers */
   try {
-    ['doLogin','togglePin','openComboboxMenu','toggleComboboxMenu','filterComboboxMenu','selectComboboxItem','onComboboxKeydown','openRegisterModal','closeRegisterModal','doRegister','navTo','toggleNavGroup','openModal','openZoom','openCarModal','openAtkModal','openEdocModal','openEdocInboundModal','openEdocBatchHandoverModal','openEdocDetailModal','printEdocSingle','printSelectedEdocs','printEdocReceipt','logout','openPinModal','toggleSidebar','toggleTheme','onUserRolePresetChange','userCanAccessModule','applyPerUserModuleVisibility'].forEach(function(fnName){
+    ['doLogin','togglePin','openComboboxMenu','toggleComboboxMenu','filterComboboxMenu','selectComboboxItem','onComboboxKeydown','openRegisterModal','closeRegisterModal','doRegister','navTo','toggleNavGroup','openModal','openZoom','openCarModal','openAtkModal','openEdocModal','openEdocInboundModal','openEdocBatchHandoverModal','openEdocDetailModal','printEdocSingle','printSelectedEdocs','printEdocReceipt','logout','openPinModal','toggleSidebar','toggleTheme','onUserRolePresetChange','userCanAccessModule','applyPerUserModuleVisibility','saveGlobalUserModules','toggleAllEdocCb','updateEdocBulkUI','openAssetAction'].forEach(function(fnName){
       if (typeof window[fnName] === 'undefined') {
         try { var fn = eval(fnName); if (typeof fn === 'function') window[fnName] = fn; } catch(e){}
       }
