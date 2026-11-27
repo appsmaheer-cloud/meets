@@ -10226,7 +10226,7 @@ body.in-app .edoc-toolbar {
   <nav class="side-nav">
     <!-- UTAMA -->
     <div class="side-sect">Utama</div>
-    <button class="nav-item active" data-page="dashboard" onclick="navTo('dashboard')"><span class="ni-icon">📊</span><span class="ni-txt">Dashboard</span></button>
+    <button class="nav-item" data-page="dashboard" onclick="navTo('dashboard')"><span class="ni-icon">📊</span><span class="ni-txt">Dashboard</span></button>
     <button class="nav-item" data-page="tickets" onclick="navTo('tickets')"><span class="ni-icon">🎫</span><span class="ni-txt">Tiket Saya</span></button>
 
     <!-- MODUL & SUB-MODUL LAYANAN -->
@@ -10240,7 +10240,7 @@ body.in-app .edoc-toolbar {
         <span class="nav-chevron">▾</span>
       </button>
       <div class="nav-sublist">
-        <button class="nav-item nav-subitem" data-page="calendar" onclick="navTo('calendar')"><span class="ni-txt">Ruang Meeting</span></button>
+        <button class="nav-item nav-subitem active" data-page="calendar" onclick="navTo('calendar')"><span class="ni-txt">Ruang Meeting</span></button>
         <button class="nav-item nav-subitem" data-page="zoom" onclick="navTo('zoom')"><span class="ni-txt">Zoom Meeting</span></button>
       </div>
     </div>
@@ -10348,7 +10348,7 @@ body.in-app .edoc-toolbar {
       </div>
       
     </div>
-    <div class="page active" id="page-dashboard">
+    <div class="page" id="page-dashboard">
 
             <div class="page-hero">
         <h1 class="page-hero-title">Dashboard Layanan</h1>
@@ -10473,9 +10473,9 @@ body.in-app .edoc-toolbar {
     </div>
 
     <!-- PAGE KALENDER RUANG MEETING -->
-    <div class="page" id="page-calendar">
+    <div class="page active" id="page-calendar">
       <div class="panel" style="margin-bottom:0">
-        <div class="panel-head"><div><div class="page-hero-title" style="font-size:18px;margin-bottom:2px">Ruang Meeting</div><div class="page-hero-sub">Pilih tanggal pada kalender untuk melihat dan memesan ruang.</div></div><button class="btn-next" style="padding:6px 14px;font-size:12px" onclick="openModal()">+ Booking Ruang</button></div>
+        <div class="panel-head"><div><div class="page-hero-title" style="font-size:18px;margin-bottom:2px">Ruang Meeting</div><div class="page-hero-sub">Pilih tanggal pada kalender untuk melihat dan memesan ruang.</div></div><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><button type="button" class="btn-rs" onclick="refreshCalendarNow()" style="padding:6px 12px;font-size:12px" title="Tarik data terbaru langsung dari Google Sheets">🔄 Refresh</button><button class="btn-next" style="padding:6px 14px;font-size:12px" onclick="openModal()">+ Booking Ruang</button></div></div>
         <div class="panel-body" style="padding:14px">
 <div class="content-row" id="content-row">
   <div class="cal-card">
@@ -13194,8 +13194,15 @@ document.addEventListener('DOMContentLoaded', function() {
     var localEmp = findLocalEmployee(email);
     if (localEmp && pin === '1234') {
       if (!validateAndApplySession(Object.assign({}, localEmp))) return;
-      // Sinkronisasi data di latar belakang ke Google Sheets
-      api('verifyPin', { email: email, pin: pin }).catch(function () { });
+      // Sinkronisasi data terbaru dari Google Sheets & perbarui sesi bila ada perubahan di Sheet
+      api('verifyPin', { email: email, pin: pin }).then(function (freshUser) {
+        if (freshUser && freshUser.nama) {
+          _session = Object.assign({}, _session, freshUser);
+          window.SESSION = _session;
+          try { localStorage.setItem('pns_session', JSON.stringify(_session)); } catch (e) { }
+          if (typeof applyPerUserModuleVisibility === 'function') applyPerUserModuleVisibility();
+        }
+      }).catch(function () { });
       return;
     }
 
@@ -14404,6 +14411,7 @@ function pad(n) { return String(n).padStart(2, '0'); }
 
     var sb = document.getElementById('side-user');
     if (sb) sb.innerHTML = '<div class="user-av">' + ini + '</div><div class="user-meta" style="flex:1;min-width:0"><div class="user-name" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + esc(_session.nama) + '</div><div class="user-sec">' + esc(_session.section || '') + '</div></div><div style="display:flex;align-items:center;gap:2px"><button type="button" onclick="openPinModal()" title="Ubah PIN Akses" style="background:none;border:none;cursor:pointer;padding:5px 6px;border-radius:6px;color:#64748b;font-size:13px" onmouseover="this.style.background=\'#e2e8f0\'" onmouseout="this.style.background=\'none\'">🔐</button><button type="button" onclick="logout()" title="Keluar Aplikasi" style="background:none;border:none;cursor:pointer;padding:5px 6px;border-radius:6px;color:#ef4444;font-size:13px" onmouseover="this.style.background=\'#fee2e2\'" onmouseout="this.style.background=\'none\'">🚪</button></div>';
+    if (typeof navTo === 'function') navTo('calendar');
     loadDash();
     if (_session.isAdmin) loadAdminUsers();
     startAR();
@@ -14417,6 +14425,14 @@ function pad(n) { return String(n).padStart(2, '0'); }
     }
   }
 
+
+
+  function refreshCalendarNow() {
+    if (typeof showAlert === 'function') showAlert('Memuat jadwal terbaru dari Google Sheets...', 'ok');
+    loadDash();
+    if (typeof loadMasterOptions === 'function') loadMasterOptions();
+  }
+  window.refreshCalendarNow = refreshCalendarNow;
 
   function loadDash() {
     var uid = (_session && (_session.id || _session.user_id)) || '';
@@ -20006,8 +20022,29 @@ function pad(n) { return String(n).padStart(2, '0'); }
       var vList = document.getElementById('master-vendors-list');
       var sList = document.getElementById('master-sections-list');
 
-      if (uList && data.users) {
-        uList.innerHTML = data.users.map(function (u) { return '<option value="' + esc(u.nama) + '">' + esc(u.section || '') + '</option>'; }).join('');
+      if (data && Array.isArray(data.users) && data.users.length) {
+        if (uList) {
+          uList.innerHTML = data.users.map(function (u) { return '<option value="' + esc(u.nama) + '">' + esc(u.section || '') + '</option>'; }).join('');
+        }
+        // Sinkronkan daftar direktori login dengan data Google Sheets terbaru
+        if (typeof PNS_EMPLOYEE_DIRECTORY !== 'undefined') {
+          data.users.forEach(function (su) {
+            if (!su || !su.nama) return;
+            var idx = PNS_EMPLOYEE_DIRECTORY.findIndex(function (e) {
+              return (su.email && e.email && e.email.toLowerCase() === su.email.toLowerCase()) ||
+                     (e.nama && e.nama.toLowerCase() === su.nama.toLowerCase());
+            });
+            if (idx !== -1) {
+              PNS_EMPLOYEE_DIRECTORY[idx] = Object.assign({}, PNS_EMPLOYEE_DIRECTORY[idx], su);
+            } else {
+              PNS_EMPLOYEE_DIRECTORY.push(su);
+            }
+          });
+          if (typeof filterComboboxMenu === 'function') {
+            var inp = document.getElementById('login-email');
+            filterComboboxMenu(inp ? inp.value : '');
+          }
+        }
       }
       if (vList && data.vendors) {
         vList.innerHTML = data.vendors.map(function (v) { return '<option value="' + esc(v.nama_vendor) + '"></option>'; }).join('');
@@ -20867,7 +20904,7 @@ function pad(n) { return String(n).padStart(2, '0'); }
 
   /* Explicit global exports for inline onclick handlers */
   try {
-    ['doLogin','togglePin','openComboboxMenu','toggleComboboxMenu','filterComboboxMenu','selectComboboxItem','onComboboxKeydown','openRegisterModal','closeRegisterModal','doRegister','navTo','toggleNavGroup','openModal','openZoom','openCarModal','openAtkModal','openEdocModal','openEdocInboundModal','openEdocBatchHandoverModal','openEdocDetailModal','printEdocSingle','printSelectedEdocs','printEdocReceipt','logout','openPinModal','toggleSidebar','toggleTheme','onUserRolePresetChange','userCanAccessModule','applyPerUserModuleVisibility','saveGlobalUserModules','toggleAllEdocCb','updateEdocBulkUI','openAssetAction'].forEach(function(fnName){
+    ['doLogin','togglePin','openComboboxMenu','toggleComboboxMenu','filterComboboxMenu','selectComboboxItem','onComboboxKeydown','openRegisterModal','closeRegisterModal','doRegister','navTo','toggleNavGroup','openModal','openZoom','openCarModal','openAtkModal','openEdocModal','openEdocInboundModal','openEdocBatchHandoverModal','openEdocDetailModal','printEdocSingle','printSelectedEdocs','printEdocReceipt','logout','openPinModal','toggleSidebar','toggleTheme','onUserRolePresetChange','userCanAccessModule','applyPerUserModuleVisibility','saveGlobalUserModules','toggleAllEdocCb','updateEdocBulkUI','openAssetAction','refreshCalendarNow'].forEach(function(fnName){
       if (typeof window[fnName] === 'undefined') {
         try { var fn = eval(fnName); if (typeof fn === 'function') window[fnName] = fn; } catch(e){}
       }
