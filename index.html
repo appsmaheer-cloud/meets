@@ -12800,7 +12800,7 @@ function updateGasStatusDisplay() {
     if (btnLabel) btnLabel.textContent = 'Google Sheets (Aktif)';
   } else {
     if (indicator) indicator.style.background = '#ef4444';
-    if (statusSpan) statusSpan.innerHTML = '<span style="color:#ef4444;font-weight:700">&#9888; Belum Terhubung</span> — Masukkan URL Web App Apps Script di atas';
+    if (statusSpan) statusSpan.innerHTML = '<span style="color:#ef4444;font-weight:700">&#9888; Belum Terhubung</span> â€” Masukkan URL Web App Apps Script di atas';
     if (btnLabel) btnLabel.textContent = 'Hubungkan Sheets';
   }
 }
@@ -13190,48 +13190,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     if (btn) { btn.disabled = true; btn.textContent = 'Memverifikasi...'; }
 
-    // 1. FAST LOCAL VERIFY: Jika menggunakan PIN Bawaan (1234) dan karyawan terdaftar
     var localEmp = findLocalEmployee(email);
-    if (localEmp && pin === '1234') {
-      if (!validateAndApplySession(Object.assign({}, localEmp))) return;
-      // Sinkronisasi data terbaru dari Google Sheets & perbarui sesi bila ada perubahan di Sheet
-      api('verifyPin', { email: email, pin: pin }).then(function (freshUser) {
-        if (freshUser && freshUser.nama) {
-          _session = Object.assign({}, _session, freshUser);
-          window.SESSION = _session;
-          try { localStorage.setItem('pns_session', JSON.stringify(_session)); } catch (e) { }
-          if (typeof applyPerUserModuleVisibility === 'function') applyPerUserModuleVisibility();
-        }
-      }).catch(function () { });
-      return;
-    }
 
-    // 2. REMOTE VERIFY via Google Apps Script (Untuk custom PIN atau akun baru)
+    // SELALU verifikasi PIN ke Google Sheets secara akurat (tanpa bypass lokal yang memaksa isDefaultPin: true)
     api('verifyPin', { email: email, pin: pin }).then(function (user) {
-      validateAndApplySession(user);
+      var merged = localEmp ? Object.assign({}, localEmp, user) : user;
+      validateAndApplySession(merged);
     }).catch(function (e) {
-      // Jika koneksi server gagal tapi PIN default 1234, izinkan masuk
-      if (pin === '1234') {
-        var fallbackEmp = localEmp || {
-          id: 99,
-          nama: email,
-          email: email.indexOf('@') !== -1 ? email : email + '@pns.co.id',
-          section: 'General',
-          isAdmin: (email.toLowerCase().indexOf('mifta') !== -1 || email.toLowerCase().indexOf('admin') !== -1),
-          isGs: (email.toLowerCase().indexOf('mifta') !== -1 || email.toLowerCase().indexOf('admin') !== -1),
-          isDefaultPin: true
-        };
-        applyUserSession(fallbackEmp);
-        if (typeof showAlert === 'function') showAlert('Masuk Mode Cepat: ' + fallbackEmp.nama, 'ok');
+      var errMsg = (e && e.message) ? String(e.message) : 'Login gagal. Periksa PIN atau nama karyawan yang dipilih.';
+      var isNetworkErr = /failed to fetch|networkerror|network|timeout/i.test(errMsg);
+      // Fallback offline HANYA jika benar-benar tidak ada koneksi jaringan (BUKAN saat PIN salah!)
+      if (isNetworkErr && pin === '1234' && localEmp) {
+        validateAndApplySession(Object.assign({}, localEmp));
+        if (typeof showAlert === 'function') showAlert('Mode offline: terhubung dengan data lokal.', 'warn');
         return;
       }
       if (err) {
-        err.textContent = e.message || 'Login gagal. Periksa PIN atau nama karyawan yang dipilih.';
+        err.textContent = errMsg;
         err.classList.add('show');
       }
       if (btn) { btn.disabled = false; btn.textContent = 'Masuk Portal'; }
       var pEl = document.getElementById('login-pin');
-      if (pEl) pEl.value = '';
+      if (pEl) { pEl.value = ''; pEl.focus(); }
     });
   }
 
@@ -14030,7 +14010,7 @@ document.addEventListener('DOMContentLoaded', function() {
     getMasterOptions: 'modules/master/options.php'
   };
 
-  // ════ DUAL-ENGINE API ROUTER (GAS WebApp + GitHub Pages Hybrid) ════
+  // â•â•â•â• DUAL-ENGINE API ROUTER (GAS WebApp + GitHub Pages Hybrid) â•â•â•â•
 var DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwGWJu-yKAJAmcLBzOu825p-F-D83eMhdO_lVnBzau5b3vlvTVvw8pDUu7PrvQN6QYRMQ/exec";
 var LEGACY_OLD_GAS_URL = "AKfycbwStMQb22Xbyx6ZjhYoVPc5_3syzfhq5KlZFda-sDy31-hjEClrELoqYYjoS6f6dT3Beg";
 
@@ -14055,7 +14035,7 @@ function setGasApiUrl(url) {
   }
 }
 
-// ── Fallback Mode Uji Coba Cepat (Demo / Offline) ──
+// â”€â”€ Fallback Mode Uji Coba Cepat (Demo / Offline) â”€â”€
 function loginDemoMode() {
   var user = {
     id: 1,
@@ -14117,7 +14097,7 @@ function api(action, extra) {
 
   var payload = Object.assign({}, extra, { action: action });
 
-  var GAS_ACCESS_MSG = 'Server Google Apps Script menolak akses (401). Buka script.google.com → Deploy → Manage deployments → Edit (ikon pensil) → "Execute as: Me" dan "Who has access: Anyone" → Deploy.';
+  var GAS_ACCESS_MSG = 'Server Google Apps Script menolak akses (401). Buka script.google.com â†’ Deploy â†’ Manage deployments â†’ Edit (ikon pensil) â†’ "Execute as: Me" dan "Who has access: Anyone" â†’ Deploy.';
 
   return fetch(gasUrl, {
     method: 'POST',
